@@ -14,11 +14,12 @@ enum Nation: String {
 }
 
 enum ShipType: String {
-    case AC = "Aircraft Carrier"
+    case AC = "AirCarrier"
     case BB = "Battleship"
     case CR = "Cruiser"
     case DD = "Destroyer"
 }
+
 
 //MARK: - Helper Methods
 

@@ -11,17 +11,17 @@ import Foundation
 struct ShipInfo {
     let description:    String
     let price_gold:     Int
+    let ship_id:        Int
     let ship_id_str:    String
     let has_demo_profile: Bool
-    let images:     [String:String]
+    let images:     [String:String] // keys: "small", "medium", "large", "contour"
     let modules:    ShipModule
     let modules_tree: [String: ShipModuleTreeNode]
     let nation:     String
     let is_premium: Bool
-    let ship_id:    String
     let price_credit: Int
     let default_profile: Ship
-    let upgrades:   [String] // [4260548528, ..] should be ID of upgrades
+    let upgrades:   [Int]
     let tier:       Int
     let next_ships: String
     let mod_slots:  Int
@@ -32,40 +32,34 @@ struct ShipInfo {
 
 
 struct ShipModule {
-    let engine: [String]
-    let torpedo_bomber: [String]
-    let fighter: [String]
-    let hull: [String]
-    let artillery: [String]
-    let torpedoes: [String]
-    -"fire_control": [
-    3653677008
-    ],
-    "flight_control": [ ],
-    "dive_bomber": [ ]
+    let engine:         [Int]
+    let torpedo_bomber: [Int]
+    let fighter:        [Int]
+    let hull:           [Int]
+    let artillery:      [Int]
+    let torpedoes:      [Int]
+    let fire_control:   [Int]
+    let flight_control: [Int]
+    let dive_bomber:    [Int]
 }
 
 struct ShipModuleTreeNode {
-    "name": "Mk VII 1型",
-    "next_modules": null,
-    "is_default": true,
-    "price_xp": 0,
-    "price_credit": 0,
-    "next_ships": null,
-    "module_id": 3653677008,
-    "type": "Suo",
-    "module_id_str": "PBUS611"
+    let name: String
+    let next_modules: String
+    let is_default: Bool
+    let price_xp: Int
+    let price_credit: Int
+    let next_ships: String
+    let module_id: String
+    let type: String
+    let module_id_str: String
 }
 
 
 struct Ship {
-    let engine: {
-    "engine_id_str": "PBUE611",
-    "max_speed": 32.5,
-    "engine_id": 3654135760
-    },
-    "torpedo_bomber": null,
-    -"anti_aircraft": {
+    let engine: Engine
+    let torpedo_bomber: TorpedoBomber
+    let anti_aircraft: {
     -"slots": {
     -"0": {
     "distance": 3.5,
@@ -202,4 +196,10 @@ struct Ship {
     }
     },
     "dive_bomber": null
+}
+
+struct Engine {
+    let engine_id: Int
+    let engine_id_str: String
+    let max_speed: Float
 }
