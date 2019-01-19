@@ -11,7 +11,7 @@ import Alamofire
 import Unbox
 
 
-class ApiServers: NSObject {
+final class ApiServers: NSObject {
     
     static let shared = ApiServers()
     
@@ -44,14 +44,61 @@ class ApiServers: NSObject {
         case asia = "asia"
     }
     
-    let host = "https://api.worldofwarships"
+    private let host = "https://api.worldofwarships"
     //https://api.worldofwarships.ru/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
     //https://api.worldofwarships.eu/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
     //https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
     //https://api.worldofwarships.asia/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
 
+    func getDDs(url: String, completion: @escaping(([String:Any]?) -> Void)) {
+        getDataFromWows(url, parameters: [:]) { (getDictionary, error) in
+            completion(getDictionary)
+        }
+    }
     
-    
+    // MARK: - basic GET and POST by url for wows
+    /**
+     * ⚓️ get data with url string, return NULL, using Alamofire
+     */
+    private func getDataFromWows(_ route: String, parameters: [String: Any], completion: @escaping(([String:Any]?, Error?) -> Void)) {
+        var urlStr = route
+        var parameterLinker = "?"
+        
+        for pair in parameters {
+            urlStr = "\(urlStr)\(parameterLinker)\(pair.key)=\(pair.value)"
+            parameterLinker = "&"
+        }
+        
+        guard let url = URL(string: urlStr) else {
+            DLog("⛔️ unable to parse url from string: \(urlStr)")
+            completion(nil, nil)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let err = error {
+                DLog("[GET_ERROR] in URLSession dataTask: \(err.localizedDescription)")
+                completion(nil, err)
+            }
+            
+            if let data = data {
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any],
+                        let getObject = json["data"] as? [String:Any] else {
+                            
+                        DLog("[GET_ERROR] in getDataFromWows: unable to serialize the Data...")
+                        completion(nil, nil)
+                        return
+                    }
+                    completion(getObject, nil)
+                    
+                } catch let error {
+                    DLog("[GET_ERROR] in getDataFromWows: \(error.localizedDescription)")
+                    completion(nil, error)
+                }
+            }
+        }.resume()
+    }
     
     
     // MARK: - basic GET and POST by url

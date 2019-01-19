@@ -12,7 +12,7 @@ target 'wowsAssistant' do
     # Pods for wowsAssistant
 
     pod 'Unbox', '2.5.0'
-    pod 'Alamofire', '4.5.1'
-    pod 'AlamofireImage', '3.3.1'
+    pod 'Alamofire', '4.8.1'
+    pod 'AlamofireImage', '3.5.0'
 
 end
