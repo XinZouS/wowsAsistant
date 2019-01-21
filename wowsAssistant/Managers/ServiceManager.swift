@@ -101,4 +101,15 @@ extension ServiceManager {
         return SystemLanguage.cn // Default using CN
     }
     
+    func getShipDescriptionLanguage() -> String {
+        let currLanguage = getLanguage()
+        switch currLanguage {
+        case .simplifiedChinese:
+            return "zh-cn"
+        case .traditionalChinese:
+            return "zh-tw"
+        default:
+            return "en"
+        }
+    }
 }

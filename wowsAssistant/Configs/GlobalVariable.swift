@@ -9,7 +9,14 @@
 import Foundation
 
 //MARK: - Info
-enum Nation: String {
+enum ServerRealm: String {
+    case ru = "ru"
+    case eu = "eu"
+    case na = "na"
+    case asia = "asia"
+}
+
+enum ShipNation: String {
     case uk = "uk"
 }
 

@@ -20,6 +20,10 @@ final class ApiServers: NSObject {
     }
     
     enum ServerKey: String {
+        case applicationId = "application_id"
+        case shipId = "ship_id"
+        case language = "language"
+        
         case data = "data"
         case statusCode = "status_code"
         case message = "message"
@@ -37,24 +41,37 @@ final class ApiServers: NSObject {
         case code = "code"
     }
 
-    enum Realm: String {
-        case ru = "ru"
-        case eu = "eu"
-        case na = "na"
-        case asia = "asia"
-    }
-    
     private let host = "https://api.worldofwarships"
     //https://api.worldofwarships.ru/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
     //https://api.worldofwarships.eu/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
     //https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
     //https://api.worldofwarships.asia/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
 
+    
+    func getShipsList(realm: ServerRealm = .na, nation: ShipNation = .uk, shipType: ShipType?, completion: @escaping(([String:ShipInfo]?) -> Void)) {
+        var params: [String:Any] = [:]
+        
+        
+    }
+    
+    func getShipById(_ id: Int, realm: ServerRealm = .na, completion: @escaping((ShipInfo) -> Void)) {
+        var params: [String:Any] = [:]
+        params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
+        params[ServerKey.shipId.rawValue] = id
+        params[ServerKey.language.rawValue] = ServiceManager.shared.getShipDescriptionLanguage()
+        
+        var route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+    }
+    
+    
     func getDDs(url: String, completion: @escaping(([String:Any]?) -> Void)) {
         getDataFromWows(url, parameters: [:]) { (getDictionary, error) in
             completion(getDictionary)
         }
     }
+    
+    
+    
     
     // MARK: - basic GET and POST by url for wows
     /**
@@ -65,8 +82,11 @@ final class ApiServers: NSObject {
         var parameterLinker = "?"
         
         for pair in parameters {
-            urlStr = "\(urlStr)\(parameterLinker)\(pair.key)=\(pair.value)"
-            parameterLinker = "&"
+            let val: String = "\(pair.value)"
+            if val != "" {
+                urlStr = "\(urlStr)\(parameterLinker)\(pair.key)=\(val)"
+                parameterLinker = "&"
+            }
         }
         
         guard let url = URL(string: urlStr) else {
@@ -76,6 +96,15 @@ final class ApiServers: NSObject {
         }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
+            let printText: String = """
+            =========================
+            [TIME UTC] \(Date())
+            [TIME GMT] \(Date().getCurrentLocalizedDate())
+            [GET ROUTE] \(route)
+            [RESPONSE] \(response.debugDescription)
+            """
+            DLog(printText)
+            
             if let err = error {
                 DLog("[GET_ERROR] in URLSession dataTask: \(err.localizedDescription)")
                 completion(nil, err)
@@ -84,16 +113,17 @@ final class ApiServers: NSObject {
             if let data = data {
                 do {
                     guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any],
-                        let getObject = json["data"] as? [String:Any] else {
+                        let getObject = json[ServerKey.data.rawValue] as? [String:Any] else {
                             
                         DLog("[GET_ERROR] in getDataFromWows: unable to serialize the Data...")
                         completion(nil, nil)
                         return
                     }
-                    completion(getObject, nil)
+                    completion(getObject, nil) // ✅ get dictionary
                     
                 } catch let error {
                     DLog("[GET_ERROR] in getDataFromWows: \(error.localizedDescription)")
+                    DLog("[RESPONSE] \(response.debugDescription)")
                     completion(nil, error)
                 }
             }
