@@ -54,13 +54,21 @@ final class ApiServers: NSObject {
         
     }
     
-    func getShipById(_ id: Int, realm: ServerRealm = .na, completion: @escaping((ShipInfo) -> Void)) {
+    func getShipById(_ id: Int, realm: ServerRealm = .na, completion: @escaping((ShipInfo?) -> Void)) {
         var params: [String:Any] = [:]
         params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
         params[ServerKey.shipId.rawValue] = id
         params[ServerKey.language.rawValue] = ServiceManager.shared.getShipDescriptionLanguage()
         
         var route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+        
+        getDataFromWows(route, parameters: params) { (dictionary, error) in
+            if let d = dictionary {
+                let info = ShipInfo(
+            } else {
+                completion(nil)
+            }
+        }
     }
     
     
