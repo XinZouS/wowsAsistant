@@ -66,4 +66,69 @@ enum ShipInfoKeyInDB: String {
     case engine_id_str = "engine_id_str"
     case max_speed = "max_speed"
     
+    // Hull
+    case hull_id = "hull_id"
+    case hull_id_str = "hull_id_str"
+    case torpedoes_barrels = "torpedoes_barrels"
+    case anti_aircraft_barrels = "anti_aircraft_barrels"
+    case range = "range"
+    case health = "health"
+    case planes_amount = "planes_amount"
+    case artillery_barrels = "artillery_barrels"
+    case atba_barrels = "atba_barrels"
+
+    // Mobility
+    case rudder_time = "rudder_time"
+    case total = "total"
+    case turning_radius = "turning_radius"
+    
+    // Atbas
+    case distance = "distance"
+    case slots = "slots"
+    
+    // AtbasSlotModule
+    case burn_probability = "burn_probability"
+    case bullet_speed = "bullet_speed"
+    case shot_delay = "shot_delay"
+    case damage = "damage"
+    case bullet_mass = "bullet_mass"
+    case gun_rate = "gun_rate"
+    
+    // Artillery
+    case max_dispersion = "max_dispersion"
+    case shells = "shells"
+    case rotation_time = "rotation_time"
+    case artillery_id = "artillery_id"
+    case artillery_id_str = "artillery_id_str"
+    
+    // Artillery slot
+    case barrels = "barrels"
+    case guns = "guns"
+    
+    // Fire control
+    case fire_control_id = "fire_control_id"
+    case fire_control_id_str = "fire_control_id_str"
+    case distance_increase = "distance_increase"
+    
+    // Weaponary
+    case aircraft = "aircraft"
+    
+    // Concealment
+    case detect_distance_by_plane = "detect_distance_by_plane"
+    case detect_distance_by_ship = "detect_distance_by_ship"
+    
+    // Armour
+    case casemate = "casemate"
+    case flood_prob = "flood_prob"
+    case deck = "deck"
+    case flood_damage = "flood_damage"
+    case extremities = "extremities"
+    case citadel = "citadel"
+    
+    // AntiAircraft
+    case defense = "defense"
+    
+    // AntiAircraft slot
+    case avg_damage = "avg_damage"
+    case caliber = "caliber"
 }

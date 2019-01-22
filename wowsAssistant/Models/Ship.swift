@@ -73,15 +73,15 @@ struct Hull: Unboxable {
     let atba_barrels: Int
     
     init(unboxer: Unboxer) throws {
-        hull_id
-        hull_id_str
-        torpedoes_barrels
-        anti_aircraft_barrels
-        range
-        health
-        planes_amount
-        artillery_barrels
-        atba_barrels
+        hull_id = (try? unboxer.unbox(key: ShipInfoKeyInDB.hull_id.rawValue)) ?? 0
+        hull_id_str = (try? unboxer.unbox(key: ShipInfoKeyInDB.hull_id_str.rawValue)) ?? ""
+        torpedoes_barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedoes_barrels.rawValue)) ?? 0
+        anti_aircraft_barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.anti_aircraft_barrels.rawValue)) ?? 0
+        range = (try? unboxer.unbox(key: ShipInfoKeyInDB.range.rawValue)) ?? Range()
+        health = (try? unboxer.unbox(key: ShipInfoKeyInDB.health.rawValue)) ?? 0
+        planes_amount = (try? unboxer.unbox(key: ShipInfoKeyInDB.planes_amount.rawValue)) ?? 0
+        artillery_barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.artillery_barrels.rawValue)) ?? 0
+        atba_barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.atba_barrels.rawValue)) ?? 0
     }
 }
 
@@ -92,10 +92,10 @@ struct Mobility: Unboxable {
     let max_speed: Float
     
     init(unboxer: Unboxer) throws {
-        rudder_time
-        total
-        turning_radius
-        max_speed
+        rudder_time = (try? unboxer.unbox(key: ShipInfoKeyInDB.rudder_time.rawValue)) ?? 0
+        total       = (try? unboxer.unbox(key: ShipInfoKeyInDB.total.rawValue)) ?? 0
+        turning_radius = (try? unboxer.unbox(key: ShipInfoKeyInDB.turning_radius.rawValue)) ?? 0
+        max_speed = (try? unboxer.unbox(key: ShipInfoKeyInDB.max_speed.rawValue)) ?? 0
     }
 }
 
@@ -104,8 +104,8 @@ struct Atbas: Unboxable {
     let slots: [String: AtbasSlotModel]
     
     init(unboxer: Unboxer) throws {
-        distance
-        slots
+        distance = (try? unboxer.unbox(key: ShipInfoKeyInDB.distance.rawValue)) ?? 0
+        slots = (try? unboxer.unbox(key: ShipInfoKeyInDB.slots.rawValue)) ?? [:]
     }
 }
 
@@ -120,14 +120,14 @@ struct AtbasSlotModel: Unboxable {
     let gun_rate: Float
     
     init(unboxer: Unboxer) throws {
-        burn_probability
-        bullet_speed
-        name
-        shot_delay
-        damage
-        bullet_mass
-        type
-        gun_rate
+        burn_probability = (try? unboxer.unbox(key: ShipInfoKeyInDB.burn_probability.rawValue)) ?? 0
+        bullet_speed = (try? unboxer.unbox(key: ShipInfoKeyInDB.bullet_speed.rawValue)) ?? 0
+        name = (try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)) ?? ""
+        shot_delay = (try? unboxer.unbox(key: ShipInfoKeyInDB.shot_delay.rawValue)) ?? 0
+        damage = (try? unboxer.unbox(key: ShipInfoKeyInDB.damage.rawValue)) ?? 0
+        bullet_mass = (try? unboxer.unbox(key: ShipInfoKeyInDB.bullet_mass.rawValue)) ?? 0
+        type = (try? unboxer.unbox(key: ShipInfoKeyInDB.type.rawValue)) ?? ""
+        gun_rate = (try? unboxer.unbox(key: ShipInfoKeyInDB.gun_rate.rawValue)) ?? 0
     }
 }
 
@@ -141,6 +141,18 @@ struct Artillery: Unboxable {
     let artillery_id_str: String
     let slots: [String: ArtillerySlot] // "0": slot, "1": slot, ...
     let gun_rate: Int
+    
+    init(unboxer: Unboxer) throws {
+        max_dispersion = (try? unboxer.unbox(key: ShipInfoKeyInDB.max_dispersion.rawValue)) ?? 0
+        shells = (try? unboxer.unbox(key: ShipInfoKeyInDB.shells.rawValue)) ?? [:]
+        shot_delay = (try? unboxer.unbox(key: ShipInfoKeyInDB.shot_delay.rawValue)) ?? 0
+        rotation_time = (try? unboxer.unbox(key: ShipInfoKeyInDB.rotation_time.rawValue)) ?? 0
+        distance = (try? unboxer.unbox(key: ShipInfoKeyInDB.distance.rawValue)) ?? 0
+        artillery_id = (try? unboxer.unbox(key: ShipInfoKeyInDB.artillery_id.rawValue)) ?? 0
+        artillery_id_str = (try? unboxer.unbox(key: ShipInfoKeyInDB.artillery_id_str.rawValue)) ?? ""
+        slots = (try? unboxer.unbox(key: ShipInfoKeyInDB.slots.rawValue)) ?? [:]
+        gun_rate = (try? unboxer.unbox(key: ShipInfoKeyInDB.gun_rate.rawValue)) ?? 0
+    }
 }
 
 struct Shell: Unboxable {
@@ -150,12 +162,27 @@ struct Shell: Unboxable {
     let damage: Int
     let bullet_mass: Int
     let type: String //"AP"
+    
+    init(unboxer: Unboxer) throws {
+        burn_probability = (try? unboxer.unbox(key: ShipInfoKeyInDB.burn_probability.rawValue)) ?? 0
+        bullet_speed = (try? unboxer.unbox(key: ShipInfoKeyInDB.bullet_speed.rawValue)) ?? 0
+        name = (try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)) ?? ""
+        damage = (try? unboxer.unbox(key: ShipInfoKeyInDB.damage.rawValue)) ?? 0
+        bullet_mass = (try? unboxer.unbox(key: ShipInfoKeyInDB.bullet_mass.rawValue)) ?? 0
+        type = (try? unboxer.unbox(key: ShipInfoKeyInDB.type.rawValue)) ?? ""
+    }
 }
 
 struct ArtillerySlot: Unboxable {
     let barrels: Int
     let name: String
     let guns: Int
+    
+    init(unboxer: Unboxer) throws {
+        barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.barrels.rawValue)) ?? 0
+        name = (try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)) ?? ""
+        guns = (try? unboxer.unbox(key: ShipInfoKeyInDB.guns.rawValue)) ?? 0
+    }
 }
 
 struct FireControl: Unboxable {
@@ -163,6 +190,13 @@ struct FireControl: Unboxable {
     let fire_control_id_str: String
     let distance: Float
     let distance_increase: Float
+    
+    init(unboxer: Unboxer) throws {
+        fire_control_id = (try? unboxer.unbox(key: ShipInfoKeyInDB.fire_control_id.rawValue)) ?? 0
+        fire_control_id_str = (try? unboxer.unbox(key: ShipInfoKeyInDB.fire_control_id_str.rawValue)) ?? ""
+        distance = (try? unboxer.unbox(key: ShipInfoKeyInDB.distance.rawValue)) ?? 0
+        distance_increase = (try? unboxer.unbox(key: ShipInfoKeyInDB.distance_increase.rawValue)) ?? 0
+    }
 }
 
 struct Weaponry: Unboxable {
@@ -170,12 +204,25 @@ struct Weaponry: Unboxable {
     let aircraft: Int
     let artillery: Int
     let torpedoes: Int
+    
+    init(unboxer: Unboxer) throws {
+        anti_aircraft = (try? unboxer.unbox(key: ShipInfoKeyInDB.anti_aircraft.rawValue)) ?? 0
+        aircraft = (try? unboxer.unbox(key: ShipInfoKeyInDB.aircraft.rawValue)) ?? 0
+        artillery = (try? unboxer.unbox(key: ShipInfoKeyInDB.artillery.rawValue)) ?? 0
+        torpedoes = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedoes.rawValue)) ?? 0
+    }
 }
 
 struct Concealment: Unboxable {
     let total: Int
     let detect_distance_by_plane: Float
     let detect_distance_by_ship: Float
+    
+    init(unboxer: Unboxer) throws {
+        total = (try? unboxer.unbox(key: ShipInfoKeyInDB.total.rawValue)) ?? 0
+        detect_distance_by_plane = (try? unboxer.unbox(key: ShipInfoKeyInDB.detect_distance_by_plane.rawValue)) ?? 0
+        detect_distance_by_ship = (try? unboxer.unbox(key: ShipInfoKeyInDB.detect_distance_by_ship.rawValue)) ?? 0
+    }
 }
 
 struct Armour: Unboxable {
@@ -188,6 +235,18 @@ struct Armour: Unboxable {
     let extremities: Range
     let total: Int
     let citadel: Range
+    
+    init(unboxer: Unboxer) throws {
+        casemate =      (try? unboxer.unbox(key: ShipInfoKeyInDB.casemate.rawValue)) ?? Range()
+        flood_prob =    (try? unboxer.unbox(key: ShipInfoKeyInDB.flood_prob.rawValue)) ?? 0
+        deck =          (try? unboxer.unbox(key: ShipInfoKeyInDB.deck.rawValue)) ?? Range()
+        flood_damage =  (try? unboxer.unbox(key: ShipInfoKeyInDB.flood_damage.rawValue)) ?? 0
+        range =         (try? unboxer.unbox(key: ShipInfoKeyInDB.range.rawValue)) ?? Range()
+        health =        (try? unboxer.unbox(key: ShipInfoKeyInDB.health.rawValue)) ?? 0
+        extremities =   (try? unboxer.unbox(key: ShipInfoKeyInDB.extremities.rawValue)) ?? Range()
+        total =         (try? unboxer.unbox(key: ShipInfoKeyInDB.total.rawValue)) ?? 0
+        citadel =       (try? unboxer.unbox(key: ShipInfoKeyInDB.citadel.rawValue)) ?? Range()
+    }
 }
 
 
@@ -195,6 +254,10 @@ struct AntiAircraft: Unboxable {
     let slots: [String: AntiAircraftSlot]
     let defense: Float
     
+    init(unboxer: Unboxer) throws {
+        slots = (try? unboxer.unbox(key: ShipInfoKeyInDB.slots.rawValue)) ?? [:]
+        defense = (try? unboxer.unbox(key: ShipInfoKeyInDB.defense.rawValue)) ?? 0
+    }
 }
 
 struct AntiAircraftSlot: Unboxable {
@@ -203,4 +266,12 @@ struct AntiAircraftSlot: Unboxable {
     let caliber: Float
     let name: String
     let guns: Int
+    
+    init(unboxer: Unboxer) throws {
+        distance = (try? unboxer.unbox(key: ShipInfoKeyInDB.distance.rawValue)) ?? 0
+        avg_damage = (try? unboxer.unbox(key: ShipInfoKeyInDB.avg_damage.rawValue)) ?? 0
+        caliber = (try? unboxer.unbox(key: ShipInfoKeyInDB.caliber.rawValue)) ?? 0
+        name = (try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)) ?? ""
+        guns = (try? unboxer.unbox(key: ShipInfoKeyInDB.guns.rawValue)) ?? 0
+    }
 }

@@ -14,6 +14,11 @@ struct Range: Unboxable {
     let min: Int
     let max: Int
     
+    init() {
+        min = 0
+        max = 0
+    }
+    
     init(unboxer: Unboxer) throws {
         min = (try? unboxer.unbox(key: ShipInfoKeyInDB.min.rawValue)) ?? 0
         max = (try? unboxer.unbox(key: ShipInfoKeyInDB.max.rawValue)) ?? 0
