@@ -60,11 +60,18 @@ final class ApiServers: NSObject {
         params[ServerKey.shipId.rawValue] = id
         params[ServerKey.language.rawValue] = ServiceManager.shared.getShipDescriptionLanguage()
         
-        var route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
         
         getDataFromWows(route, parameters: params) { (dictionary, error) in
             if let d = dictionary {
-                let info = ShipInfo(
+                do {
+                    let shipInfo: ShipInfo = try unbox(dictionary: d)
+                    completion(shipInfo)
+                    
+                } catch let error as NSError {
+                    DLog("[ERROR] unboxing ShipInfo failed: \(error)")
+                    completion(nil)
+                }
             } else {
                 completion(nil)
             }

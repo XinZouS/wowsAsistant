@@ -9,6 +9,8 @@
 import Foundation
 
 enum ShipInfoKeyInDB: String {
+    
+    // Ship info
     case description = "description"
     case ship_id = "ship_id"
     case ship_id_str = "ship_id_str"
@@ -29,6 +31,7 @@ enum ShipInfoKeyInDB: String {
     case is_special = "is_special"
     case name = "name"
     
+    // Range
     case min = "min"
     case max = "max"
     
@@ -131,4 +134,45 @@ enum ShipInfoKeyInDB: String {
     // AntiAircraft slot
     case avg_damage = "avg_damage"
     case caliber = "caliber"
+    
+    // Flight control
+    case flight_control_id = "flight_control_id"
+    case flight_control_id_str = "flight_control_id_str"
+    case bomber_squadrons = "bomber_squadrons"
+    case torpedo_squadrons = "torpedo_squadrons"
+    case fighter_squadrons = "fighter_squadrons"
+
+    // Airplane
+    case squadrons = "squadrons"
+    case count_in_squadron = "count_in_squadron"
+    case cruise_speed = ""
+    case prepare_time = "prepare_time"
+    case gunner_damage = "gunner_damage"
+    case plane_level = "plane_level"
+    case max_health = "max_health"
+    
+    // Fighters
+    case fighters_id = "fighters_id"
+    case fighters_id_str = "fighters_id_str"
+    case max_ammo = "max_ammo"
+    
+    // TorpedoBomber
+    case torpedo_bomber_id = "torpedo_bomber_id"
+    case torpedo_bomber_id_str = "torpedo_bomber_id_str"
+    case torpedo_distance =  "torpedo_distance"
+    case torpedo_damage = "torpedo_damage"
+    case torpedo_max_speed = "torpedo_max_speed"
+    case torpedo_name = "torpedo_name"
+    case max_damage = "max_damage"
+    
+    // DiveBomber
+    case dive_bomber_id = "dive_bomber_id"
+    case dive_bomber_id_str = "dive_bomber_id_str"
+    case bomb_damage = "bomb_damage"
+    case bomb_name = "bomb_name"
+    case bomb_bullet_mass = "bomb_bullet_mass"
+    case bomb_burn_probability = "bomb_burn_probability"
+    case accuracy = "accuracy"
+    
+    
 }
