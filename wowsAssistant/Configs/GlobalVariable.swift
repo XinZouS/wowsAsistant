@@ -12,7 +12,7 @@ import Foundation
 enum ServerRealm: String {
     case ru = "ru"
     case eu = "eu"
-    case na = "na"
+    case na = "com"
     case asia = "asia"
 }
 
