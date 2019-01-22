@@ -24,9 +24,43 @@ enum ShipNation: String {
     case germany = "germany"
     case france = "france"
     case commonwealth = "commonwealth"
+    case pan_america = "pan_america"
     case italy = "italy"
     case poland = "poland"
     case japan = "japan"
+    
+    func displayName() -> String {
+        switch self {
+        case .pan_asia:
+            return "Pan-Asia"
+        case .usa:
+            return "U.S.A."
+        case .ussr:
+            return "U.S.S.R."
+        case .uk:
+            return  "U.K."
+        case .germany:
+            return "Germany"
+        case .france:
+            return "France"
+        case .commonwealth:
+            return "Commonwealth"
+        case .italy:
+            return "Italy"
+        case .poland:
+            return "Poland"
+        case .japan:
+            return "Japan"
+        case .pan_america:
+            return "Pan-America"
+        }
+    }
+}
+
+enum IconType: String {
+    case normal = "normal"
+    case premium = "premium"
+    case elite = "elite"
 }
 
 enum ShipType: String {
@@ -34,6 +68,13 @@ enum ShipType: String {
     case BB = "Battleship"
     case CR = "Cruiser"
     case DD = "Destroyer"
+    case SB = "Submarine"
+    
+    // https://developers.wargaming.net/reference/all/wows/encyclopedia/info/?application_id=a604db0355085bac597c209b459fd0fb&r_realm=eu&run=1
+    func iconImageUrl(_ iconType: IconType = .normal) -> String {
+        let route = "http://glossary-eu-static.gcdn.co/icons/wows/current/vehicle/types/"
+        return "\(route)\(self.rawValue)/\(iconType.rawValue).png"
+    }
 }
 
 

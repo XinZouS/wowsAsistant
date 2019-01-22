@@ -11,6 +11,7 @@
 		66578B1421F1407A0096660C /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1321F1407A0096660C /* Airplane.swift */; };
 		66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1721F22CCC0096660C /* ShipInfo.swift */; };
 		66ED358921F770A600D493D9 /* DBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358821F770A600D493D9 /* DBKeys.swift */; };
+		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66F0E36921EAA2C1003D1023 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E36821EAA2C1003D1023 /* AppDelegate.swift */; };
 		66F0E36B21EAA2C1003D1023 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E36A21EAA2C1003D1023 /* MainTabbarController.swift */; };
 		66F0E37121EAA2C1003D1023 /* wowsAssistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E36F21EAA2C1003D1023 /* wowsAssistant.xcdatamodeld */; };
@@ -32,6 +33,7 @@
 		66578B1321F1407A0096660C /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
 		66578B1721F22CCC0096660C /* ShipInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfo.swift; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
+		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66F0E36521EAA2C1003D1023 /* wowsAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wowsAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F0E36821EAA2C1003D1023 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66F0E36A21EAA2C1003D1023 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66ED358A21F7B9C200D493D9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		66ED358B21F7B9D500D493D9 /* FindShip */ = {
+			isa = PBXGroup;
+			children = (
+				66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */,
+			);
+			path = FindShip;
+			sourceTree = "<group>";
+		};
+		66ED358C21F7B9F600D493D9 /* ShipsData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ShipsData;
+			sourceTree = "<group>";
+		};
 		66F0E35C21EAA2C1003D1023 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +167,9 @@
 			isa = PBXGroup;
 			children = (
 				66F0E36A21EAA2C1003D1023 /* MainTabbarController.swift */,
+				66ED358A21F7B9C200D493D9 /* Home */,
+				66ED358B21F7B9D500D493D9 /* FindShip */,
+				66ED358C21F7B9F600D493D9 /* ShipsData */,
 				66F0E39121EBEA90003D1023 /* PlayerInfo */,
 			);
 			path = ViewControllers;
@@ -320,6 +347,7 @@
 				66F0E37121EAA2C1003D1023 /* wowsAssistant.xcdatamodeld in Sources */,
 				66ED358921F770A600D493D9 /* DBKeys.swift in Sources */,
 				66F0E39521EBEC00003D1023 /* ServiceManager.swift in Sources */,
+				66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */,
 				66F0E38421EBDFDA003D1023 /* ApiServers.swift in Sources */,
 				66F0E39721EBF510003D1023 /* Date++.swift in Sources */,
 				66F0E36B21EAA2C1003D1023 /* MainTabbarController.swift in Sources */,
