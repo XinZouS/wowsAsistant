@@ -48,12 +48,6 @@ final class ApiServers: NSObject {
     //https://api.worldofwarships.asia/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
 
     
-    func getShipsList(realm: ServerRealm = .na, nation: ShipNation = .uk, shipType: ShipType?, completion: @escaping(([String:ShipInfo]?) -> Void)) {
-        var params: [String:Any] = [:]
-        
-        
-    }
-    
     func getShipById(_ id: Int, realm: ServerRealm = .na, completion: @escaping((ShipInfo?) -> Void)) {
         var params: [String:Any] = [:]
         params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
@@ -78,11 +72,10 @@ final class ApiServers: NSObject {
         }
     }
     
-    
-    func getDDs(url: String, completion: @escaping(([String:Any]?) -> Void)) {
-        getDataFromWows(url, parameters: [:]) { (getDictionary, error) in
-            completion(getDictionary)
-        }
+    func getShipsList(realm: ServerRealm = .na, nation: ShipNation = .uk, shipType: ShipType?, completion: @escaping(([String:ShipInfo]?) -> Void)) {
+        var params: [String:Any] = [:]
+        
+        
     }
     
     
@@ -111,14 +104,16 @@ final class ApiServers: NSObject {
         }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
+            #if DEBUG
             let printText: String = """
             =========================
             [TIME UTC] \(Date())
             [TIME GMT] \(Date().getCurrentLocalizedDate())
             [GET ROUTE] \(route)
-            [RESPONSE] \(response.debugDescription)
+            [RESPONSE] \(response?.url)
             """
-            DLog(printText)
+            print(printText)
+            #endif
             
             if let err = error {
                 DLog("[GET_ERROR] in URLSession dataTask: \(err.localizedDescription)")
@@ -141,6 +136,10 @@ final class ApiServers: NSObject {
                     DLog("[RESPONSE] \(response.debugDescription)")
                     completion(nil, error)
                 }
+            } else {
+                DLog("[GET_ERROR] error value = \(error?.localizedDescription ?? "NULL")")
+                DLog("[FULL RESPONSE] = \(response?.debugDescription ?? "NULL")")
+                completion(nil, error)
             }
         }.resume()
     }

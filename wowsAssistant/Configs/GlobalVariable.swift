@@ -17,7 +17,16 @@ enum ServerRealm: String {
 }
 
 enum ShipNation: String {
+    case pan_asia = "pan_asia"
+    case usa = "usa"
+    case ussr = "ussr"
     case uk = "uk"
+    case germany = "germany"
+    case france = "france"
+    case commonwealth = "commonwealth"
+    case italy = "italy"
+    case poland = "poland"
+    case japan = "japan"
 }
 
 enum ShipType: String {
