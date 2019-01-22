@@ -22,7 +22,11 @@ final class ApiServers: NSObject {
     enum ServerKey: String {
         case applicationId = "application_id"
         case shipId = "ship_id"
+        case shipType = "type"
         case language = "language"
+        case limit = "limit"
+        case page_no = "page_no"
+        case nation = "nation"
         
         case data = "data"
         case statusCode = "status_code"
@@ -60,7 +64,7 @@ final class ApiServers: NSObject {
             if let d = dictionary, let shipDictionary = d["\(id)"] as? [String:Any] {
                 do {
                     let shipInfo: ShipInfo = try unbox(dictionary: shipDictionary)
-                    completion(shipInfo)
+                    completion(shipInfo) // ✅ get dictionary
                     
                 } catch let error as NSError {
                     DLog("[ERROR] unboxing ShipInfo failed: \(error)")
@@ -72,10 +76,42 @@ final class ApiServers: NSObject {
         }
     }
     
-    func getShipsList(realm: ServerRealm = .na, nation: ShipNation = .uk, shipType: ShipType?, completion: @escaping(([String:ShipInfo]?) -> Void)) {
+    func getShipsList(realm: ServerRealm = .na, shipType: ShipType?, nation: ShipNation?, limit: Int = 10, pageNum: Int = 1, completion: @escaping(([ShipInfo]?) -> Void)) {
         var params: [String:Any] = [:]
+        params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
+        params[ServerKey.language.rawValue] = ServiceManager.shared.getShipDescriptionLanguage()
         
+        if let type = shipType {
+            params[ServerKey.shipType.rawValue] = type.rawValue
+        }
+        if let nat = nation {
+            params[ServerKey.nation.rawValue] = nat.rawValue
+        }
+        params[ServerKey.limit.rawValue] = limit
+        params[ServerKey.page_no.rawValue] = pageNum
         
+        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+        var ships: [ShipInfo] = []
+        
+        getDataFromWows(route, parameters: params) { (dictionary, error) in
+            if let d = dictionary {
+                do {
+                    for pair in d {
+                        if let infoDictionary = pair.value as? [String:Any] {
+                            let getInfo: ShipInfo = try unbox(dictionary: infoDictionary)
+                            ships.append(getInfo)
+                        }
+                    }
+                    completion(ships) // ✅ get dictionary
+                    
+                } catch let error as NSError {
+                    DLog("[ERROR] unboxing ShipList Info failed: \(error)")
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        }
     }
     
     
