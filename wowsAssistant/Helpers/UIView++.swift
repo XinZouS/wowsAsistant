@@ -11,28 +11,28 @@ import UIKit
 
 extension UIView{
     
-    func anchor(_ leading: NSLayoutXAxisAnchor? = nil, _ top: NSLayoutYAxisAnchor? = nil, _ trailing: NSLayoutXAxisAnchor? = nil, _ bottom: NSLayoutYAxisAnchor? = nil, lead leadConstent: CGFloat? = 0, top topConstent: CGFloat? = 0, trail trailConstent: CGFloat? = 0, bottom bottomConstent: CGFloat? = 0, width: CGFloat? = 0, height: CGFloat? = 0) {
+    func anchor(_ leading: NSLayoutXAxisAnchor? = nil, _ top: NSLayoutYAxisAnchor? = nil, _ trailing: NSLayoutXAxisAnchor? = nil, _ bottom: NSLayoutYAxisAnchor? = nil, lead leadConstent: CGFloat = 0, top topConstent: CGFloat = 0, trail trailConstent: CGFloat = 0, bottom bottomConstent: CGFloat = 0, width: CGFloat = 0, height: CGFloat = 0) {
         
         var anchors = [NSLayoutConstraint]()
         self.translatesAutoresizingMaskIntoConstraints = false
         
         if leading != nil {
-            anchors.append(leadingAnchor.constraint(equalTo: leading!, constant: leadConstent!))
+            anchors.append(leadingAnchor.constraint(equalTo: leading!, constant: leadConstent))
         }
         if top != nil {
-            anchors.append(topAnchor.constraint(equalTo: top!, constant: topConstent!))
+            anchors.append(topAnchor.constraint(equalTo: top!, constant: topConstent))
         }
         if trailing != nil {
-            anchors.append(trailingAnchor.constraint(equalTo: trailing!, constant: -trailConstent!))
+            anchors.append(trailingAnchor.constraint(equalTo: trailing!, constant: -trailConstent))
         }
         if bottom != nil {
-            anchors.append(bottomAnchor.constraint(equalTo: bottom!, constant: -bottomConstent!))
+            anchors.append(bottomAnchor.constraint(equalTo: bottom!, constant: -bottomConstent))
         }
-        if let w = width, w > CGFloat(0) {
-            anchors.append(widthAnchor.constraint(equalToConstant: w))
+        if width > CGFloat(0) {
+            anchors.append(widthAnchor.constraint(equalToConstant: width))
         }
-        if let h = height, h > CGFloat(0) {
-            anchors.append(heightAnchor.constraint(equalToConstant: h))
+        if height > CGFloat(0) {
+            anchors.append(heightAnchor.constraint(equalToConstant: height))
         }
         
         for anchor in anchors {

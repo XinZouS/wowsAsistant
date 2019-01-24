@@ -14,24 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var mainNavigationController: UINavigationController?
+    var mainTabbarViewController: UITabBarController?
 
     static public func shared() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let homeVC = UIViewController()
-        let findVC = UIViewController()
-        let infoVC = UIViewController()
-        let meVC = UIViewController()
-        
-        let tabVC = MainTabbarController()
-        tabVC.addChild(homeVC)
-        tabVC.addChild(findVC)
-        tabVC.addChild(infoVC)
-        tabVC.addChild(meVC)
-        
-        mainNavigationController = UINavigationController(rootViewController: tabVC)
+        mainTabbarViewController = MainTabbarController()
+        mainNavigationController = UINavigationController(rootViewController: mainTabbarViewController!)
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = mainNavigationController

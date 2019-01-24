@@ -19,7 +19,6 @@
 "action.leave" = "Leave";
 "action.copy-success" = "Copy Success";
 "action.switch-input" = "Switch";
-"action.turn-on" = "Turn On";
 "action.finish" = "Finish";
 "action.share" = "Share";
 "action.edit" = "Edit";
@@ -27,6 +26,12 @@
 "action.expand" = "Expand";
 "action.collect" = "Collect";
 "action.save-image-ok" = "Save image success!";
+
+// MARK: - Main Tabbar
+"tabbar.icon.home.title" = "Home";
+"tabbar.icon.find.title" = "Find Ship";
+"tabbar.icon.academy.title" = "Academy";
+"tabbar.icon.account.title" = "Me";
 
 // MARK: - Settings
 "settings.change-language.confirmed" = "Confirmed";

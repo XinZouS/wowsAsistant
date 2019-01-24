@@ -19,7 +19,6 @@
 "action.leave" = "离开";
 "action.copy-success" = "复制成功";
 "action.switch-input" = "切换输入";
-"action.turn-on" = "开启推送";
 "action.finish" = "完成";
 "action.share" = "分享";
 "action.edit" = "编辑";
@@ -27,6 +26,12 @@
 "action.expand" = "展开";
 "action.collect" = "收起";
 "action.save-image-ok" = "图片保存成功！";
+
+// MARK: - Main Tabbar
+"tabbar.icon.home.title" = "战舰主页";
+"tabbar.icon.find.title" = "快速搜索";
+"tabbar.icon.academy.title" = "航海学院";
+"tabbar.icon.account.title" = "我是舰长";
 
 // MARK: - Settings
 "settings.change-language.confirmed" = "确定";

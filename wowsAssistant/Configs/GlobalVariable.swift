@@ -14,6 +14,19 @@ enum ServerRealm: String {
     case eu = "eu"
     case na = "com"
     case asia = "asia"
+    
+    func descriptionString() -> String {
+        switch self {
+        case .ru:
+            return "R.U."
+        case .eu:
+            return "E.U."
+        case .na:
+            return "N.A."
+        case .asia:
+            return "Asia"
+        }
+    }
 }
 
 enum ShipNation: String {
@@ -56,6 +69,8 @@ enum ShipNation: String {
         }
     }
 }
+
+let ShipTierString: [Int:String] = [0:"0", 1:"I", 2:"II", 3:"III", 4:"IV", 5:"V", 6:"VI", 7:"VII", 8:"VIII", 9:"IX", 10:"X", 11:"XI"]
 
 enum IconType: String {
     case normal = "normal"
