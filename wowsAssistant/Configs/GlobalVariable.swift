@@ -90,6 +90,21 @@ enum ShipType: String {
         let route = "http://glossary-eu-static.gcdn.co/icons/wows/current/vehicle/types/"
         return "\(route)\(self.rawValue)/\(iconType.rawValue).png"
     }
+    
+    func tagInt() -> Int {
+        switch self {
+        case .AC:
+            return 0
+        case .BB:
+            return 1
+        case .CR:
+            return 2
+        case .DD:
+            return 3
+        case .SB:
+            return 4
+        }
+    }
 }
 
 
