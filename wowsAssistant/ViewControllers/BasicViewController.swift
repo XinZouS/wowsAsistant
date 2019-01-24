@@ -24,6 +24,9 @@ class BasicViewController: UIViewController {
         imgV.clipsToBounds = true
         view.addSubview(imgV)
         imgV.anchor(view.leadingAnchor, view.topAnchor, view.trailingAnchor, view.safeAreaLayoutGuide.bottomAnchor)
+        if let url = URL(string: BackgroundImageUrl.ships01.rawValue) {
+            imgV.af_setImage(withURL: url)
+        }
     }
     
 }

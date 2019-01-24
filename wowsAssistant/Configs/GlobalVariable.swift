@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //MARK: - Info
 enum ServerRealm: String {
@@ -29,7 +30,7 @@ enum ServerRealm: String {
     }
 }
 
-enum ShipNation: String {
+enum ShipNation: String, CaseIterable {
     case pan_asia = "pan_asia"
     case usa = "usa"
     case ussr = "ussr"
@@ -51,7 +52,7 @@ enum ShipNation: String {
         case .ussr:
             return "U.S.S.R."
         case .uk:
-            return  "U.K."
+            return "U.K."
         case .germany:
             return "Germany"
         case .france:
@@ -68,8 +69,36 @@ enum ShipNation: String {
             return "Pan-America"
         }
     }
+    
+    func flag(_ isBackgroud: Bool = false) -> UIImage {
+        switch self {
+        case .pan_asia:
+            return isBackgroud ? #imageLiteral(resourceName: "flagPanAsia") : #imageLiteral(resourceName: "flagIcon_pan_asia")
+        case .usa:
+            return isBackgroud ? #imageLiteral(resourceName: "flagUSA") : #imageLiteral(resourceName: "flagIcon_usa")
+        case .ussr:
+            return isBackgroud ? #imageLiteral(resourceName: "flagUSSR") : #imageLiteral(resourceName: "flagIcon_ussr")
+        case .uk:
+            return isBackgroud ? #imageLiteral(resourceName: "flagUK") : #imageLiteral(resourceName: "flagIcon_uk")
+        case .germany:
+            return isBackgroud ? #imageLiteral(resourceName: "flagGerman") : #imageLiteral(resourceName: "flagIcon_german")
+        case .france:
+            return isBackgroud ? #imageLiteral(resourceName: "flagFrance") : #imageLiteral(resourceName: "flagIcon_france")
+        case .commonwealth:
+            return isBackgroud ? #imageLiteral(resourceName: "flagCommonwealth") : #imageLiteral(resourceName: "flagIcon_comm")
+        case .italy:
+            return isBackgroud ? #imageLiteral(resourceName: "flagItaly") : #imageLiteral(resourceName: "flagIcon_italy")
+        case .poland:
+            return isBackgroud ? #imageLiteral(resourceName: "flagPoland") : #imageLiteral(resourceName: "flagIcon_poland")
+        case .japan:
+            return isBackgroud ? #imageLiteral(resourceName: "flagJapan") : #imageLiteral(resourceName: "flagIcon_japan")
+        case .pan_america:
+            return isBackgroud ? #imageLiteral(resourceName: "flagPanAmerica") : #imageLiteral(resourceName: "flagIcon_pan_america")
+        }
+    }
 }
 
+/// [0, 11], eligiable range = [1, 10]
 let ShipTierString: [Int:String] = [0:"0", 1:"I", 2:"II", 3:"III", 4:"IV", 5:"V", 6:"VI", 7:"VII", 8:"VIII", 9:"IX", 10:"X", 11:"XI"]
 
 enum IconType: String {

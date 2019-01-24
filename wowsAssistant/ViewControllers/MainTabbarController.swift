@@ -18,7 +18,7 @@ class MainTabbarController: UITabBarController {
     }
     
     private func setupChildViewControllers() {
-        let homeVC = UIViewController()
+        let homeVC = HomeViewController()
         let findVC = FindShipViewController()
         let infoVC = UIViewController()
         let meVC = UIViewController()
@@ -37,3 +37,10 @@ class MainTabbarController: UITabBarController {
     
 }
 
+extension MainTabbarController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let items = tabBar.items else { return }
+        //
+    }
+}
