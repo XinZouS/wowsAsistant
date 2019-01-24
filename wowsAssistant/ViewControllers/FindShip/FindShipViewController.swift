@@ -12,7 +12,7 @@ import AlamofireImage
 class FindShipViewController: BasicViewController {
     
     var serverRelam: ServerRealm = UserDefaults.getServerRelam()
-    var shipType = ShipType.AC
+    var shipType: ShipType?
     var shipTier: Int?
     
     var searchShips: [ShipInfo] = []
@@ -21,12 +21,21 @@ class FindShipViewController: BasicViewController {
     let rowTypeHeigh: CGFloat = 50
     let stackViewTrail: CGFloat = 10
     var stackView: UIStackView?
+    var flagCollectionView = UICollectionView()
+    var tierCollectionView = UICollectionView()
+    var resultCollectionView = UICollectionView()
+    
+    let flagCellId = "flagCellId"
+    let tierCellId = "tierCellId"
+    let resultCellId = "resultCellId"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSearchShipTypeBar()
-        
+        setupCollectionViews()
+        setupFindButton()
     }
     
     private func setupSearchShipTypeBar() {
@@ -72,8 +81,40 @@ class FindShipViewController: BasicViewController {
     }
     
     private func didSelectShipType(_ item: Int) {
-        print(item)
+        switch item {
+        case 0:
+            shipType = .AC
+        case 1:
+            shipType = .BB
+        case 2:
+            shipType = .CR
+        case 3:
+            shipType = .DD
+        default:
+            shipType = .SB
+        }
     }
+    
+    private func setupCollectionViews() {
+        flagCollectionView.register(FlagCell.self, forCellWithReuseIdentifier: flagCellId)
+        tierCollectionView.register(TierCell.self, forCellWithReuseIdentifier: tierCellId)
+        resultCollectionView.register(ResultCell.self, forCellWithReuseIdentifier: resultCellId)
+        
+        let vs = view.safeAreaLayoutGuide
+        view.addSubview(flagCollectionView)
+        flagCollectionView.anchor(vs.leadingAnchor, stackView?.bottomAnchor, vs.trailingAnchor, nil, trail: 80, height: 60)
+        view.addSubview(tierCollectionView)
+        tierCollectionView.anchor(vs.leadingAnchor, flagCollectionView.bottomAnchor, flagCollectionView.trailingAnchor, nil, height: 40)
+        view.addSubview(resultCollectionView)
+        resultCollectionView.anchor(vs.leadingAnchor, tierCollectionView.bottomAnchor, vs.trailingAnchor, vs.bottomAnchor)
+    }
+    
+    private func setupFindButton() {
+        let findBtn = UIButton()
+        findBtn.setupGradient(UIColor.WowsTheme.buttonRedTop, UIColor.WowsTheme.buttonRedBot, title: L("action.search"), textColor: .white, fontSize: 18)
+        findBtn.anchor(flagCollectionView.trailingAnchor, flagCollectionView.topAnchor, view.safeAreaLayoutGuide.trailingAnchor, tierCollectionView.bottomAnchor, lead: 0, top: 0, trail: 0, bottom: 0)
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -81,7 +122,7 @@ class FindShipViewController: BasicViewController {
         if let touch = touches.first {
             let loc = touch.location(in: stackView)
             if let sv = stackView, loc.x > 0, loc.y < rowTypeHeigh { // in ShipType stackView
-                let item = Int(loc.x) / Int((sv.frame.width + stackViewTrail) / 5) // 5 ship types, constant
+                let item = Int(loc.x) / (Int(sv.frame.width + stackViewTrail) / ShipType.allCases.count) // 5 ship types, constant
                 didSelectShipType(item)
             }
         }

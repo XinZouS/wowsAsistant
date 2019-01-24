@@ -78,13 +78,13 @@ enum IconType: String {
     case elite = "elite"
 }
 
-enum ShipType: String {
+enum ShipType: String, CaseIterable {
     case AC = "AirCarrier"
     case BB = "Battleship"
     case CR = "Cruiser"
     case DD = "Destroyer"
     case SB = "Submarine"
-    
+        
     // https://developers.wargaming.net/reference/all/wows/encyclopedia/info/?application_id=a604db0355085bac597c209b459fd0fb&r_realm=eu&run=1
     func iconImageUrl(_ iconType: IconType = .normal) -> String {
         let route = "http://glossary-eu-static.gcdn.co/icons/wows/current/vehicle/types/"

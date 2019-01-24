@@ -12,6 +12,7 @@
 "action.delete" = "Delete";
 "action.clear" = "Clear";
 "action.submit" = "Submit";
+"action.search" = "Search";
 "action.cancel" = "Cancel";
 "action.accept" = "Accept";
 "action.reject" = "Reject";
