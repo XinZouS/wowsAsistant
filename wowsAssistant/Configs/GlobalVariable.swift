@@ -107,6 +107,11 @@ enum ShipType: String {
     }
 }
 
+// MARK: - Background images
+enum BackgroundImageUrl: String {
+    case ships01 = "http://s1.1zoom.me/big3/55/World_Of_Warship_Ships_Eagles_Battleship_German_521573_2560x1600.jpg"
+}
+
 
 //MARK: - Helper Methods
 

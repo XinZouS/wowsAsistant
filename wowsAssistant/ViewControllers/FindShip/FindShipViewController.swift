@@ -11,7 +11,7 @@ import AlamofireImage
 
 class FindShipViewController: BasicViewController {
     
-    var serverRelam = ServerRealm.na
+    var serverRelam: ServerRealm = UserDefaults.getServerRelam()
     var shipType = ShipType.AC
     var shipTier: Int?
     

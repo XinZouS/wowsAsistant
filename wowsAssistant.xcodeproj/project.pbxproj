@@ -15,6 +15,7 @@
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
 		66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359121F9606A00D493D9 /* BasicViewController.swift */; };
 		66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359321F976B200D493D9 /* HomeViewController.swift */; };
+		66ED359621FA151900D493D9 /* UserDefaults++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359521FA151900D493D9 /* UserDefaults++.swift */; };
 		66F0E36921EAA2C1003D1023 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E36821EAA2C1003D1023 /* AppDelegate.swift */; };
 		66F0E36B21EAA2C1003D1023 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E36A21EAA2C1003D1023 /* MainTabbarController.swift */; };
 		66F0E37121EAA2C1003D1023 /* wowsAssistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E36F21EAA2C1003D1023 /* wowsAssistant.xcdatamodeld */; };
@@ -40,6 +41,7 @@
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
 		66ED359121F9606A00D493D9 /* BasicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicViewController.swift; sourceTree = "<group>"; };
 		66ED359321F976B200D493D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		66ED359521FA151900D493D9 /* UserDefaults++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults++.swift"; sourceTree = "<group>"; };
 		66F0E36521EAA2C1003D1023 /* wowsAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wowsAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F0E36821EAA2C1003D1023 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66F0E36A21EAA2C1003D1023 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				66F0E39621EBF510003D1023 /* Date++.swift */,
 				66F0E39821EBF5EC003D1023 /* String++.swift */,
 				66ED358F21F92BFE00D493D9 /* UIColor++.swift */,
+				66ED359521FA151900D493D9 /* UserDefaults++.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66ED359621FA151900D493D9 /* UserDefaults++.swift in Sources */,
 				66F0E38721EBE131003D1023 /* GlobalVariable.swift in Sources */,
 				66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */,
 				66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */,
