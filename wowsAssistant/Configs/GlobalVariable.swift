@@ -70,7 +70,7 @@ enum ShipNation: String, CaseIterable {
         }
     }
     
-    func flag(_ isBackgroud: Bool = false) -> UIImage {
+    func flag(isBackgroud: Bool = false) -> UIImage {
         switch self {
         case .pan_asia:
             return isBackgroud ? #imageLiteral(resourceName: "flagPanAsia") : #imageLiteral(resourceName: "flagIcon_pan_asia")
@@ -115,6 +115,7 @@ enum ShipType: String, CaseIterable {
     case SB = "Submarine"
         
     // https://developers.wargaming.net/reference/all/wows/encyclopedia/info/?application_id=a604db0355085bac597c209b459fd0fb&r_realm=eu&run=1
+    /// download the IconImage of shipType, IconType = [normal, premium, elite], default = .normal
     func iconImageUrl(_ iconType: IconType = .normal) -> String {
         let route = "http://glossary-eu-static.gcdn.co/icons/wows/current/vehicle/types/"
         return "\(route)\(self.rawValue)/\(iconType.rawValue).png"

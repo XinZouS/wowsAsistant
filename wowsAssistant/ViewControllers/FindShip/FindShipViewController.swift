@@ -13,6 +13,7 @@ class FindShipViewController: BasicViewController {
     
     var serverRelam: ServerRealm = UserDefaults.getServerRelam()
     var shipType: ShipType?
+    var shipNation: ShipNation?
     var shipTier: Int?
     
     var shipNations = ShipNation.allCases
@@ -149,7 +150,17 @@ class FindShipViewController: BasicViewController {
     }
     
     @objc private func searchShip() {
-        print("todo: search ship!!!")
+        
+        // TODO: set pagination limit and pageNum
+        
+        ApiServers.shared.getShipsList(realm: serverRelam, shipType: shipType, nation: shipNation, limit: 20, pageNum: 1) { [weak self] (shipInfos) in
+            if let infos = shipInfos {
+                self?.searchShips = infos
+                DispatchQueue.main.async {
+                    self?.resultCollectionView.reloadData()
+                }
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -211,11 +222,11 @@ extension FindShipViewController: UICollectionViewDataSource {
             if let c = resultCollectionView.dequeueReusableCell(withReuseIdentifier: resultCellId, for: indexPath) as? ResultCell {
                 if indexPath.section == 0 {
                     if indexPath.item < searchShips.count {
-                        
+                        c.shipInfo = searchShips[indexPath.item]
                     }
                 } else {
                     if indexPath.item < myFavoriteShips.count {
-                        
+                        c.shipInfo = myFavoriteShips[indexPath.item]
                     }
                 }
                 return c

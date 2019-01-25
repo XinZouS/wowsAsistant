@@ -47,6 +47,8 @@ class ShipInfo: Unboxable {
     var is_special: Bool?
     var name:       String?
     
+    var imagesStruct: ShipInfoImages?
+    
     required init(unboxer: Unboxer) {
         self.description = (try? unboxer.unbox(key: ShipInfoKeyInDB.description.rawValue))
         self.ship_id =     (try? unboxer.unbox(key: ShipInfoKeyInDB.ship_id.rawValue)) ?? 0
@@ -67,6 +69,24 @@ class ShipInfo: Unboxable {
         self.type =         try? unboxer.unbox(key: ShipInfoKeyInDB.type.rawValue)
         self.is_special =   try? unboxer.unbox(key: ShipInfoKeyInDB.is_special.rawValue)
         self.name =         try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)
+        
+        if let imgs = images {
+            self.imagesStruct = ShipInfoImages(imgs)
+        }
+    }
+}
+
+struct ShipInfoImages {
+    let small: String
+    let medium: String
+    let large: String
+    let contour: String
+    
+    init(_ dictionary: [String:String]) {
+        small = dictionary[ShipInfoKeyInDB.small.rawValue] ?? ""
+        medium = dictionary[ShipInfoKeyInDB.medium.rawValue] ?? ""
+        large = dictionary[ShipInfoKeyInDB.large.rawValue] ?? ""
+        contour = dictionary[ShipInfoKeyInDB.contour.rawValue] ?? ""
     }
 }
 

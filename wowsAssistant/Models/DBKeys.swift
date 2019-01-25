@@ -31,6 +31,12 @@ enum ShipInfoKeyInDB: String {
     case is_special = "is_special"
     case name = "name"
     
+    // Image info
+    case small = "small"
+    case medium = "medium"
+    case large = "large"
+    case contour = "contour"
+    
     // Range
     case min = "min"
     case max = "max"

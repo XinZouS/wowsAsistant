@@ -20,13 +20,10 @@ class BasicViewController: UIViewController {
     
     private func addBackgroundImage() {
         let imgV = UIImageView(image: #imageLiteral(resourceName: "blue-steel-background"))
-        imgV.contentMode = .left
+        imgV.contentMode = .scaleToFill
         imgV.clipsToBounds = true
         view.addSubview(imgV)
         imgV.anchor(view.leadingAnchor, view.topAnchor, view.trailingAnchor, view.safeAreaLayoutGuide.bottomAnchor)
-        if let url = URL(string: BackgroundImageUrl.ships01.rawValue) {
-            imgV.af_setImage(withURL: url)
-        }
     }
     
 }
