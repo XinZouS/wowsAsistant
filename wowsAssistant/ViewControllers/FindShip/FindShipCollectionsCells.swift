@@ -59,12 +59,31 @@ class TierCell: UICollectionViewCell {
 // MARK: -
 class ResultCell: UICollectionViewCell {
     
+    var shipInfo: ShipInfo? {
+        didSet {
+            updateShipInfoUI()
+        }
+    }
+    
+    let titleLabel = UILabel()
+    let backgndImageView = UIImageView()
+    let shipImageView = UIImageView()
+    let shipTypeImageView = UIImageView()
+    let shipTierLabel = UILabel()
+    let markImageView = UIImageView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.WowsTheme.lineCyan.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func updateShipInfoUI() {
+        guard let info = shipInfo else { return }
+        //
     }
 }

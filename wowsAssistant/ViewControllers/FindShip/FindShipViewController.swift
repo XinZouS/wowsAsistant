@@ -210,9 +210,13 @@ extension FindShipViewController: UICollectionViewDataSource {
         if collectionView == resultCollectionView {
             if let c = resultCollectionView.dequeueReusableCell(withReuseIdentifier: resultCellId, for: indexPath) as? ResultCell {
                 if indexPath.section == 0 {
-                    
+                    if indexPath.item < searchShips.count {
+                        
+                    }
                 } else {
-                    
+                    if indexPath.item < myFavoriteShips.count {
+                        
+                    }
                 }
                 return c
             }
