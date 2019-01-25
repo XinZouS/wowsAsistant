@@ -125,6 +125,8 @@ class FindShipViewController: BasicViewController {
         }
         if let rltCVLayout = resultCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             rltCVLayout.scrollDirection = .vertical
+            rltCVLayout.minimumLineSpacing = 10
+            rltCVLayout.minimumInteritemSpacing = 5
         }
         let vs = view.safeAreaLayoutGuide
         view.addSubview(flagCollectionView)
@@ -259,7 +261,7 @@ extension FindShipViewController: UICollectionViewDelegateFlowLayout {
         }
         if collectionView == resultCollectionView {
             let w = view.frame.width / 2 - 10
-            return CGSize(width: w, height: 100)
+            return CGSize(width: w, height: w * 0.78)
         }
         return .zero
     }

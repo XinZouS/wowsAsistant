@@ -83,7 +83,7 @@ class ResultCell: UICollectionViewCell {
     private func setupUI() {
         titleLabel.textColor = .white
         addSubview(titleLabel)
-        titleLabel.anchor(leadingAnchor, topAnchor, trailingAnchor, nil, height: 26)
+        titleLabel.anchor(leadingAnchor, topAnchor, trailingAnchor, nil, lead: 5, height: 26)
         
         backgndImageView.contentMode = .scaleToFill
         addSubview(backgndImageView)
@@ -91,13 +91,14 @@ class ResultCell: UICollectionViewCell {
         
         shipImageView.contentMode = .scaleAspectFit
         addSubview(shipImageView)
-        shipImageView.anchor(leadingAnchor, titleLabel.topAnchor, trailingAnchor, bottomAnchor, lead: 0, top: 0, trail: 0, bottom: 5)
+        shipImageView.anchor(leadingAnchor, titleLabel.topAnchor, trailingAnchor, bottomAnchor, lead: 0, top: 0, trail: 0, bottom: -5)
         
-        shipTypeImageView.contentMode = .center
+        shipTypeImageView.contentMode = .scaleAspectFit
         addSubview(shipTypeImageView)
-        shipTypeImageView.anchor(leadingAnchor, titleLabel.bottomAnchor, nil, nil, lead: 5, top: 0, width: 30, height: 20)
+        shipTypeImageView.anchor(leadingAnchor, titleLabel.bottomAnchor, nil, nil, lead: 0, top: 0, width: 40, height: 30)
         
         shipTierLabel.textColor = .white
+        shipTierLabel.font = UIFont.boldSystemFont(ofSize: 16)
         shipTierLabel.textAlignment = .left
         addSubview(shipTierLabel)
         shipTierLabel.anchor(shipTypeImageView.trailingAnchor, shipTypeImageView.topAnchor, nil, shipTypeImageView.bottomAnchor, lead: 5, top: 0, bottom: 0)
