@@ -247,7 +247,11 @@ extension FindShipViewController: UICollectionViewDataSource {
         if collectionView == flagCollectionView {
             if let c = flagCollectionView.dequeueReusableCell(withReuseIdentifier: flagCellId, for: indexPath) as? FlagCell {
                 if indexPath.item < shipNations.count {
-                    c.flag = shipNations[indexPath.item]
+                    let newFlag = shipNations[indexPath.item]
+                    c.flag = newFlag
+                    if let selectedFlag = shipNation {
+                        c.backgroundColor = (selectedFlag == newFlag ? UIColor.WowsTheme.lineCyan : UIColor.clear)
+                    }
                 }
                 return c
             }
@@ -255,7 +259,11 @@ extension FindShipViewController: UICollectionViewDataSource {
         if collectionView == tierCollectionView {
             if let c = tierCollectionView.dequeueReusableCell(withReuseIdentifier: tierCellId, for: indexPath) as? TierCell {
                 if indexPath.item < shipTiers.count {
-                    c.tier = shipTiers[indexPath.item]
+                    let currTier = shipTiers[indexPath.item]
+                    c.tier = currTier
+                    if let selectedTier = shipTier {
+                        c.rotateSelectionAnimation(selectedTier == currTier)
+                    }
                 }
                 return c
             }
@@ -282,15 +290,27 @@ extension FindShipViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == flagCollectionView, indexPath.item < shipNations.count {
-            shipNation = shipNations[indexPath.item]
             if let c = flagCollectionView.cellForItem(at: indexPath) as? FlagCell {
-                c.backgroundColor = UIColor.WowsTheme.lineCyan
+                let newNation = shipNations[indexPath.item]
+                if let oldNation = shipNation, newNation == oldNation {
+                    c.backgroundColor = UIColor.clear
+                    shipNation = nil
+                } else {
+                    c.backgroundColor = UIColor.WowsTheme.lineCyan
+                    shipNation = newNation
+                }
             }
         }
         if collectionView == tierCollectionView, indexPath.item < shipTiers.count {
-            shipTier = shipTiers[indexPath.item]
             if let c = tierCollectionView.cellForItem(at: indexPath) as? TierCell {
-                c.rotateSelectionAnimation()
+                let newTier = shipTiers[indexPath.item]
+                if let oldTier = shipTier, newTier == oldTier {
+                    shipTier = nil
+                    c.rotateSelectionAnimation(false)
+                } else {
+                    shipTier = newTier
+                    c.rotateSelectionAnimation()
+                }
             }
         }
         if collectionView == resultCollectionView {
@@ -311,7 +331,7 @@ extension FindShipViewController: UICollectionViewDelegate {
         }
         if collectionView == tierCollectionView {
             if let c = tierCollectionView.cellForItem(at: indexPath) as? TierCell {
-                c.rotateSelectionStop()
+                c.rotateSelectionAnimation(false)
             }
             
         }

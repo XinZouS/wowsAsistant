@@ -61,18 +61,19 @@ class TierCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        rotateSelectionStop()
+        rotateSelectionAnimation(false)
     }
     
-    func rotateSelectionAnimation() {
-        selectionImageView.isHidden = false
-        selectionImageView.rotate360Degrees(duration: 5)
+    func rotateSelectionAnimation(_ isStart: Bool = true) {
+        if isStart {
+            selectionImageView.isHidden = false
+            selectionImageView.rotate360Degrees(duration: 5)
+        } else {
+            selectionImageView.isHidden = true
+            selectionImageView.layer.removeAllAnimations()
+        }
     }
     
-    func rotateSelectionStop() {
-        selectionImageView.isHidden = true
-        selectionImageView.layer.removeAllAnimations()
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

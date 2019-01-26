@@ -31,17 +31,17 @@ enum ServerRealm: String {
 }
 
 enum ShipNation: String, CaseIterable {
-    case pan_asia = "pan_asia"
+    case germany = "germany"
     case usa = "usa"
+    case japan = "japan"
     case ussr = "ussr"
     case uk = "uk"
-    case germany = "germany"
     case france = "france"
-    case commonwealth = "commonwealth"
-    case pan_america = "pan_america"
+    case pan_asia = "pan_asia"
     case italy = "italy"
     case poland = "poland"
-    case japan = "japan"
+    case commonwealth = "commonwealth"
+    case pan_america = "pan_america"
     
     func displayName() -> String {
         switch self {
