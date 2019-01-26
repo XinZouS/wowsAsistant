@@ -26,7 +26,7 @@ extension UIButton {
         gradient.colors = [clrTop.cgColor, clrBottom.cgColor]
 //        self.layer.insertSublayer(gradient, at: 0)
         self.layer.addSublayer(gradient)
-        self.layer.layoutIfNeeded()
+//        self.layer.layoutIfNeeded()
         
         setBtnTitle(title, textColor, fontSize, isBold)
     }

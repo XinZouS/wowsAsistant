@@ -18,9 +18,8 @@ class BasicViewController: UIViewController {
         super.viewDidLoad()
         
         setNeedsStatusBarAppearanceUpdate()
-        view.backgroundColor = UIColor.WowsTheme.gradientCenter
-        addBackgroundImage()
-        
+//        addBackgroundImage()
+        addBackgroundGradient()
     }
     
     private func addBackgroundImage() {
@@ -29,6 +28,15 @@ class BasicViewController: UIViewController {
         imgV.clipsToBounds = true
         view.addSubview(imgV)
         imgV.anchor(view.leadingAnchor, view.topAnchor, view.trailingAnchor, view.safeAreaLayoutGuide.bottomAnchor)
+    }
+    
+    private func addBackgroundGradient() {
+        let gradient = CAGradientLayer()
+        gradient.frame = view.frame
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradient.colors = [UIColor.WowsTheme.gradientBlueLight.cgColor, UIColor.WowsTheme.gradientBlueDark.cgColor]
+        view.layer.addSublayer(gradient)
     }
     
 }

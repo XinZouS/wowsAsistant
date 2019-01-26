@@ -11,6 +11,9 @@ import UIKit
 
 extension UIView{
     
+    /** Use leading,trailing anchor for some reverse left-right reading countries, in which the leading will be Right, trailing will be Left;
+     *  ⚠️ if you don't know what you are doing, DON'T USE IT!
+    */
     func anchor(_ leading: NSLayoutXAxisAnchor? = nil, _ top: NSLayoutYAxisAnchor? = nil, _ trailing: NSLayoutXAxisAnchor? = nil, _ bottom: NSLayoutYAxisAnchor? = nil, lead leadConstent: CGFloat = 0, top topConstent: CGFloat = 0, trail trailConstent: CGFloat = 0, bottom bottomConstent: CGFloat = 0, width: CGFloat = 0, height: CGFloat = 0) {
         
         var anchors = [NSLayoutConstraint]()
@@ -24,6 +27,36 @@ extension UIView{
         }
         if trailing != nil {
             anchors.append(trailingAnchor.constraint(equalTo: trailing!, constant: -trailConstent))
+        }
+        if bottom != nil {
+            anchors.append(bottomAnchor.constraint(equalTo: bottom!, constant: -bottomConstent))
+        }
+        if width > CGFloat(0) {
+            anchors.append(widthAnchor.constraint(equalToConstant: width))
+        }
+        if height > CGFloat(0) {
+            anchors.append(heightAnchor.constraint(equalToConstant: height))
+        }
+        
+        for anchor in anchors {
+            anchor.isActive = true
+        }
+    }
+    
+    /// fixed Left-Right sided constraint, will not reverse all over the world; if TEXT reading related, use anchor()
+    func addConstraint(_ left: NSLayoutXAxisAnchor? = nil, _ top: NSLayoutYAxisAnchor? = nil, _ right: NSLayoutXAxisAnchor? = nil, _ bottom: NSLayoutYAxisAnchor? = nil, left leftConstent: CGFloat = 0, top topConstent: CGFloat = 0, right rightConstent: CGFloat = 0, bottom bottomConstent: CGFloat = 0, width: CGFloat = 0, height: CGFloat = 0) {
+        
+        var anchors = [NSLayoutConstraint]()
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        if left != nil {
+            anchors.append(leftAnchor.constraint(equalTo: left!, constant: leftConstent))
+        }
+        if top != nil {
+            anchors.append(topAnchor.constraint(equalTo: top!, constant: topConstent))
+        }
+        if right != nil {
+            anchors.append(rightAnchor.constraint(equalTo: right!, constant: -rightConstent))
         }
         if bottom != nil {
             anchors.append(bottomAnchor.constraint(equalTo: bottom!, constant: -bottomConstent))

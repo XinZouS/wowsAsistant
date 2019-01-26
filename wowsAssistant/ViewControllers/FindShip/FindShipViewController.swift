@@ -28,9 +28,12 @@ class FindShipViewController: BasicViewController {
     let rowFlagTrail: CGFloat = 90
     let rowTierHeigh: CGFloat = 40
     let resultInterItemSpace: CGFloat = 10
-    
     let stackViewTrail: CGFloat = 10
+    
+    let serverRelamLabel = UILabel()
     var stackView: UIStackView?
+    var shipTypeSelectionImageView = UIImageView()
+    var shipTypeSelectionImageViewLeadingConstraint: NSLayoutConstraint?
     var flagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var tierCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var resultCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -45,32 +48,30 @@ class FindShipViewController: BasicViewController {
         super.viewDidLoad()
         
         setupSearchShipTypeBar()
+        setupShipTypeIconStackView()
         setupCollectionViews()
         setupFindButton()
     }
     
     private func setupSearchShipTypeBar() {
-        let l = UILabel() // serverRelamLabel
-        l.textColor = .white
-        l.textAlignment = .center
-        l.text = serverRelam.descriptionString()
-        view.addSubview(l)
+        serverRelamLabel.textColor = .white
+        serverRelamLabel.textAlignment = .center
+        serverRelamLabel.text = serverRelam.descriptionString()
+        view.addSubview(serverRelamLabel)
         let vs = view.safeAreaLayoutGuide
-        l.anchor(vs.leadingAnchor, vs.topAnchor, nil, nil, lead: 0, top: 0, width: 66, height: rowTypeHeigh)
+        serverRelamLabel.anchor(vs.leadingAnchor, vs.topAnchor, nil, nil, lead: 0, top: 0, width: 66, height: rowTypeHeigh)
         
         let serverRelamButton = UIButton()
         serverRelamButton.addTarget(self, action: #selector(serverRelamButtonTapped), for: .touchUpInside)
         view.addSubview(serverRelamButton)
-        serverRelamButton.anchor(l.leadingAnchor, l.topAnchor, l.trailingAnchor, l.bottomAnchor)
-        
-        setupShipTypeIconStackView(relamLabel: l)
+        serverRelamButton.anchor(serverRelamLabel.leadingAnchor, serverRelamLabel.topAnchor, serverRelamLabel.trailingAnchor, serverRelamLabel.bottomAnchor)
     }
     
     @objc private func serverRelamButtonTapped() {
         print("serverRelamLabel button tapped!!")
     }
     
-    private func setupShipTypeIconStackView(relamLabel: UILabel) {
+    private func setupShipTypeIconStackView() {
         let types: [ShipType] = [.AC, .BB, .CR, .DD, .SB]
         let icons: [UIImageView] = types.map { (sType) -> UIImageView in
             let urlStr =  sType.iconImageUrl()
@@ -88,7 +89,16 @@ class FindShipViewController: BasicViewController {
         stackView!.axis = .horizontal
         view.addSubview(stackView!)
         let vs = view.safeAreaLayoutGuide
-        stackView!.anchor(relamLabel.trailingAnchor, vs.topAnchor, vs.trailingAnchor, nil, lead: 10, trail: stackViewTrail, height: rowTypeHeigh)
+        stackView!.addConstraint(serverRelamLabel.rightAnchor, vs.topAnchor, vs.rightAnchor, nil, left: 10, right: stackViewTrail, height: rowTypeHeigh)
+        
+        let imgH: CGFloat = 45
+        shipTypeSelectionImageView.image = #imageLiteral(resourceName: "selectionCircle_cyan_s")
+        shipTypeSelectionImageView.contentMode = .scaleAspectFit
+        view.insertSubview(shipTypeSelectionImageView, belowSubview: stackView!)
+        shipTypeSelectionImageView.addConstraint(width: imgH, height: imgH)
+        shipTypeSelectionImageView.centerYAnchor.constraint(equalTo: stackView!.centerYAnchor, constant: -2).isActive = true
+        shipTypeSelectionImageViewLeadingConstraint = shipTypeSelectionImageView.leftAnchor.constraint(equalTo: stackView!.leftAnchor)
+        shipTypeSelectionImageViewLeadingConstraint?.isActive = true
     }
     
     private func didSelectShipType(_ item: Int) {
@@ -245,11 +255,40 @@ extension FindShipViewController: UICollectionViewDataSource {
 extension FindShipViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        if collectionView == flagCollectionView, indexPath.item < shipNations.count {
+            shipNation = shipNations[indexPath.item]
+            if let c = flagCollectionView.cellForItem(at: indexPath) as? FlagCell {
+                c.backgroundColor = .cyan
+            }
+        }
+        if collectionView == tierCollectionView, indexPath.item < shipTiers.count {
+            shipTier = shipTiers[indexPath.item]
+            if let c = tierCollectionView.cellForItem(at: indexPath) as? TierCell {
+                c.backgroundColor = .cyan
+            }
+        }
+        if collectionView == resultCollectionView {
+            if indexPath.section == 0, indexPath.item < searchShips.count {
+                // go to ship detail vc
+            } else
+            if indexPath.section == 1, indexPath.item < myFavoriteShips.count {
+                // also go
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        if collectionView == flagCollectionView {
+            if let c = flagCollectionView.cellForItem(at: indexPath) {
+                c.backgroundColor = .clear
+            }
+        }
+        if collectionView == tierCollectionView {
+            if let c = tierCollectionView.cellForItem(at: indexPath) {
+                c.backgroundColor = .clear
+            }
+            
+        }
     }
     
 }
