@@ -94,6 +94,7 @@ class FindShipViewController: BasicViewController {
         let imgH: CGFloat = 45
         shipTypeSelectionImageView.image = #imageLiteral(resourceName: "selectionCircle_cyan_s")
         shipTypeSelectionImageView.contentMode = .scaleAspectFit
+        shipTypeSelectionImageView.isHidden = true
         view.insertSubview(shipTypeSelectionImageView, belowSubview: stackView!)
         shipTypeSelectionImageView.addConstraint(width: imgH, height: imgH)
         shipTypeSelectionImageView.centerYAnchor.constraint(equalTo: stackView!.centerYAnchor, constant: -2).isActive = true
@@ -103,22 +104,40 @@ class FindShipViewController: BasicViewController {
     
     private func didSelectShipType(_ item: Int, _ cellWidth: CGFloat) {
         let delta = CGFloat(item) * cellWidth
-        shipTypeSelectionImageViewLeadingConstraint?.constant = delta
-        UIView.animate(withDuration: 0.5, animations: { [weak self] in
-            self?.view.layoutIfNeeded()
-        }, completion: nil)
-        
+        var newType = ShipType.AC
         switch item {
         case 0:
-            shipType = .AC
+            newType = .AC
         case 1:
-            shipType = .BB
+            newType = .BB
         case 2:
-            shipType = .CR
+            newType = .CR
         case 3:
-            shipType = .DD
+            newType = .DD
         default:
-            shipType = .SB
+            newType = .SB
+        }
+        
+        if let oldType = self.shipType, newType == oldType {
+            shipTypeSelectionAnimate(false)
+            shipType = nil
+        } else {
+            shipType = newType
+            shipTypeSelectionAnimate()
+            shipTypeSelectionImageViewLeadingConstraint?.constant = delta
+            UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                self?.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
+    
+    private func shipTypeSelectionAnimate(_ isStart: Bool = true) {
+        if isStart {
+            shipTypeSelectionImageView.rotate360Degrees(duration: 5)
+            shipTypeSelectionImageView.isHidden = false
+        } else {
+            shipTypeSelectionImageView.layer.removeAllAnimations()
+            shipTypeSelectionImageView.isHidden = true
         }
     }
     
@@ -265,13 +284,13 @@ extension FindShipViewController: UICollectionViewDelegate {
         if collectionView == flagCollectionView, indexPath.item < shipNations.count {
             shipNation = shipNations[indexPath.item]
             if let c = flagCollectionView.cellForItem(at: indexPath) as? FlagCell {
-                c.backgroundColor = .cyan
+                c.backgroundColor = UIColor.WowsTheme.lineCyan
             }
         }
         if collectionView == tierCollectionView, indexPath.item < shipTiers.count {
             shipTier = shipTiers[indexPath.item]
             if let c = tierCollectionView.cellForItem(at: indexPath) as? TierCell {
-                c.backgroundColor = .cyan
+                c.rotateSelectionAnimation()
             }
         }
         if collectionView == resultCollectionView {
@@ -291,8 +310,8 @@ extension FindShipViewController: UICollectionViewDelegate {
             }
         }
         if collectionView == tierCollectionView {
-            if let c = tierCollectionView.cellForItem(at: indexPath) {
-                c.backgroundColor = .clear
+            if let c = tierCollectionView.cellForItem(at: indexPath) as? TierCell {
+                c.rotateSelectionStop()
             }
             
         }

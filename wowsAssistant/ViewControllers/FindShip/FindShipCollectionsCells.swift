@@ -33,6 +33,8 @@ class FlagCell: UICollectionViewCell {
 class TierCell: UICollectionViewCell {
     
     private let label = UILabel()
+    private let selectionImageView = UIImageView()
+    
     var tier: Int? {
         didSet {
             if let t = tier, t >= 0, t <= 11 {
@@ -43,11 +45,33 @@ class TierCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        selectionImageView.image = #imageLiteral(resourceName: "selectionCircle_cyan_s")
+        selectionImageView.contentMode = .scaleAspectFit
+        addSubview(selectionImageView)
+        selectionImageView.fillSuperview()
+        selectionImageView.isHidden = true
+        
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 22)
         addSubview(label)
         label.fillSuperview()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        rotateSelectionStop()
+    }
+    
+    func rotateSelectionAnimation() {
+        selectionImageView.isHidden = false
+        selectionImageView.rotate360Degrees(duration: 5)
+    }
+    
+    func rotateSelectionStop() {
+        selectionImageView.isHidden = true
+        selectionImageView.layer.removeAllAnimations()
     }
     
     required init?(coder aDecoder: NSCoder) {
