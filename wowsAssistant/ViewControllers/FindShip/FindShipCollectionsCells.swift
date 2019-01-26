@@ -45,7 +45,7 @@ class TierCell: UICollectionViewCell {
         super.init(frame: frame)
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 22)
         addSubview(label)
         label.fillSuperview()
     }
@@ -57,6 +57,11 @@ class TierCell: UICollectionViewCell {
 
 
 // MARK: -
+
+protocol ResultCellDelegate: class {
+    func markShipButtonTapped(_ shipId: Int)
+}
+
 class ResultCell: UICollectionViewCell {
     
     var shipInfo: ShipInfo? {
@@ -65,12 +70,23 @@ class ResultCell: UICollectionViewCell {
         }
     }
     
+    let markFavorit = "❤️"
+    let markDefault = "⚓️"
+    
+    var isMarkedFavorite = false {
+        didSet {
+            markLabel.text = isMarkedFavorite ? markFavorit : markDefault
+        }
+    }
+    
+    weak var delegate: ResultCellDelegate?
+    
     let titleLabel = UILabel()
     let backgndImageView = UIImageView()
     let shipImageView = UIImageView()
     let shipTypeImageView = UIImageView()
     let shipTierLabel = UILabel()
-    let markImageView = UIImageView()
+    let markLabel = UILabel()
     let markButton = UIButton()
     
     override init(frame: CGRect) {
@@ -80,8 +96,14 @@ class ResultCell: UICollectionViewCell {
         setupUI()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func setupUI() {
         titleLabel.textColor = .white
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.8
         addSubview(titleLabel)
         titleLabel.anchor(leadingAnchor, topAnchor, trailingAnchor, nil, lead: 5, height: 26)
         
@@ -91,7 +113,7 @@ class ResultCell: UICollectionViewCell {
         
         shipImageView.contentMode = .scaleAspectFit
         addSubview(shipImageView)
-        shipImageView.anchor(leadingAnchor, titleLabel.topAnchor, trailingAnchor, bottomAnchor, lead: 0, top: 0, trail: 0, bottom: -5)
+        shipImageView.anchor(leadingAnchor, titleLabel.topAnchor, trailingAnchor, bottomAnchor, lead: 0, top: 5, trail: 0, bottom: -15)
         
         shipTypeImageView.contentMode = .scaleAspectFit
         addSubview(shipTypeImageView)
@@ -103,21 +125,23 @@ class ResultCell: UICollectionViewCell {
         addSubview(shipTierLabel)
         shipTierLabel.anchor(shipTypeImageView.trailingAnchor, shipTypeImageView.topAnchor, nil, shipTypeImageView.bottomAnchor, lead: 5, top: 0, bottom: 0)
         
-        markImageView.contentMode = .scaleAspectFit
-        addSubview(markImageView)
-        markImageView.anchor(nil, titleLabel.bottomAnchor, trailingAnchor, nil, lead: 0, top: 5, trail: 10, bottom: 0, width: 20, height: 20)
+        markLabel.text = markDefault
+        markLabel.textAlignment = .center
+        markLabel.font = UIFont.systemFont(ofSize: 22)
+        addSubview(markLabel)
+        markLabel.anchor(nil, titleLabel.bottomAnchor, trailingAnchor, nil, lead: 0, top: 5, trail: 10, bottom: 0, width: 0, height: 0)
         
         addSubview(markButton)
-        markButton.anchorCenterIn(markImageView, width: 30, height: 30)
+        markButton.anchorCenterIn(markLabel, width: 30, height: 30)
         markButton.addTarget(self, action: #selector(markButtonTapped), for: .touchUpInside)
     }
     
     @objc private func markButtonTapped() {
-        print("like the ship: \(shipInfo?.name)")
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        // TODO : update UI
+        
+        if let shipId = shipInfo?.ship_id {
+            delegate?.markShipButtonTapped(shipId)
+        }
     }
     
     private func updateShipInfoUI() {

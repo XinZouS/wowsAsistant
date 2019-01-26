@@ -22,10 +22,12 @@ class FindShipViewController: BasicViewController {
     var searchShips: [ShipInfo] = []
     var myFavoriteShips: [ShipInfo] = []
     
+    // MARK: - UI contents
     let rowTypeHeigh: CGFloat = 50
-    let rowFlagHeigh: CGFloat = 43
+    let rowFlagHeigh: CGFloat = 40
     let rowFlagTrail: CGFloat = 90
     let rowTierHeigh: CGFloat = 40
+    let resultInterItemSpace: CGFloat = 10
     
     let stackViewTrail: CGFloat = 10
     var stackView: UIStackView?
@@ -33,11 +35,12 @@ class FindShipViewController: BasicViewController {
     var tierCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var resultCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
+    // MARK: - Cell IDs
     let flagCellId = "flagCellId"
     let tierCellId = "tierCellId"
     let resultCellId = "resultCellId"
     
-    
+    // MARK: - View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,8 +128,8 @@ class FindShipViewController: BasicViewController {
         }
         if let rltCVLayout = resultCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             rltCVLayout.scrollDirection = .vertical
-            rltCVLayout.minimumLineSpacing = 10
-            rltCVLayout.minimumInteritemSpacing = 5
+            rltCVLayout.minimumLineSpacing = resultInterItemSpace
+            rltCVLayout.minimumInteritemSpacing = resultInterItemSpace
         }
         let vs = view.safeAreaLayoutGuide
         view.addSubview(flagCollectionView)
@@ -140,6 +143,7 @@ class FindShipViewController: BasicViewController {
         view.addSubview(resultCollectionView)
         resultCollectionView.backgroundColor = .clear
         resultCollectionView.anchor(vs.leadingAnchor, tierCollectionView.bottomAnchor, vs.trailingAnchor, vs.bottomAnchor)
+        resultCollectionView.contentInset = UIEdgeInsets(top: 0, left: resultInterItemSpace, bottom: 0, right: resultInterItemSpace)
     }
     
     private func setupFindButton() {
@@ -257,10 +261,10 @@ extension FindShipViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: rowFlagHeigh * 1.46, height: rowFlagHeigh)
         }
         if collectionView == tierCollectionView {
-            return CGSize(width: rowTierHeigh * 1.2, height: rowTierHeigh)
+            return CGSize(width: rowTierHeigh * 1.16, height: rowTierHeigh)
         }
         if collectionView == resultCollectionView {
-            let w = view.frame.width / 2 - 10
+            let w = view.frame.width / 2 - (1.6 * resultInterItemSpace) // 3: left, center, right spacing
             return CGSize(width: w, height: w * 0.78)
         }
         return .zero

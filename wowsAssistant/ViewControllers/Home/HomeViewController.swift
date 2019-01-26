@@ -8,8 +8,10 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: BasicViewController {
     
+    // https://worldofwarships.asia/zh-tw/news/
+    // https://worldofwarships.com/en/news/
     let wowsNewsUrl = "https://worldofwarships.com/en/news/"
     
     
