@@ -28,7 +28,7 @@ class FindShipViewController: BasicViewController {
     let rowFlagTrail: CGFloat = 90
     let rowTierHeigh: CGFloat = 40
     let resultInterItemSpace: CGFloat = 10
-    let stackViewTrail: CGFloat = 10
+    let stackViewRightSpacing: CGFloat = 10
     
     let serverRelamLabel = UILabel()
     var stackView: UIStackView?
@@ -89,7 +89,7 @@ class FindShipViewController: BasicViewController {
         stackView!.axis = .horizontal
         view.addSubview(stackView!)
         let vs = view.safeAreaLayoutGuide
-        stackView!.addConstraint(serverRelamLabel.rightAnchor, vs.topAnchor, vs.rightAnchor, nil, left: 10, right: stackViewTrail, height: rowTypeHeigh)
+        stackView!.addConstraint(serverRelamLabel.rightAnchor, vs.topAnchor, vs.rightAnchor, nil, left: stackViewRightSpacing, right: stackViewRightSpacing, height: rowTypeHeigh)
         
         let imgH: CGFloat = 45
         shipTypeSelectionImageView.image = #imageLiteral(resourceName: "selectionCircle_cyan_s")
@@ -101,7 +101,13 @@ class FindShipViewController: BasicViewController {
         shipTypeSelectionImageViewLeadingConstraint?.isActive = true
     }
     
-    private func didSelectShipType(_ item: Int) {
+    private func didSelectShipType(_ item: Int, _ cellWidth: CGFloat) {
+        let delta = CGFloat(item) * cellWidth
+        shipTypeSelectionImageViewLeadingConstraint?.constant = delta
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        }, completion: nil)
+        
         switch item {
         case 0:
             shipType = .AC
@@ -181,14 +187,15 @@ class FindShipViewController: BasicViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        guard let touch = touches.first else { return }
         
-        if let touch = touches.first {
-            let loc = touch.location(in: stackView)
-            if let sv = stackView, loc.x > 0, loc.y < rowTypeHeigh { // in ShipType stackView
-                let item = Int(loc.x) / (Int(sv.frame.width + stackViewTrail) / ShipType.allCases.count) // 5 ship types, constant
-                didSelectShipType(item)
-            }
+        let loc = touch.location(in: stackView)
+        if let sv = stackView, loc.x > 0, loc.y < rowTypeHeigh { // in ShipType stackView
+            let cellWidth = (sv.frame.width + stackViewRightSpacing * 2) / CGFloat(ShipType.allCases.count)
+            let item = Int(loc.x) / Int(cellWidth) // 5 ship types, constant
+            didSelectShipType(item, cellWidth)
         }
+        
     }
     
     
