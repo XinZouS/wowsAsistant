@@ -48,6 +48,7 @@ class ShipInfo: Unboxable {
     var name:       String?
     
     var imagesStruct: ShipInfoImages?
+    var typeEnum = ShipType.AC
     
     required init(unboxer: Unboxer) {
         self.description = (try? unboxer.unbox(key: ShipInfoKeyInDB.description.rawValue))
@@ -72,6 +73,23 @@ class ShipInfo: Unboxable {
         
         if let imgs = images {
             self.imagesStruct = ShipInfoImages(imgs)
+        }
+        if let str = type {
+            print("get type = \(str)")
+            switch str {
+            case ShipType.AC.rawValue:
+                self.typeEnum = .AC
+            case ShipType.BB.rawValue:
+                self.typeEnum = .BB
+            case ShipType.CR.rawValue:
+                self.typeEnum = .CR
+            case ShipType.DD.rawValue:
+                self.typeEnum = .DD
+            case ShipType.SB.rawValue:
+                self.typeEnum = .SB
+            default:
+                self.typeEnum = .AC
+            }
         }
     }
 }

@@ -194,8 +194,16 @@ class FindShipViewController: BasicViewController {
         
         // TODO: set pagination limit and pageNum
         
-        ApiServers.shared.getShipsList(realm: serverRelam, shipType: shipType, nation: shipNation, limit: 20, pageNum: 1) { [weak self] (shipInfos) in
-            if let infos = shipInfos {
+        ApiServers.shared.getShipsList(realm: serverRelam, shipType: shipType, nation: shipNation, limit: 30, pageNum: 1) { [weak self] (shipInfos) in
+            if var infos = shipInfos {
+                if let filterTier = self?.shipTier {
+                    infos = infos.filter({ (info) -> Bool in
+                        return info.tier == filterTier
+                    })
+                }
+                infos.sort(by: { (a, b) -> Bool in
+                    return a.typeEnum.tagInt() < b.typeEnum.tagInt()
+                })
                 self?.searchShips = infos
                 DispatchQueue.main.async {
                     self?.resultCollectionView.reloadData()

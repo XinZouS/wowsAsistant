@@ -121,6 +121,7 @@ enum ShipType: String, CaseIterable {
         return "\(route)\(self.rawValue)/\(iconType.rawValue).png"
     }
     
+    /// return enumate Int of type: AC:0, BB:1, CR:2, DD:3, SB:4
     func tagInt() -> Int {
         switch self {
         case .AC:
