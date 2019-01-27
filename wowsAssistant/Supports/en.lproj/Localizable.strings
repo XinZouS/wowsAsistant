@@ -34,6 +34,11 @@
 "tabbar.icon.academy.title" = "Academy";
 "tabbar.icon.account.title" = "Me";
 
+// MARK: - Home WebView
+"home.button.home.title" = "Wows";
+"home.button.forw.title" = "▷";
+"home.button.back.title" = "◁";
+
 // MARK: - Settings
 "settings.change-language.confirmed" = "Confirmed";
 "settings.change-language.english" = "English";

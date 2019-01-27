@@ -34,6 +34,11 @@
 "tabbar.icon.academy.title" = "航海学院";
 "tabbar.icon.account.title" = "我是舰长";
 
+// MARK: - Home WebView
+"home.button.home.title" = "官网";
+"home.button.forw.title" = "▷";
+"home.button.back.title" = "◁";
+
 // MARK: - Settings
 "settings.change-language.confirmed" = "确定";
 "settings.change-language.english" = "英文";
