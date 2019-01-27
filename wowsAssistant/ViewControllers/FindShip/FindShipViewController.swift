@@ -191,24 +191,48 @@ class FindShipViewController: BasicViewController {
     }
     
     @objc private func searchShip() {
+        searchShips.removeAll()
         
-        // TODO: set pagination limit and pageNum
+        // TODO: get ship data!!!!
+    }
+    
+    /// completion: hasNextPage
+    private func queryFromServer(itemLimit: Int, pageNum: Int, completion: @escaping((Bool) -> Void)) {
         
-        ApiServers.shared.getShipsList(realm: serverRelam, shipType: shipType, nation: shipNation, limit: 30, pageNum: 1) { [weak self] (shipInfos) in
+        ApiServers.shared.getShipsList(realm: serverRelam, shipType: shipType, nation: shipNation, limit: itemLimit, pageNum: pageNum) { [weak self] (shipInfos) in
             if var infos = shipInfos {
+                if infos.count == 0 {
+                    completion(false) // no result, end query
+                    return
+                }
                 if let filterTier = self?.shipTier {
                     infos = infos.filter({ (info) -> Bool in
                         return info.tier == filterTier
                     })
                 }
-                infos.sort(by: { (a, b) -> Bool in
-                    return a.typeEnum.tagInt() < b.typeEnum.tagInt()
-                })
-                self?.searchShips = infos
+                self?.searchShips.append(contentsOf: infos)
+                completion(infos.count > 0)
+                
                 DispatchQueue.main.async {
                     self?.resultCollectionView.reloadData()
                 }
+            } else {
+                completion(false)
             }
+        }
+    }
+    
+    private func sortSearchShips() {
+        searchShips.sort(by: { [weak self] (a, b) -> Bool in
+            // TODO: any better way to sort this???
+            if a.typeEnum.tagInt() == b.typeEnum.tagInt() {
+                return (a.tier ?? 0) > (b.tier ?? 0)
+            } else {
+                return a.typeEnum.tagInt() < b.typeEnum.tagInt()
+            }
+        })
+        DispatchQueue.main.async {
+            self.resultCollectionView.reloadData()
         }
     }
     

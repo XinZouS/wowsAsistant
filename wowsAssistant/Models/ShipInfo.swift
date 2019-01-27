@@ -75,7 +75,6 @@ class ShipInfo: Unboxable {
             self.imagesStruct = ShipInfoImages(imgs)
         }
         if let str = type {
-            print("get type = \(str)")
             switch str {
             case ShipType.AC.rawValue:
                 self.typeEnum = .AC
