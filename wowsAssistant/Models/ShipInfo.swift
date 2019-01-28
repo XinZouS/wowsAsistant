@@ -28,7 +28,7 @@ struct Range: Unboxable {
 
 class ShipInfo: Unboxable {
     var description:    String?
-    var ship_id:        Int = 0
+    var ship_id:        Int = 0 // Int32, max = 42940 00000
     var ship_id_str:    String = ""
     var has_demo_profile: Bool?
     var images:     [String:String]? // keys: "small", "medium", "large", "contour"

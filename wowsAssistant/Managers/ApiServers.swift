@@ -27,6 +27,7 @@ final class ApiServers: NSObject {
         case limit = "limit"
         case page_no = "page_no"
         case nation = "nation"
+        case fields = "fields"
         
         case data = "data"
         case statusCode = "status_code"
@@ -114,12 +115,37 @@ final class ApiServers: NSObject {
         }
     }
     
+    // https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&fields=ship_id%2C+type%2C+tier%2C+nation&limit=100&page_no=4
+    func getShipInfoBasicList(realm: ServerRealm = .na, limit: Int = 100, pageNum: Int, completion: @escaping(() -> Void)) {
+        var params: [String:Any] = [:]
+        params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
+        params[ServerKey.limit.rawValue] = limit
+        params[ServerKey.page_no.rawValue] = pageNum
+        params[ServerKey.fields.rawValue] = "ship_id%2C+type%2C+tier%2C+nation"
+        
+        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+        getDataFromWows(route, parameters: params) { (dictionary, error) in
+            if let d = dictionary {
+                for pair in d {
+                    if let info = pair.value as? [String:Any] {
+                        let getBasic = ShipInfoBasic(context: PersistenceManager.shared.context)
+                        getBasic.setupByDictionary(info) // ✅ get
+                    } else {
+                        DLog("[ERROR] unable to unwarp Basics by dictionary in getShipInfoBasicList()")
+                    }
+                }
+                completion()
+                return
+            }
+            completion()
+        }
+    }
     
     
     
     // MARK: - basic GET and POST by url for wows
     /**
-     * ⚓️ get data with url string, return NULL, using Alamofire
+     * ⚓️ 🚢 get data with url string, return NULL, using Alamofire
      */
     private func getDataFromWows(_ route: String, parameters: [String: Any], completion: @escaping(([String:Any]?, Error?) -> Void)) {
         var urlStr = route

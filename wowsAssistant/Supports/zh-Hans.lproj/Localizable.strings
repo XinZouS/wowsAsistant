@@ -35,7 +35,7 @@
 "tabbar.icon.account.title" = "我是舰长";
 
 // MARK: - Home WebView
-"home.button.home.title" = "官网";
+"home.button.home.title" = "主页";
 "home.button.forw.title" = "▷";
 "home.button.back.title" = "◁";
 

@@ -29,13 +29,13 @@
 "action.save-image-ok" = "Save image success!";
 
 // MARK: - Main Tabbar
-"tabbar.icon.home.title" = "Home";
+"tabbar.icon.home.title" = "Wows";
 "tabbar.icon.find.title" = "Find Ship";
 "tabbar.icon.academy.title" = "Academy";
 "tabbar.icon.account.title" = "Me";
 
 // MARK: - Home WebView
-"home.button.home.title" = "Wows";
+"home.button.home.title" = "News";
 "home.button.forw.title" = "▷";
 "home.button.back.title" = "◁";
 

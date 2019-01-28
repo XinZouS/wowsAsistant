@@ -15,6 +15,7 @@ class MainTabbarController: UITabBarController {
         super.viewDidLoad()
         
         setupChildViewControllers()
+        ShipInfoBasicManager.shared.loadShipInfoBasicIfNeed()
     }
     
     private func setupChildViewControllers() {

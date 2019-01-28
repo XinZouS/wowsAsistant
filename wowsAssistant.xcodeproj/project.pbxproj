@@ -18,9 +18,13 @@
 		66ED359621FA151900D493D9 /* UserDefaults++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359521FA151900D493D9 /* UserDefaults++.swift */; };
 		66ED359821FA273200D493D9 /* UIButton++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359721FA273200D493D9 /* UIButton++.swift */; };
 		66ED359A21FA316D00D493D9 /* FindShipCollectionsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359921FA316D00D493D9 /* FindShipCollectionsCells.swift */; };
+		66ED359D21FE66E900D493D9 /* wowsAssistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359B21FE66E800D493D9 /* wowsAssistant.xcdatamodeld */; };
+		66ED35A021FE710500D493D9 /* ShipInfoBasic+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359E21FE710500D493D9 /* ShipInfoBasic+CoreDataClass.swift */; };
+		66ED35A121FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359F21FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift */; };
+		66ED35A321FE71DE00D493D9 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED35A221FE71DE00D493D9 /* PersistenceManager.swift */; };
+		66ED35A521FEBED700D493D9 /* ShipInfoBasicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED35A421FEBED700D493D9 /* ShipInfoBasicManager.swift */; };
 		66F0E36921EAA2C1003D1023 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E36821EAA2C1003D1023 /* AppDelegate.swift */; };
 		66F0E36B21EAA2C1003D1023 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E36A21EAA2C1003D1023 /* MainTabbarController.swift */; };
-		66F0E37121EAA2C1003D1023 /* wowsAssistant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E36F21EAA2C1003D1023 /* wowsAssistant.xcdatamodeld */; };
 		66F0E37321EAA2C2003D1023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66F0E37221EAA2C2003D1023 /* Assets.xcassets */; };
 		66F0E37621EAA2C2003D1023 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66F0E37421EAA2C2003D1023 /* LaunchScreen.storyboard */; };
 		66F0E37E21EAA41B003D1023 /* UIView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E37D21EAA41B003D1023 /* UIView++.swift */; };
@@ -46,10 +50,14 @@
 		66ED359521FA151900D493D9 /* UserDefaults++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults++.swift"; sourceTree = "<group>"; };
 		66ED359721FA273200D493D9 /* UIButton++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton++.swift"; sourceTree = "<group>"; };
 		66ED359921FA316D00D493D9 /* FindShipCollectionsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipCollectionsCells.swift; sourceTree = "<group>"; };
+		66ED359C21FE66E800D493D9 /* wowsAssistant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = wowsAssistant.xcdatamodel; sourceTree = "<group>"; };
+		66ED359E21FE710500D493D9 /* ShipInfoBasic+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShipInfoBasic+CoreDataClass.swift"; path = "/Users/xinzou/Documents/iOS/wowsAssistant/wowsAssistant/Models/ShipInfoBasic+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		66ED359F21FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShipInfoBasic+CoreDataProperties.swift"; path = "/Users/xinzou/Documents/iOS/wowsAssistant/wowsAssistant/Models/ShipInfoBasic+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		66ED35A221FE71DE00D493D9 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		66ED35A421FEBED700D493D9 /* ShipInfoBasicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfoBasicManager.swift; sourceTree = "<group>"; };
 		66F0E36521EAA2C1003D1023 /* wowsAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wowsAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F0E36821EAA2C1003D1023 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66F0E36A21EAA2C1003D1023 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
-		66F0E37021EAA2C1003D1023 /* wowsAssistant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = wowsAssistant.xcdatamodel; sourceTree = "<group>"; };
 		66F0E37221EAA2C2003D1023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66F0E37521EAA2C2003D1023 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		66F0E37721EAA2C2003D1023 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,7 +144,7 @@
 				66F0E38821EBE409003D1023 /* Supports */,
 				66F0E37F21EAA42E003D1023 /* Helpers */,
 				66F0E37721EAA2C2003D1023 /* Info.plist */,
-				66F0E36F21EAA2C1003D1023 /* wowsAssistant.xcdatamodeld */,
+				66ED359B21FE66E800D493D9 /* wowsAssistant.xcdatamodeld */,
 			);
 			path = wowsAssistant;
 			sourceTree = "<group>";
@@ -159,6 +167,8 @@
 			children = (
 				66F0E38321EBDFDA003D1023 /* ApiServers.swift */,
 				66F0E39421EBEC00003D1023 /* ServiceManager.swift */,
+				66ED35A221FE71DE00D493D9 /* PersistenceManager.swift */,
+				66ED35A421FEBED700D493D9 /* ShipInfoBasicManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -204,6 +214,8 @@
 		66F0E39A21EBFE24003D1023 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				66ED359E21FE710500D493D9 /* ShipInfoBasic+CoreDataClass.swift */,
+				66ED359F21FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift */,
 				66ED358821F770A600D493D9 /* DBKeys.swift */,
 				66578B1721F22CCC0096660C /* ShipInfo.swift */,
 				66F0E39B21EBFE5C003D1023 /* Ship.swift */,
@@ -355,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66ED359A21FA316D00D493D9 /* FindShipCollectionsCells.swift in Sources */,
+				66ED35A321FE71DE00D493D9 /* PersistenceManager.swift in Sources */,
 				66ED359621FA151900D493D9 /* UserDefaults++.swift in Sources */,
 				66F0E38721EBE131003D1023 /* GlobalVariable.swift in Sources */,
 				66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */,
@@ -363,18 +376,21 @@
 				66ED359821FA273200D493D9 /* UIButton++.swift in Sources */,
 				66F0E38121EAA50A003D1023 /* Passwords.swift in Sources */,
 				66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */,
+				66ED35A521FEBED700D493D9 /* ShipInfoBasicManager.swift in Sources */,
 				66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */,
 				66F0E37E21EAA41B003D1023 /* UIView++.swift in Sources */,
 				66F0E39321EBEAC4003D1023 /* LanguageSelectorViewController.swift in Sources */,
 				66F0E39921EBF5EC003D1023 /* String++.swift in Sources */,
 				66578B1421F1407A0096660C /* Airplane.swift in Sources */,
-				66F0E37121EAA2C1003D1023 /* wowsAssistant.xcdatamodeld in Sources */,
 				66ED358921F770A600D493D9 /* DBKeys.swift in Sources */,
 				66F0E39521EBEC00003D1023 /* ServiceManager.swift in Sources */,
+				66ED359D21FE66E900D493D9 /* wowsAssistant.xcdatamodeld in Sources */,
 				66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */,
 				66F0E38421EBDFDA003D1023 /* ApiServers.swift in Sources */,
 				66F0E39721EBF510003D1023 /* Date++.swift in Sources */,
+				66ED35A021FE710500D493D9 /* ShipInfoBasic+CoreDataClass.swift in Sources */,
 				66F0E36B21EAA2C1003D1023 /* MainTabbarController.swift in Sources */,
+				66ED35A121FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift in Sources */,
 				66F0E36921EAA2C1003D1023 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,12 +598,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		66F0E36F21EAA2C1003D1023 /* wowsAssistant.xcdatamodeld */ = {
+		66ED359B21FE66E800D493D9 /* wowsAssistant.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				66F0E37021EAA2C1003D1023 /* wowsAssistant.xcdatamodel */,
+				66ED359C21FE66E800D493D9 /* wowsAssistant.xcdatamodel */,
 			);
-			currentVersion = 66F0E37021EAA2C1003D1023 /* wowsAssistant.xcdatamodel */;
+			currentVersion = 66ED359C21FE66E800D493D9 /* wowsAssistant.xcdatamodel */;
 			path = wowsAssistant.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

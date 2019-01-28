@@ -62,7 +62,7 @@ extension ServiceManager {
     
     func getLanguage() -> AppLanguage {
         // User setted language:
-        if let locality = UserDefaults.standard.object(forKey: "AppleLanguages") as? [String] {
+        if let locality = UserDefaults.standard.object(forKey: UserDefaultKeys.appLanguages.rawValue) as? [String] {
             if let currentLanguage = locality.first, let appLanguage = AppLanguage(rawValue: currentLanguage) {
                 return appLanguage
             }
@@ -80,7 +80,7 @@ extension ServiceManager {
     }
     
     func setLanguage(_ language: AppLanguage) {
-        UserDefaults.standard.set([language.rawValue], forKey: "AppleLanguages")
+        UserDefaults.standard.set([language.rawValue], forKey: UserDefaultKeys.appLanguages.rawValue)
         UserDefaults.standard.synchronize()
     }
     
