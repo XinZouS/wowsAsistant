@@ -79,7 +79,7 @@ class FindShipViewController: BasicViewController {
     }
     
     @objc private func serverRelamButtonTapped() {
-        print("serverRelamLabel button tapped!!")
+        
     }
     
     private func setupShipTypeIconStackView() {
