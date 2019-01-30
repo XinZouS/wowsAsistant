@@ -29,6 +29,7 @@ final class ApiServers: NSObject {
         case nation = "nation"
         case fields = "fields"
         
+        case meta = "meta"
         case data = "data"
         case statusCode = "status_code"
         case message = "message"
@@ -222,7 +223,7 @@ final class ApiServers: NSObject {
             [TIME UTC] \(Date())
             [TIME GMT] \(Date().getCurrentLocalizedDate())
             [GET ROUTE] \(route)
-            [RESPONSE] \(response?.url)
+            [RESPONSE] \(response?.url?.debugDescription ?? "")
             """
             print(printText)
             #endif
@@ -230,6 +231,7 @@ final class ApiServers: NSObject {
             if let err = error {
                 DLog("[GET_ERROR] in URLSession dataTask: \(err.localizedDescription)")
                 completion(nil, err)
+                return
             }
             
             if let data = data {
