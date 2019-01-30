@@ -125,7 +125,7 @@ class ResultCell: UICollectionViewCell {
         }
     }
     
-    let markFavorit = "❤️"
+    let markFavorit = "⭐️"
     let markDefault = "⚓️"
     
     var isMarkedFavorite = false {
