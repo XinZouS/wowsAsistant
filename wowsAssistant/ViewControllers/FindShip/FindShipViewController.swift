@@ -230,6 +230,7 @@ class FindShipViewController: BasicViewController {
     
     /// completion: hasNextPage
     private func queryByTypeAndNation() {
+        if pageNumber == 0 { return }
         
         ApiServers.shared.getShipsList(realm: serverRelam, shipType: shipType, nation: shipNation, limit: 50, pageNum: pageNumber) { [weak self] (shipInfos) in
             if let infos = shipInfos {
@@ -240,6 +241,8 @@ class FindShipViewController: BasicViewController {
                 self?.searchShips.append(contentsOf: infos)
                 self?.sortSearchShipsAndReloadData()
                 self?.pageNumber += 1
+            } else {
+                self?.pageNumber = 0 // no more pages
             }
         }
     }
@@ -393,6 +396,14 @@ extension FindShipViewController: UICollectionViewDelegate {
                 c.rotateSelectionAnimation(false)
             }
             
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == resultCollectionView{
+            if indexPath.section == 0, indexPath.item == searchShips.count - 1 {
+                queryByTypeAndNation()
+            }
         }
     }
     

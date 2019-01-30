@@ -83,6 +83,37 @@ class TierCell: UICollectionViewCell {
 
 // MARK: -
 
+class ResultHeaderView: UICollectionReusableView {
+    
+    let titleLabel = UILabel()
+    let imageView = UIImageView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .clear
+        setupView()
+    }
+    
+    private func setupView() {
+        imageView.image = #imageLiteral(resourceName: "seprator_light")
+        imageView.contentMode = .scaleToFill
+        addSubview(imageView)
+        imageView.fillSuperview()
+        
+        titleLabel.text = "MY shipsssss"
+        titleLabel.textColor = .white
+        addSubview(titleLabel)
+        titleLabel.addConstraint(leftAnchor, nil, nil, bottomAnchor, left: 10, top: 0, right: 0, bottom: 0, width: 0, height: 0)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+// MARK: -
+
 protocol ResultCellDelegate: class {
     func markShipButtonTapped(_ shipId: Int)
 }
