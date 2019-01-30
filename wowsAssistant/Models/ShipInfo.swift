@@ -41,7 +41,7 @@ class ShipInfo: Unboxable {
     var default_profile: Ship?
     var upgrades:   [Int]?
     var tier:       Int?
-    var next_ships: String?
+    var next_ships: [Int]?
     var mod_slots:  Int?
     var type:       String?
     var is_special: Bool?
