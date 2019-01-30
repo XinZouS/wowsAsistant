@@ -59,6 +59,11 @@ class FindShipViewController: BasicViewController {
         loadMyFavoriteShips()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.setFavoriteShips(Array(myFavoriteShipIdSet))
+    }
+    
     private func setupSearchShipTypeBar() {
         serverRelamLabel.textColor = .white
         serverRelamLabel.textAlignment = .center
