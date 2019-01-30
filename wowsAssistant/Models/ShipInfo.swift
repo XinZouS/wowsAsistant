@@ -97,6 +97,27 @@ class ShipInfo: Unboxable {
     }
 }
 
+extension ShipInfo: Comparable {
+    
+    /// use: myArray.sorted()
+    static func == (a: ShipInfo, b: ShipInfo) -> Bool {
+        return a.typeEnum.tagInt() == b.typeEnum.tagInt() &&
+            a.nationEnum.tagInt() == b.nationEnum.tagInt() &&
+            (a.tier ?? 0) == (b.tier ?? 0)
+    }
+    
+    /// use: myArray.sorted()
+    static func < (a: ShipInfo, b: ShipInfo) -> Bool {
+        if a.typeEnum.tagInt() == b.typeEnum.tagInt() {
+            if a.tier == b.tier {
+                return a.nationEnum.tagInt() < b.nationEnum.tagInt()
+            }
+            return (a.tier ?? 0) > (b.tier ?? 0) // X, IX, VIII, ...
+        }
+        return a.typeEnum.tagInt() < b.typeEnum.tagInt()
+    }
+}
+
 struct ShipInfoImages {
     let small: String
     let medium: String

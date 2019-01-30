@@ -21,6 +21,7 @@ class FindShipViewController: BasicViewController {
     
     var searchShips: [ShipInfo] = []
     var myFavoriteShips: [ShipInfo] = []
+    var myFavoriteShipIdSet: Set<Int> = []
     
     /// pageNumber = 0 will disable query, reset value = 1;
     var pageNumber: Int = 1
@@ -55,6 +56,7 @@ class FindShipViewController: BasicViewController {
         setupShipTypeIconStackView()
         setupCollectionViews()
         setupFindButton()
+        loadMyFavoriteShips()
     }
     
     private func setupSearchShipTypeBar() {
@@ -250,21 +252,32 @@ class FindShipViewController: BasicViewController {
         }
     }
     
+    
+    
     private func sortSearchShipsAndReloadData() {
-        searchShips.sort(by: { (a, b) -> Bool in
-            // TODO: any better way to sort this???
-            if a.typeEnum.tagInt() == b.typeEnum.tagInt() {
-                if a.tier == b.tier {
-                    return a.nationEnum.tagInt() < b.nationEnum.tagInt()
-                }
-                return (a.tier ?? 0) > (b.tier ?? 0)
-            }
-            return a.typeEnum.tagInt() < b.typeEnum.tagInt()
-        })
+        searchShips.sort() // use Comparable in ShipInfo.swift
+        myFavoriteShips.sort()
         DispatchQueue.main.async {
             self.resultCollectionView.reloadData()
         }
     }
+    
+    private func loadMyFavoriteShips() {
+        let ids = UserDefaults.getFavoriteShips()
+        for id in ids {
+            myFavoriteShipIdSet.insert(id)
+        }
+        ApiServers.shared.getShipByIdsList(ids, realm: serverRelam) { [weak self] (shipInfos) in
+            if let getInfos = shipInfos {
+                self?.myFavoriteShips.append(contentsOf: getInfos)
+                self?.sortSearchShipsAndReloadData()
+            }
+        }
+    }
+    
+}
+
+extension FindShipViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -279,7 +292,6 @@ class FindShipViewController: BasicViewController {
         }
         
     }
-    
     
 }
 
@@ -335,13 +347,18 @@ extension FindShipViewController: UICollectionViewDataSource {
             if let c = resultCollectionView.dequeueReusableCell(withReuseIdentifier: resultCellId, for: indexPath) as? ResultCell {
                 if indexPath.section == 0 {
                     if indexPath.item < searchShips.count {
-                        c.shipInfo = searchShips[indexPath.item]
+                        let ship = searchShips[indexPath.item]
+                        c.shipInfo = ship
+                        c.isMarkedFavorite = myFavoriteShipIdSet.contains(ship.ship_id)
                     }
                 } else {
                     if indexPath.item < myFavoriteShips.count {
                         c.shipInfo = myFavoriteShips[indexPath.item]
+                        c.isMarkedFavorite = true
                     }
                 }
+                c.indexPath = indexPath
+                c.delegate = self
                 return c
             }
         }
@@ -447,4 +464,31 @@ extension FindShipViewController: UICollectionViewDelegateFlowLayout {
         }
         return CGSize.zero
     }
+}
+
+extension FindShipViewController: ResultCellDelegate {
+    
+    func markShipButtonTapped(_ shipId: Int, isMarked: Bool, indexPath: IndexPath) {
+        if isMarked {
+            myFavoriteShipIdSet.insert(shipId)
+            if indexPath.section == 0, indexPath.item < searchShips.count {
+                myFavoriteShips.append(searchShips[indexPath.item])
+            }
+            
+        } else {
+            myFavoriteShipIdSet.remove(shipId)
+            if indexPath.section == 0 {
+                for (i, ship) in myFavoriteShips.enumerated() {
+                    if ship.ship_id == shipId {
+                        myFavoriteShips.remove(at: i)
+                        break
+                    }
+                }
+            } else if indexPath.section == 1, indexPath.item < myFavoriteShips.count { // remove form myfavorite list
+                myFavoriteShips.remove(at: indexPath.item)
+            }
+        }
+        sortSearchShipsAndReloadData()
+    }
+    
 }

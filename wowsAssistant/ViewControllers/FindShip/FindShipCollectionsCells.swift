@@ -101,6 +101,7 @@ class ResultHeaderView: UICollectionReusableView {
         imageView.fillSuperview()
         
         titleLabel.textColor = .white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         addSubview(titleLabel)
         titleLabel.addConstraint(leftAnchor, nil, nil, bottomAnchor, left: 20, top: 0, right: 0, bottom: 5, width: 0, height: 0)
     }
@@ -114,19 +115,20 @@ class ResultHeaderView: UICollectionReusableView {
 // MARK: -
 
 protocol ResultCellDelegate: class {
-    func markShipButtonTapped(_ shipId: Int)
+    func markShipButtonTapped(_ shipId: Int, isMarked: Bool, indexPath: IndexPath)
 }
 
 class ResultCell: UICollectionViewCell {
     
+    var indexPath: IndexPath?
     var shipInfo: ShipInfo? {
         didSet {
             updateShipInfoUI()
         }
     }
     
-    let markFavorit = "⭐️"
-    let markDefault = "⚓️"
+    private let markFavorit = "⭐️"
+    private let markDefault = "⚓️"
     
     var isMarkedFavorite = false {
         didSet {
@@ -193,10 +195,10 @@ class ResultCell: UICollectionViewCell {
     }
     
     @objc private func markButtonTapped() {
-        // TODO : update UI
+        isMarkedFavorite = !isMarkedFavorite
         
-        if let shipId = shipInfo?.ship_id {
-            delegate?.markShipButtonTapped(shipId)
+        if let shipId = shipInfo?.ship_id, let idx = indexPath {
+            delegate?.markShipButtonTapped(shipId, isMarked: isMarkedFavorite, indexPath: idx)
         }
     }
     
