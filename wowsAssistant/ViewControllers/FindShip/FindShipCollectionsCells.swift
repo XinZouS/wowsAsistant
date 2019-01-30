@@ -132,6 +132,7 @@ class ResultCell: UICollectionViewCell {
         addSubview(titleLabel)
         titleLabel.anchor(leadingAnchor, topAnchor, trailingAnchor, nil, lead: 5, height: 26)
         
+        backgndImageView.alpha = 0.6
         backgndImageView.contentMode = .scaleToFill
         addSubview(backgndImageView)
         backgndImageView.anchor(leadingAnchor, titleLabel.bottomAnchor, trailingAnchor, bottomAnchor)

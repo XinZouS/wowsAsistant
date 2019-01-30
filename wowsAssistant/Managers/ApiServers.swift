@@ -53,7 +53,7 @@ final class ApiServers: NSObject {
     //https://api.worldofwarships.asia/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
 
     
-    func getShipById(_ id: Int, realm: ServerRealm = .na, completion: @escaping((ShipInfo?) -> Void)) {
+    func getShipById(_ id: Int, realm: ServerRealm, completion: @escaping((ShipInfo?) -> Void)) {
         var params: [String:Any] = [:]
         params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
         params[ServerKey.language.rawValue] = ServiceManager.shared.getShipDescriptionLanguage()
@@ -71,6 +71,56 @@ final class ApiServers: NSObject {
                     DLog("[ERROR] unboxing ShipInfo failed: \(error)")
                     completion(nil)
                 }
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    //https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&fields=ship_id%2C+type%2C+tier%2C+nation&limit=100&page_no=1&ship_id=4291704528%2C+4291737584%2C+4291770064
+    func getShipByIdsList(_ ids: [Int], realm: ServerRealm, completion: @escaping([ShipInfo]?) -> Void) {
+        var result: [ShipInfo] = []
+        if ids.count == 0 {
+            completion(nil)
+            return
+        }
+        if ids.count == 1 {
+            getShipById(ids[0], realm: realm) { (shipInfo) in
+                if let s = shipInfo {
+                    result.append(s)
+                }
+                completion(result)
+            }
+            return
+        }
+        
+        var params: [String:Any] = [:]
+        params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
+        params[ServerKey.language.rawValue] = ServiceManager.shared.getShipDescriptionLanguage()
+        
+        var idsStr = "\(ids[0])"
+        for i in 1..<ids.count {
+            idsStr = "\(idsStr)%2C+\(ids[i])"
+        }
+        params[ServerKey.shipId.rawValue] = idsStr
+        
+        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+        
+        getDataFromWows(route, parameters: params) { (dictionary, error) in
+            if let d = dictionary {
+                for pair in d {
+                    if let getDict = pair.value as? [String:Any] {
+                        do {
+                            let getInfo: ShipInfo = try unbox(dictionary: getDict)
+                            result.append(getInfo)
+                            
+                        } catch let error as NSError {
+                            DLog("[ERROR] unboxing ShipInfo from list failed: \(error)")
+                        }
+                    }
+                }
+                completion(result)
+                
             } else {
                 completion(nil)
             }

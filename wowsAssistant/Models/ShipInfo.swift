@@ -49,6 +49,7 @@ class ShipInfo: Unboxable {
     
     var imagesStruct: ShipInfoImages?
     var typeEnum = ShipType.AC
+    var nationEnum = ShipNation.usa
     
     required init(unboxer: Unboxer) {
         self.description = (try? unboxer.unbox(key: ShipInfoKeyInDB.description.rawValue))
@@ -89,6 +90,9 @@ class ShipInfo: Unboxable {
             default:
                 self.typeEnum = .AC
             }
+        }
+        if let nationStr = nation, let n = ShipNation(rawValue: nationStr) {
+            self.nationEnum = n
         }
     }
 }

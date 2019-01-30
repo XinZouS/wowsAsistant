@@ -33,11 +33,11 @@ enum ServerRealm: String {
 enum ShipNation: String, CaseIterable {
     case germany = "germany"
     case usa = "usa"
-    case japan = "japan"
     case ussr = "ussr"
+    case japan = "japan"
     case uk = "uk"
-    case france = "france"
     case pan_asia = "pan_asia"
+    case france = "france"
     case italy = "italy"
     case poland = "poland"
     case commonwealth = "commonwealth"
@@ -67,6 +67,33 @@ enum ShipNation: String, CaseIterable {
             return "Japan"
         case .pan_america:
             return "Pan-America"
+        }
+    }
+    
+    func tagInt() -> Int {
+        switch self {
+        case .germany:
+            return 0
+        case .usa:
+            return 1
+        case .ussr:
+            return 2
+        case .japan:
+            return 3
+        case .uk:
+            return 4
+        case .pan_asia:
+            return 5
+        case .france:
+            return 6
+        case .italy:
+            return 7
+        case .poland:
+            return 8
+        case .commonwealth:
+            return 9
+        case .pan_america:
+            return 10
         }
     }
     

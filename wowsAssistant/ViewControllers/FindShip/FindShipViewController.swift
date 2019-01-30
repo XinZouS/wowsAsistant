@@ -22,6 +22,9 @@ class FindShipViewController: BasicViewController {
     var searchShips: [ShipInfo] = []
     var myFavoriteShips: [ShipInfo] = []
     
+    /// pageNumber = 0 will disable query, reset value = 1;
+    var pageNumber: Int = 1
+    
     // MARK: - UI contents
     let rowTypeHeigh: CGFloat = 50
     let rowFlagHeigh: CGFloat = 40
@@ -191,45 +194,66 @@ class FindShipViewController: BasicViewController {
     }
     
     @objc private func searchShip() {
+        if pageNumber == 0 { return }
+        
         searchShips.removeAll()
         
-        // TODO: get ship data!!!!
+        if let selectTier = shipTier { // query by ID
+            var targetInfos: [ShipInfoBasic] = ShipInfoBasicManager.shared.basics.filter { (infoBasic) -> Bool in
+                return Int(infoBasic.tier) == selectTier
+            }
+            if let selectNation = shipNation?.rawValue {
+                targetInfos = targetInfos.filter({ (infoBasic) -> Bool in
+                    return infoBasic.nation == selectNation
+                })
+            }
+            if let selectType = shipType?.rawValue {
+                targetInfos = targetInfos.filter({ (infoBasic) -> Bool in
+                    return infoBasic.type == selectType
+                })
+            }
+            let ids: [Int] = targetInfos.map { (infoBasic) -> Int in
+                return Int(infoBasic.ship_id)
+            }
+            ApiServers.shared.getShipByIdsList(ids, realm: serverRelam) { [weak self] (shipInfos) in
+                if let getInfos = shipInfos {
+                    self?.searchShips.append(contentsOf: getInfos)
+                    self?.pageNumber = 0
+                }
+                self?.sortSearchShipsAndReloadData()
+            }
+            
+        } else {
+            queryByTypeAndNation()
+        }
     }
     
     /// completion: hasNextPage
-    private func queryFromServer(itemLimit: Int, pageNum: Int, completion: @escaping((Bool) -> Void)) {
+    private func queryByTypeAndNation() {
         
-        ApiServers.shared.getShipsList(realm: serverRelam, shipType: shipType, nation: shipNation, limit: itemLimit, pageNum: pageNum) { [weak self] (shipInfos) in
-            if var infos = shipInfos {
+        ApiServers.shared.getShipsList(realm: serverRelam, shipType: shipType, nation: shipNation, limit: 50, pageNum: pageNumber) { [weak self] (shipInfos) in
+            if let infos = shipInfos {
                 if infos.count == 0 {
-                    completion(false) // no result, end query
+                    self?.pageNumber = 0 // no more pages to load
                     return
                 }
-                if let filterTier = self?.shipTier {
-                    infos = infos.filter({ (info) -> Bool in
-                        return info.tier == filterTier
-                    })
-                }
                 self?.searchShips.append(contentsOf: infos)
-                completion(infos.count > 0)
-                
-                DispatchQueue.main.async {
-                    self?.resultCollectionView.reloadData()
-                }
-            } else {
-                completion(false)
+                self?.sortSearchShipsAndReloadData()
+                self?.pageNumber += 1
             }
         }
     }
     
-    private func sortSearchShips() {
-        searchShips.sort(by: { [weak self] (a, b) -> Bool in
+    private func sortSearchShipsAndReloadData() {
+        searchShips.sort(by: { (a, b) -> Bool in
             // TODO: any better way to sort this???
             if a.typeEnum.tagInt() == b.typeEnum.tagInt() {
+                if a.tier == b.tier {
+                    return a.nationEnum.tagInt() < b.nationEnum.tagInt()
+                }
                 return (a.tier ?? 0) > (b.tier ?? 0)
-            } else {
-                return a.typeEnum.tagInt() < b.typeEnum.tagInt()
             }
+            return a.typeEnum.tagInt() < b.typeEnum.tagInt()
         })
         DispatchQueue.main.async {
             self.resultCollectionView.reloadData()
@@ -245,6 +269,7 @@ class FindShipViewController: BasicViewController {
             let cellWidth = (sv.frame.width + stackViewRightSpacing * 2) / CGFloat(ShipType.allCases.count)
             let item = Int(loc.x) / Int(cellWidth) // 5 ship types, constant
             didSelectShipType(item, cellWidth)
+            pageNumber = 1
         }
         
     }
@@ -323,6 +348,7 @@ extension FindShipViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == flagCollectionView, indexPath.item < shipNations.count {
             if let c = flagCollectionView.cellForItem(at: indexPath) as? FlagCell {
+                pageNumber = 1
                 let newNation = shipNations[indexPath.item]
                 if let oldNation = shipNation, newNation == oldNation {
                     c.backgroundColor = UIColor.clear
@@ -335,6 +361,7 @@ extension FindShipViewController: UICollectionViewDelegate {
         }
         if collectionView == tierCollectionView, indexPath.item < shipTiers.count {
             if let c = tierCollectionView.cellForItem(at: indexPath) as? TierCell {
+                pageNumber = 1
                 let newTier = shipTiers[indexPath.item]
                 if let oldTier = shipTier, newTier == oldTier {
                     shipTier = nil
