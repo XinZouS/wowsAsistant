@@ -211,7 +211,10 @@ class ResultCell: UICollectionViewCell {
         if let smallImg = info.imagesStruct?.small, let url = URL(string: smallImg) {
             shipImageView.af_setImage(withURL: url)
         }
-        if let ty = info.type, let typeUrl = ShipType(rawValue: ty)?.iconImageUrl(), let url = URL(string: typeUrl) {
+        if let ty = info.type, let isPremium = info.is_premium,
+            let typeUrl = ShipType(rawValue: ty)?.iconImageUrl(isPremium ? .premium : .normal),
+            let url = URL(string: typeUrl) {
+            
             shipTypeImageView.af_setImage(withURL: url)
         }
         if let tier = info.tier, tier > 0 {
