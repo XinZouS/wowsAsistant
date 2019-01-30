@@ -44,6 +44,7 @@ class FindShipViewController: BasicViewController {
     // MARK: - Cell IDs
     let flagCellId = "flagCellId"
     let tierCellId = "tierCellId"
+    let headerCellId = "headerCellId"
     let resultCellId = "resultCellId"
     
     // MARK: - View cycle
@@ -147,6 +148,8 @@ class FindShipViewController: BasicViewController {
     private func setupCollectionViews() {
         flagCollectionView.register(FlagCell.self, forCellWithReuseIdentifier: flagCellId)
         tierCollectionView.register(TierCell.self, forCellWithReuseIdentifier: tierCellId)
+        let headerKind = UICollectionView.elementKindSectionHeader
+        resultCollectionView.register(ResultHeaderView.self, forSupplementaryViewOfKind: headerKind, withReuseIdentifier: headerCellId)
         resultCollectionView.register(ResultCell.self, forCellWithReuseIdentifier: resultCellId)
         
         flagCollectionView.delegate = self
@@ -344,6 +347,19 @@ extension FindShipViewController: UICollectionViewDataSource {
         }
         return UICollectionViewCell()
     }
+    
+    // setup Header View
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if collectionView == resultCollectionView {
+            let headerKind = UICollectionView.elementKindSectionHeader
+            if let header = resultCollectionView.dequeueReusableSupplementaryView(ofKind: headerKind, withReuseIdentifier: headerCellId, for: indexPath) as? ResultHeaderView {
+                header.titleLabel.text = indexPath.section == 0 ? L("find-ship.section.result") : L("find-ship.section.favorite")
+                return header
+            }
+        }
+        return UICollectionReusableView(frame: .zero)
+    }
+    
 }
 
 extension FindShipViewController: UICollectionViewDelegate {
@@ -425,4 +441,10 @@ extension FindShipViewController: UICollectionViewDelegateFlowLayout {
         return .zero
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if collectionView == resultCollectionView {
+            return CGSize(width: view.bounds.width, height: 40)
+        }
+        return CGSize.zero
+    }
 }

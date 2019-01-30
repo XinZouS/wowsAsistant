@@ -100,10 +100,9 @@ class ResultHeaderView: UICollectionReusableView {
         addSubview(imageView)
         imageView.fillSuperview()
         
-        titleLabel.text = "MY shipsssss"
         titleLabel.textColor = .white
         addSubview(titleLabel)
-        titleLabel.addConstraint(leftAnchor, nil, nil, bottomAnchor, left: 10, top: 0, right: 0, bottom: 0, width: 0, height: 0)
+        titleLabel.addConstraint(leftAnchor, nil, nil, bottomAnchor, left: 20, top: 0, right: 0, bottom: 5, width: 0, height: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {

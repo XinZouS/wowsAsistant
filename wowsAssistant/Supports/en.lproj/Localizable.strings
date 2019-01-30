@@ -39,6 +39,10 @@
 "home.button.forw.title" = "▷";
 "home.button.back.title" = "◁";
 
+// MARK: - Find Ship VC
+"find-ship.section.result" = "Find Ships";
+"find-ship.section.favorite" = "My Favorite";
+
 // MARK: - Settings
 "settings.change-language.confirmed" = "Confirmed";
 "settings.change-language.english" = "English";
