@@ -10,8 +10,9 @@ import Foundation
 
 enum UserDefaultKeys: String {
     case appLanguages = "AppleLanguages"
-    case serverRelamKey = "wows-assistant.user-default.key.server-relam"
-    case nextTimeUpdateShipBasicInfo = "wows-assistant.user-default.key.next-time-update-basic"
+    case serverRelamKey =               "wows-assistant.user-default.key.server-relam"
+    case nextTimeUpdateShipBasicInfo =  "wows-assistant.user-default.key.next-time-update-basic"
+    case favoriteShips =                "wows-assistant.user-default.key.favorite-ships"
 }
 
 extension UserDefaults {
@@ -41,4 +42,13 @@ extension UserDefaults {
         return UserDefaults.standard.integer(forKey: UserDefaultKeys.nextTimeUpdateShipBasicInfo.rawValue)
     }
     
+    /// Save curr user favorite ships: [IDs]: [Int]
+    static func setFavoriteShips(_ ships: [Int]) {
+        UserDefaults.standard.setValue(ships, forKey: UserDefaultKeys.favoriteShips.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+    
+    static func getFavoriteShips() -> [Int] {
+        return UserDefaults.standard.array(forKey: UserDefaultKeys.favoriteShips.rawValue) as? [Int] ?? [Int]()
+    }
 }
