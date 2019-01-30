@@ -56,9 +56,9 @@ class HomeViewController: BasicViewController, WKNavigationDelegate {
         backBtn.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside)
         let tClr = UIColor.WowsTheme.buttonGreenTop
         let bClr = UIColor.WowsTheme.buttonGreenBot
-        homeBtn.setupGradient(tClr, bClr, btnSz, title: L("home.button.home.title"), textColor: .white)
-        forwBtn.setupGradient(tClr, bClr, btnSz, title: L("home.button.forw.title"), textColor: .white)
-        backBtn.setupGradient(tClr, bClr, btnSz, title: L("home.button.back.title"), textColor: .white)
+        homeBtn.setupGradient(tClr, bClr, bounds: btnSz, title: L("home.button.home.title"), textColor: .white)
+        forwBtn.setupGradient(tClr, bClr, bounds: btnSz, title: L("home.button.forw.title"), textColor: .white)
+        backBtn.setupGradient(tClr, bClr, bounds: btnSz, title: L("home.button.back.title"), textColor: .white)
         
         let stackView = UIStackView(arrangedSubviews: [homeBtn, backBtn, forwBtn])
         stackView.axis = .horizontal

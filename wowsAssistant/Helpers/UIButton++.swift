@@ -17,7 +17,7 @@ extension UIButton {
         setBtnTitle(title, textColor, fontSize, isBold)
     }
         
-    func setupGradient(_ clrTop: UIColor, _ clrBottom: UIColor, _ bounds: CGRect = .zero, title: String, textColor: UIColor, fontSize: CGFloat = 16, isBold: Bool = false) {
+    func setupGradient(_ clrTop: UIColor, _ clrBottom: UIColor, bounds: CGRect = .zero, title: String, textColor: UIColor, fontSize: CGFloat = 16, isBold: Bool = false) {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
 //        gradient.locations = [0.0, 1.0]

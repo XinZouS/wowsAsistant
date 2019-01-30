@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 
 //MARK: - Info
-enum ServerRealm: String {
-    case ru = "ru"
-    case eu = "eu"
+enum ServerRealm: String, CaseIterable {
     case na = "com"
     case asia = "asia"
+    case eu = "eu"
+    case ru = "ru"
     
+    /// display string: "N.A.", "Asia"...
     func descriptionString() -> String {
         switch self {
         case .ru:

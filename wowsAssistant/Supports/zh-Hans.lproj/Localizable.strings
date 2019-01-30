@@ -40,8 +40,9 @@
 "home.button.back.title" = "◁";
 
 // MARK: - Find Ship VC
-"find-ship.section.result" = "查找战舰";
-"find-ship.section.favorite" = "我的收藏";
+"find-ship.confirm.title.server-relam" = "选择服务器区域";
+"find-ship.ui.section.result" = "查找战舰";
+"find-ship.ui.section.favorite" = "我的收藏";
 
 // MARK: - Settings
 "settings.change-language.confirmed" = "确定";

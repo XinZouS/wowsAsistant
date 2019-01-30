@@ -40,8 +40,9 @@
 "home.button.back.title" = "◁";
 
 // MARK: - Find Ship VC
-"find-ship.section.result" = "Find Ships";
-"find-ship.section.favorite" = "My Favorite";
+"find-ship.confirm.title.server-relam" = "Server Relam";
+"find-ship.ui.section.result" = "Find Ships";
+"find-ship.ui.section.favorite" = "My Favorite";
 
 // MARK: - Settings
 "settings.change-language.confirmed" = "Confirmed";

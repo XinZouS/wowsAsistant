@@ -65,12 +65,13 @@ class FindShipViewController: BasicViewController {
     }
     
     private func setupSearchShipTypeBar() {
+        let w: CGFloat = 66
         serverRelamLabel.textColor = .white
         serverRelamLabel.textAlignment = .center
         serverRelamLabel.text = serverRelam.descriptionString()
         view.addSubview(serverRelamLabel)
         let vs = view.safeAreaLayoutGuide
-        serverRelamLabel.anchor(vs.leadingAnchor, vs.topAnchor, nil, nil, lead: 0, top: 0, width: 66, height: rowTypeHeigh)
+        serverRelamLabel.anchor(vs.leadingAnchor, vs.topAnchor, nil, nil, lead: 0, top: 0, width: w, height: rowTypeHeigh)
         
         let serverRelamButton = UIButton()
         serverRelamButton.addTarget(self, action: #selector(serverRelamButtonTapped), for: .touchUpInside)
@@ -79,7 +80,18 @@ class FindShipViewController: BasicViewController {
     }
     
     @objc private func serverRelamButtonTapped() {
-        
+        let relams = ServerRealm.allCases
+        let relamStrs: [String] = relams.map { (realm) -> String in
+            return realm.descriptionString()
+        }
+        self.displayAlertActions(title: L("find-ship.confirm.title.server-relam"), actions: relamStrs, iPadReferenceView: serverRelamLabel) { [weak self] (tag) in
+            if tag < relams.count {
+                let newRelam = relams[tag]
+                self?.serverRelam = newRelam
+                self?.serverRelamLabel.text = newRelam.descriptionString()
+                UserDefaults.setServerRelam(newRelam)
+            }
+        }
     }
     
     private func setupShipTypeIconStackView() {
@@ -199,7 +211,7 @@ class FindShipViewController: BasicViewController {
         let findBtn = UIButton()
         view.addSubview(findBtn)
         findBtn.anchor(flagCollectionView.trailingAnchor, flagCollectionView.topAnchor, view.safeAreaLayoutGuide.trailingAnchor, tierCollectionView.bottomAnchor, lead: 6)
-        findBtn.setupGradient(UIColor.WowsTheme.buttonRedTop, UIColor.WowsTheme.buttonRedBot, btnFrame, title: L("action.search"), textColor: .white, fontSize: 18, isBold: true)
+        findBtn.setupGradient(UIColor.WowsTheme.buttonRedTop, UIColor.WowsTheme.buttonRedBot, bounds: btnFrame, title: L("action.search"), textColor: .white, fontSize: 18, isBold: true)
         findBtn.addTarget(self, action: #selector(searchShip), for: .touchUpInside)
     }
     
@@ -375,7 +387,7 @@ extension FindShipViewController: UICollectionViewDataSource {
         if collectionView == resultCollectionView {
             let headerKind = UICollectionView.elementKindSectionHeader
             if let header = resultCollectionView.dequeueReusableSupplementaryView(ofKind: headerKind, withReuseIdentifier: headerCellId, for: indexPath) as? ResultHeaderView {
-                header.titleLabel.text = indexPath.section == 0 ? L("find-ship.section.result") : L("find-ship.section.favorite")
+                header.titleLabel.text = indexPath.section == 0 ? L("find-ship.ui.section.result") : L("find-ship.ui.section.favorite")
                 return header
             }
         }

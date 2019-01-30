@@ -62,16 +62,12 @@ extension UIViewController {
         present(v, animated: true, completion: nil)
     }
     
-    /// Alert with multiple actions, completion:(tag) -> Void
-    func displayAlertActions(style:UIAlertController.Style = .alert, title:String, message:String, actions:[String], iPadReferenceView refView:UIView? = nil, completion:((Int) -> Void)?) {
+    /** Alert with multiple actions, completion:(tag) -> Void;
+     *  In general, you should setup iPadReferenceView just in case;
+     */
+    func displayAlertActions(style:UIAlertController.Style = .actionSheet, title:String, message:String? = nil, actions:[String], iPadReferenceView refView:UIView, completion:((Int) -> Void)?) {
         let v = UIAlertController(title: title, message: message, preferredStyle: style)
-        
-        if UIDevice.current.userInterfaceIdiom == .pad, let refV = refView {
-            v.popoverPresentationController?.sourceView = refV
-        } else {
-            DLog("[ERROR] ⛔️ no referenceView of AlertController for iPad, this will crash in release!!!")
-            return
-        }
+        v.popoverPresentationController?.sourceView = refView
         
         for i in 0..<actions.count {
             let action = UIAlertAction(title: actions[i], style: .default) { (action) in
