@@ -21,7 +21,7 @@ class FlagCell: UICollectionViewCell {
         super.init(frame: frame)
         addSubview(imgV)
         imgV.contentMode = .scaleAspectFit
-        imgV.fillSuperview()
+        imgV.fillSuperviewByConstraint()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,14 +49,14 @@ class TierCell: UICollectionViewCell {
         selectionImageView.image = #imageLiteral(resourceName: "selectionCircle_cyan_s")
         selectionImageView.contentMode = .scaleAspectFit
         addSubview(selectionImageView)
-        selectionImageView.fillSuperview()
+        selectionImageView.fillSuperviewByConstraint()
         selectionImageView.isHidden = true
         
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 22)
         addSubview(label)
-        label.fillSuperview()
+        label.fillSuperviewByConstraint()
     }
     
     override func prepareForReuse() {
@@ -98,7 +98,7 @@ class ResultHeaderView: UICollectionReusableView {
         imageView.image = #imageLiteral(resourceName: "seprator_light")
         imageView.contentMode = .scaleToFill
         addSubview(imageView)
-        imageView.fillSuperview()
+        imageView.fillSuperviewByConstraint()
         
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)

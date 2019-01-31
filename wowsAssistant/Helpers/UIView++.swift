@@ -83,7 +83,21 @@ extension UIView{
         heightAnchor.constraint(equalToConstant: height).isActive = true
     }
     
-    func fillSuperview(padding: UIEdgeInsets = .zero) {
+    /// Use leftAnchor, rightAnchor constraints
+    func fillSuperviewByConstraint(padding: UIEdgeInsets = .zero) {
+        guard let sv = self.superview else { return }
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        leftAnchor.constraint(equalTo: sv.leftAnchor, constant: padding.left).isActive = true
+        topAnchor.constraint(equalTo: sv.topAnchor, constant: padding.top).isActive = true
+        rightAnchor.constraint(equalTo: sv.rightAnchor, constant: -padding.right).isActive = true
+        bottomAnchor.constraint(equalTo: sv.bottomAnchor, constant: -padding.bottom).isActive = true
+    }
+    
+    /** Use leading,trailing anchor for some reverse left-right reading countries, in which the leading will be Right, trailing will be Left;
+     *  ⚠️ if you don't know what you are doing, DON'T USE IT!
+     */
+    func fillSuperviewByLeadingTrailing(padding: UIEdgeInsets = .zero) {
         guard let sv = self.superview else { return }
         self.translatesAutoresizingMaskIntoConstraints = false
         
