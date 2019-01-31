@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ShipDetailViewController: UIViewController {
+class ShipDetailViewController: BasicViewController {
     
     var shipInfo: ShipInfo?
     
@@ -40,6 +40,7 @@ class ShipDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // pushed by mainNavigationViewController in AppDelegate
         navigationController?.setNavigationBarHidden(false, animated: true)
         setupShipInfo()
     }
@@ -58,9 +59,11 @@ class ShipDetailViewController: UIViewController {
     }
     
     private func setupTitleImageViews() {
+        let vs = view.safeAreaLayoutGuide
+        
         flagBackgroundImageView.contentMode = .scaleToFill
         view.addSubview(flagBackgroundImageView)
-        flagBackgroundImageView.addConstraint(view.leftAnchor, view.topAnchor, view.rightAnchor, nil)
+        flagBackgroundImageView.addConstraint(vs.leftAnchor, vs.topAnchor, vs.rightAnchor, nil)
         flagBackgroundImageViewHeighConstraint = flagBackgroundImageView.heightAnchor.constraint(equalToConstant: flagBackgroundImageViewH)
         flagBackgroundImageViewHeighConstraint?.isActive = true
         
@@ -70,7 +73,7 @@ class ShipDetailViewController: UIViewController {
         
         contourImageView.contentMode = .scaleAspectFit
         view.addSubview(contourImageView)
-        contourImageView.addConstraint(view.leftAnchor, flagBackgroundImageView.bottomAnchor, view.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: contourImageViewH)
+        contourImageView.addConstraint(vs.leftAnchor, flagBackgroundImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: contourImageViewH)
     }
     
     private func setupModuleCollectionView() {

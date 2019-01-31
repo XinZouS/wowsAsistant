@@ -18,16 +18,7 @@ class BasicViewController: UIViewController {
         super.viewDidLoad()
         
         setNeedsStatusBarAppearanceUpdate()
-//        addBackgroundImage()
         addBackgroundGradient()
-    }
-    
-    private func addBackgroundImage() {
-        let imgV = UIImageView(image: #imageLiteral(resourceName: "blue-steel-background"))
-        imgV.contentMode = .scaleToFill
-        imgV.clipsToBounds = true
-        view.addSubview(imgV)
-        imgV.anchor(view.leadingAnchor, view.topAnchor, view.trailingAnchor, view.safeAreaLayoutGuide.bottomAnchor)
     }
     
     private func addBackgroundGradient() {

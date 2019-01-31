@@ -26,7 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = mainNavigationController
+        
+        mainNavigationController?.navigationBar.barStyle = .blackTranslucent // then statusBar.style will be .light
         mainNavigationController?.isNavigationBarHidden = true
+        mainNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().tintColor = UIColor.white // barItems color
+        UINavigationBar.appearance().barTintColor = UIColor.WowsTheme.gradientBlueDark
         
         return true
     }
