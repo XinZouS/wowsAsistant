@@ -13,6 +13,7 @@ class ShipDetailViewController: UIViewController {
     
     var shipInfo: ShipInfo?
     
+    var scrollViewOffsetY: CGFloat = 260
     let scrollView = UIScrollView()
     let flagBackgroundImageView = UIImageView()
     let shipImageView = UIImageView()
@@ -24,13 +25,14 @@ class ShipDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupScrollView()
     }
     
     private func setupScrollView() {
         scrollView.delegate = self
         view.addSubview(scrollView)
         scrollView.fillSuperviewByConstraint()
-        
+        scrollView.setContentOffset(CGPoint(x: 0, y: scrollViewOffsetY), animated: false)
     }
     
 }
