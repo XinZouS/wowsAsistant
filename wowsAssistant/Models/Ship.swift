@@ -10,23 +10,23 @@ import Foundation
 import Unbox
 
 class Ship: Unboxable {
-    var engine:         Engine?
-    var torpedo_bomber: TorpedoBomber?
-    var anti_aircraft:  AntiAircraft?
-    var mobility:       Mobility?
     var hull:           Hull?
-    var atbas:          Atbas?
-    var artillery:      Artillery?
-    var torpedoes:      [Int] = []
-    var fighters:       Fighters?
-    var fire_control:   FireControl?
+    var engine:         Engine?
+    var mobility:       Mobility?
+    var armour:         Armour?
     var weaponry:       Weaponry?
+    var artillery:      Artillery?
+    var atbas:          Atbas?
+    var fire_control:   FireControl?
+    var torpedoes:      [Int] = []
+    var concealment:    Concealment?
+    var anti_aircraft:  AntiAircraft?
+    var flight_control: FlightControl?
+    var fighters:       Fighters?
+    var torpedo_bomber: TorpedoBomber?
+    var dive_bomber:    DiveBomber?
     var battle_level_range_max: Int = 0
     var battle_level_range_min: Int = 0
-    var flight_control: FlightControl?
-    var concealment:    Concealment?
-    var armour:         Armour?
-    var dive_bomber:    DiveBomber?
     
     required init(unboxer: Unboxer) throws {
         engine =        try? unboxer.unbox(key: ShipInfoKeyInDB.engine.rawValue)
@@ -64,13 +64,13 @@ struct Engine: Unboxable {
 struct Hull: Unboxable {
     let hull_id: Int
     let hull_id_str: String
-    let torpedoes_barrels: Int
-    let anti_aircraft_barrels: Int
     let range: Range
     let health: Int
-    let planes_amount: Int
     let artillery_barrels: Int
     let atba_barrels: Int
+    let torpedoes_barrels: Int
+    let anti_aircraft_barrels: Int
+    let planes_amount: Int
     
     init(unboxer: Unboxer) throws {
         hull_id = (try? unboxer.unbox(key: ShipInfoKeyInDB.hull_id.rawValue)) ?? 0
@@ -110,13 +110,13 @@ struct Atbas: Unboxable {
 }
 
 struct AtbasSlotModel: Unboxable {
+    let name: String
+    let type: String // "HE", "AP"
     let burn_probability: Float
     let bullet_speed: Int
-    let name: String
+    let bullet_mass: Int
     let shot_delay: Float
     let damage: Int
-    let bullet_mass: Int
-    let type: String // "HE", "AP"
     let gun_rate: Float
     
     init(unboxer: Unboxer) throws {
@@ -199,6 +199,7 @@ struct FireControl: Unboxable {
     }
 }
 
+/// Sum num of ship capability
 struct Weaponry: Unboxable {
     let anti_aircraft: Int
     let aircraft: Int
@@ -226,15 +227,15 @@ struct Concealment: Unboxable {
 }
 
 struct Armour: Unboxable {
-    let casemate: Range
-    let flood_prob: Float
-    let deck: Range
-    let flood_damage: Int
-    let range: Range
-    let health: Int
-    let extremities: Range
     let total: Int
+    let health: Int
+    let range: Range
+    let casemate: Range
+    let deck: Range
     let citadel: Range
+    let extremities: Range
+    let flood_prob: Float
+    let flood_damage: Int
     
     init(unboxer: Unboxer) throws {
         casemate =      (try? unboxer.unbox(key: ShipInfoKeyInDB.casemate.rawValue)) ?? Range()
