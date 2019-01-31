@@ -426,12 +426,14 @@ extension FindShipViewController: UICollectionViewDelegate {
             }
         }
         if collectionView == resultCollectionView {
+            let detailVC = ShipDetailViewController()
             if indexPath.section == 0, indexPath.item < searchShips.count {
-                // go to ship detail vc
+                detailVC.shipInfo = searchShips[indexPath.item]
             } else
             if indexPath.section == 1, indexPath.item < myFavoriteShips.count {
-                // also go
+                detailVC.shipInfo = myFavoriteShips[indexPath.item]
             }
+            AppDelegate.shared().mainNavigationController?.pushViewController(detailVC, animated: true)
         }
     }
     
