@@ -13,29 +13,35 @@ class ShipDetailViewController: BasicViewController {
     
     var shipInfo: ShipInfo?
     
-    var scrollViewOffsetY: CGFloat = 260
-    let scrollView = UIScrollView()
+    fileprivate var tableViewOffsetY: CGFloat = 260
     
-    let flagBackgroundImageViewH: CGFloat = 160
-    let flagBackgroundImageView = UIImageView()
-    var flagBackgroundImageViewHeighConstraint: NSLayoutConstraint?
-    let shipImageView = UIImageView()
-    let contourImageViewH: CGFloat = 56
-    let contourImageView = UIImageView()
-    let moduleCellId = "moduleCellId"
-    let moduleCollectionViewH: CGFloat = 100
-    let moduleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    let moduleUpgradeSlotsCount: Int = 6
+    fileprivate let flagBackgroundImageViewH: CGFloat = 160
+    fileprivate let flagBackgroundImageView = UIImageView()
+    fileprivate var flagBackgroundImageViewTopConstraint: NSLayoutConstraint?
+    fileprivate var flagBackgroundImageViewHeighConstraint: NSLayoutConstraint?
+    fileprivate let shipImageView = UIImageView()
+    fileprivate let contourImageViewH: CGFloat = 56
+    fileprivate let contourImageView = UIImageView()
+    // collectionView
+    fileprivate let moduleCellId = "moduleCellId"
+    fileprivate let moduleCollectionViewH: CGFloat = 100
+    fileprivate let moduleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    fileprivate let moduleUpgradeSlotsCount: Int = 6
+    // tableView
+    fileprivate var tableSectionDataSource: [(String, Any)] = []
+    fileprivate var tableContentDataSource: [ [(String, Any)] ] = []
+    fileprivate let tableCellId = "tableCellId"
+    fileprivate let tableView = UITableView()
     
     
     // MARK: - View cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupScrollView()
+        setupTableView()
+        setupTableViewDataSource()
         setupTitleImageViews()
         setupModuleCollectionView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,11 +57,16 @@ class ShipDetailViewController: BasicViewController {
     }
     
     // MARK: - UI setups
-    private func setupScrollView() {
-        scrollView.delegate = self
-        view.addSubview(scrollView)
-        scrollView.fillSuperviewByConstraint()
-        scrollView.setContentOffset(CGPoint(x: 0, y: scrollViewOffsetY), animated: false)
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
+        tableView.fillSuperviewByConstraint()
+        tableView.backgroundColor = .clear
+        tableView.contentInset = UIEdgeInsets(top: tableViewOffsetY, left: 0, bottom: 0, right: 0)
+        tableView.setContentOffset(CGPoint(x: 0, y: -tableViewOffsetY), animated: false)
+//        tableView.separatorStyle = .none
+        tableView.register(ShipDetailTableCell.self, forCellReuseIdentifier: tableCellId)
     }
     
     private func setupTitleImageViews() {
@@ -63,7 +74,9 @@ class ShipDetailViewController: BasicViewController {
         
         flagBackgroundImageView.contentMode = .scaleToFill
         view.addSubview(flagBackgroundImageView)
-        flagBackgroundImageView.addConstraint(vs.leftAnchor, vs.topAnchor, vs.rightAnchor, nil)
+        flagBackgroundImageView.addConstraint(vs.leftAnchor, nil, vs.rightAnchor, nil)
+        flagBackgroundImageViewTopConstraint = flagBackgroundImageView.topAnchor.constraint(equalTo: vs.topAnchor, constant: 0)
+        flagBackgroundImageViewTopConstraint?.isActive = true
         flagBackgroundImageViewHeighConstraint = flagBackgroundImageView.heightAnchor.constraint(equalToConstant: flagBackgroundImageViewH)
         flagBackgroundImageViewHeighConstraint?.isActive = true
         
@@ -77,10 +90,18 @@ class ShipDetailViewController: BasicViewController {
     }
     
     private func setupModuleCollectionView() {
+        let vs = view.safeAreaLayoutGuide
         moduleCollectionView.register(ModuleCollectionCell.self, forCellWithReuseIdentifier: moduleCellId)
         moduleCollectionView.dataSource = self
         moduleCollectionView.delegate = self
+        view.addSubview(moduleCollectionView)
+        moduleCollectionView.addConstraint(vs.leftAnchor, contourImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: moduleCollectionViewH)
     }
+    
+    private func setupTableViewDataSource() {
+        //
+    }
+    
     
     private func setupShipInfo() {
         guard let s = shipInfo else {
@@ -110,7 +131,12 @@ extension ShipDetailViewController: UIScrollViewDelegate {
     
 }
 
+// MARK: - CollectionView delegates
 extension ShipDetailViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return moduleUpgradeSlotsCount
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return section * 2 + 1
@@ -118,7 +144,7 @@ extension ShipDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = moduleCollectionView.dequeueReusableCell(withReuseIdentifier: moduleCellId, for: indexPath) as? ModuleCollectionCell {
-            
+            cell.backgroundColor = .yellow
             return cell
         }
         return UICollectionViewCell(frame: .zero)
@@ -136,3 +162,37 @@ extension ShipDetailViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: w, height: w)
     }
 }
+
+
+// MARK: - TableView delegates
+extension ShipDetailViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: tableCellId, for: indexPath) as? ShipDetailTableCell {
+            cell.backgroundColor = UIColor.WowsTheme.gradientBlueLight
+            cell.selectionStyle = .none
+            
+            return cell
+        }
+        return UITableViewCell(frame: .zero)
+    }
+    
+    
+    
+}
+
+extension ShipDetailViewController: UITableViewDelegate {
+    
+    
+    
+}
+
+
