@@ -103,6 +103,10 @@ class ShipDetailViewController: BasicViewController {
             DLog("[ERROR] ShipDetailViewController: shipInfo is nil, you should always set it before present VC!")
             return
         }
+        if let survivability = ship.armour?.getSummationDescription(), let survDetail = ship.armour?.getNameAndValuePairs() {
+            tableSectionDataSource.append(survivability)
+            tableContentDataSource.append(survDetail)
+        }
         if let hull = ship.hull {
             
         }
