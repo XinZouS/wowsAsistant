@@ -10,6 +10,16 @@ import Foundation
 import Unbox
 
 
+struct Pair {
+    let title: String
+    let value: Any
+    
+    init(title t: String, value v: Any) {
+        self.title = t
+        self.value = v
+    }
+}
+
 struct Range: Unboxable {
     let min: Int
     let max: Int

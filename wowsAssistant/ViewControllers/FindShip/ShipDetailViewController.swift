@@ -28,8 +28,8 @@ class ShipDetailViewController: BasicViewController {
     fileprivate let moduleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     fileprivate let moduleUpgradeSlotsCount: Int = 6
     // tableView
-    fileprivate var tableSectionDataSource: [(String, Any)] = []
-    fileprivate var tableContentDataSource: [ [(String, Any)] ] = []
+    fileprivate var tableSectionDataSource: [Pair] = []
+    fileprivate var tableContentDataSource: [[Pair]] = []
     fileprivate let tableCellId = "tableCellId"
     fileprivate let tableView = UITableView()
     
