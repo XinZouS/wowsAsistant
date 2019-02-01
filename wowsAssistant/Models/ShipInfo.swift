@@ -14,9 +14,9 @@ struct Pair {
     let title: String
     let value: Any
     
-    init(title t: String, value v: Any) {
-        self.title = t
-        self.value = v
+    init(_ title: String, _ value: Any) {
+        self.title = title
+        self.value = value
     }
 }
 
@@ -32,6 +32,11 @@ struct Range: Unboxable {
     init(unboxer: Unboxer) throws {
         min = (try? unboxer.unbox(key: ShipInfoKeyInDB.min.rawValue)) ?? 0
         max = (try? unboxer.unbox(key: ShipInfoKeyInDB.max.rawValue)) ?? 0
+    }
+    
+    /// get min-max: "22 - 33"
+    func getDescription() -> String {
+        return "\(min) - \(max)"
     }
 }
 

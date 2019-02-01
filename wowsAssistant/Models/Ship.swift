@@ -83,6 +83,18 @@ struct Hull: Unboxable {
         artillery_barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.artillery_barrels.rawValue)) ?? 0
         atba_barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.atba_barrels.rawValue)) ?? 0
     }
+    
+    func getMamberAndValues() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("Health", health))
+        p.append(Pair("Range", range.getDescription()))
+        p.append(Pair("Artillery barrels", artillery_barrels))
+        p.append(Pair("Secondary barrels", atba_barrels))
+        p.append(Pair("Torpedoes barrels", torpedoes_barrels))
+        p.append(Pair("Anti-aircraft barrels", anti_aircraft_barrels))
+        p.append(Pair("Planes amount", planes_amount))
+        return p
+    }
 }
 
 struct Mobility: Unboxable {

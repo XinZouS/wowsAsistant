@@ -99,7 +99,14 @@ class ShipDetailViewController: BasicViewController {
     }
     
     private func setupTableViewDataSource() {
-        //
+        guard let ship = shipInfo?.default_profile else {
+            DLog("[ERROR] ShipDetailViewController: shipInfo is nil, you should always set it before present VC!")
+            return
+        }
+        if let hull = ship.hull {
+            
+        }
+        
     }
     
     
@@ -113,7 +120,9 @@ class ShipDetailViewController: BasicViewController {
         if let url = URL(string: s.imagesStruct?.medium ?? "") {
             shipImageView.af_setImage(withURL: url)
         }
-        
+        if let url = URL(string: s.imagesStruct?.contour ?? "") {
+            contourImageView.af_setImage(withURL: url)
+        }
     }
     
 }
