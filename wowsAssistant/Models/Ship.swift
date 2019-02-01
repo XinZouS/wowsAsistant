@@ -59,6 +59,12 @@ struct Engine: Unboxable {
         engine_id_str = (try? unboxer.unbox(key: ShipInfoKeyInDB.engine_id_str.rawValue)) ?? ""
         max_speed = (try? unboxer.unbox(key: ShipInfoKeyInDB.max_speed.rawValue)) ?? 0
     }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        let p: [Pair] = [Pair("Engine max speed", "\(Int(max_speed))")]
+        return p
+    }
 }
 
 struct Hull: Unboxable {
@@ -84,7 +90,8 @@ struct Hull: Unboxable {
         atba_barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.atba_barrels.rawValue)) ?? 0
     }
     
-    func getMamberAndValues() -> [Pair] {
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Health", health))
         p.append(Pair("Range", range.getDescription()))
@@ -109,15 +116,40 @@ struct Mobility: Unboxable {
         turning_radius = (try? unboxer.unbox(key: ShipInfoKeyInDB.turning_radius.rawValue)) ?? 0
         max_speed = (try? unboxer.unbox(key: ShipInfoKeyInDB.max_speed.rawValue)) ?? 0
     }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("Rudder shift time", rudder_time))
+        p.append(Pair("Turning radius", turning_radius))
+        p.append(Pair("Max speed", max_speed))
+        return p
+    }
+    
+    // TODO: use L() for name Strings
+    func getSummationDescription() -> Pair {
+        return Pair("Maneuverability", total)
+    }
 }
 
 struct Atbas: Unboxable {
-    let distance: Int
+    let distance: Float
     let slots: [String: AtbasSlotModel]
     
     init(unboxer: Unboxer) throws {
         distance = (try? unboxer.unbox(key: ShipInfoKeyInDB.distance.rawValue)) ?? 0
         slots = (try? unboxer.unbox(key: ShipInfoKeyInDB.slots.rawValue)) ?? [:]
+    }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("Distance", distance))
+        for slot in slots {
+            let slotModel = slot.value
+            p.append(contentsOf: slotModel.getNameAndValuePairs())
+        }
+        return p
     }
 }
 
@@ -140,6 +172,19 @@ struct AtbasSlotModel: Unboxable {
         bullet_mass = (try? unboxer.unbox(key: ShipInfoKeyInDB.bullet_mass.rawValue)) ?? 0
         type = (try? unboxer.unbox(key: ShipInfoKeyInDB.type.rawValue)) ?? ""
         gun_rate = (try? unboxer.unbox(key: ShipInfoKeyInDB.gun_rate.rawValue)) ?? 0
+    }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("\(type) - \(name)", ""))
+        p.append(Pair("Damage", damage))
+        p.append(Pair("Burn probability", "\(burn_probability)%"))
+        p.append(Pair("Shot delay", shot_delay))
+        p.append(Pair("Bullet speed", bullet_speed))
+        p.append(Pair("Bullet mass", bullet_mass))
+        p.append(Pair("Gun rate", gun_rate))
+        return p
     }
 }
 
@@ -165,6 +210,26 @@ struct Artillery: Unboxable {
         slots = (try? unboxer.unbox(key: ShipInfoKeyInDB.slots.rawValue)) ?? [:]
         gun_rate = (try? unboxer.unbox(key: ShipInfoKeyInDB.gun_rate.rawValue)) ?? 0
     }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        for shell in shells {
+            p.append(contentsOf: shell.value.getNameAndValuePairs())
+        }
+        p.append(Pair("Shot delay", shot_delay))
+        p.append(Pair("180 rotation time", rotation_time))
+        p.append(Pair("Firing range", distance))
+        p.append(Pair("Max dispersion", max_dispersion))
+        for slot in slots {
+            p.append(contentsOf: slot.value.getNameAndValuePairs())
+        }
+        p.append(Pair("Gun rate", gun_rate))
+        return p
+    }
+    
+    /// ⚠️ Summation is in Ship.weaponry.artillery
+    func getSummationDescription() {}
 }
 
 struct Shell: Unboxable {
@@ -183,6 +248,15 @@ struct Shell: Unboxable {
         bullet_mass = (try? unboxer.unbox(key: ShipInfoKeyInDB.bullet_mass.rawValue)) ?? 0
         type = (try? unboxer.unbox(key: ShipInfoKeyInDB.type.rawValue)) ?? ""
     }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        return p
+    }
 }
 
 struct ArtillerySlot: Unboxable {
@@ -194,6 +268,15 @@ struct ArtillerySlot: Unboxable {
         barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.barrels.rawValue)) ?? 0
         name = (try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)) ?? ""
         guns = (try? unboxer.unbox(key: ShipInfoKeyInDB.guns.rawValue)) ?? 0
+    }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        return p
     }
 }
 
@@ -208,6 +291,15 @@ struct FireControl: Unboxable {
         fire_control_id_str = (try? unboxer.unbox(key: ShipInfoKeyInDB.fire_control_id_str.rawValue)) ?? ""
         distance = (try? unboxer.unbox(key: ShipInfoKeyInDB.distance.rawValue)) ?? 0
         distance_increase = (try? unboxer.unbox(key: ShipInfoKeyInDB.distance_increase.rawValue)) ?? 0
+    }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        return p
     }
 }
 
@@ -224,6 +316,15 @@ struct Weaponry: Unboxable {
         artillery = (try? unboxer.unbox(key: ShipInfoKeyInDB.artillery.rawValue)) ?? 0
         torpedoes = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedoes.rawValue)) ?? 0
     }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        return p
+    }
 }
 
 struct Concealment: Unboxable {
@@ -235,6 +336,15 @@ struct Concealment: Unboxable {
         total = (try? unboxer.unbox(key: ShipInfoKeyInDB.total.rawValue)) ?? 0
         detect_distance_by_plane = (try? unboxer.unbox(key: ShipInfoKeyInDB.detect_distance_by_plane.rawValue)) ?? 0
         detect_distance_by_ship = (try? unboxer.unbox(key: ShipInfoKeyInDB.detect_distance_by_ship.rawValue)) ?? 0
+    }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        return p
     }
 }
 
@@ -260,6 +370,15 @@ struct Armour: Unboxable {
         total =         (try? unboxer.unbox(key: ShipInfoKeyInDB.total.rawValue)) ?? 0
         citadel =       (try? unboxer.unbox(key: ShipInfoKeyInDB.citadel.rawValue)) ?? Range()
     }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        return p
+    }
 }
 
 
@@ -270,6 +389,15 @@ struct AntiAircraft: Unboxable {
     init(unboxer: Unboxer) throws {
         slots = (try? unboxer.unbox(key: ShipInfoKeyInDB.slots.rawValue)) ?? [:]
         defense = (try? unboxer.unbox(key: ShipInfoKeyInDB.defense.rawValue)) ?? 0
+    }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        return p
     }
 }
 
@@ -286,5 +414,14 @@ struct AntiAircraftSlot: Unboxable {
         caliber = (try? unboxer.unbox(key: ShipInfoKeyInDB.caliber.rawValue)) ?? 0
         name = (try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)) ?? ""
         guns = (try? unboxer.unbox(key: ShipInfoKeyInDB.guns.rawValue)) ?? 0
+    }
+    
+    // TODO: use L() for name Strings
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        return p
     }
 }
