@@ -212,6 +212,7 @@ struct Artillery: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /// ⚠️ this only giving details, Summation is in Ship.weaponry.artillery
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         for shell in shells {
@@ -228,8 +229,6 @@ struct Artillery: Unboxable {
         return p
     }
     
-    /// ⚠️ Summation is in Ship.weaponry.artillery
-    func getSummationDescription() {}
 }
 
 struct Shell: Unboxable {
@@ -252,9 +251,11 @@ struct Shell: Unboxable {
     // TODO: use L() for name Strings
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("\(type) - \(name)", ""))
+        p.append(Pair("Bullet speed", bullet_speed))
+        p.append(Pair("Shell weight", bullet_mass))
+        p.append(Pair("Chance of Fire on target", "\(burn_probability)%"))
+        p.append(Pair("Maximum damage", damage))
         return p
     }
 }
@@ -270,13 +271,8 @@ struct ArtillerySlot: Unboxable {
         guns = (try? unboxer.unbox(key: ShipInfoKeyInDB.guns.rawValue)) ?? 0
     }
     
-    // TODO: use L() for name Strings
     func getNameAndValuePairs() -> [Pair] {
-        var p: [Pair] = []
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        return p
+        return [Pair("\(name)", "x\(guns)")]
     }
 }
 
@@ -296,9 +292,8 @@ struct FireControl: Unboxable {
     // TODO: use L() for name Strings
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("Firing range", distance))
+        p.append(Pair("Firing Range extension", "\(distance_increase)%"))
         return p
     }
 }
@@ -320,9 +315,10 @@ struct Weaponry: Unboxable {
     // TODO: use L() for name Strings
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("Artillery", artillery))
+        p.append(Pair("Torpedoes", torpedoes))
+        p.append(Pair("AA Guns", anti_aircraft))
+        p.append(Pair("Aircraft", aircraft))
         return p
     }
 }
@@ -341,10 +337,14 @@ struct Concealment: Unboxable {
     // TODO: use L() for name Strings
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("Detectability Range", detect_distance_by_ship))
+        p.append(Pair("Air Detectability Range", detect_distance_by_plane))
         return p
+    }
+    
+    // TODO: use L() for name Strings
+    func getSummationDescription() -> Pair {
+        return Pair("Concealment", total)
     }
 }
 
@@ -357,7 +357,7 @@ struct Armour: Unboxable {
     let citadel: Range
     let extremities: Range
     let flood_prob: Float
-    let flood_damage: Int
+    let flood_damage: Float
     
     init(unboxer: Unboxer) throws {
         casemate =      (try? unboxer.unbox(key: ShipInfoKeyInDB.casemate.rawValue)) ?? Range()
@@ -374,10 +374,20 @@ struct Armour: Unboxable {
     // TODO: use L() for name Strings
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("Hit points", health))
+        p.append(Pair("Armour", range.getDescription()))
+        p.append(Pair("Gun Casemate", casemate.getDescription()))
+        p.append(Pair("Citadel", citadel.getDescription()))
+        p.append(Pair("Armored Deck", deck.getDescription()))
+        p.append(Pair("Forward and After Ends", extremities.getDescription()))
+        p.append(Pair("Torpedo Protection \nFlooding Risk Reduction", "\(flood_prob)%"))
+        p.append(Pair("Torpedo Protection \nDamage Reduction", "\(flood_damage)%"))
         return p
+    }
+    
+    // TODO: use L() for name Strings
+    func getSummationDescription() -> Pair {
+        return Pair("Survivability", total)
     }
 }
 
@@ -394,17 +404,18 @@ struct AntiAircraft: Unboxable {
     // TODO: use L() for name Strings
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("Effectiveness", defense))
+        for slot in slots {
+            p.append(contentsOf: slot.value.getNameAndValuePairs())
+        }
         return p
     }
 }
 
 struct AntiAircraftSlot: Unboxable {
     let distance: Float
-    let avg_damage: Float
-    let caliber: Float
+    let avg_damage: Int
+    let caliber: Int
     let name: String
     let guns: Int
     
@@ -419,9 +430,10 @@ struct AntiAircraftSlot: Unboxable {
     // TODO: use L() for name Strings
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
-        p.append(Pair("<#T##title: String##String#>", <#T##value: Any##Any#>))
+        p.append(Pair("Firing range", "\(distance) km"))
+        p.append(Pair("\(name)", "x \(guns)"))
+        p.append(Pair("Average damage", "\(avg_damage)/s"))
+        p.append(Pair("Caliber", "\(caliber) mm"))
         return p
     }
 }
