@@ -15,16 +15,16 @@ class ShipDetailViewController: BasicViewController {
     
     fileprivate var tableViewOffsetY: CGFloat = 260
     
-    fileprivate let flagBackgroundImageViewH: CGFloat = 160
+    fileprivate var flagBackgroundImageViewH: CGFloat = 200
     fileprivate let flagBackgroundImageView = UIImageView()
     fileprivate var flagBackgroundImageViewTopConstraint: NSLayoutConstraint?
     fileprivate var flagBackgroundImageViewHeighConstraint: NSLayoutConstraint?
     fileprivate let shipImageView = UIImageView()
-    fileprivate let contourImageViewH: CGFloat = 56
+    fileprivate let contourImageViewH: CGFloat = 60
     fileprivate let contourImageView = UIImageView()
     // collectionView
     fileprivate let moduleCellId = "moduleCellId"
-    fileprivate let moduleCollectionViewH: CGFloat = 100
+    fileprivate let moduleCollectionViewH: CGFloat = 160
     fileprivate let moduleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     fileprivate let moduleUpgradeSlotsCount: Int = 6
     // tableView
@@ -63,8 +63,6 @@ class ShipDetailViewController: BasicViewController {
         view.addSubview(tableView)
         tableView.fillSuperviewByConstraint()
         tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: tableViewOffsetY, left: 0, bottom: 0, right: 0)
-        tableView.setContentOffset(CGPoint(x: 0, y: -tableViewOffsetY), animated: false)
 //        tableView.separatorStyle = .none
         tableView.register(ShipDetailTableCell.self, forCellReuseIdentifier: tableCellId)
     }
@@ -72,21 +70,28 @@ class ShipDetailViewController: BasicViewController {
     private func setupTitleImageViews() {
         let vs = view.safeAreaLayoutGuide
         
+        flagBackgroundImageView.alpha = 0.56
         flagBackgroundImageView.contentMode = .scaleToFill
         view.addSubview(flagBackgroundImageView)
         flagBackgroundImageView.addConstraint(vs.leftAnchor, nil, vs.rightAnchor, nil)
-        flagBackgroundImageViewTopConstraint = flagBackgroundImageView.topAnchor.constraint(equalTo: vs.topAnchor, constant: 0)
+        flagBackgroundImageViewTopConstraint = flagBackgroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
         flagBackgroundImageViewTopConstraint?.isActive = true
+        flagBackgroundImageViewH = (426 / 694) * view.bounds.width // flag image size = 426x694
         flagBackgroundImageViewHeighConstraint = flagBackgroundImageView.heightAnchor.constraint(equalToConstant: flagBackgroundImageViewH)
         flagBackgroundImageViewHeighConstraint?.isActive = true
         
         shipImageView.contentMode = .scaleAspectFit
-        flagBackgroundImageView.addSubview(shipImageView)
-        shipImageView.fillSuperviewByConstraint()
+        view.addSubview(shipImageView)
+        shipImageView.addConstraint(flagBackgroundImageView.leftAnchor, flagBackgroundImageView.topAnchor, flagBackgroundImageView.rightAnchor, flagBackgroundImageView.bottomAnchor)
         
         contourImageView.contentMode = .scaleAspectFit
+        contourImageView.backgroundColor = UIColor.WowsTheme.gradientBlueLight
         view.addSubview(contourImageView)
         contourImageView.addConstraint(vs.leftAnchor, flagBackgroundImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: contourImageViewH)
+        
+        tableViewOffsetY = flagBackgroundImageViewH + contourImageViewH + moduleCollectionViewH
+        tableView.contentInset = UIEdgeInsets(top: tableViewOffsetY, left: 0, bottom: 0, right: 0)
+        tableView.setContentOffset(CGPoint(x: 0, y: -tableViewOffsetY), animated: false)
     }
     
     private func setupModuleCollectionView() {
@@ -134,11 +139,13 @@ class ShipDetailViewController: BasicViewController {
 extension ShipDetailViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let deltaY = scrollView.contentOffset.y
-        if deltaY < 0 {
-            //
-        } else {
-            // hide title image
+        if scrollView == self.tableView {
+            let y = scrollView.contentOffset.y
+            if y < 0 { // hide title image
+                flagBackgroundImageViewTopConstraint?.constant = -(tableViewOffsetY + y)
+            } else {
+                flagBackgroundImageViewTopConstraint?.constant = -tableViewOffsetY
+            }
         }
     }
     
@@ -148,11 +155,11 @@ extension ShipDetailViewController: UIScrollViewDelegate {
 extension ShipDetailViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return moduleUpgradeSlotsCount
+        return 3 //moduleUpgradeSlotsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section * 2 + 1
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
