@@ -34,8 +34,18 @@ extension UIAlertController {
     }
 }
 
-/// In UIViewController, not AlertController, yet extension mainly for Alert;
+// MARK: - In UIViewController, not AlertController, yet extension mainly for Alert;
 extension UIViewController {
+    
+    func displayOkAlert(title: String, message: String, action: String, completion: (() -> Void)? = nil) {
+        let v = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: action, style: .default) { (action) in
+            completion?()
+        }
+        v.addAction(action)
+        
+        present(v, animated: true, completion: nil)
+    }
     
     func displayAlertOkCancel(title: String, message: String, completion:((UIAlertAction.Style) -> Void)?) {
         let v = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -51,19 +61,9 @@ extension UIViewController {
         present(v, animated: true, completion: nil)
     }
     
-    /// Alert with single actions, completion:(tag) -> Void
-    func displayAlert(title: String, message: String, action: String, completion:(() -> Void)? = nil) {
-        let v = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: action, style: .default) { (action) in
-            completion?()
-        }
-        v.addAction(action)
-        
-        present(v, animated: true, completion: nil)
-    }
-    
-    /** Alert with multiple actions, completion:(tag) -> Void;
-     *  In general, you should setup iPadReferenceView just in case;
+    /**
+     * Alert with multiple actions, completion:(tag) -> Void;
+     * In general, you should setup iPadReferenceView just in case;
      */
     func displayAlertActions(style:UIAlertController.Style = .actionSheet, title:String, message:String? = nil, actions:[String], iPadReferenceView refView:UIView, completion:((Int) -> Void)?) {
         let v = UIAlertController(title: title, message: message, preferredStyle: style)
