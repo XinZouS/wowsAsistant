@@ -1,0 +1,54 @@
+/* 
+  Localizable.strings
+  wowsAssistant
+
+  Created by Xin Zou on 1/13/19.
+  Copyright © 2019 Xin Zou. All rights reserved.
+*/
+
+// MARK: - General action messages
+"action.ok" = "OK";
+"action.done" = "Done";
+"action.delete" = "Delete";
+"action.clear" = "Clear";
+"action.submit" = "Submit";
+"action.search" = "Search";
+"action.cancel" = "Cancel";
+"action.accept" = "Accept";
+"action.reject" = "Reject";
+"action.redo" = "Retry";
+"action.leave" = "Leave";
+"action.copy-success" = "Copy Success";
+"action.switch-input" = "Switch";
+"action.finish" = "Finish";
+"action.share" = "Share";
+"action.edit" = "Edit";
+"action.back-to-home" = "Back To Home";
+"action.expand" = "Expand";
+"action.collect" = "Collect";
+"action.save-image-ok" = "Save image success!";
+
+// MARK: - Main Tabbar
+"tabbar.icon.home.title" = "Wows";
+"tabbar.icon.find.title" = "Find Ship";
+"tabbar.icon.academy.title" = "Academy";
+"tabbar.icon.account.title" = "Me";
+
+// MARK: - Home WebView
+"home.button.home.title" = "News";
+"home.button.forw.title" = "▷";
+"home.button.back.title" = "◁";
+
+// MARK: - Find Ship VC
+"find-ship.confirm.title.server-relam" = "Server Relam";
+"find-ship.ui.section.result" = "Find Ships";
+"find-ship.ui.section.favorite" = "My Favorite";
+
+// MARK: - Settings
+"settings.change-language.confirmed" = "Confirmed";
+"settings.change-language.english" = "English";
+"settings.change-language.simplified-chinese" = "Simplified Chinese";
+"settings.change-language.tranditional-chinese" = "Traditional Chinese";
+"settings.change-language.change.title" = "Language Change";
+"settings.change-language.change.message" = "Language change successful. Please restart app for language change to take effect.";
+

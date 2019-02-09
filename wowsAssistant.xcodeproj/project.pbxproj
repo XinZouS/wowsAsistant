@@ -46,6 +46,8 @@
 /* Begin PBXFileReference section */
 		66578B1321F1407A0096660C /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
 		66578B1721F22CCC0096660C /* ShipInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfo.swift; sourceTree = "<group>"; };
+		66DEDCE2220F75AB00278049 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		66DEDCE3220F75AB00278049 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -147,7 +149,6 @@
 			children = (
 				66F0E36821EAA2C1003D1023 /* AppDelegate.swift */,
 				66F0E37221EAA2C2003D1023 /* Assets.xcassets */,
-				66F0E37421EAA2C2003D1023 /* LaunchScreen.storyboard */,
 				66F0E38521EBE114003D1023 /* Configs */,
 				66F0E39A21EBFE24003D1023 /* Models */,
 				66F0E39021EBEA70003D1023 /* ViewControllers */,
@@ -155,6 +156,7 @@
 				66F0E38821EBE409003D1023 /* Supports */,
 				66F0E37F21EAA42E003D1023 /* Helpers */,
 				66F0E37721EAA2C2003D1023 /* Info.plist */,
+				66F0E37421EAA2C2003D1023 /* LaunchScreen.storyboard */,
 				66ED359B21FE66E800D493D9 /* wowsAssistant.xcdatamodeld */,
 			);
 			path = wowsAssistant;
@@ -298,6 +300,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 66F0E35C21EAA2C1003D1023;
 			productRefGroup = 66F0E36621EAA2C1003D1023 /* Products */;
@@ -418,6 +421,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				66F0E37521EAA2C2003D1023 /* Base */,
+				66DEDCE2220F75AB00278049 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -427,6 +431,7 @@
 			children = (
 				66F0E38D21EBE861003D1023 /* en */,
 				66F0E38F21EBE8D1003D1023 /* zh-Hans */,
+				66DEDCE3220F75AB00278049 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
