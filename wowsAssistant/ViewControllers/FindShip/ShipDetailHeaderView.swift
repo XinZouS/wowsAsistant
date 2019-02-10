@@ -38,7 +38,7 @@ class ShipDetailHeaderView: UIView {
         backgroundColor = UIColor.WowsTheme.gradientBlueDark
         let font = UIFont.boldSystemFont(ofSize: 14)
         
-        valueBar.backgroundColor = UIColor.WowsTheme.lineCyan
+        valueBar.backgroundColor = UIColor.WowsTheme.buttonGreenBot
         addSubview(valueBar)
         valueBar.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: 0, top: 0, right: 0, bottom: 0)
         valueBarWidthConstraint = valueBar.widthAnchor.constraint(equalToConstant: 0)
@@ -69,9 +69,10 @@ class ShipDetailHeaderView: UIView {
     func updateUI() {
         guard let p = pair else { return }
         nameLabel.text = p.title
-        valueLabel.text = "\(p.value)"
-        if let val = p.value as? CGFloat {
-            valueBarWidthConstraint?.constant = self.bounds.width * val / 100
+        let valTxt = "\(p.value)"
+        valueLabel.text = valTxt
+        if let v = p.value as? Int {
+            valueBarWidthConstraint?.constant = UIScreen.main.bounds.width * CGFloat(v) / 100
         }
     }
     

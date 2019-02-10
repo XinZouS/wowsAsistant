@@ -119,7 +119,7 @@ struct Hull: Unboxable {
 
 struct Mobility: Unboxable {
     let rudder_time: Float
-    let total: Float
+    let total: Int
     let turning_radius: Float
     let max_speed: Float
     
