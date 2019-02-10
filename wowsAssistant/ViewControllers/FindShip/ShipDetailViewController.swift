@@ -211,8 +211,10 @@ extension ShipDetailViewController: UIScrollViewDelegate {
             } else if y < 0 { // hide title image
                 flagBackgroundImageViewTopConstraint?.constant = -(tableViewOffsetY + y)
                 flagBackgroundImageViewHeighConstraint?.constant = flagBackgroundImageViewH
+                tableView.contentInset = UIEdgeInsets(top: -y, left: 0, bottom: 0, right: 0)
             } else {
                 flagBackgroundImageViewTopConstraint?.constant = -tableViewOffsetY
+                tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }
         }
     }

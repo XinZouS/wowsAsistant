@@ -35,6 +35,9 @@ class ShipDetailHeaderView: UIView {
     }
     
     private func setupUI() {
+        backgroundColor = UIColor.WowsTheme.gradientBlueDark
+        let font = UIFont.boldSystemFont(ofSize: 14)
+        
         valueBar.backgroundColor = UIColor.WowsTheme.lineCyan
         addSubview(valueBar)
         valueBar.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: 0, top: 0, right: 0, bottom: 0)
@@ -44,16 +47,18 @@ class ShipDetailHeaderView: UIView {
         let margin: CGFloat = 10
         arrowImageView.contentMode = .scaleAspectFit
         addSubview(arrowImageView)
-        arrowImageView.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: margin, top: 0, right: 0, bottom: 0, width: 40, height: 0)
+        arrowImageView.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: margin, top: 0, right: 0, bottom: 0, width: 30, height: 30)
         
         nameLabel.textColor = .white
         nameLabel.textAlignment = .left
+        nameLabel.font = font
         addSubview(nameLabel)
         nameLabel.addConstraint(arrowImageView.rightAnchor, nil, nil, nil, left: margin, top: 0, right: 0, bottom: 0)
         nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         valueLabel.textColor = .white
         valueLabel.textAlignment = .right
+        valueLabel.font = font
         addSubview(valueLabel)
         valueLabel.addConstraint(nameLabel.rightAnchor, nil, rightAnchor, nil, left: margin, top: 0, right: margin, bottom: 0)
         valueLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -65,6 +70,9 @@ class ShipDetailHeaderView: UIView {
         guard let p = pair else { return }
         nameLabel.text = p.title
         valueLabel.text = "\(p.value)"
+        if let val = p.value as? CGFloat {
+            valueBarWidthConstraint?.constant = self.bounds.width * val / 100
+        }
     }
     
     @objc private func arrowButtonTapped() {
