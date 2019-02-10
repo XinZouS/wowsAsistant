@@ -108,14 +108,16 @@ class ShipDetailViewController: BasicViewController {
             DLog("[ERROR] ShipDetailViewController: shipInfo is nil, you should always set it before present VC!")
             return
         }
-        if let survivability = ship.armour?.getSummationDescription(), let survDetail = ship.armour?.getNameAndValuePairs() {
-            tableSectionDataSource.append(survivability)
-            tableContentDataSource.append(survDetail)
+        // ❇️
+        if let survivability = ship.armour {
+            tableSectionDataSource.append(survivability.getSummationDescription())
+            tableContentDataSource.append(survivability.getNameAndValuePairs())
         }
         if let hull = ship.hull {
             tableContentDataSource.append(hull.getNameAndValuePairs())
         }
         
+        // ❇️
         if let artillerySum = weaponarys.first {
             tableSectionDataSource.append(artillerySum)
             if let fireControl = ship.fire_control { // [firing range, extension]
@@ -129,24 +131,32 @@ class ShipDetailViewController: BasicViewController {
             }
         }
         
+        // ❇️
         if weaponarys.count >= 2 {
             let torpedoes = weaponarys[1]
             tableSectionDataSource.append(torpedoes)
             
+            // ❓
         }
         
+        // ❇️
         if weaponarys.count >= 3 {
             let aaGuns = weaponarys[2]
             tableSectionDataSource.append(aaGuns)
-            
+            if let antiAir = ship.anti_aircraft {
+                tableContentDataSource.append(antiAir.getNameAndValuePairs())
+            }
         }
         
+        // ❇️
         if weaponarys.count == 4 {
             let aircraft = weaponarys[3]
             tableSectionDataSource.append(aircraft)
             
+            // ❓
         }
         
+        // ❇️
         if let mobility = ship.mobility {
             tableSectionDataSource.append(mobility.getSummationDescription())
             if let engine = ship.engine {
@@ -155,6 +165,7 @@ class ShipDetailViewController: BasicViewController {
             tableContentDataSource.append(mobility.getNameAndValuePairs())
         }
         
+        // ❇️
         if let concealment = ship.concealment {
             tableSectionDataSource.append(concealment.getSummationDescription())
             tableContentDataSource.append(concealment.getNameAndValuePairs())
