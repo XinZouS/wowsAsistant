@@ -55,8 +55,9 @@ class ShipInfoBasicManager {
     }
     
     private func saveByDelay() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
             PersistenceManager.shared.save()
+            self?.loadShipInfoBasicIfNeed()
             DLog("[ShipBasic] ✅ save(): finish GET info from Server.")
         }
     }
