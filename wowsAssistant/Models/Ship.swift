@@ -18,7 +18,7 @@ class Ship: Unboxable {
     var artillery:      Artillery?
     var atbas:          Atbas?
     var fire_control:   FireControl?
-    var torpedoes:      [Int] = []
+    var torpedoes:      Torpedoes?
     var concealment:    Concealment?
     var anti_aircraft:  AntiAircraft?
     var flight_control: FlightControl?
@@ -200,6 +200,34 @@ struct AtbasSlotModel: Unboxable {
     }
 }
 
+/// Sum num of ship capability
+struct Weaponry: Unboxable {
+    let anti_aircraft: Int
+    let aircraft: Int
+    let artillery: Int
+    let torpedoes: Int
+    
+    init(unboxer: Unboxer) throws {
+        anti_aircraft = (try? unboxer.unbox(key: ShipInfoKeyInDB.anti_aircraft.rawValue)) ?? 0
+        aircraft = (try? unboxer.unbox(key: ShipInfoKeyInDB.aircraft.rawValue)) ?? 0
+        artillery = (try? unboxer.unbox(key: ShipInfoKeyInDB.artillery.rawValue)) ?? 0
+        torpedoes = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedoes.rawValue)) ?? 0
+    }
+    
+    // TODO: use L() for name Strings
+    /**
+     * [artillery, torpedoes, aa guns, aircraft]
+     */
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("Artillery", artillery))
+        p.append(Pair("Torpedoes", torpedoes))
+        p.append(Pair("AA Guns", anti_aircraft))
+        p.append(Pair("Aircraft", aircraft))
+        return p
+    }
+}
+
 struct Artillery: Unboxable {
     let max_dispersion: Int
     let shells: [String: Shell] // ["HE": Shell, "AP": Shell]
@@ -320,31 +348,31 @@ struct FireControl: Unboxable {
     }
 }
 
-/// Sum num of ship capability
-struct Weaponry: Unboxable {
-    let anti_aircraft: Int
-    let aircraft: Int
-    let artillery: Int
-    let torpedoes: Int
+struct Torpedoes: Unboxable {
+    let torpedoes_id: Int
+    let torpedoes_id_str: String
+    let visibility_dist: Float
+    let distance: Float
+    let torpedo_name: String
+    let reload_time: Int
+    let torpedo_speed: Float
+    let rotation_time: Float
+    let slots: [String: TorpedoeSlots]
+    let max_damage: Int
     
     init(unboxer: Unboxer) throws {
-        anti_aircraft = (try? unboxer.unbox(key: ShipInfoKeyInDB.anti_aircraft.rawValue)) ?? 0
-        aircraft = (try? unboxer.unbox(key: ShipInfoKeyInDB.aircraft.rawValue)) ?? 0
-        artillery = (try? unboxer.unbox(key: ShipInfoKeyInDB.artillery.rawValue)) ?? 0
-        torpedoes = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedoes.rawValue)) ?? 0
+        
     }
+}
+
+struct TorpedoeSlots: Unboxable {
+    let barrels: Int
+    let caliber: Int
+    let name: String
+    let guns: Int
     
-    // TODO: use L() for name Strings
-    /**
-     * [artillery, torpedoes, aa guns, aircraft]
-     */
-    func getNameAndValuePairs() -> [Pair] {
-        var p: [Pair] = []
-        p.append(Pair("Artillery", artillery))
-        p.append(Pair("Torpedoes", torpedoes))
-        p.append(Pair("AA Guns", anti_aircraft))
-        p.append(Pair("Aircraft", aircraft))
-        return p
+    init(unboxer: Unboxer) throws {
+        
     }
 }
 

@@ -23,6 +23,25 @@ struct FlightControl: Unboxable {
         torpedo_squadrons = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedo_squadrons.rawValue)) ?? 0
         fighter_squadrons = (try? unboxer.unbox(key: ShipInfoKeyInDB.fighter_squadrons.rawValue)) ?? 0
     }
+    
+    // TODO: use L() for name Strings
+    /**
+     * []
+     */
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+        return p
+    }
+    
+    // TODO: use L() for name Strings
+//    func getSummationDescription() -> Pair {
+//        return Pair("", )
+//    }
 }
 
 class Airplane: Unboxable {
@@ -45,6 +64,25 @@ class Airplane: Unboxable {
         plane_level = (try? unboxer.unbox(key: ShipInfoKeyInDB.plane_level.rawValue)) ?? 0
         max_health = (try? unboxer.unbox(key: ShipInfoKeyInDB.max_health.rawValue)) ?? 0
     }
+    
+    // TODO: use L() for name Strings
+    /**
+     * []
+     */
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+        return p
+    }
+    
+    // TODO: use L() for name Strings
+//    func getSummationDescription() -> Pair {
+//        return Pair("", )
+//    }
 }
 
 
@@ -60,6 +98,20 @@ class Fighters: Airplane {
         max_ammo = (try? unboxer.unbox(key: ShipInfoKeyInDB.max_ammo.rawValue)) ?? 0
         avg_damage = (try? unboxer.unbox(key: ShipInfoKeyInDB.avg_damage.rawValue)) ?? 0
         try super.init(unboxer: unboxer)
+    }
+    
+    // TODO: use L() for name Strings
+    /**
+     * []
+     */
+    override func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = super.getNameAndValuePairs()
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+        return p
     }
 }
 
@@ -81,6 +133,20 @@ class TorpedoBomber: Airplane {
         torpedo_name = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedo_name.rawValue)) ?? ""
         max_damage = (try? unboxer.unbox(key: ShipInfoKeyInDB.max_damage.rawValue)) ?? 0
         try super.init(unboxer: unboxer)
+    }
+    
+    // TODO: use L() for name Strings
+    /**
+     * []
+     */
+    override func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = super.getNameAndValuePairs()
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+        return p
     }
 }
 
@@ -104,6 +170,20 @@ class DiveBomber: Airplane {
         max_damage =        (try? unboxer.unbox(key: ShipInfoKeyInDB.max_damage.rawValue)) ?? 0
         accuracy =          (try? unboxer.unbox(key: ShipInfoKeyInDB.accuracy.rawValue)) ?? Range()
         try super.init(unboxer: unboxer)
+    }
+    
+    // TODO: use L() for name Strings
+    /**
+     * []
+     */
+    override func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = super.getNameAndValuePairs()
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+//        p.append(Pair("", ))
+        return p
     }
 }
 

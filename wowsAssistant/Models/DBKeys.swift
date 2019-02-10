@@ -134,6 +134,10 @@ enum ShipInfoKeyInDB: String {
     case extremities = "extremities"
     case citadel = "citadel"
     
+    // Torpedoes
+    case visibility_dist = "visibility_dist"
+    
+    
     // AntiAircraft
     case defense = "defense"
     

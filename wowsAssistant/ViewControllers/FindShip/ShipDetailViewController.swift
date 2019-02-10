@@ -135,8 +135,9 @@ class ShipDetailViewController: BasicViewController {
         if weaponarys.count >= 2 {
             let torpedoes = weaponarys[1]
             tableSectionDataSource.append(torpedoes)
-            
-            // ❓
+            for torps in ship.torpedoes {
+                // ❓
+            }
         }
         
         // ❇️
@@ -169,6 +170,11 @@ class ShipDetailViewController: BasicViewController {
         if let concealment = ship.concealment {
             tableSectionDataSource.append(concealment.getSummationDescription())
             tableContentDataSource.append(concealment.getNameAndValuePairs())
+        }
+        
+        // ❇️
+        if let flightControl = ship.flight_control {
+            
         }
         
     }
