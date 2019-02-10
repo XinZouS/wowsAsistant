@@ -136,7 +136,10 @@ enum ShipInfoKeyInDB: String {
     
     // Torpedoes
     case visibility_dist = "visibility_dist"
-    
+    case torpedoes_id = "torpedoes_id"
+    case torpedoes_id_str = "torpedoes_id_str"
+    case reload_time = "reload_time"
+    case torpedo_speed = "torpedo_speed"
     
     // AntiAircraft
     case defense = "defense"

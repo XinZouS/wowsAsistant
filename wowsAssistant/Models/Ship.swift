@@ -36,7 +36,7 @@ class Ship: Unboxable {
         hull =          try? unboxer.unbox(key: ShipInfoKeyInDB.hull.rawValue)
         atbas =         try? unboxer.unbox(key: ShipInfoKeyInDB.atbas.rawValue)
         artillery =     try? unboxer.unbox(key: ShipInfoKeyInDB.artillery.rawValue)
-        torpedoes =     (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedoes.rawValue)) ?? []
+        torpedoes =     try? unboxer.unbox(key: ShipInfoKeyInDB.torpedoes.rawValue)
         fighters =      try? unboxer.unbox(key: ShipInfoKeyInDB.fighter.rawValue)
         fire_control =  try? unboxer.unbox(key: ShipInfoKeyInDB.fire_control.rawValue)
         weaponry =      try? unboxer.unbox(key: ShipInfoKeyInDB.weaponry.rawValue)

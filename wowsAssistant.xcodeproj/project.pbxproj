@@ -180,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				66F0E38321EBDFDA003D1023 /* ApiServers.swift */,
+				66ED358821F770A600D493D9 /* DBKeys.swift */,
 				66F0E39421EBEC00003D1023 /* ServiceManager.swift */,
 				66ED35A221FE71DE00D493D9 /* PersistenceManager.swift */,
 				66ED35A421FEBED700D493D9 /* ShipInfoBasicManager.swift */,
@@ -230,7 +231,6 @@
 			children = (
 				66ED359E21FE710500D493D9 /* ShipInfoBasic+CoreDataClass.swift */,
 				66ED359F21FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift */,
-				66ED358821F770A600D493D9 /* DBKeys.swift */,
 				66578B1721F22CCC0096660C /* ShipInfo.swift */,
 				66F0E39B21EBFE5C003D1023 /* Ship.swift */,
 				66578B1321F1407A0096660C /* Airplane.swift */,
