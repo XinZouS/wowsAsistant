@@ -30,18 +30,11 @@ struct FlightControl: Unboxable {
      */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
+        p.append(Pair("Number of fighter squadrons", fighter_squadrons))
+        p.append(Pair("Number of bomber squadrons", bomber_squadrons))
+        p.append(Pair("Number of torpedo bomber squadrons", torpedo_squadrons))
         return p
     }
-    
-    // TODO: use L() for name Strings
-//    func getSummationDescription() -> Pair {
-//        return Pair("", )
-//    }
 }
 
 class Airplane: Unboxable {
@@ -66,23 +59,18 @@ class Airplane: Unboxable {
     }
     
     // TODO: use L() for name Strings
-    /**
-     * []
-     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
+        p.append(Pair("Name of squadron", name))
+        p.append(Pair("Tier", TierString[plane_level] ?? ""))
+        p.append(Pair("Survivability", max_health))
+        p.append(Pair("Time of preparation for takeoff", "\(prepare_time) s"))
+        p.append(Pair("Number of squadrons", squadrons))
+        p.append(Pair("Number of aircraft in a squadron", count_in_squadron.getDescription()))
+        p.append(Pair("Cruise Speed", "\(cruise_speed) knots"))
+        p.append(Pair("Average damage per rear gunner \nof a torpedo bomber per second", gunner_damage))
         return p
     }
-    
-    // TODO: use L() for name Strings
-//    func getSummationDescription() -> Pair {
-//        return Pair("", )
-//    }
 }
 
 
@@ -101,16 +89,10 @@ class Fighters: Airplane {
     }
     
     // TODO: use L() for name Strings
-    /**
-     * []
-     */
     override func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = super.getNameAndValuePairs()
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
+        p.append(Pair("Average damage caused /s", avg_damage))
+        p.append(Pair("Ammunition", max_ammo))
         return p
     }
 }
@@ -136,16 +118,13 @@ class TorpedoBomber: Airplane {
     }
     
     // TODO: use L() for name Strings
-    /**
-     * []
-     */
     override func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = super.getNameAndValuePairs()
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
+        p.append(Pair("Torpedo name", torpedo_name))
+        p.append(Pair("Torpedo max speed", torpedo_max_speed))
+        p.append(Pair("Torpedo range", torpedo_distance))
+        p.append(Pair("Maximum torpedo damage", torpedo_damage))
+        p.append(Pair("Maximum Bomb Damage", max_damage))
         return p
     }
 }
@@ -173,16 +152,14 @@ class DiveBomber: Airplane {
     }
     
     // TODO: use L() for name Strings
-    /**
-     * []
-     */
     override func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = super.getNameAndValuePairs()
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
-//        p.append(Pair("", ))
+        p.append(Pair("Bomb weight", bomb_bullet_mass))
+        p.append(Pair("Maximum bomb damage", bomb_damage))
+        p.append(Pair("Bomb name", bomb_name))
+        p.append(Pair("Chance of Fire on target caused by bomb ", "\(bomb_burn_probability)%"))
+        p.append(Pair("Maximum Damage", max_damage))
+        p.append(Pair("Accuracy", accuracy.getDescription()))
         return p
     }
 }

@@ -215,16 +215,17 @@ struct Weaponry: Unboxable {
     }
     
     // TODO: use L() for name Strings
-    /**
-     * [artillery, torpedoes, aa guns, aircraft]
-     */
-    func getNameAndValuePairs() -> [Pair] {
-        var p: [Pair] = []
-        p.append(Pair("Artillery", artillery))
-        p.append(Pair("Torpedoes", torpedoes))
-        p.append(Pair("AA Guns", anti_aircraft))
-        p.append(Pair("Aircraft", aircraft))
-        return p
+    func getArtilleryNameAndValuePair() -> Pair {
+        return Pair("Artillery", artillery)
+    }
+    func getTorpedoesNameAndValuePair() -> Pair {
+        return Pair("Torpedoes", torpedoes)
+    }
+    func getAAGunsNameAndValuePair() -> Pair {
+        return Pair("AA Guns", anti_aircraft)
+    }
+    func getAircraftNameAndValuePair() -> Pair {
+        return Pair("Aircraft", aircraft)
     }
 }
 
@@ -298,10 +299,10 @@ struct Shell: Unboxable {
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("\(type) - \(name)", ""))
-        p.append(Pair("Bullet speed", bullet_speed))
-        p.append(Pair("Shell weight", bullet_mass))
-        p.append(Pair("Chance of Fire on target", "\(burn_probability)%"))
-        p.append(Pair("Maximum damage", damage))
+        p.append(Pair("  Bullet speed", bullet_speed))
+        p.append(Pair("  Shell weight", bullet_mass))
+        p.append(Pair("  Chance of Fire on target", "\(burn_probability)%"))
+        p.append(Pair("  Maximum damage", damage))
         return p
     }
 }
@@ -361,7 +362,36 @@ struct Torpedoes: Unboxable {
     let max_damage: Int
     
     init(unboxer: Unboxer) throws {
-        
+        torpedoes_id = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedoes_id.rawValue)) ?? 0
+        torpedoes_id_str = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedoes_id_str.rawValue)) ?? ""
+        visibility_dist = (try? unboxer.unbox(key: ShipInfoKeyInDB.visibility_dist.rawValue)) ?? 0
+        distance = (try? unboxer.unbox(key: ShipInfoKeyInDB.distance.rawValue)) ?? 0
+        torpedo_name = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedo_name.rawValue)) ?? ""
+        reload_time = (try? unboxer.unbox(key: ShipInfoKeyInDB.reload_time.rawValue)) ?? 0
+        torpedo_speed = (try? unboxer.unbox(key: ShipInfoKeyInDB.torpedo_speed.rawValue)) ?? 0
+        rotation_time = (try? unboxer.unbox(key: ShipInfoKeyInDB.rotation_time.rawValue)) ?? 0
+        slots = (try? unboxer.unbox(key: ShipInfoKeyInDB.slots.rawValue)) ?? [:]
+        max_damage = (try? unboxer.unbox(key: ShipInfoKeyInDB.max_damage.rawValue)) ?? 0
+    }
+    
+    // TODO: use L() for name Strings
+    /**
+     * [Name, 180turn, maxDmg, reload, range, speed, visibility]
+     */
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("Torpedo", torpedo_name))
+        p.append(Pair("180 Degree Turn", "\(rotation_time) sec"))
+        p.append(Pair("Maximum Damage", max_damage))
+        p.append(Pair("Reload Time", "\(reload_time) sec"))
+        p.append(Pair("Torpedoes range", distance))
+        p.append(Pair("Speed", "\(torpedo_speed) knots"))
+        p.append(Pair("Visibility", "\(visibility_dist) km"))
+        for slot in slots {
+            p.append(Pair("Slot \(slot.key)", ""))
+            p.append(contentsOf: slot.value.getNameAndValuePairs())
+        }
+        return p
     }
 }
 
@@ -372,7 +402,23 @@ struct TorpedoeSlots: Unboxable {
     let guns: Int
     
     init(unboxer: Unboxer) throws {
-        
+        barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.barrels.rawValue)) ?? 0
+        caliber = (try? unboxer.unbox(key: ShipInfoKeyInDB.caliber.rawValue)) ?? 0
+        name = (try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)) ?? ""
+        guns = (try? unboxer.unbox(key: ShipInfoKeyInDB.guns.rawValue)) ?? 0
+    }
+    
+    // TODO: use L() for name Strings
+    /**
+     * [name, caliber, tubes num, tubes per slot]
+     */
+    func getNameAndValuePairs() -> [Pair] {
+        var p: [Pair] = []
+        p.append(Pair("  Name", name))
+        p.append(Pair("  Caliber", caliber))
+        p.append(Pair("  Torpedo tubes", guns))
+        p.append(Pair("  Torpedo tubes per slot", barrels))
+        return p
     }
 }
 

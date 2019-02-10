@@ -127,7 +127,7 @@ enum ShipNation: String, CaseIterable {
 }
 
 /// [0, 11], eligiable range = [1, 10]
-let ShipTierString: [Int:String] = [0:"0", 1:"I", 2:"II", 3:"III", 4:"IV", 5:"V", 6:"VI", 7:"VII", 8:"VIII", 9:"IX", 10:"X", 11:"XI"]
+let TierString: [Int:String] = [0:"0", 1:"I", 2:"II", 3:"III", 4:"IV", 5:"V", 6:"VI", 7:"VII", 8:"VIII", 9:"IX", 10:"X", 11:"XI"]
 
 enum IconType: String {
     case normal = "normal"

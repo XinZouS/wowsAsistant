@@ -38,7 +38,7 @@ class TierCell: UICollectionViewCell {
     var tier: Int? {
         didSet {
             if let t = tier, t >= 0, t <= 11 {
-                label.text = ShipTierString[t] ?? "-"
+                label.text = TierString[t] ?? "-"
             }
         }
     }
@@ -218,7 +218,7 @@ class ResultCell: UICollectionViewCell {
             shipTypeImageView.af_setImage(withURL: url)
         }
         if let tier = info.tier, tier > 0 {
-            shipTierLabel.text = ShipTierString[tier]
+            shipTierLabel.text = TierString[tier]
         }
     }
 }

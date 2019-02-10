@@ -104,7 +104,7 @@ class ShipDetailViewController: BasicViewController {
     }
     
     private func setupTableViewDataSource() {
-        guard let ship = shipInfo?.default_profile, let weaponarys = ship.weaponry?.getNameAndValuePairs() else {
+        guard let ship = shipInfo?.default_profile else {
             DLog("[ERROR] ShipDetailViewController: shipInfo is nil, you should always set it before present VC!")
             return
         }
@@ -118,7 +118,7 @@ class ShipDetailViewController: BasicViewController {
         }
         
         // ❇️
-        if let artillerySum = weaponarys.first {
+        if let artillerySum = ship.weaponry?.getArtilleryNameAndValuePair() {
             tableSectionDataSource.append(artillerySum)
             if let fireControl = ship.fire_control { // [firing range, extension]
                 tableContentDataSource.append(fireControl.getNameAndValuePairs())
@@ -132,17 +132,15 @@ class ShipDetailViewController: BasicViewController {
         }
         
         // ❇️
-        if weaponarys.count >= 2 {
-            let torpedoes = weaponarys[1]
-            tableSectionDataSource.append(torpedoes)
-            for torps in ship.torpedoes {
-                // ❓
+        if let torpedo = ship.weaponry?.getTorpedoesNameAndValuePair() {
+            tableSectionDataSource.append(torpedo)
+            if let torps = ship.torpedoes {
+                tableContentDataSource.append(torps.getNameAndValuePairs())
             }
         }
         
         // ❇️
-        if weaponarys.count >= 3 {
-            let aaGuns = weaponarys[2]
+        if let aaGuns = ship.weaponry?.getAAGunsNameAndValuePair() {
             tableSectionDataSource.append(aaGuns)
             if let antiAir = ship.anti_aircraft {
                 tableContentDataSource.append(antiAir.getNameAndValuePairs())
@@ -150,11 +148,20 @@ class ShipDetailViewController: BasicViewController {
         }
         
         // ❇️
-        if weaponarys.count == 4 {
-            let aircraft = weaponarys[3]
+        if let aircraft = ship.weaponry?.getAircraftNameAndValuePair() {
             tableSectionDataSource.append(aircraft)
-            
-            // ❓
+            if let flightControl = ship.flight_control {
+                tableContentDataSource.append(flightControl.getNameAndValuePairs())
+            }
+            if let flighters = ship.fighters {
+                tableContentDataSource.append(flighters.getNameAndValuePairs())
+            }
+            if let diveBombers = ship.dive_bomber {
+                tableContentDataSource.append(diveBombers.getNameAndValuePairs())
+            }
+            if let torpBombers = ship.torpedo_bomber {
+                tableContentDataSource.append(torpBombers.getNameAndValuePairs())
+            }
         }
         
         // ❇️
@@ -170,11 +177,6 @@ class ShipDetailViewController: BasicViewController {
         if let concealment = ship.concealment {
             tableSectionDataSource.append(concealment.getSummationDescription())
             tableContentDataSource.append(concealment.getNameAndValuePairs())
-        }
-        
-        // ❇️
-        if let flightControl = ship.flight_control {
-            
         }
         
     }
