@@ -95,6 +95,7 @@ class ShipDetailViewController: BasicViewController {
         tableView.setContentOffset(CGPoint(x: 0, y: -tableViewOffsetY), animated: false)
         
         moduleCollectionView.backgroundColor = .clear
+        moduleCollectionView.isScrollEnabled = false
         moduleCollectionView.register(ModuleCollectionCell.self, forCellWithReuseIdentifier: moduleCellId)
         moduleCollectionView.dataSource = self
         moduleCollectionView.delegate = self
@@ -285,6 +286,24 @@ extension ShipDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section >= tableDataSource.count { return nil }
+        
+        let header = ShipDetailHeaderView()
+        header.delegate = self
+        header.pair = tableDataSource[section].sectionPair
+        header.updateUI()
+        return header
+    }
+    
+}
+
+extension ShipDetailViewController: ShipDetailHeaderDelegate {
+    
+    func expandSection(_ isExpand: Bool) {
+        // TODO: !!
     }
     
 }

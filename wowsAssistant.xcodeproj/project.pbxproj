@@ -10,6 +10,7 @@
 		1E23681CE1F42E67F60E4FDF /* Pods_wowsAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27979D9BE8086C0D3CC96AB /* Pods_wowsAssistant.framework */; };
 		66578B1421F1407A0096660C /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1321F1407A0096660C /* Airplane.swift */; };
 		66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1721F22CCC0096660C /* ShipInfo.swift */; };
+		66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */; };
 		66ED358921F770A600D493D9 /* DBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358821F770A600D493D9 /* DBKeys.swift */; };
 		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
@@ -48,6 +49,7 @@
 		66578B1721F22CCC0096660C /* ShipInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfo.swift; sourceTree = "<group>"; };
 		66DEDCE2220F75AB00278049 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		66DEDCE3220F75AB00278049 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailHeaderView.swift; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				66ED35A822038FD700D493D9 /* ShipDetailViewController.swift */,
 				66ED35AA2203AB3700D493D9 /* ModuleCollectionCell.swift */,
 				66ED35AE2203EB4500D493D9 /* ShipDetailTableCell.swift */,
+				66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */,
 			);
 			path = FindShip;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				66ED35AF2203EB4500D493D9 /* ShipDetailTableCell.swift in Sources */,
 				66ED35A922038FD700D493D9 /* ShipDetailViewController.swift in Sources */,
 				66F0E38721EBE131003D1023 /* GlobalVariable.swift in Sources */,
+				66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */,
 				66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */,
 				66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */,
 				66F0E39C21EBFE5C003D1023 /* Ship.swift in Sources */,
