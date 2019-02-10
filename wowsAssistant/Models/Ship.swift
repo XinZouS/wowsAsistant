@@ -9,6 +9,16 @@
 import Foundation
 import Unbox
 
+class ShipViewModel {
+    var isExpanded = false
+    var sectionPair: Pair?
+    var contentPairs: [Pair] = []
+    
+    init(sectionPair p: Pair) {
+        self.sectionPair = p
+    }
+}
+
 class Ship: Unboxable {
     var hull:           Hull?
     var engine:         Engine?

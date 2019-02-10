@@ -28,8 +28,7 @@ class ShipDetailViewController: BasicViewController {
     fileprivate let moduleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     fileprivate let moduleUpgradeSlotsCount: Int = 6
     // tableView
-    fileprivate var tableSectionDataSource: [Pair] = []
-    fileprivate var tableContentDataSource: [[Pair]] = []
+    fileprivate var tableDataSource: [ShipViewModel] = []
     fileprivate let tableCellId = "tableCellId"
     fileprivate let tableView = UITableView()
     
@@ -64,7 +63,7 @@ class ShipDetailViewController: BasicViewController {
         view.addSubview(tableView)
         tableView.addConstraint(vs.leftAnchor, vs.topAnchor, vs.rightAnchor, vs.bottomAnchor)
         tableView.backgroundColor = .clear
-//        tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         tableView.register(ShipDetailTableCell.self, forCellReuseIdentifier: tableCellId)
     }
     
@@ -110,73 +109,74 @@ class ShipDetailViewController: BasicViewController {
         }
         // ❇️
         if let survivability = ship.armour {
-            tableSectionDataSource.append(survivability.getSummationDescription())
-            tableContentDataSource.append(survivability.getNameAndValuePairs())
+            let model = ShipViewModel(sectionPair: survivability.getSummationDescription())
+            tableDataSource.append(model)
+            model.contentPairs.append(contentsOf: survivability.getNameAndValuePairs())
+            if let hull = ship.hull {
+                model.contentPairs.append(contentsOf: hull.getNameAndValuePairs())
+            }
         }
-        if let hull = ship.hull {
-            tableContentDataSource.append(hull.getNameAndValuePairs())
-        }
-        
         // ❇️
-        if let artillerySum = ship.weaponry?.getArtilleryNameAndValuePair() {
-            tableSectionDataSource.append(artillerySum)
+        if let artillerySum = ship.weaponry {
+            let model = ShipViewModel(sectionPair: artillerySum.getArtilleryNameAndValuePair())
+            tableDataSource.append(model)
             if let fireControl = ship.fire_control { // [firing range, extension]
-                tableContentDataSource.append(fireControl.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: fireControl.getNameAndValuePairs())
             }
             if let artillery = ship.artillery { // [.., [Shell], [ArtillerySlot], ..]
-                tableContentDataSource.append(artillery.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: artillery.getNameAndValuePairs())
             }
             if let secondary = ship.atbas { // Atbas
-                tableContentDataSource.append(secondary.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: secondary.getNameAndValuePairs())
             }
         }
-        
         // ❇️
-        if let torpedo = ship.weaponry?.getTorpedoesNameAndValuePair() {
-            tableSectionDataSource.append(torpedo)
+        if let torpedo = ship.weaponry {
+            let model = ShipViewModel(sectionPair: torpedo.getTorpedoesNameAndValuePair())
+            tableDataSource.append(model)
             if let torps = ship.torpedoes {
-                tableContentDataSource.append(torps.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: torps.getNameAndValuePairs())
             }
         }
-        
         // ❇️
-        if let aaGuns = ship.weaponry?.getAAGunsNameAndValuePair() {
-            tableSectionDataSource.append(aaGuns)
+        if let aaGuns = ship.weaponry {
+            let model = ShipViewModel(sectionPair: aaGuns.getAAGunsNameAndValuePair())
+            tableDataSource.append(model)
             if let antiAir = ship.anti_aircraft {
-                tableContentDataSource.append(antiAir.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: antiAir.getNameAndValuePairs())
             }
         }
-        
         // ❇️
-        if let aircraft = ship.weaponry?.getAircraftNameAndValuePair() {
-            tableSectionDataSource.append(aircraft)
+        if let aircraft = ship.weaponry {
+            let model = ShipViewModel(sectionPair: aircraft.getAircraftNameAndValuePair())
+            tableDataSource.append(model)
             if let flightControl = ship.flight_control {
-                tableContentDataSource.append(flightControl.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: flightControl.getNameAndValuePairs())
             }
             if let flighters = ship.fighters {
-                tableContentDataSource.append(flighters.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: flighters.getNameAndValuePairs())
             }
             if let diveBombers = ship.dive_bomber {
-                tableContentDataSource.append(diveBombers.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: diveBombers.getNameAndValuePairs())
             }
             if let torpBombers = ship.torpedo_bomber {
-                tableContentDataSource.append(torpBombers.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: torpBombers.getNameAndValuePairs())
             }
         }
-        
         // ❇️
         if let mobility = ship.mobility {
-            tableSectionDataSource.append(mobility.getSummationDescription())
+            let model = ShipViewModel(sectionPair: mobility.getSummationDescription())
+            tableDataSource.append(model)
             if let engine = ship.engine {
-                tableContentDataSource.append(engine.getNameAndValuePairs())
+                model.contentPairs.append(contentsOf: engine.getNameAndValuePairs())
             }
-            tableContentDataSource.append(mobility.getNameAndValuePairs())
+            model.contentPairs.append(contentsOf: mobility.getNameAndValuePairs())
         }
-        
         // ❇️
         if let concealment = ship.concealment {
-            tableSectionDataSource.append(concealment.getSummationDescription())
-            tableContentDataSource.append(concealment.getNameAndValuePairs())
+            let model = ShipViewModel(sectionPair: concealment.getSummationDescription())
+            tableDataSource.append(model)
+            model.contentPairs.append(contentsOf: concealment.getNameAndValuePairs())
         }
         
     }
@@ -218,7 +218,7 @@ extension ShipDetailViewController: UIScrollViewDelegate {
     
 }
 
-// MARK: - CollectionView delegates
+// MARK: - Ship Module CollectionView delegates
 extension ShipDetailViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -255,18 +255,23 @@ extension ShipDetailViewController: UICollectionViewDelegateFlowLayout {
 extension ShipDetailViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return tableDataSource.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        if section < tableDataSource.count {
+            return tableDataSource[section].contentPairs.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: tableCellId, for: indexPath) as? ShipDetailTableCell {
-            cell.backgroundColor = UIColor.WowsTheme.gradientBlueLight
             cell.selectionStyle = .none
-            
+            if indexPath.section < tableDataSource.count, indexPath.row < tableDataSource[indexPath.section].contentPairs.count {
+                cell.pair = tableDataSource[indexPath.section].contentPairs[indexPath.row]
+                cell.updateLabels()
+            }
             return cell
         }
         return UITableViewCell(frame: .zero)
@@ -278,7 +283,9 @@ extension ShipDetailViewController: UITableViewDataSource {
 
 extension ShipDetailViewController: UITableViewDelegate {
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
     
 }
 

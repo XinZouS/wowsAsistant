@@ -34,9 +34,9 @@ struct Range: Unboxable {
         max = (try? unboxer.unbox(key: ShipInfoKeyInDB.max.rawValue)) ?? 0
     }
     
-    /// get min-max: "22 - 33"
+    /// get min-max: "22 ~ 33"
     func getDescription() -> String {
-        return "\(min) - \(max)"
+        return "\(min) ~ \(max)"
     }
 }
 
