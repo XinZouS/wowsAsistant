@@ -40,8 +40,7 @@ class ShipDetailViewController: BasicViewController {
         
         setupTableView()
         setupTableViewDataSource()
-        setupTitleImageViews()
-        setupModuleCollectionView()
+        setupTitleViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,49 +57,50 @@ class ShipDetailViewController: BasicViewController {
     
     // MARK: - UI setups
     private func setupTableView() {
+        let vs = view.safeAreaLayoutGuide
+        
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        tableView.fillSuperviewByConstraint()
+        tableView.addConstraint(vs.leftAnchor, vs.topAnchor, vs.rightAnchor, vs.bottomAnchor)
         tableView.backgroundColor = .clear
 //        tableView.separatorStyle = .none
         tableView.register(ShipDetailTableCell.self, forCellReuseIdentifier: tableCellId)
     }
     
-    private func setupTitleImageViews() {
+    private func setupTitleViews() {
         let vs = view.safeAreaLayoutGuide
         
         flagBackgroundImageView.alpha = 0.56
-        flagBackgroundImageView.contentMode = .scaleToFill
+        flagBackgroundImageView.contentMode = .scaleAspectFill
+        flagBackgroundImageViewH = (426 / 694) * view.bounds.width // flag image size = 426x694
         view.addSubview(flagBackgroundImageView)
         flagBackgroundImageView.addConstraint(vs.leftAnchor, nil, vs.rightAnchor, nil)
-        flagBackgroundImageViewTopConstraint = flagBackgroundImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+        flagBackgroundImageViewTopConstraint = flagBackgroundImageView.topAnchor.constraint(equalTo: vs.topAnchor, constant: 0)
         flagBackgroundImageViewTopConstraint?.isActive = true
-        flagBackgroundImageViewH = (426 / 694) * view.bounds.width // flag image size = 426x694
         flagBackgroundImageViewHeighConstraint = flagBackgroundImageView.heightAnchor.constraint(equalToConstant: flagBackgroundImageViewH)
         flagBackgroundImageViewHeighConstraint?.isActive = true
         
-        shipImageView.contentMode = .scaleAspectFit
+        shipImageView.contentMode = .scaleAspectFill
         view.addSubview(shipImageView)
         shipImageView.addConstraint(flagBackgroundImageView.leftAnchor, flagBackgroundImageView.topAnchor, flagBackgroundImageView.rightAnchor, flagBackgroundImageView.bottomAnchor)
         
+        let contourBottomMargin: CGFloat = 6
         contourImageView.contentMode = .scaleAspectFit
         contourImageView.backgroundColor = UIColor.WowsTheme.gradientBlueLight
         view.addSubview(contourImageView)
-        contourImageView.addConstraint(vs.leftAnchor, flagBackgroundImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: contourImageViewH)
+        contourImageView.addConstraint(vs.leftAnchor, flagBackgroundImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: contourBottomMargin, width: 0, height: contourImageViewH - contourBottomMargin)
         
         tableViewOffsetY = flagBackgroundImageViewH + contourImageViewH + moduleCollectionViewH
         tableView.contentInset = UIEdgeInsets(top: tableViewOffsetY, left: 0, bottom: 0, right: 0)
         tableView.setContentOffset(CGPoint(x: 0, y: -tableViewOffsetY), animated: false)
-    }
-    
-    private func setupModuleCollectionView() {
-        let vs = view.safeAreaLayoutGuide
+        
+        moduleCollectionView.backgroundColor = .clear
         moduleCollectionView.register(ModuleCollectionCell.self, forCellWithReuseIdentifier: moduleCellId)
         moduleCollectionView.dataSource = self
         moduleCollectionView.delegate = self
         view.addSubview(moduleCollectionView)
-        moduleCollectionView.addConstraint(vs.leftAnchor, contourImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: moduleCollectionViewH)
+        moduleCollectionView.addConstraint(vs.leftAnchor, contourImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: contourBottomMargin, right: 0, bottom: 0, width: 0, height: moduleCollectionViewH)
     }
     
     private func setupTableViewDataSource() {
@@ -126,7 +126,7 @@ class ShipDetailViewController: BasicViewController {
         }
         self.title = s.name ?? ""
         flagBackgroundImageView.image = s.nationEnum.flag(isBackgroud: true)
-        if let url = URL(string: s.imagesStruct?.medium ?? "") {
+        if let url = URL(string: s.imagesStruct?.large ?? "") {
             shipImageView.af_setImage(withURL: url)
         }
         if let url = URL(string: s.imagesStruct?.contour ?? "") {
@@ -141,8 +141,12 @@ extension ShipDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.tableView {
             let y = scrollView.contentOffset.y
-            if y < 0 { // hide title image
+            if y < -tableViewOffsetY {
+                flagBackgroundImageViewTopConstraint?.constant = 0
+                flagBackgroundImageViewHeighConstraint?.constant = -y - contourImageViewH - moduleCollectionViewH
+            } else if y < 0 { // hide title image
                 flagBackgroundImageViewTopConstraint?.constant = -(tableViewOffsetY + y)
+                flagBackgroundImageViewHeighConstraint?.constant = flagBackgroundImageViewH
             } else {
                 flagBackgroundImageViewTopConstraint?.constant = -tableViewOffsetY
             }
@@ -178,7 +182,7 @@ extension ShipDetailViewController: UICollectionViewDataSource {
 extension ShipDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w: CGFloat = (view.frame.width - 20) / CGFloat(moduleUpgradeSlotsCount)
+        let w: CGFloat = (view.frame.width - 100) / CGFloat(moduleUpgradeSlotsCount)
         return CGSize(width: w, height: w)
     }
 }
