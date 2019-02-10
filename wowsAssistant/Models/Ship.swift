@@ -90,9 +90,12 @@ struct Hull: Unboxable {
         atba_barrels = (try? unboxer.unbox(key: ShipInfoKeyInDB.atba_barrels.rawValue)) ?? 0
     }
     
-    // TODO: use L() for name Strings
+    /**
+     * [Health, Range, Artillery, Secondary, Anti-air, Planes amount]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
+        // TODO: use L() for name Strings
         p.append(Pair("Health", health))
         p.append(Pair("Range", range.getDescription()))
         p.append(Pair("Artillery barrels", artillery_barrels))
@@ -118,6 +121,9 @@ struct Mobility: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [Rudder shift time, turning radius, max speed]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Rudder shift time", rudder_time))
@@ -142,6 +148,9 @@ struct Atbas: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [Secondary slots]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Distance", distance))
@@ -175,6 +184,9 @@ struct AtbasSlotModel: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [Damage, burn%, shot delay, bullet speed, bullet mass, gun rate]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("\(type) - \(name)", ""))
@@ -212,12 +224,16 @@ struct Artillery: Unboxable {
     }
     
     // TODO: use L() for name Strings
-    /// ⚠️ this only giving details, Summation is in Ship.weaponry.artillery
+    /**
+     * ⚠️ this only giving details, Summation is in Ship.weaponry.artillery
+     * [Shot delay, 180r time, firing range, max dispersion]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         for shell in shells {
             p.append(contentsOf: shell.value.getNameAndValuePairs())
         }
+        p.append(Pair("Gun rate", gun_rate))
         p.append(Pair("Shot delay", shot_delay))
         p.append(Pair("180 rotation time", rotation_time))
         p.append(Pair("Firing range", distance))
@@ -225,7 +241,6 @@ struct Artillery: Unboxable {
         for slot in slots {
             p.append(contentsOf: slot.value.getNameAndValuePairs())
         }
-        p.append(Pair("Gun rate", gun_rate))
         return p
     }
     
@@ -249,6 +264,9 @@ struct Shell: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [bullet speed, shell weight, chance of fire on target, maximun damage]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("\(type) - \(name)", ""))
@@ -271,6 +289,7 @@ struct ArtillerySlot: Unboxable {
         guns = (try? unboxer.unbox(key: ShipInfoKeyInDB.guns.rawValue)) ?? 0
     }
     
+    /// sloats: [name, x guns]
     func getNameAndValuePairs() -> [Pair] {
         return [Pair("\(name)", "x\(guns)")]
     }
@@ -290,6 +309,9 @@ struct FireControl: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [firing range, extension]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Firing range", distance))
@@ -313,6 +335,9 @@ struct Weaponry: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [artillery, torpedoes, aa guns, aircraft]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Artillery", artillery))
@@ -335,6 +360,9 @@ struct Concealment: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [detectability range, air detectability range]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Detectability Range", detect_distance_by_ship))
@@ -372,6 +400,9 @@ struct Armour: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [Hit points, armour, gun casemate, citadel, armored deck, forward and after ends, torp protect flooding, damage reduction]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Hit points", health))
@@ -402,6 +433,9 @@ struct AntiAircraft: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [Effectiveness]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Effectiveness", defense))
@@ -428,6 +462,9 @@ struct AntiAircraftSlot: Unboxable {
     }
     
     // TODO: use L() for name Strings
+    /**
+     * [Firing range, name, avgDmg, Caliber]
+     */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Firing range", "\(distance) km"))

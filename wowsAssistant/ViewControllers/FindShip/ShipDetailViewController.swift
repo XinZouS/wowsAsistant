@@ -104,7 +104,7 @@ class ShipDetailViewController: BasicViewController {
     }
     
     private func setupTableViewDataSource() {
-        guard let ship = shipInfo?.default_profile else {
+        guard let ship = shipInfo?.default_profile, let weaponarys = ship.weaponry?.getNameAndValuePairs() else {
             DLog("[ERROR] ShipDetailViewController: shipInfo is nil, you should always set it before present VC!")
             return
         }
@@ -113,7 +113,51 @@ class ShipDetailViewController: BasicViewController {
             tableContentDataSource.append(survDetail)
         }
         if let hull = ship.hull {
+            tableContentDataSource.append(hull.getNameAndValuePairs())
+        }
+        
+        if let artillerySum = weaponarys.first {
+            tableSectionDataSource.append(artillerySum)
+            if let fireControl = ship.fire_control { // [firing range, extension]
+                tableContentDataSource.append(fireControl.getNameAndValuePairs())
+            }
+            if let artillery = ship.artillery { // [.., [Shell], [ArtillerySlot], ..]
+                tableContentDataSource.append(artillery.getNameAndValuePairs())
+            }
+            if let secondary = ship.atbas { // Atbas
+                tableContentDataSource.append(secondary.getNameAndValuePairs())
+            }
+        }
+        
+        if weaponarys.count >= 2 {
+            let torpedoes = weaponarys[1]
+            tableSectionDataSource.append(torpedoes)
             
+        }
+        
+        if weaponarys.count >= 3 {
+            let aaGuns = weaponarys[2]
+            tableSectionDataSource.append(aaGuns)
+            
+        }
+        
+        if weaponarys.count == 4 {
+            let aircraft = weaponarys[3]
+            tableSectionDataSource.append(aircraft)
+            
+        }
+        
+        if let mobility = ship.mobility {
+            tableSectionDataSource.append(mobility.getSummationDescription())
+            if let engine = ship.engine {
+                tableContentDataSource.append(engine.getNameAndValuePairs())
+            }
+            tableContentDataSource.append(mobility.getNameAndValuePairs())
+        }
+        
+        if let concealment = ship.concealment {
+            tableSectionDataSource.append(concealment.getSummationDescription())
+            tableContentDataSource.append(concealment.getNameAndValuePairs())
         }
         
     }
