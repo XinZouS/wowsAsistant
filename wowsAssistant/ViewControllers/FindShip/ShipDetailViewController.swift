@@ -23,6 +23,7 @@ class ShipDetailViewController: BasicViewController {
     fileprivate let contourImageViewH: CGFloat = 60
     fileprivate let contourImageView = UIImageView()
     // collectionView
+    fileprivate var moduleDataSource: [Int] = [] // ???????
     fileprivate let moduleCellId = "moduleCellId"
     fileprivate let moduleCollectionViewH: CGFloat = 160
     fileprivate let moduleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())

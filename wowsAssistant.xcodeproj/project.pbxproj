@@ -11,6 +11,8 @@
 		66578B1421F1407A0096660C /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1321F1407A0096660C /* Airplane.swift */; };
 		66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1721F22CCC0096660C /* ShipInfo.swift */; };
 		66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */; };
+		66DEDCE72211FE2A00278049 /* ShipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE62211FE2A00278049 /* ShipViewModel.swift */; };
+		66DEDCE9221205EB00278049 /* Consumable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE8221205EB00278049 /* Consumable.swift */; };
 		66ED358921F770A600D493D9 /* DBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358821F770A600D493D9 /* DBKeys.swift */; };
 		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
@@ -50,6 +52,8 @@
 		66DEDCE2220F75AB00278049 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		66DEDCE3220F75AB00278049 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailHeaderView.swift; sourceTree = "<group>"; };
+		66DEDCE62211FE2A00278049 /* ShipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipViewModel.swift; sourceTree = "<group>"; };
+		66DEDCE8221205EB00278049 /* Consumable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consumable.swift; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -236,7 +240,9 @@
 				66ED359F21FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift */,
 				66578B1721F22CCC0096660C /* ShipInfo.swift */,
 				66F0E39B21EBFE5C003D1023 /* Ship.swift */,
+				66DEDCE62211FE2A00278049 /* ShipViewModel.swift */,
 				66578B1321F1407A0096660C /* Airplane.swift */,
+				66DEDCE8221205EB00278049 /* Consumable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				66ED359A21FA316D00D493D9 /* FindShipCollectionsCells.swift in Sources */,
 				66ED35A321FE71DE00D493D9 /* PersistenceManager.swift in Sources */,
 				66ED359621FA151900D493D9 /* UserDefaults++.swift in Sources */,
+				66DEDCE9221205EB00278049 /* Consumable.swift in Sources */,
 				66ED35AF2203EB4500D493D9 /* ShipDetailTableCell.swift in Sources */,
 				66ED35A922038FD700D493D9 /* ShipDetailViewController.swift in Sources */,
 				66F0E38721EBE131003D1023 /* GlobalVariable.swift in Sources */,
@@ -398,6 +405,7 @@
 				66F0E38121EAA50A003D1023 /* Passwords.swift in Sources */,
 				66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */,
 				66ED35A521FEBED700D493D9 /* ShipInfoBasicManager.swift in Sources */,
+				66DEDCE72211FE2A00278049 /* ShipViewModel.swift in Sources */,
 				66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */,
 				66F0E37E21EAA41B003D1023 /* UIView++.swift in Sources */,
 				66F0E39321EBEAC4003D1023 /* LanguageSelectorViewController.swift in Sources */,

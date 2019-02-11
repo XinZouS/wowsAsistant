@@ -28,6 +28,7 @@ final class ApiServers: NSObject {
         case page_no = "page_no"
         case nation = "nation"
         case fields = "fields"
+        case consumableId = "consumable_id"
         
         case meta = "meta"
         case data = "data"
@@ -189,6 +190,41 @@ final class ApiServers: NSObject {
                 return
             }
             completion()
+        }
+    }
+    
+    // https://api.worldofwarships.com/wows/encyclopedia/consumables/?application_id=a604db0355085bac597c209b459fd0fb&consumable_id=4275228592%2C+4281520048
+    func getConsumable(realm: ServerRealm = .na, ids: [Int], completion: @escaping(([Consumable]?) -> Void)) {
+        if ids.count == 0 { return }
+        var params: [String:Any] = [:]
+        params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
+        
+        var idsStr = "\(ids[0])"
+        for i in 1..<ids.count {
+            idsStr = "\(idsStr)%2C+\(ids[i])"
+        }
+        params[ServerKey.consumableId.rawValue] = idsStr
+        
+        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/consumables/"
+        
+        getDataFromWows(route, parameters: params) { (dictionary, error) in
+            var consumables: [Consumable] = []
+            guard let dict = dictionary else {
+                completion(consumables)
+                return
+            }
+            for pair in dict {
+                if let getDict = pair.value as? [String:Any] {
+                    do {
+                        let getConsumable: Consumable = try unbox(dictionary: getDict)
+                        consumables.append(getConsumable)
+                        
+                    } catch let error as NSError {
+                        DLog("[ERROR] unboxing Consumable from list failed: \(error)")
+                    }
+                }
+            }
+            completion(consumables)
         }
     }
     

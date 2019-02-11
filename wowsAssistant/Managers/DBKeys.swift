@@ -187,5 +187,9 @@ enum ShipInfoKeyInDB: String {
     case bomb_burn_probability = "bomb_burn_probability"
     case accuracy = "accuracy"
     
-    
+    // Consumables
+    case consumableId = "consumable_id"
+    case profile = "profile"
+    case image = "image"
+    case value = "value"
 }
