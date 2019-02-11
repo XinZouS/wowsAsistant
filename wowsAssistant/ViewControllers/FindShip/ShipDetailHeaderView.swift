@@ -56,9 +56,13 @@ class ShipDetailHeaderView: UIView {
         valueBarEndLine.addConstraint(valueBar.rightAnchor, valueBar.topAnchor, nil, valueBar.bottomAnchor, left: 0, top: 0, right: 0, bottom: 0, width: 2, height: 0)
         
         let margin: CGFloat = 10
+        expandButtonImageView.image = #imageLiteral(resourceName: "arrow_white_right")
         expandButtonImageView.contentMode = .scaleAspectFit
         addSubview(expandButtonImageView)
-        expandButtonImageView.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: margin, top: 0, right: 0, bottom: 0, width: viewH, height: viewH)
+        expandButtonImageView.addConstraint(leftAnchor, nil, nil, nil, left: margin, top: 0, right: 0, bottom: 0, width: margin, height: margin)
+        expandButtonImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        let rotation = CGAffineTransform(rotationAngle: CGFloat.pi * 0.5)
+        self.expandButtonImageView.transform = rotation
         
         nameLabel.textColor = .white
         nameLabel.textAlignment = .left
@@ -76,7 +80,7 @@ class ShipDetailHeaderView: UIView {
         
         expandButton.addTarget(self, action: #selector(arrowButtonTapped), for: .touchUpInside)
         addSubview(expandButton)
-        expandButton.fillSuperviewByConstraint()
+        expandButton.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: viewH)
     }
     
     func updateUI() {
@@ -96,8 +100,11 @@ class ShipDetailHeaderView: UIView {
         isExpanded = !isExpanded
         delegate?.expandSection(isExpanded, section: section)
         
-        self.valueBarHightConstraint?.constant = self.isExpanded ? self.viewH : 5
+        valueBarHightConstraint?.constant = isExpanded ? viewH : 5
         UIView.animate(withDuration: 0.6, animations: { [unowned self] in
+            let degree: CGFloat = self.isExpanded ? 90 : 0
+            let rotation = CGAffineTransform(rotationAngle: CGFloat.pi * degree / 180)
+            self.expandButtonImageView.transform = rotation
             self.layoutIfNeeded()
             
         }) { [unowned self] (finished) in
