@@ -114,7 +114,10 @@ class ShipDetailHeaderView: UIView {
         
         valueBarHightConstraint?.constant = isExpanded ? viewH : valueBarHightCollected
         UIView.animate(withDuration: 0.6, animations: { [weak self] in
-            self?.rotateUpdateExpandButton()
+            let degree: CGFloat = (self?.isExpanded ?? false) ? 90 : 0
+            let rotation = CGAffineTransform(rotationAngle: CGFloat.pi * degree / 180)
+            self?.expandButtonImageView.transform = rotation
+            self?.layoutIfNeeded()
             
         }) { [weak self] (finished) in
             self?.isAllowAnimate = finished
