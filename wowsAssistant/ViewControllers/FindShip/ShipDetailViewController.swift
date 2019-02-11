@@ -23,11 +23,11 @@ class ShipDetailViewController: BasicViewController {
     fileprivate let contourImageViewH: CGFloat = 60
     fileprivate let contourImageView = UIImageView()
     // collectionView
-    fileprivate var moduleDataSource: [Int] = [] // ???????
+    fileprivate var moduleDataSource: [[Consumable]] = []
     fileprivate let moduleCellId = "moduleCellId"
     fileprivate let moduleCollectionViewH: CGFloat = 160
     fileprivate let moduleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    fileprivate let moduleUpgradeSlotsCount: Int = 6
+    fileprivate let collectionSideMargin = UIScreen.main.bounds.width / 6
     // tableView
     fileprivate var tableDataSource: [ShipViewModel] = []
     fileprivate let tableCellId = "tableCellId"
@@ -35,12 +35,14 @@ class ShipDetailViewController: BasicViewController {
     
     
     // MARK: - View cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTableView()
         setupTableViewDataSource()
         setupTitleViews()
+        setupCollectionViewDataSource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +57,9 @@ class ShipDetailViewController: BasicViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    
     // MARK: - UI setups
+    
     private func setupTableView() {
         let vs = view.safeAreaLayoutGuide
         
@@ -96,12 +100,19 @@ class ShipDetailViewController: BasicViewController {
         tableView.setContentOffset(CGPoint(x: 0, y: -tableViewOffsetY), animated: false)
         
         moduleCollectionView.backgroundColor = .clear
-        moduleCollectionView.isScrollEnabled = false
+//        moduleCollectionView.isScrollEnabled = false
         moduleCollectionView.register(ModuleCollectionCell.self, forCellWithReuseIdentifier: moduleCellId)
         moduleCollectionView.dataSource = self
         moduleCollectionView.delegate = self
         view.addSubview(moduleCollectionView)
         moduleCollectionView.addConstraint(vs.leftAnchor, contourImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: contourBottomMargin, right: 0, bottom: 0, width: 0, height: moduleCollectionViewH)
+        let moduleMargin: CGFloat = 10
+        moduleCollectionView.contentInset = UIEdgeInsets(top: moduleMargin, left: collectionSideMargin, bottom: moduleMargin, right: collectionSideMargin)
+        if let layout = moduleCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 15
+        }
     }
     
     private func setupTableViewDataSource() {
@@ -180,7 +191,30 @@ class ShipDetailViewController: BasicViewController {
             tableDataSource.append(model)
             model.contentPairs.append(contentsOf: concealment.getNameAndValuePairs())
         }
+    }
+    
+    private func setupCollectionViewDataSource() {
+        guard let consumableIds = shipInfo?.upgrades, consumableIds.count > 0 else { return }
         
+        let reallm = UserDefaults.getServerRelam()
+        ApiServers.shared.getConsumable(realm: reallm, ids: consumableIds) { [weak self] (consumables) in
+            if var cons = consumables {
+                cons.sort(by: < )
+                // grouping by price for collectionView sections
+                let groupDictionary = Dictionary(grouping: cons, by: { (con) -> Int in
+                    return con.priceCredit
+                })
+                let keys: [Int] = Array(groupDictionary.keys).sorted()
+                for k in keys {
+                    if let dict = groupDictionary[k] {
+                        self?.moduleDataSource.append(dict)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self?.moduleCollectionView.reloadData()
+                }
+            }
+        }
     }
     
     
@@ -226,16 +260,21 @@ extension ShipDetailViewController: UIScrollViewDelegate {
 extension ShipDetailViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3 //moduleUpgradeSlotsCount
+        return moduleDataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        if section < moduleDataSource.count {
+            return moduleDataSource[section].count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = moduleCollectionView.dequeueReusableCell(withReuseIdentifier: moduleCellId, for: indexPath) as? ModuleCollectionCell {
-            cell.backgroundColor = .yellow
+            if indexPath.section < moduleDataSource.count, indexPath.item < moduleDataSource[indexPath.section].count {
+                cell.consumable = moduleDataSource[indexPath.section][indexPath.item]
+            }
             return cell
         }
         return UICollectionViewCell(frame: .zero)
@@ -249,7 +288,7 @@ extension ShipDetailViewController: UICollectionViewDataSource {
 extension ShipDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w: CGFloat = (view.frame.width - 100) / CGFloat(moduleUpgradeSlotsCount)
+        let w: CGFloat = (view.frame.width - (2 * collectionSideMargin) - CGFloat(moduleDataSource.count * 5)) / 6
         return CGSize(width: w, height: w)
     }
 }

@@ -42,6 +42,21 @@ struct Consumable: Unboxable {
     
 }
 
+extension Consumable: Comparable {
+    
+    static func == (a: Consumable, b: Consumable) -> Bool {
+        return a.priceGold == b.priceGold && a.priceCredit == b.priceCredit
+    }
+    
+    static func < (a: Consumable, b: Consumable) -> Bool {
+        if a.priceGold > 0 || b.priceGold > 0 {
+            return a.priceGold < b.priceGold
+        }
+        return a.priceCredit < b.priceCredit
+    }
+    
+}
+
 
 struct ConsumableProfile {
     let name: String
