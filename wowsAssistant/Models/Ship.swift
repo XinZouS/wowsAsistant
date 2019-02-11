@@ -10,7 +10,7 @@ import Foundation
 import Unbox
 
 class ShipViewModel {
-    var isExpanded = false
+    var isExpanded = true
     var sectionPair: Pair?
     var contentPairs: [Pair] = []
     

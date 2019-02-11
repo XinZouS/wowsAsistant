@@ -263,7 +263,7 @@ extension ShipDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section < tableDataSource.count {
-            return tableDataSource[section].contentPairs.count
+            return tableDataSource[section].isExpanded ? tableDataSource[section].contentPairs.count : 0
         }
         return 0
     }
@@ -295,6 +295,7 @@ extension ShipDetailViewController: UITableViewDelegate {
         
         let header = ShipDetailHeaderView()
         header.delegate = self
+        header.section = section
         header.pair = tableDataSource[section].sectionPair
         header.updateUI()
         return header
@@ -304,8 +305,20 @@ extension ShipDetailViewController: UITableViewDelegate {
 
 extension ShipDetailViewController: ShipDetailHeaderDelegate {
     
-    func expandSection(_ isExpand: Bool) {
-        // TODO: !!
+    func expandSection(_ isExpand: Bool, section: Int) {
+        if section >= tableDataSource.count { return }
+        
+        tableDataSource[section].isExpanded = isExpand
+        
+        var idxPathes: [IndexPath] = []
+        for i in tableDataSource[section].contentPairs.indices {
+            idxPathes.append(IndexPath(row: i, section: section))
+        }
+        if isExpand {
+            tableView.insertRows(at: idxPathes, with: .fade)
+        } else {
+            tableView.deleteRows(at: idxPathes, with: .fade)
+        }
     }
     
 }
