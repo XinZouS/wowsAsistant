@@ -25,9 +25,8 @@ class ShipDetailViewController: BasicViewController {
     // collectionView
     fileprivate var moduleDataSource: [[Consumable]] = []
     fileprivate let moduleCellId = "moduleCellId"
-    fileprivate let moduleCollectionViewH: CGFloat = 160
+    fileprivate let moduleCollectionViewH: CGFloat = 140
     fileprivate let moduleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    fileprivate let collectionSideMargin = UIScreen.main.bounds.width / 6
     // tableView
     fileprivate var tableDataSource: [ShipViewModel] = []
     fileprivate let tableCellId = "tableCellId"
@@ -89,29 +88,28 @@ class ShipDetailViewController: BasicViewController {
         view.addSubview(shipImageView)
         shipImageView.addConstraint(flagBackgroundImageView.leftAnchor, flagBackgroundImageView.topAnchor, flagBackgroundImageView.rightAnchor, flagBackgroundImageView.bottomAnchor)
         
-        let contourBottomMargin: CGFloat = 6
+        let margin: CGFloat = 6
         contourImageView.contentMode = .scaleAspectFit
         contourImageView.backgroundColor = UIColor.WowsTheme.gradientBlueLight
         view.addSubview(contourImageView)
-        contourImageView.addConstraint(vs.leftAnchor, flagBackgroundImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: contourBottomMargin, width: 0, height: contourImageViewH - contourBottomMargin)
+        contourImageView.addConstraint(vs.leftAnchor, flagBackgroundImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: margin, width: 0, height: contourImageViewH - margin)
         
         tableViewOffsetY = flagBackgroundImageViewH + contourImageViewH + moduleCollectionViewH
         tableView.contentInset = UIEdgeInsets(top: tableViewOffsetY, left: 0, bottom: 0, right: 0)
         tableView.setContentOffset(CGPoint(x: 0, y: -tableViewOffsetY), animated: false)
         
         moduleCollectionView.backgroundColor = .clear
-//        moduleCollectionView.isScrollEnabled = false
         moduleCollectionView.register(ModuleCollectionCell.self, forCellWithReuseIdentifier: moduleCellId)
         moduleCollectionView.dataSource = self
         moduleCollectionView.delegate = self
         view.addSubview(moduleCollectionView)
-        moduleCollectionView.addConstraint(vs.leftAnchor, contourImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: contourBottomMargin, right: 0, bottom: 0, width: 0, height: moduleCollectionViewH)
-        let moduleMargin: CGFloat = 10
-        moduleCollectionView.contentInset = UIEdgeInsets(top: moduleMargin, left: collectionSideMargin, bottom: moduleMargin, right: collectionSideMargin)
+        moduleCollectionView.addConstraint(vs.leftAnchor, contourImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: margin, right: 0, bottom: 0, width: 0, height: moduleCollectionViewH)
+        let sideMargin: CGFloat = view.bounds.width / 10
+        moduleCollectionView.contentInset = UIEdgeInsets(top: margin, left: sideMargin, bottom: margin, right: sideMargin)
         if let layout = moduleCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
             layout.minimumInteritemSpacing = 0
-            layout.minimumLineSpacing = 15
+            layout.minimumLineSpacing = 0
         }
     }
     
@@ -288,8 +286,12 @@ extension ShipDetailViewController: UICollectionViewDataSource {
 extension ShipDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w: CGFloat = (view.frame.width - (2 * collectionSideMargin) - CGFloat(moduleDataSource.count * 5)) / 6
+        let w: CGFloat = (moduleCollectionViewH - 20) / 3
         return CGSize(width: w, height: w)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
     }
 }
 
