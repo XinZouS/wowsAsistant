@@ -14,7 +14,11 @@ protocol ShipDetailHeaderDelegate: class {
 
 class ShipDetailHeaderView: UIView {
     
-    var pair: Pair?
+    var pair: Pair? {
+        didSet {
+            updateUI()
+        }
+    }
     var section = 0
     var isExpanded = true
     weak var delegate: ShipDetailHeaderDelegate?
@@ -23,6 +27,7 @@ class ShipDetailHeaderView: UIView {
     private let nameLabel = UILabel()
     private let valueLabel = UILabel()
     private let valueBar = UIView()
+    private let valueBarHightCollected: CGFloat = 5
     private var valueBarHightConstraint: NSLayoutConstraint?
     private var valueBarWidthConstraint: NSLayoutConstraint?
     private let expandButtonImageView = UIImageView()
@@ -37,6 +42,12 @@ class ShipDetailHeaderView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        updateUI()
+    }
+    
     
     private func setupUI() {
         backgroundColor = UIColor.WowsTheme.gradientBlueDark
@@ -55,14 +66,13 @@ class ShipDetailHeaderView: UIView {
         addSubview(valueBarEndLine)
         valueBarEndLine.addConstraint(valueBar.rightAnchor, valueBar.topAnchor, nil, valueBar.bottomAnchor, left: 0, top: 0, right: 0, bottom: 0, width: 2, height: 0)
         
-        let margin: CGFloat = 10
         expandButtonImageView.image = #imageLiteral(resourceName: "arrow_white_right")
         expandButtonImageView.contentMode = .scaleAspectFit
         addSubview(expandButtonImageView)
+        let margin: CGFloat = 10
         expandButtonImageView.addConstraint(leftAnchor, nil, nil, nil, left: margin, top: 0, right: 0, bottom: 0, width: margin, height: margin)
         expandButtonImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        let rotation = CGAffineTransform(rotationAngle: CGFloat.pi * 0.5)
-        self.expandButtonImageView.transform = rotation
+        rotateUpdateExpandButton()
         
         nameLabel.textColor = .white
         nameLabel.textAlignment = .left
@@ -80,10 +90,10 @@ class ShipDetailHeaderView: UIView {
         
         expandButton.addTarget(self, action: #selector(arrowButtonTapped), for: .touchUpInside)
         addSubview(expandButton)
-        expandButton.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: viewH)
+        expandButton.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: 0)
     }
     
-    func updateUI() {
+    private func updateUI() {
         guard let p = pair else { return }
         nameLabel.text = p.title
         let valTxt = "\(p.value)"
@@ -91,6 +101,8 @@ class ShipDetailHeaderView: UIView {
         if let v = p.value as? Int {
             valueBarWidthConstraint?.constant = UIScreen.main.bounds.width * CGFloat(v) / 100
         }
+        valueBarHightConstraint?.constant = isExpanded ? viewH : valueBarHightCollected
+        rotateUpdateExpandButton()
     }
     
     @objc private func arrowButtonTapped() {
@@ -100,18 +112,23 @@ class ShipDetailHeaderView: UIView {
         isExpanded = !isExpanded
         delegate?.expandSection(isExpanded, section: section)
         
-        valueBarHightConstraint?.constant = isExpanded ? viewH : 5
-        UIView.animate(withDuration: 0.6, animations: { [unowned self] in
-            let degree: CGFloat = self.isExpanded ? 90 : 0
-            let rotation = CGAffineTransform(rotationAngle: CGFloat.pi * degree / 180)
-            self.expandButtonImageView.transform = rotation
-            self.layoutIfNeeded()
+        valueBarHightConstraint?.constant = isExpanded ? viewH : valueBarHightCollected
+        UIView.animate(withDuration: 0.6, animations: { [weak self] in
+            self?.rotateUpdateExpandButton()
             
-        }) { [unowned self] (finished) in
-            self.isAllowAnimate = finished
+        }) { [weak self] (finished) in
+            self?.isAllowAnimate = finished
         }
     }
     
+    private func rotateUpdateExpandButton() {
+        let degree: CGFloat = isExpanded ? 90 : 0
+        let rotation = CGAffineTransform(rotationAngle: CGFloat.pi * degree / 180)
+        expandButtonImageView.transform = rotation
+        DispatchQueue.main.async { [weak self] in
+            self?.layoutIfNeeded()
+        }
+    }
     
 }
 

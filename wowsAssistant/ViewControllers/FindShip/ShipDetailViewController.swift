@@ -322,9 +322,9 @@ extension ShipDetailViewController: UITableViewDataSource {
         return UITableViewCell(frame: .zero)
     }
     
-    
-    
 }
+
+
 
 extension ShipDetailViewController: UITableViewDelegate {
     
@@ -338,8 +338,8 @@ extension ShipDetailViewController: UITableViewDelegate {
         let header = ShipDetailHeaderView()
         header.delegate = self
         header.section = section
+        header.isExpanded = tableDataSource[section].isExpanded
         header.pair = tableDataSource[section].sectionPair
-        header.updateUI()
         return header
     }
     
