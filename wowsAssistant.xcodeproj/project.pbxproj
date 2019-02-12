@@ -14,6 +14,7 @@
 		66DEDCE72211FE2A00278049 /* ShipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE62211FE2A00278049 /* ShipViewModel.swift */; };
 		66DEDCE9221205EB00278049 /* Consumable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE8221205EB00278049 /* Consumable.swift */; };
 		66DEDCF122132AB800278049 /* wowsAssistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCF022132AB800278049 /* wowsAssistantTests.swift */; };
+		66DEDCF92213669000278049 /* UIImageView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCF82213669000278049 /* UIImageView++.swift */; };
 		66ED358921F770A600D493D9 /* DBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358821F770A600D493D9 /* DBKeys.swift */; };
 		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
@@ -68,6 +69,7 @@
 		66DEDCEE22132AB800278049 /* wowsAssistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wowsAssistantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DEDCF022132AB800278049 /* wowsAssistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wowsAssistantTests.swift; sourceTree = "<group>"; };
 		66DEDCF222132AB800278049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66DEDCF82213669000278049 /* UIImageView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView++.swift"; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				66ED359521FA151900D493D9 /* UserDefaults++.swift */,
 				66ED359721FA273200D493D9 /* UIButton++.swift */,
 				66ED35A6220219E500D493D9 /* UIAlertController++.swift */,
+				66DEDCF82213669000278049 /* UIImageView++.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				66F0E36B21EAA2C1003D1023 /* MainTabbarController.swift in Sources */,
 				66ED35A121FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift in Sources */,
 				66F0E36921EAA2C1003D1023 /* AppDelegate.swift in Sources */,
+				66DEDCF92213669000278049 /* UIImageView++.swift in Sources */,
 				66ED35AB2203AB3700D493D9 /* ModuleCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

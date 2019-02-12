@@ -19,17 +19,16 @@ extension UIColor {
     struct WowsTheme {
         static let buttonRedTop = #colorLiteral(red: 0.9903886914, green: 0.382309854, blue: 0.002325810259, alpha: 1)
         static let buttonRedBot = #colorLiteral(red: 0.8842617273, green: 0.1837858558, blue: 0, alpha: 1)
-        
         static let buttonGreenTop = #colorLiteral(red: 0.002993121278, green: 0.5853926539, blue: 0.5872872472, alpha: 1)
         static let buttonGreenBot = #colorLiteral(red: 0, green: 0.4165538549, blue: 0.4138219357, alpha: 1)
-        
         static let gradientBlueDark = #colorLiteral(red: 0.004686305299, green: 0.08442083746, blue: 0.1674652398, alpha: 1)
         static let gradientBlueLight = #colorLiteral(red: 0.09997541457, green: 0.2214729786, blue: 0.3295043409, alpha: 1)
         
         static let lineDarkBlue = #colorLiteral(red: 0.2062162139, green: 0.3627479374, blue: 0.5017203692, alpha: 1)
         static let lineCyan = #colorLiteral(red: 0.4664868116, green: 0.9307252765, blue: 0.9329747558, alpha: 1)
-        
-        static let creditGold = #colorLiteral(red: 0.8629978951, green: 0.7386520702, blue: 0.26842513, alpha: 1)
+        static let healthGreen = #colorLiteral(red: 0.2318279445, green: 0.9983095527, blue: 0.6857686043, alpha: 1)
+        static let healthGreenLight = #colorLiteral(red: 0.3109620035, green: 0.965440752, blue: 0.9983095527, alpha: 1)
+        static let creditGold = #colorLiteral(red: 0.9661414027, green: 0.5927311517, blue: 0.2713315705, alpha: 1)
     }
     
 }

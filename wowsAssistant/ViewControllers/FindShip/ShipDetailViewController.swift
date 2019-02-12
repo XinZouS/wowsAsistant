@@ -103,7 +103,7 @@ class ShipDetailViewController: BasicViewController {
         view.addSubview(shipTypeImageView)
         shipTypeImageView.addConstraint(flagBackgroundImageView.leftAnchor, flagBackgroundImageView.topAnchor, nil, nil, left: margin, top: 0, right: 0, bottom: 0, width: typeImgSz, height: typeImgSz)
         
-        shipTierLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        shipTierLabel.font = UIFont.boldSystemFont(ofSize: 20)
         shipTierLabel.textColor = .white
         shipTierLabel.textAlignment = .left
         view.addSubview(shipTierLabel)
@@ -271,7 +271,9 @@ class ShipDetailViewController: BasicViewController {
             shipImageView.af_setImage(withURL: url)
         }
         if let url = URL(string: s.imagesStruct?.contour ?? "") {
-            contourImageView.af_setImage(withURL: url)
+            contourImageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: .noTransition, runImageTransitionIfCached: false) { [weak self] (_) in
+                self?.contourImageView.setImageColor(color: UIColor.WowsTheme.healthGreenLight)
+            }
         }
         
         if let gold = shipInfo?.price_gold, gold > 0 {
