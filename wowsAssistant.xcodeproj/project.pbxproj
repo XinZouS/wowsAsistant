@@ -13,6 +13,7 @@
 		66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */; };
 		66DEDCE72211FE2A00278049 /* ShipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE62211FE2A00278049 /* ShipViewModel.swift */; };
 		66DEDCE9221205EB00278049 /* Consumable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE8221205EB00278049 /* Consumable.swift */; };
+		66DEDCF122132AB800278049 /* wowsAssistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCF022132AB800278049 /* wowsAssistantTests.swift */; };
 		66ED358921F770A600D493D9 /* DBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358821F770A600D493D9 /* DBKeys.swift */; };
 		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
@@ -46,6 +47,16 @@
 		66F0E39C21EBFE5C003D1023 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0E39B21EBFE5C003D1023 /* Ship.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		66DEDCF322132AB800278049 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66F0E35D21EAA2C1003D1023 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66F0E36421EAA2C1003D1023;
+			remoteInfo = wowsAssistant;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		66578B1321F1407A0096660C /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
 		66578B1721F22CCC0096660C /* ShipInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfo.swift; sourceTree = "<group>"; };
@@ -54,6 +65,9 @@
 		66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailHeaderView.swift; sourceTree = "<group>"; };
 		66DEDCE62211FE2A00278049 /* ShipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipViewModel.swift; sourceTree = "<group>"; };
 		66DEDCE8221205EB00278049 /* Consumable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consumable.swift; sourceTree = "<group>"; };
+		66DEDCEE22132AB800278049 /* wowsAssistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wowsAssistantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66DEDCF022132AB800278049 /* wowsAssistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wowsAssistantTests.swift; sourceTree = "<group>"; };
+		66DEDCF222132AB800278049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -94,6 +108,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		66DEDCEB22132AB800278049 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66F0E36221EAA2C1003D1023 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -105,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66DEDCEF22132AB800278049 /* wowsAssistantTests */ = {
+			isa = PBXGroup;
+			children = (
+				66DEDCF022132AB800278049 /* wowsAssistantTests.swift */,
+				66DEDCF222132AB800278049 /* Info.plist */,
+			);
+			path = wowsAssistantTests;
+			sourceTree = "<group>";
+		};
 		66ED358A21F7B9C200D493D9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				66F0E36721EAA2C1003D1023 /* wowsAssistant */,
+				66DEDCEF22132AB800278049 /* wowsAssistantTests */,
 				66F0E36621EAA2C1003D1023 /* Products */,
 				EF148A037CC866EAA6B7CE2A /* Pods */,
 				8A33720541C94428CB460CC5 /* Frameworks */,
@@ -147,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				66F0E36521EAA2C1003D1023 /* wowsAssistant.app */,
+				66DEDCEE22132AB800278049 /* wowsAssistantTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -267,6 +299,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		66DEDCED22132AB800278049 /* wowsAssistantTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66DEDCF522132AB800278049 /* Build configuration list for PBXNativeTarget "wowsAssistantTests" */;
+			buildPhases = (
+				66DEDCEA22132AB800278049 /* Sources */,
+				66DEDCEB22132AB800278049 /* Frameworks */,
+				66DEDCEC22132AB800278049 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66DEDCF422132AB800278049 /* PBXTargetDependency */,
+			);
+			name = wowsAssistantTests;
+			productName = wowsAssistantTests;
+			productReference = 66DEDCEE22132AB800278049 /* wowsAssistantTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		66F0E36421EAA2C1003D1023 /* wowsAssistant */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66F0E37A21EAA2C2003D1023 /* Build configuration list for PBXNativeTarget "wowsAssistant" */;
@@ -296,6 +346,10 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Xin Zou";
 				TargetAttributes = {
+					66DEDCED22132AB800278049 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 66F0E36421EAA2C1003D1023;
+					};
 					66F0E36421EAA2C1003D1023 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -317,11 +371,19 @@
 			projectRoot = "";
 			targets = (
 				66F0E36421EAA2C1003D1023 /* wowsAssistant */,
+				66DEDCED22132AB800278049 /* wowsAssistantTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		66DEDCEC22132AB800278049 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66F0E36321EAA2C1003D1023 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -386,6 +448,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		66DEDCEA22132AB800278049 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66DEDCF122132AB800278049 /* wowsAssistantTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66F0E36121EAA2C1003D1023 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,6 +498,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		66DEDCF422132AB800278049 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66F0E36421EAA2C1003D1023 /* wowsAssistant */;
+			targetProxy = 66DEDCF322132AB800278049 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		66F0E37421EAA2C2003D1023 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -451,6 +529,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		66DEDCF622132AB800278049 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6S4EWJH888;
+				INFOPLIST_FILE = wowsAssistantTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stevens.xinzou.wowsAssistantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wowsAssistant.app/wowsAssistant";
+			};
+			name = Debug;
+		};
+		66DEDCF722132AB800278049 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6S4EWJH888;
+				INFOPLIST_FILE = wowsAssistantTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stevens.xinzou.wowsAssistantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wowsAssistant.app/wowsAssistant";
+			};
+			name = Release;
+		};
 		66F0E37821EAA2C2003D1023 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -611,6 +729,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		66DEDCF522132AB800278049 /* Build configuration list for PBXNativeTarget "wowsAssistantTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66DEDCF622132AB800278049 /* Debug */,
+				66DEDCF722132AB800278049 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		66F0E36021EAA2C1003D1023 /* Build configuration list for PBXProject "wowsAssistant" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

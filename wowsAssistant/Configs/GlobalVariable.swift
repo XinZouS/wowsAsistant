@@ -171,19 +171,19 @@ func getFormattedString(_ int: Int) -> String {
     var rlt = ""
     var num = int
     var mod = 0
-    var countOfDigits = 1
-    var currentDec = 10
+    var countOfDigits = 0
+    let dec = 10
     
     while num > 0 {
-        mod = num % currentDec
-        if countOfDigits % 3 == 0 {
+        mod = num % dec
+        if countOfDigits > 0, countOfDigits % 3 == 0 {
             rlt = "\(mod),\(rlt)"
         } else {
             rlt = "\(mod)\(rlt)"
         }
         num -= mod
+        num = num / dec
         countOfDigits += 1
-        currentDec = currentDec * 10
     }
     return rlt
 }
