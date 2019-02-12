@@ -9,7 +9,7 @@
 import Foundation
 
 class ShipViewModel {
-    var isExpanded = true
+    var isExpanded = false
     var sectionPair: Pair?
     var contentPairs: [Pair] = []
     

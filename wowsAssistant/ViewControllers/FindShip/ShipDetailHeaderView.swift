@@ -20,7 +20,7 @@ class ShipDetailHeaderView: UIView {
         }
     }
     var section = 0
-    var isExpanded = true
+    var isExpanded = false
     weak var delegate: ShipDetailHeaderDelegate?
     
     private let viewH: CGFloat = 30
