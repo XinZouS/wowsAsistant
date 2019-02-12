@@ -40,7 +40,12 @@ class ShipDetailViewController: BasicViewController {
         
         setupTableView()
         setupTableViewDataSource()
-        setupTitleViews()
+        
+        setupFlagBackgroundImageView()
+        setupShipImageView()
+        setupContourImageView()
+        
+        setupModuleCollectionView()
         setupCollectionViewDataSource()
     }
     
@@ -71,9 +76,8 @@ class ShipDetailViewController: BasicViewController {
         tableView.register(ShipDetailTableCell.self, forCellReuseIdentifier: tableCellId)
     }
     
-    private func setupTitleViews() {
+    private func setupFlagBackgroundImageView() {
         let vs = view.safeAreaLayoutGuide
-        
         flagBackgroundImageView.alpha = 0.56
         flagBackgroundImageView.contentMode = .scaleAspectFill
         flagBackgroundImageViewH = (426 / 694) * view.bounds.width // flag image size = 426x694
@@ -83,11 +87,29 @@ class ShipDetailViewController: BasicViewController {
         flagBackgroundImageViewTopConstraint?.isActive = true
         flagBackgroundImageViewHeighConstraint = flagBackgroundImageView.heightAnchor.constraint(equalToConstant: flagBackgroundImageViewH)
         flagBackgroundImageViewHeighConstraint?.isActive = true
+    }
+    
+    private func setupShipImageView() {
+        let vs = view.safeAreaLayoutGuide
+        let shipTypeImageView = UIImageView()
+        
+        let shipTierLable = UILabel()
+        
+        let creditImageView = UIImageView()
+        
+        let creditLabel = UILabel()
+        
+        let xpImageView = UIImageView()
+        
+        let xpLabel = UILabel()
         
         shipImageView.contentMode = .scaleAspectFill
         view.addSubview(shipImageView)
         shipImageView.addConstraint(flagBackgroundImageView.leftAnchor, flagBackgroundImageView.topAnchor, flagBackgroundImageView.rightAnchor, flagBackgroundImageView.bottomAnchor)
-        
+    }
+    
+    private func setupContourImageView() {
+        let vs = view.safeAreaLayoutGuide
         let margin: CGFloat = 6
         contourImageView.contentMode = .scaleAspectFit
         contourImageView.backgroundColor = UIColor.WowsTheme.gradientBlueLight
@@ -97,7 +119,11 @@ class ShipDetailViewController: BasicViewController {
         tableViewOffsetY = flagBackgroundImageViewH + contourImageViewH + moduleCollectionViewH
         tableView.contentInset = UIEdgeInsets(top: tableViewOffsetY, left: 0, bottom: 0, right: 0)
         tableView.setContentOffset(CGPoint(x: 0, y: -tableViewOffsetY), animated: false)
-        
+    }
+    
+    private func setupModuleCollectionView() {
+        let vs = view.safeAreaLayoutGuide
+        let margin: CGFloat = 6
         moduleCollectionView.backgroundColor = .clear
         moduleCollectionView.register(ModuleCollectionCell.self, forCellWithReuseIdentifier: moduleCellId)
         moduleCollectionView.dataSource = self
@@ -339,7 +365,7 @@ extension ShipDetailViewController: UITableViewDelegate {
         header.delegate = self
         header.section = section
         header.isExpanded = tableDataSource[section].isExpanded
-        header.pair = tableDataSource[section].sectionPair
+        header.pair = tableDataSource[section].sectionPair // pair updat MUST after expanded setup;
         return header
     }
     
