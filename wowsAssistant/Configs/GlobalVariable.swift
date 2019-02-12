@@ -166,6 +166,28 @@ enum ShipType: String, CaseIterable {
     }
 }
 
+/// 66666666 -> 66,666,666
+func getFormattedString(_ int: Int) -> String {
+    var rlt = ""
+    var num = int
+    var mod = 0
+    var countOfDigits = 1
+    var currentDec = 10
+    
+    while num > 0 {
+        mod = num % currentDec
+        if countOfDigits % 3 == 0 {
+            rlt = "\(mod),\(rlt)"
+        } else {
+            rlt = "\(mod)\(rlt)"
+        }
+        num -= mod
+        countOfDigits += 1
+        currentDec = currentDec * 10
+    }
+    return rlt
+}
+
 // MARK: - Background images
 enum BackgroundImageUrl: String {
     case ships01 = "http://s1.1zoom.me/big3/55/World_Of_Warship_Ships_Eagles_Battleship_German_521573_2560x1600.jpg"

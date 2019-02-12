@@ -91,13 +91,38 @@ class ShipDetailViewController: BasicViewController {
     
     private func setupShipImageView() {
         let vs = view.safeAreaLayoutGuide
+        let margin: CGFloat = 20
+        let sz: CGFloat = 30
+        
         let shipTypeImageView = UIImageView()
+        shipTypeImageView.contentMode = .scaleAspectFit
+        flagBackgroundImageView.addSubview(shipTypeImageView)
+        shipTypeImageView.addConstraint(flagBackgroundImageView.leftAnchor, flagBackgroundImageView.topAnchor, nil, nil, left: margin, top: margin, right: 0, bottom: 0, width: sz, height: sz)
         
-        let shipTierLable = UILabel()
+        let shipTierLabel = UILabel()
+        shipTierLabel.textColor = .white
+        shipTierLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        shipTierLabel.textAlignment = .left
+        flagBackgroundImageView.addSubview(shipTierLabel)
+        shipTierLabel.addConstraint(shipTypeImageView.rightAnchor, nil, nil, nil, left: margin, top: 0, right: 0, bottom: 0)
+        shipTierLabel.centerYAnchor.constraint(equalTo: shipTypeImageView.centerYAnchor).isActive = true
         
+        let creditImageSize: CGFloat = 25
         let creditImageView = UIImageView()
+        flagBackgroundImageView.addSubview(creditImageView)
+        creditImageView.addConstraint(nil, flagBackgroundImageView.topAnchor, flagBackgroundImageView.rightAnchor, nil, left: 0, top: 10, right: margin, bottom: 0, width: creditImageSize, height: creditImageSize)
         
         let creditLabel = UILabel()
+        creditLabel.textColor = .white
+        flagBackgroundImageView.addSubview(creditLabel)
+        
+        if let gold = shipInfo?.price_gold, gold > 0 {
+            creditImageView.image = #imageLiteral(resourceName: "coins_doubloon")
+            creditLabel.text = "\(gold)"
+        } else if let credit = shipInfo?.price_credit {
+            creditImageView.image = #imageLiteral(resourceName: "coins_silver")
+            creditLabel.text = "\(credit)"
+        }
         
         let xpImageView = UIImageView()
         
