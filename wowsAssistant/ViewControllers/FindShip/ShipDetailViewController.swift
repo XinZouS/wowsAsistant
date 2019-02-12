@@ -19,6 +19,11 @@ class ShipDetailViewController: BasicViewController {
     fileprivate let flagBackgroundImageView = UIImageView()
     fileprivate var flagBackgroundImageViewTopConstraint: NSLayoutConstraint?
     fileprivate var flagBackgroundImageViewHeighConstraint: NSLayoutConstraint?
+    // ship basic info views
+    fileprivate let shipTypeImageView = UIImageView()
+    fileprivate let shipTierLabel = UILabel()
+    fileprivate let creditImageView = UIImageView()
+    fileprivate let creditLabel = UILabel()
     fileprivate let shipImageView = UIImageView()
     fileprivate let contourImageViewH: CGFloat = 60
     fileprivate let contourImageView = UIImageView()
@@ -90,43 +95,31 @@ class ShipDetailViewController: BasicViewController {
     }
     
     private func setupShipImageView() {
-        let vs = view.safeAreaLayoutGuide
+        let lineSpace: CGFloat = 10
         let margin: CGFloat = 20
-        let sz: CGFloat = 30
+        let typeImgSz: CGFloat = 36
         
-        let shipTypeImageView = UIImageView()
         shipTypeImageView.contentMode = .scaleAspectFit
-        flagBackgroundImageView.addSubview(shipTypeImageView)
-        shipTypeImageView.addConstraint(flagBackgroundImageView.leftAnchor, flagBackgroundImageView.topAnchor, nil, nil, left: margin, top: margin, right: 0, bottom: 0, width: sz, height: sz)
+        view.addSubview(shipTypeImageView)
+        shipTypeImageView.addConstraint(flagBackgroundImageView.leftAnchor, flagBackgroundImageView.topAnchor, nil, nil, left: margin, top: 0, right: 0, bottom: 0, width: typeImgSz, height: typeImgSz)
         
-        let shipTierLabel = UILabel()
+        shipTierLabel.font = UIFont.boldSystemFont(ofSize: 22)
         shipTierLabel.textColor = .white
-        shipTierLabel.font = UIFont.boldSystemFont(ofSize: 16)
         shipTierLabel.textAlignment = .left
-        flagBackgroundImageView.addSubview(shipTierLabel)
-        shipTierLabel.addConstraint(shipTypeImageView.rightAnchor, nil, nil, nil, left: margin, top: 0, right: 0, bottom: 0)
+        view.addSubview(shipTierLabel)
+        shipTierLabel.addConstraint(shipTypeImageView.rightAnchor, nil, nil, nil, left: lineSpace, top: 0, right: 0, bottom: 0)
         shipTierLabel.centerYAnchor.constraint(equalTo: shipTypeImageView.centerYAnchor).isActive = true
         
-        let creditImageSize: CGFloat = 25
-        let creditImageView = UIImageView()
-        flagBackgroundImageView.addSubview(creditImageView)
-        creditImageView.addConstraint(nil, flagBackgroundImageView.topAnchor, flagBackgroundImageView.rightAnchor, nil, left: 0, top: 10, right: margin, bottom: 0, width: creditImageSize, height: creditImageSize)
+        let creditImageSize: CGFloat = 15
+        view.addSubview(creditImageView)
+        creditImageView.addConstraint(nil, nil, flagBackgroundImageView.rightAnchor, nil, left: 0, top: lineSpace, right: margin, bottom: 0, width: creditImageSize, height: creditImageSize)
+        creditImageView.centerYAnchor.constraint(equalTo: shipTypeImageView.centerYAnchor).isActive = true
         
-        let creditLabel = UILabel()
-        creditLabel.textColor = .white
-        flagBackgroundImageView.addSubview(creditLabel)
-        
-        if let gold = shipInfo?.price_gold, gold > 0 {
-            creditImageView.image = #imageLiteral(resourceName: "coins_doubloon")
-            creditLabel.text = "\(gold)"
-        } else if let credit = shipInfo?.price_credit {
-            creditImageView.image = #imageLiteral(resourceName: "coins_silver")
-            creditLabel.text = "\(credit)"
-        }
-        
-        let xpImageView = UIImageView()
-        
-        let xpLabel = UILabel()
+        creditLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        creditLabel.textAlignment = .right
+        view.addSubview(creditLabel)
+        creditLabel.addConstraint(nil, nil, creditImageView.leftAnchor, nil, left: 0, top: 0, right: lineSpace, bottom: 0)
+        creditLabel.centerYAnchor.constraint(equalTo: creditImageView.centerYAnchor).isActive = true
         
         shipImageView.contentMode = .scaleAspectFill
         view.addSubview(shipImageView)
@@ -279,6 +272,25 @@ class ShipDetailViewController: BasicViewController {
         }
         if let url = URL(string: s.imagesStruct?.contour ?? "") {
             contourImageView.af_setImage(withURL: url)
+        }
+        
+        if let gold = shipInfo?.price_gold, gold > 0 {
+            creditImageView.image = #imageLiteral(resourceName: "coins_doubloon")
+            creditLabel.textColor = UIColor.WowsTheme.creditGold
+            creditLabel.text = getFormattedString(gold)
+        } else if let credit = shipInfo?.price_credit {
+            creditImageView.image = #imageLiteral(resourceName: "coins_silver")
+            creditLabel.textColor = .white
+            creditLabel.text = getFormattedString(credit)
+        }
+        
+        if let ty = s.type, let isPremium = s.is_premium,
+            let typeUrl = ShipType(rawValue: ty)?.iconImageUrl(isPremium ? .premium : .normal),
+            let url = URL(string: typeUrl) {
+            shipTypeImageView.af_setImage(withURL: url)
+        }
+        if let tier = s.tier, tier > 0 {
+            shipTierLabel.text = TierString[tier]
         }
     }
     

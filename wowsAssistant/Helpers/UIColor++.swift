@@ -29,6 +29,7 @@ extension UIColor {
         static let lineDarkBlue = #colorLiteral(red: 0.2062162139, green: 0.3627479374, blue: 0.5017203692, alpha: 1)
         static let lineCyan = #colorLiteral(red: 0.4664868116, green: 0.9307252765, blue: 0.9329747558, alpha: 1)
         
+        static let creditGold = #colorLiteral(red: 0.8629978951, green: 0.7386520702, blue: 0.26842513, alpha: 1)
     }
     
 }
