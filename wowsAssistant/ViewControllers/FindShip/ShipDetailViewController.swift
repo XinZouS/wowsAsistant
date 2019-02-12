@@ -286,11 +286,8 @@ class ShipDetailViewController: BasicViewController {
             creditLabel.text = getFormattedString(credit)
         }
         
-        if let ty = s.type, let isPremium = s.is_premium,
-            let typeUrl = ShipType(rawValue: ty)?.iconImageUrl(isPremium ? .premium : .normal),
-            let url = URL(string: typeUrl) {
-            shipTypeImageView.af_setImage(withURL: url)
-        }
+        s.setShipTypeImageTo(shipTypeImageView)
+        
         if let tier = s.tier, tier > 0 {
             shipTierLabel.text = TierString[tier]
         }

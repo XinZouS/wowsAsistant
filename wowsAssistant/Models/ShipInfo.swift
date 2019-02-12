@@ -50,7 +50,7 @@ class ShipInfo: Unboxable {
     var modules:    ShipModule?
     var modules_tree: [String: ShipModuleTreeNode]? // [id: moduleNode]
     var nation:     String?
-    var is_premium: Bool?
+    var is_premium: Bool = false
     var price_credit: Int?
     var price_gold:   Int?
     var default_profile: Ship?
@@ -59,7 +59,7 @@ class ShipInfo: Unboxable {
     var next_ships: [Int]?
     var mod_slots:  Int? // num of slots for upgrade modules
     var type:       String?
-    var is_special: Bool?
+    var is_special: Bool = false
     var name:       String?
     
     var imagesStruct: ShipInfoImages?
@@ -75,7 +75,7 @@ class ShipInfo: Unboxable {
         self.modules =      try? unboxer.unbox(key: ShipInfoKeyInDB.modules.rawValue)
         self.modules_tree = try? unboxer.unbox(key: ShipInfoKeyInDB.modules_tree.rawValue)
         self.nation =       try? unboxer.unbox(key: ShipInfoKeyInDB.nation.rawValue)
-        self.is_premium =   try? unboxer.unbox(key: ShipInfoKeyInDB.is_premium.rawValue)
+        self.is_premium =   (try? unboxer.unbox(key: ShipInfoKeyInDB.is_premium.rawValue)) ?? false
         self.price_credit = try? unboxer.unbox(key: ShipInfoKeyInDB.price_credit.rawValue)
         self.price_gold =   try? unboxer.unbox(key: ShipInfoKeyInDB.price_gold.rawValue)
         self.default_profile = try? unboxer.unbox(key: ShipInfoKeyInDB.default_profile.rawValue)
@@ -84,7 +84,7 @@ class ShipInfo: Unboxable {
         self.next_ships =   try? unboxer.unbox(key: ShipInfoKeyInDB.next_ships.rawValue)
         self.mod_slots =    try? unboxer.unbox(key: ShipInfoKeyInDB.mod_slots.rawValue)
         self.type =         try? unboxer.unbox(key: ShipInfoKeyInDB.type.rawValue)
-        self.is_special =   try? unboxer.unbox(key: ShipInfoKeyInDB.is_special.rawValue)
+        self.is_special =   (try? unboxer.unbox(key: ShipInfoKeyInDB.is_special.rawValue)) ?? false
         self.name =         try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)
         
         if let imgs = images {
@@ -108,6 +108,14 @@ class ShipInfo: Unboxable {
         }
         if let nationStr = nation, let n = ShipNation(rawValue: nationStr) {
             self.nationEnum = n
+        }
+    }
+    
+    func setShipTypeImageTo(_ imgView: UIImageView?) {
+        guard let ty = self.type else { return }
+        let isPremium = (is_premium || is_special)
+        if let typeUrl = ShipType(rawValue: ty)?.iconImageUrl(isPremium ? .premium : .normal), let url = URL(string: typeUrl) {
+            imgView?.af_setImage(withURL: url)
         }
     }
 }
