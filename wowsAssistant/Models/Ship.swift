@@ -154,7 +154,7 @@ struct Atbas: Unboxable {
      */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("Distance", distance))
+        p.append(Pair("\(leadingSpace1)Distance", distance))
         for slot in slots {
             let slotModel = slot.value
             p.append(contentsOf: slotModel.getNameAndValuePairs())
@@ -191,12 +191,12 @@ struct AtbasSlotModel: Unboxable {
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("\(type) - \(name)", ""))
-        p.append(Pair("Damage", damage))
-        p.append(Pair("Burn probability", "\(burn_probability)%"))
-        p.append(Pair("Shot delay", shot_delay))
-        p.append(Pair("Bullet speed", bullet_speed))
-        p.append(Pair("Bullet mass", bullet_mass))
-        p.append(Pair("Gun rate", gun_rate))
+        p.append(Pair("\(leadingSpace1)Damage", damage))
+        p.append(Pair("\(leadingSpace1)Burn probability", "\(burn_probability)%"))
+        p.append(Pair("\(leadingSpace1)Shot delay", shot_delay))
+        p.append(Pair("\(leadingSpace1)Bullet speed", bullet_speed))
+        p.append(Pair("\(leadingSpace1)Bullet mass", bullet_mass))
+        p.append(Pair("\(leadingSpace1)Gun rate", gun_rate))
         return p
     }
 }
@@ -300,10 +300,10 @@ struct Shell: Unboxable {
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("\(type) - \(name)", ""))
-        p.append(Pair("  Bullet speed", bullet_speed))
-        p.append(Pair("  Shell weight", bullet_mass))
-        p.append(Pair("  Chance of Fire on target", "\(burn_probability)%"))
-        p.append(Pair("  Maximum damage", damage))
+        p.append(Pair("\(leadingSpace1)Bullet speed", bullet_speed))
+        p.append(Pair("\(leadingSpace1)Shell weight", bullet_mass))
+        p.append(Pair("\(leadingSpace1)Chance of Fire on target", "\(burn_probability)%"))
+        p.append(Pair("\(leadingSpace1)Maximum damage", damage))
         return p
     }
 }
@@ -415,10 +415,10 @@ struct TorpedoeSlots: Unboxable {
      */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("  Name", name))
-        p.append(Pair("  Caliber", caliber))
-        p.append(Pair("  Torpedo tubes", guns))
-        p.append(Pair("  Torpedo tubes per slot", barrels))
+        p.append(Pair("\(leadingSpace1)Name", name))
+        p.append(Pair("\(leadingSpace1)Caliber", caliber))
+        p.append(Pair("\(leadingSpace1)Torpedo tubes", guns))
+        p.append(Pair("\(leadingSpace1)Torpedo tubes per slot", barrels))
         return p
     }
 }
@@ -486,8 +486,8 @@ struct Armour: Unboxable {
         p.append(Pair("Citadel", citadel.getDescription()))
         p.append(Pair("Armored Deck", deck.getDescription()))
         p.append(Pair("Forward and After Ends", extremities.getDescription()))
-        p.append(Pair("Torpedo Protection \nFlooding Risk Reduction", "\(flood_prob)%"))
-        p.append(Pair("Torpedo Protection \nDamage Reduction", "\(flood_damage)%"))
+        p.append(Pair("Torpedo Protection Flooding Risk Reduction", "\(flood_prob)%"))
+        p.append(Pair("Torpedo Protection Damage Reduction", "\(flood_damage)%"))
         return p
     }
     
@@ -542,10 +542,10 @@ struct AntiAircraftSlot: Unboxable {
      */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("Firing range", "\(distance) km"))
-        p.append(Pair("\(name)", "x \(guns)"))
-        p.append(Pair("Average damage", "\(avg_damage)/s"))
-        p.append(Pair("Caliber", "\(caliber) mm"))
+        p.append(Pair("\(leadingSpace1)Firing range", "\(distance) km"))
+        p.append(Pair("\(leadingSpace1)\(name)", "x \(guns)"))
+        p.append(Pair("\(leadingSpace1)Average damage", "\(avg_damage)/s"))
+        p.append(Pair("\(leadingSpace1)Caliber", "\(caliber) mm"))
         return p
     }
 }
