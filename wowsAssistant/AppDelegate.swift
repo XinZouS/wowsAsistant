@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainTabbarViewController = MainTabbarController()
         mainNavigationController = UINavigationController(rootViewController: mainTabbarViewController!)
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
         window?.rootViewController = mainNavigationController
-        
+        window?.makeKeyAndVisible()
+
         mainNavigationController?.navigationBar.barStyle = .blackTranslucent // then statusBar.style will be .light
         mainNavigationController?.isNavigationBarHidden = true
         mainNavigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
