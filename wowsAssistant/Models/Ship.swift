@@ -514,8 +514,8 @@ struct AntiAircraft: Unboxable {
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
         p.append(Pair("Effectiveness", defense))
-        for slot in slots {
-            p.append(contentsOf: slot.value.getNameAndValuePairs())
+        for (i,slot) in slots.enumerated() {
+            p.append(contentsOf: slot.value.getNameAndValuePairs(i))
         }
         return p
     }
@@ -540,12 +540,12 @@ struct AntiAircraftSlot: Unboxable {
     /**
      * [Firing range, name, avgDmg, Caliber]
      */
-    func getNameAndValuePairs() -> [Pair] {
+    func getNameAndValuePairs(_ idx: Int) -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("\(leadingSpace1)Firing range", "\(distance) km"))
-        p.append(Pair("\(leadingSpace1)\(name)", "x \(guns)"))
-        p.append(Pair("\(leadingSpace1)Average damage", "\(avg_damage)/s"))
-        p.append(Pair("\(leadingSpace1)Caliber", "\(caliber) mm"))
+        p.append(Pair("\(idx). Firing range", "\(distance) km"))
+        p.append(Pair("\(idx). \(name)", "x \(guns)"))
+        p.append(Pair("\(idx). Average damage", "\(avg_damage)/s"))
+        p.append(Pair("\(idx). Caliber", "\(caliber) mm"))
         return p
     }
 }
