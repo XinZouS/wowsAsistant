@@ -11,8 +11,6 @@ import UIKit
 
 /// 6 empty spaces
 let leadingSpace1: String = "      "
-/// 12 empty spaces
-let leadingSpace2: String = "            "
 
 //MARK: - Info
 enum ServerRealm: String, CaseIterable {

@@ -182,6 +182,7 @@ class ShipDetailViewController: BasicViewController {
                 model.contentPairs.append(contentsOf: artillery.getNameAndValuePairs())
             }
             if let secondary = ship.atbas { // Atbas
+                model.contentPairs.append(Pair("Secondary Guns", ""))
                 model.contentPairs.append(contentsOf: secondary.getNameAndValuePairs())
             }
         }

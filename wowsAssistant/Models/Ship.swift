@@ -154,7 +154,7 @@ struct Atbas: Unboxable {
      */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("\(leadingSpace1)Distance", distance))
+        p.append(Pair("Distance", distance))
         for slot in slots {
             let slotModel = slot.value
             p.append(contentsOf: slotModel.getNameAndValuePairs())
@@ -455,23 +455,23 @@ struct Armour: Unboxable {
     let total: Int
     let health: Int
     let range: Range
-    let casemate: Range
-    let deck: Range
-    let citadel: Range
-    let extremities: Range
+    let casemate: Range?
+    let deck: Range?
+    let citadel: Range?
+    let extremities: Range?
     let flood_prob: Float
     let flood_damage: Float
     
     init(unboxer: Unboxer) throws {
-        casemate =      (try? unboxer.unbox(key: ShipInfoKeyInDB.casemate.rawValue)) ?? Range()
-        flood_prob =    (try? unboxer.unbox(key: ShipInfoKeyInDB.flood_prob.rawValue)) ?? 0
-        deck =          (try? unboxer.unbox(key: ShipInfoKeyInDB.deck.rawValue)) ?? Range()
-        flood_damage =  (try? unboxer.unbox(key: ShipInfoKeyInDB.flood_damage.rawValue)) ?? 0
-        range =         (try? unboxer.unbox(key: ShipInfoKeyInDB.range.rawValue)) ?? Range()
-        health =        (try? unboxer.unbox(key: ShipInfoKeyInDB.health.rawValue)) ?? 0
-        extremities =   (try? unboxer.unbox(key: ShipInfoKeyInDB.extremities.rawValue)) ?? Range()
         total =         (try? unboxer.unbox(key: ShipInfoKeyInDB.total.rawValue)) ?? 0
-        citadel =       (try? unboxer.unbox(key: ShipInfoKeyInDB.citadel.rawValue)) ?? Range()
+        health =        (try? unboxer.unbox(key: ShipInfoKeyInDB.health.rawValue)) ?? 0
+        range =         (try? unboxer.unbox(key: ShipInfoKeyInDB.range.rawValue)) ?? Range()
+        casemate =      try? unboxer.unbox(key: ShipInfoKeyInDB.casemate.rawValue)
+        deck =          try? unboxer.unbox(key: ShipInfoKeyInDB.deck.rawValue)
+        citadel =       try? unboxer.unbox(key: ShipInfoKeyInDB.citadel.rawValue)
+        extremities =   try? unboxer.unbox(key: ShipInfoKeyInDB.extremities.rawValue)
+        flood_prob =    (try? unboxer.unbox(key: ShipInfoKeyInDB.flood_prob.rawValue)) ?? 0
+        flood_damage =  (try? unboxer.unbox(key: ShipInfoKeyInDB.flood_damage.rawValue)) ?? 0
     }
     
     // TODO: use L() for name Strings
@@ -482,10 +482,19 @@ struct Armour: Unboxable {
         var p: [Pair] = []
         p.append(Pair("Hit points", health))
         p.append(Pair("Armour", range.getDescription()))
-        p.append(Pair("Gun Casemate", casemate.getDescription()))
-        p.append(Pair("Citadel", citadel.getDescription()))
-        p.append(Pair("Armored Deck", deck.getDescription()))
-        p.append(Pair("Forward and After Ends", extremities.getDescription()))
+        // all values of there are -1 ~ -1, no need to display yet
+//        if let c = casemate {
+//            p.append(Pair("Gun Casemate", c.getDescription()))
+//        }
+//        if let c = citadel {
+//            p.append(Pair("Citadel", c.getDescription()))
+//        }
+//        if let d = deck {
+//            p.append(Pair("Armored Deck", d.getDescription()))
+//        }
+//        if let e = extremities {
+//            p.append(Pair("Forward and After Ends", e.getDescription()))
+//        }
         p.append(Pair("Torpedo Protection Flooding Risk Reduction", "\(flood_prob)%"))
         p.append(Pair("Torpedo Protection Damage Reduction", "\(flood_damage)%"))
         return p
