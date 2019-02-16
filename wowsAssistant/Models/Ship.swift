@@ -154,7 +154,7 @@ struct Atbas: Unboxable {
      */
     func getNameAndValuePairs() -> [Pair] {
         var p: [Pair] = []
-        p.append(Pair("Distance", distance))
+        p.append(Pair("Secondary Guns Distance", distance))
         for slot in slots {
             let slotModel = slot.value
             p.append(contentsOf: slotModel.getNameAndValuePairs())
