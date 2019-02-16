@@ -24,10 +24,10 @@ class ElementsViewController: BasicViewController {
     let tableView = UITableView()
     
     let contents: [ElementsTableContent] = [
-        ElementsTableContent(L("1"), #imageLiteral(resourceName: "flagIcon_pan_asia")),
-        ElementsTableContent(L("2"), #imageLiteral(resourceName: "flagIcon_pan_asia")),
-        ElementsTableContent(L("3"), #imageLiteral(resourceName: "flagIcon_pan_asia")),
-        ElementsTableContent(L("4"), #imageLiteral(resourceName: "flagIcon_pan_asia")),
+        ElementsTableContent(L("Commander Skills"), #imageLiteral(resourceName: "flagItaly")),
+        ElementsTableContent(L("Consumables"), #imageLiteral(resourceName: "flagPanAsia")),
+        ElementsTableContent(L("Collections"), #imageLiteral(resourceName: "flagPanAmerica")),
+        ElementsTableContent(L("Maps"), #imageLiteral(resourceName: "flagUSSR")),
     ]
     
     // MARK: - View cycle
@@ -40,6 +40,8 @@ class ElementsViewController: BasicViewController {
     }
     
     private func setupTableView() {
+        tableView.backgroundColor = .clear
+        tableView.tableFooterView = UIView()
         tableView.register(ElementsTableCell.self, forCellReuseIdentifier: cellId)
         tableView.dataSource = self
         tableView.delegate = self
@@ -75,5 +77,9 @@ extension ElementsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
 }

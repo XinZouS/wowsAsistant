@@ -21,20 +21,21 @@ class ElementsTableCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        backgroundColor = .clear
         setupView()
     }
     
     private func setupView() {
-        let margin: CGFloat = 20
+        let margin: CGFloat = 10
         itemImageView.contentMode = .scaleAspectFill
         addSubview(itemImageView)
-        itemImageView.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: margin, top: margin, right: 0, bottom: margin, width: 120, height: 0)
+        itemImageView.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: 20, top: margin, right: 0, bottom: margin, width: 140, height: 0)
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         titleLabel.textColor = .white
         addSubview(titleLabel)
-        titleLabel.addConstraint(leftAnchor, nil, rightAnchor, nil, left: 60, top: 0, right: margin, bottom: 0)
+        titleLabel.addConstraint(leftAnchor, nil, rightAnchor, nil, left: 120, top: 0, right: margin, bottom: 0)
+        titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     private func setupContent() {
