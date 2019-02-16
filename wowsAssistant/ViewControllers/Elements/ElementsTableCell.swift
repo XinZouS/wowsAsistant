@@ -26,10 +26,10 @@ class ElementsTableCell: UITableViewCell {
     }
     
     private func setupView() {
-        let margin: CGFloat = 10
-        itemImageView.contentMode = .scaleAspectFill
+        let margin: CGFloat = 0
+        itemImageView.contentMode = .scaleAspectFit
         addSubview(itemImageView)
-        itemImageView.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: 20, top: margin, right: 0, bottom: margin, width: 140, height: 0)
+        itemImageView.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: margin, top: margin, right: 0, bottom: margin, width: 200, height: 0)
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         titleLabel.textColor = .white

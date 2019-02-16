@@ -24,10 +24,10 @@ class ElementsViewController: BasicViewController {
     let tableView = UITableView()
     
     let contents: [ElementsTableContent] = [
-        ElementsTableContent(L("Commander Skills"), #imageLiteral(resourceName: "flagItaly")),
-        ElementsTableContent(L("Consumables"), #imageLiteral(resourceName: "flagPanAsia")),
-        ElementsTableContent(L("Collections"), #imageLiteral(resourceName: "flagPanAmerica")),
-        ElementsTableContent(L("Maps"), #imageLiteral(resourceName: "flagUSSR")),
+        ElementsTableContent(L("Commander Skills"), #imageLiteral(resourceName: "commanders")),
+        ElementsTableContent(L("Consumables"), #imageLiteral(resourceName: "consumablesTitleImg")),
+        ElementsTableContent(L("Collections"), #imageLiteral(resourceName: "collections+keys")),
+        ElementsTableContent(L("Maps"), #imageLiteral(resourceName: "map_titleImg")),
     ]
     
     // MARK: - View cycle
