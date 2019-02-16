@@ -26,15 +26,16 @@ class ElementsTableCell: UITableViewCell {
     }
     
     private func setupView() {
-        let margin: CGFloat = 0
-        itemImageView.contentMode = .scaleAspectFit
+        itemImageView.contentMode = .scaleAspectFill
+        itemImageView.clipsToBounds = true
         addSubview(itemImageView)
-        itemImageView.addConstraint(leftAnchor, topAnchor, nil, bottomAnchor, left: margin, top: margin, right: 0, bottom: margin, width: 200, height: 0)
+        itemImageView.fillSuperviewByConstraint()
         
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.textAlignment = .center
         titleLabel.textColor = .white
         addSubview(titleLabel)
-        titleLabel.addConstraint(leftAnchor, nil, rightAnchor, nil, left: 120, top: 0, right: margin, bottom: 0)
+        titleLabel.addConstraint(leftAnchor, nil, rightAnchor, nil)
         titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
