@@ -31,7 +31,7 @@ class ElementsTableCell: UITableViewCell {
         addSubview(itemImageView)
         itemImageView.fillSuperviewByConstraint()
         
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         titleLabel.textAlignment = .center
         titleLabel.textColor = .white
         addSubview(titleLabel)
