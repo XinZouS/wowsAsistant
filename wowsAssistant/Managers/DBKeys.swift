@@ -192,4 +192,10 @@ enum ShipInfoKeyInDB: String {
     case profile = "profile"
     case image = "image"
     case value = "value"
+    
+    // Commander skills
+    case typeId = "type_id"
+    case typeName = "type_name"
+    case perks = "perks"
+    case icon = "icon"
 }
