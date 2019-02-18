@@ -18,6 +18,9 @@
 		66DEDD19221877B600278049 /* ElementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD18221877B600278049 /* ElementsViewController.swift */; };
 		66DEDD1B2218789800278049 /* ElementsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD1A2218789800278049 /* ElementsTableCell.swift */; };
 		66DEDD1D221A4F2C00278049 /* CommanderSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD1C221A4F2B00278049 /* CommanderSkill.swift */; };
+		66DEDD1F221A669B00278049 /* ElementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD1E221A669B00278049 /* ElementDetailViewController.swift */; };
+		66DEDD21221A66AB00278049 /* ElementDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD20221A66AB00278049 /* ElementDetailCollectionCell.swift */; };
+		66DEDD23221A68F500278049 /* ElementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD22221A68F500278049 /* ElementViewModel.swift */; };
 		66ED358921F770A600D493D9 /* DBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358821F770A600D493D9 /* DBKeys.swift */; };
 		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
@@ -76,6 +79,9 @@
 		66DEDD18221877B600278049 /* ElementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsViewController.swift; sourceTree = "<group>"; };
 		66DEDD1A2218789800278049 /* ElementsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsTableCell.swift; sourceTree = "<group>"; };
 		66DEDD1C221A4F2B00278049 /* CommanderSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkill.swift; sourceTree = "<group>"; };
+		66DEDD1E221A669B00278049 /* ElementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementDetailViewController.swift; sourceTree = "<group>"; };
+		66DEDD20221A66AB00278049 /* ElementDetailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementDetailCollectionCell.swift; sourceTree = "<group>"; };
+		66DEDD22221A68F500278049 /* ElementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementViewModel.swift; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 			children = (
 				66DEDD18221877B600278049 /* ElementsViewController.swift */,
 				66DEDD1A2218789800278049 /* ElementsTableCell.swift */,
+				66DEDD1E221A669B00278049 /* ElementDetailViewController.swift */,
+				66DEDD20221A66AB00278049 /* ElementDetailCollectionCell.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -287,6 +295,7 @@
 				66578B1321F1407A0096660C /* Airplane.swift */,
 				66DEDCE8221205EB00278049 /* Consumable.swift */,
 				66DEDD1C221A4F2B00278049 /* CommanderSkill.swift */,
+				66DEDD22221A68F500278049 /* ElementViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -479,9 +488,11 @@
 				66ED35AF2203EB4500D493D9 /* ShipDetailTableCell.swift in Sources */,
 				66ED35A922038FD700D493D9 /* ShipDetailViewController.swift in Sources */,
 				66F0E38721EBE131003D1023 /* GlobalVariable.swift in Sources */,
+				66DEDD23221A68F500278049 /* ElementViewModel.swift in Sources */,
 				66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */,
 				66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */,
 				66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */,
+				66DEDD1F221A669B00278049 /* ElementDetailViewController.swift in Sources */,
 				66F0E39C21EBFE5C003D1023 /* Ship.swift in Sources */,
 				66ED359821FA273200D493D9 /* UIButton++.swift in Sources */,
 				66F0E38121EAA50A003D1023 /* Passwords.swift in Sources */,
@@ -499,6 +510,7 @@
 				66DEDD19221877B600278049 /* ElementsViewController.swift in Sources */,
 				66ED359D21FE66E900D493D9 /* wowsAssistant.xcdatamodeld in Sources */,
 				66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */,
+				66DEDD21221A66AB00278049 /* ElementDetailCollectionCell.swift in Sources */,
 				66F0E38421EBDFDA003D1023 /* ApiServers.swift in Sources */,
 				66F0E39721EBF510003D1023 /* Date++.swift in Sources */,
 				66ED35A021FE710500D493D9 /* ShipInfoBasic+CoreDataClass.swift in Sources */,
