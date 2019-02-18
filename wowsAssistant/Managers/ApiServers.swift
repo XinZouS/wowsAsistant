@@ -228,6 +228,32 @@ final class ApiServers: NSObject {
         }
     }
     
+    // https://api.worldofwarships.com/wows/encyclopedia/crewskills/?application_id=a604db0355085bac597c209b459fd0fb
+    func getCommanderSkills(realm: ServerRealm = .na, completion: @escaping([CommanderSkill]) -> Void) {
+        var params: [String:Any] = [:]
+        params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
+        
+        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/crewskills/"
+        
+        getDataFromWows(route, parameters: params) { (dictionary, error) in
+            var skills: [CommanderSkill] = []
+            guard let dict = dictionary else {
+                completion(skills)
+                return
+            }
+            for pair in dict {
+                if let getDict = pair.value as? [String:Any] {
+                    do {
+                        let getSkill: CommanderSkill = try unbox(dictionary: getDict)
+                        skills.append(getSkill)
+                    } catch let error as NSError {
+                        DLog("[ERROR] unboxing CommanderSkill from list failed: \(error)")
+                    }
+                }
+            }
+            completion(skills)
+        }
+    }
     
     
     // MARK: - basic GET and POST by url for wows
