@@ -139,6 +139,7 @@ class ResultCell: UICollectionViewCell {
     weak var delegate: ResultCellDelegate?
     
     let titleLabel = UILabel()
+    let backgndBorderView = UIView()
     let backgndImageView = UIImageView()
     let shipImageView = UIImageView()
     let shipTypeImageView = UIImageView()
@@ -148,8 +149,6 @@ class ResultCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.WowsTheme.lineDarkBlue.cgColor
         setupUI()
     }
     
@@ -158,6 +157,11 @@ class ResultCell: UICollectionViewCell {
     }
     
     private func setupUI() {
+        backgndBorderView.layer.borderWidth = 1
+        backgndBorderView.layer.borderColor = UIColor.WowsTheme.lineDarkBlue.cgColor
+        addSubview(backgndBorderView)
+        backgndBorderView.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 0, top: 0, right: 20, bottom: 0)
+        
         titleLabel.textColor = .white
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.8
@@ -167,7 +171,7 @@ class ResultCell: UICollectionViewCell {
         backgndImageView.alpha = 0.6
         backgndImageView.contentMode = .scaleToFill
         addSubview(backgndImageView)
-        backgndImageView.anchor(leadingAnchor, titleLabel.bottomAnchor, trailingAnchor, bottomAnchor)
+        backgndImageView.addConstraint(leftAnchor, titleLabel.bottomAnchor, backgndBorderView.rightAnchor, bottomAnchor)
         
         shipImageView.contentMode = .scaleAspectFit
         addSubview(shipImageView)
@@ -187,7 +191,7 @@ class ResultCell: UICollectionViewCell {
         markLabel.textAlignment = .center
         markLabel.font = UIFont.systemFont(ofSize: 22)
         addSubview(markLabel)
-        markLabel.anchor(nil, titleLabel.bottomAnchor, trailingAnchor, nil, lead: 0, top: 5, trail: 10, bottom: 0, width: 0, height: 0)
+        markLabel.addConstraint(nil, titleLabel.bottomAnchor, backgndBorderView.rightAnchor, nil, left: 0, top: 5, right: 10, bottom: 0, width: 0, height: 0)
         
         addSubview(markButton)
         markButton.anchorCenterIn(markLabel, width: 30, height: 30)

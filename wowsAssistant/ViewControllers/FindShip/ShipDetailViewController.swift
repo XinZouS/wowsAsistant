@@ -30,7 +30,9 @@ class ShipDetailViewController: BasicViewController {
     // collectionView
     fileprivate var moduleDataSource: [[Consumable]] = []
     fileprivate let moduleCellId = "moduleCellId"
+    fileprivate let moduleCollectionCellH: CGFloat = (140 - 20) / 3
     fileprivate let moduleCollectionViewH: CGFloat = 140
+    fileprivate let moduleCollectionTopMargin: CGFloat = 6
     fileprivate let moduleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     // tableView
     fileprivate var tableDataSource: [ShipViewModel] = []
@@ -141,15 +143,12 @@ class ShipDetailViewController: BasicViewController {
     
     private func setupModuleCollectionView() {
         let vs = view.safeAreaLayoutGuide
-        let margin: CGFloat = 6
         moduleCollectionView.backgroundColor = .clear
         moduleCollectionView.register(ModuleCollectionCell.self, forCellWithReuseIdentifier: moduleCellId)
         moduleCollectionView.dataSource = self
         moduleCollectionView.delegate = self
         view.addSubview(moduleCollectionView)
-        moduleCollectionView.addConstraint(vs.leftAnchor, contourImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: margin, right: 0, bottom: 0, width: 0, height: moduleCollectionViewH)
-        let sideMargin: CGFloat = view.bounds.width / 10
-        moduleCollectionView.contentInset = UIEdgeInsets(top: margin, left: sideMargin, bottom: margin, right: sideMargin)
+        moduleCollectionView.addConstraint(vs.leftAnchor, contourImageView.bottomAnchor, vs.rightAnchor, nil, left: 0, top: moduleCollectionTopMargin, right: 0, bottom: 0, width: 0, height: moduleCollectionViewH)
         if let layout = moduleCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
             layout.minimumInteritemSpacing = 0
@@ -254,10 +253,20 @@ class ShipDetailViewController: BasicViewController {
                     }
                 }
                 DispatchQueue.main.async {
-                    self?.moduleCollectionView.reloadData()
+                    self?.updateModuleCollectionView(sections: keys.count)
                 }
             }
         }
+    }
+    
+    private func updateModuleCollectionView(sections: Int) {
+        let isScrollable = (UIDevice.current.userInterfaceIdiom == .phone) ? sections >= 5 : false
+        moduleCollectionView.isUserInteractionEnabled = isScrollable
+        let sideMargin: CGFloat = view.bounds.width / 10
+        let offsetX = (view.bounds.width / 2) - (moduleCollectionCellH * CGFloat(sections / 2)) - sideMargin
+        let setX = isScrollable ? sideMargin : offsetX
+        moduleCollectionView.contentInset = UIEdgeInsets(top: 0, left: setX, bottom: 0, right: sideMargin)
+        moduleCollectionView.reloadData()
     }
     
     
@@ -349,7 +358,7 @@ extension ShipDetailViewController: UICollectionViewDataSource {
 extension ShipDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w: CGFloat = (moduleCollectionViewH - 20) / 3
+        let w: CGFloat = moduleCollectionCellH
         return CGSize(width: w, height: w)
     }
     
