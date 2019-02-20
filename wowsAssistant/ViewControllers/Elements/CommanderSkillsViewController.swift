@@ -10,11 +10,14 @@ import UIKit
 
 class CommanderSkillsViewController: BasicViewController {
     
-    internal var isAllowNextPage = true
-    internal let itemLimitOfEachPage = 36
+    fileprivate var isAllowNextPage = true
+    fileprivate let itemLimitOfEachPage = 36
     
-    internal let cellId = "elementCellId"
-    internal let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    fileprivate let cellId = "skillCellId"
+    fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    /// sorted by .tier, shows type name
+    fileprivate var skills: [CommanderSkill] = []
     
     
     // MARK: - View cycle
@@ -35,33 +38,28 @@ class CommanderSkillsViewController: BasicViewController {
     }
     
     private func setupCollectionView() {
-        collectionView.register(ElementDetailCollectionCell.self, forCellWithReuseIdentifier: cellId)
+        let vs = self.view.safeAreaLayoutGuide
+        view.addSubview(collectionView)
+        collectionView.addConstraint(vs.leftAnchor, vs.topAnchor, vs.rightAnchor, vs.bottomAnchor, left: 0, top: 0, right: 0, bottom: 0)
+        collectionView.register(CommanderSkillCollectionCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
-    /// Upgrades, Flags, Camouflages, Ship camouflages, Permanent
-    let commanderSkillTypes: [String] = ["Modernization", "Flags", "Camouflage", "Skin", "Permoflage"]
-    var currTypeIndex = 0
     
-    var elements: [ElementViewModel] = []
-    
-    fileprivate func elementDataSourceDidUpdate(_ newDataSource: [ElementViewModel]) {
-        self.elements.append(contentsOf: newDataSource)
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+    private func loadDataSource() {
+        ApiServers.shared.getCommanderSkills { [weak self] (commanderSkills) in
+            self?.skills.append(contentsOf: commanderSkills)
+            self?.updateCollectionView()
         }
     }
     
-    func loadDataSource() {
-        if currTypeIndex >= commanderSkillTypes.count { return }
-        let currType = commanderSkillTypes[currTypeIndex]
-        ApiServers.shared.getCommanderSkills(type: currType) { [weak self] (commanderSkills) in
-            var elements: [ElementContent] = []
-            for skill in commanderSkills {
-                let description = "\()\n\()\n\()"
-                elements.append(ElementContent(urlStr: skill.icon, description: description))
-            }
-            let viewModels = [ElementViewModel(title: currType, content: elements)]
-            self?.elementDataSourceDidUpdate(viewModels)
+    private func updateCollectionView() {
+        skills.sort { (a, b) -> Bool in
+            return a.tier < b.tier
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
         }
     }
 
@@ -70,21 +68,17 @@ class CommanderSkillsViewController: BasicViewController {
 extension CommanderSkillsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return elements.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section < elements.count {
-            return elements[section].contents.count
-        }
-        return 0
+        return skills.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ElementDetailCollectionCell {
-            if indexPath.section < elements.count, indexPath.item < elements[indexPath.section].contents.count {
-                let content: ElementContent = elements[indexPath.section].contents[indexPath.item]
-                cell.content = content
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CommanderSkillCollectionCell {
+            if indexPath.item < skills.count {
+                cell.skill = skills[indexPath.item]
             }
             return cell
         }

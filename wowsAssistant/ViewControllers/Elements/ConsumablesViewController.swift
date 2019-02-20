@@ -16,6 +16,11 @@ class ConsumablesViewController: BasicViewController {
     fileprivate let cellId = "consumableCellId"
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
+    /// Upgrades, Flags, Camouflages, Ship camouflages, Permanent
+    let commanderSkillTypes: [String] = ["Modernization", "Flags", "Camouflage", "Skin", "Permoflage"]
+    var currTypeIndex = 0
+    
+    /// sections grouped by: commanderSkillTypes
     fileprivate var consumableViewModels: [ConsumableViewModel] = []
     
     // MARK: - View cycle
@@ -36,7 +41,12 @@ class ConsumablesViewController: BasicViewController {
     }
     
     private func setupCollectionView() {
+        let vs = self.view.safeAreaLayoutGuide
+        view.addSubview(collectionView)
+        collectionView.addConstraint(vs.leftAnchor, vs.topAnchor, vs.rightAnchor, vs.bottomAnchor, left: 0, top: 0, right: 0, bottom: 0)
         collectionView.register(ConsumableCollectionCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
     

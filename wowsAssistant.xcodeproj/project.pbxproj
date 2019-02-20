@@ -21,9 +21,10 @@
 		66DEDD1F221A669B00278049 /* ConsumablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD1E221A669B00278049 /* ConsumablesViewController.swift */; };
 		66DEDD21221A66AB00278049 /* ConsumableCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD20221A66AB00278049 /* ConsumableCollectionCell.swift */; };
 		66DEDD25221CCA8900278049 /* CommanderSkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD24221CCA8900278049 /* CommanderSkillsViewController.swift */; };
-		66DEDD27221D9F9E00278049 /* ElementBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD26221D9F9E00278049 /* ElementBaseCollectionCell.swift */; };
+		66DEDD27221D9F9E00278049 /* ItemBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD26221D9F9E00278049 /* ItemBaseCollectionCell.swift */; };
 		66DEDD29221DA0B200278049 /* CommanderSkillCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */; };
 		66DEDD2B221DA25F00278049 /* ConsumableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */; };
+		66DEDD2D221DBAA200278049 /* ItemBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */; };
 		66ED358921F770A600D493D9 /* DBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358821F770A600D493D9 /* DBKeys.swift */; };
 		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
@@ -85,9 +86,10 @@
 		66DEDD1E221A669B00278049 /* ConsumablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumablesViewController.swift; sourceTree = "<group>"; };
 		66DEDD20221A66AB00278049 /* ConsumableCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableCollectionCell.swift; sourceTree = "<group>"; };
 		66DEDD24221CCA8900278049 /* CommanderSkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkillsViewController.swift; sourceTree = "<group>"; };
-		66DEDD26221D9F9E00278049 /* ElementBaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementBaseCollectionCell.swift; sourceTree = "<group>"; };
+		66DEDD26221D9F9E00278049 /* ItemBaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBaseCollectionCell.swift; sourceTree = "<group>"; };
 		66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkillCollectionCell.swift; sourceTree = "<group>"; };
 		66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableViewModel.swift; sourceTree = "<group>"; };
+		66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBaseViewController.swift; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -185,7 +187,8 @@
 				66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */,
 				66DEDD1E221A669B00278049 /* ConsumablesViewController.swift */,
 				66DEDD20221A66AB00278049 /* ConsumableCollectionCell.swift */,
-				66DEDD26221D9F9E00278049 /* ElementBaseCollectionCell.swift */,
+				66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */,
+				66DEDD26221D9F9E00278049 /* ItemBaseCollectionCell.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -502,7 +505,7 @@
 				66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */,
 				66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */,
 				66DEDD1F221A669B00278049 /* ConsumablesViewController.swift in Sources */,
-				66DEDD27221D9F9E00278049 /* ElementBaseCollectionCell.swift in Sources */,
+				66DEDD27221D9F9E00278049 /* ItemBaseCollectionCell.swift in Sources */,
 				66F0E39C21EBFE5C003D1023 /* Ship.swift in Sources */,
 				66ED359821FA273200D493D9 /* UIButton++.swift in Sources */,
 				66DEDD29221DA0B200278049 /* CommanderSkillCollectionCell.swift in Sources */,
@@ -532,6 +535,7 @@
 				66ED35A121FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift in Sources */,
 				66F0E36921EAA2C1003D1023 /* AppDelegate.swift in Sources */,
 				66DEDCF92213669000278049 /* UIImageView++.swift in Sources */,
+				66DEDD2D221DBAA200278049 /* ItemBaseViewController.swift in Sources */,
 				66ED35AB2203AB3700D493D9 /* ModuleCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

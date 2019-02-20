@@ -1,5 +1,5 @@
 //
-//  ElementBaseCollectionCell.swift
+//  ItemBaseCollectionCell.swift
 //  wowsAssistant
 //
 //  Created by Xin Zou on 2/20/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ElementBaseCollectionCell: UICollectionViewCell {
+class ItemBaseCollectionCell: UICollectionViewCell {
     
     private let margin: CGFloat = 20
     private let iconSize: CGFloat = 50
