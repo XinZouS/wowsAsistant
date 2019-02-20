@@ -183,12 +183,12 @@
 			children = (
 				66DEDD18221877B600278049 /* ElementsViewController.swift */,
 				66DEDD1A2218789800278049 /* ElementsTableCell.swift */,
+				66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */,
+				66DEDD26221D9F9E00278049 /* ItemBaseCollectionCell.swift */,
 				66DEDD24221CCA8900278049 /* CommanderSkillsViewController.swift */,
 				66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */,
 				66DEDD1E221A669B00278049 /* ConsumablesViewController.swift */,
 				66DEDD20221A66AB00278049 /* ConsumableCollectionCell.swift */,
-				66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */,
-				66DEDD26221D9F9E00278049 /* ItemBaseCollectionCell.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";

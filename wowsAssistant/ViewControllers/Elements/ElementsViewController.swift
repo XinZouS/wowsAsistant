@@ -75,6 +75,7 @@ extension ElementsViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? ElementsTableCell else {
             return UITableViewCell()
         }
+        cell.selectionStyle = .none
         if indexPath.row < contents.count {
             cell.content = contents[indexPath.row]
         }

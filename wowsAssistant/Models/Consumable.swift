@@ -59,8 +59,11 @@ extension Consumable: Comparable {
 
 
 struct ConsumableProfile {
+    /// the key of its original dictionary; use description for user
     let name: String
+    /// main effect of this consumable
     let description: String
+    /// the value of effectiveness, like 1.5 = expand 50%
     let value: Float
     
     init(name: String, dictionary: [String:Any]) {

@@ -30,6 +30,7 @@ class ItemBaseViewController: BasicViewController {
     }
     
     internal func setupCollectionView() {
+        collectionView.backgroundColor = .clear
         let vs = self.view.safeAreaLayoutGuide
         view.addSubview(collectionView)
         collectionView.addConstraint(vs.leftAnchor, vs.topAnchor, vs.rightAnchor, vs.bottomAnchor, left: 0, top: 0, right: 0, bottom: 0)
