@@ -62,17 +62,16 @@ extension ElementDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section < elements.count {
-            return elements[section].content.count
+            return elements[section].contents.count
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ElementDetailCollectionCell {
-            if indexPath.section < elements.count, indexPath.item < elements[indexPath.section].content.count {
-                let content: ElementContent = elements[indexPath.section].content[indexPath.item]
-                cell.imageUrl = content.iconUrlStr
-                cell.destriptionString = content.description
+            if indexPath.section < elements.count, indexPath.item < elements[indexPath.section].contents.count {
+                let content: ElementContent = elements[indexPath.section].contents[indexPath.item]
+                cell.content = content
             }
             return cell
         }
