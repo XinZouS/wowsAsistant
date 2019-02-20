@@ -23,6 +23,7 @@
 		66DEDD25221CCA8900278049 /* CommanderSkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD24221CCA8900278049 /* CommanderSkillsViewController.swift */; };
 		66DEDD27221D9F9E00278049 /* ElementBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD26221D9F9E00278049 /* ElementBaseCollectionCell.swift */; };
 		66DEDD29221DA0B200278049 /* CommanderSkillCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */; };
+		66DEDD2B221DA25F00278049 /* ConsumableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */; };
 		66ED358921F770A600D493D9 /* DBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358821F770A600D493D9 /* DBKeys.swift */; };
 		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
@@ -86,6 +87,7 @@
 		66DEDD24221CCA8900278049 /* CommanderSkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkillsViewController.swift; sourceTree = "<group>"; };
 		66DEDD26221D9F9E00278049 /* ElementBaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementBaseCollectionCell.swift; sourceTree = "<group>"; };
 		66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkillCollectionCell.swift; sourceTree = "<group>"; };
+		66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableViewModel.swift; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				66DEDCE62211FE2A00278049 /* ShipViewModel.swift */,
 				66578B1321F1407A0096660C /* Airplane.swift */,
 				66DEDCE8221205EB00278049 /* Consumable.swift */,
+				66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */,
 				66DEDD1C221A4F2B00278049 /* CommanderSkill.swift */,
 			);
 			path = Models;
@@ -512,6 +515,7 @@
 				66F0E39321EBEAC4003D1023 /* LanguageSelectorViewController.swift in Sources */,
 				66F0E39921EBF5EC003D1023 /* String++.swift in Sources */,
 				66578B1421F1407A0096660C /* Airplane.swift in Sources */,
+				66DEDD2B221DA25F00278049 /* ConsumableViewModel.swift in Sources */,
 				66ED358921F770A600D493D9 /* DBKeys.swift in Sources */,
 				66ED35A7220219E500D493D9 /* UIAlertController++.swift in Sources */,
 				66F0E39521EBEC00003D1023 /* ServiceManager.swift in Sources */,
