@@ -43,6 +43,8 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
         let detail = NSMutableAttributedString(string: "\n\(cons.description)", attributes: detailAtts)
         description.append(detail)
         
+        textView.attributedText = description
+        
         if cons.priceGold > 0 {
             priceImageView.image = #imageLiteral(resourceName: "coins_doubloon")
             priceLabel.text = "\(cons.priceGold)"
