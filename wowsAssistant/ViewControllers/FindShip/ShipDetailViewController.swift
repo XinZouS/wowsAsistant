@@ -238,8 +238,7 @@ class ShipDetailViewController: BasicViewController {
     private func setupCollectionViewDataSource() {
         guard let consumableIds = shipInfo?.upgrades, consumableIds.count > 0 else { return }
         
-        let reallm = UserDefaults.getServerRelam()
-        ApiServers.shared.getConsumable(realm: reallm, ids: consumableIds) { [weak self] (consumables) in
+        ApiServers.shared.getConsumable(ids: consumableIds) { [weak self] (consumables) in
             if var cons = consumables {
                 cons.sort(by: < )
                 // grouping by price for collectionView sections

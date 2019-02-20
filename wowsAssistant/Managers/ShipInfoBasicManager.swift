@@ -43,9 +43,8 @@ class ShipInfoBasicManager {
     }
     
     private func loadShipInfoFromServerAndSaveCoreData() {
-        let realm = UserDefaults.getServerRelam()
         for p in 1...4 {
-            ApiServers.shared.getShipInfoBasicList(realm: realm, pageNum: p) { [weak self] in
+            ApiServers.shared.getShipInfoBasicList(pageNum: p) { [weak self] in
                 print(p)
                 if p == 4 {
                     self?.saveByDelay()

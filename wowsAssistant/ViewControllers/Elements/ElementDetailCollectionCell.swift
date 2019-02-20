@@ -10,8 +10,10 @@ import UIKit
 
 class ElementDetailCollectionCell: UICollectionViewCell {
     
-    var imageUrl: String?
-    var destriptionString: String?
+    var content: ElementContent?
+    
+    private let margin: CGFloat = 20
+    private let iconSize: CGFloat = 50
     
     private let iconImageView = UIImageView()
     private let textView = UITextView()
@@ -20,6 +22,14 @@ class ElementDetailCollectionCell: UICollectionViewCell {
         super.init(frame: frame)
         
         
+    }
+    
+    private func setupUI() {
+        addSubview(iconImageView)
+        iconImageView.addConstraint(leftAnchor, topAnchor, nil, nil, left: margin, top: margin, right: 0, bottom: 0, width: iconSize, height: iconSize)
+        
+        addSubview(textView)
+        textView.addConstraint(iconImageView.rightAnchor, iconImageView.topAnchor, rightAnchor, bottomAnchor, left: margin, top: 0, right: margin, bottom: margin)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -10,12 +10,14 @@ import Foundation
 
 struct ElementViewModel {
     
+    /// section title string
     let title: String
-    let content: [ElementContent]
+    /// for rows or items, with "description" and "iconUrlStr"
+    let contents: [ElementContent]
     
-    init(title: String, content: [ElementContent]) {
+    init(title: String, contents: [ElementContent]) {
         self.title = title
-        self.content = content
+        self.contents = contents
     }
     
 }
@@ -23,9 +25,11 @@ struct ElementViewModel {
 struct ElementContent {
     let description: String
     let iconUrlStr: String
+    let price: Int
     
-    init(urlStr: String, description: String) {
+    init(urlStr: String, description: String, price: Int) {
         self.iconUrlStr = urlStr
         self.description = description
+        self.price = price
     }
 }

@@ -22,7 +22,7 @@ final class ApiServers: NSObject {
     enum ServerKey: String {
         case applicationId = "application_id"
         case shipId = "ship_id"
-        case shipType = "type"
+        case type = "type"
         case language = "language"
         case limit = "limit"
         case page_no = "page_no"
@@ -54,6 +54,14 @@ final class ApiServers: NSObject {
     //https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
     //https://api.worldofwarships.asia/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&language=zh-cn&limit=6&ship_id=3763255248
 
+    private let wowsEncyclopedia = "/wows/encyclopedia"
+    
+    private enum WowsRoute: String {
+        case ships = "/ships/"
+        case consumables = "/consumables/"
+        case commanderSkills = "/crewskills/"
+    }
+    
     
     func getShipById(_ id: Int, realm: ServerRealm, completion: @escaping((ShipInfo?) -> Void)) {
         var params: [String:Any] = [:]
@@ -61,7 +69,7 @@ final class ApiServers: NSObject {
         params[ServerKey.language.rawValue] = ServiceManager.shared.getShipDescriptionLanguage()
         params[ServerKey.shipId.rawValue] = id
 
-        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+        let route = "\(host).\(realm.rawValue)\(wowsEncyclopedia)\(WowsRoute.ships.rawValue)"
         
         getDataFromWows(route, parameters: params) { (dictionary, error) in
             if let d = dictionary, let shipDictionary = d["\(id)"] as? [String:Any] {
@@ -106,7 +114,7 @@ final class ApiServers: NSObject {
         }
         params[ServerKey.shipId.rawValue] = idsStr
         
-        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+        let route = "\(host).\(realm.rawValue)\(wowsEncyclopedia)\(WowsRoute.ships.rawValue)"
         
         getDataFromWows(route, parameters: params) { (dictionary, error) in
             if let d = dictionary {
@@ -135,7 +143,7 @@ final class ApiServers: NSObject {
         params[ServerKey.language.rawValue] = ServiceManager.shared.getShipDescriptionLanguage()
         
         if let type = shipType {
-            params[ServerKey.shipType.rawValue] = type.rawValue
+            params[ServerKey.type.rawValue] = type.rawValue
         }
         if let nat = nation {
             params[ServerKey.nation.rawValue] = nat.rawValue
@@ -143,7 +151,7 @@ final class ApiServers: NSObject {
         params[ServerKey.limit.rawValue] = limit
         params[ServerKey.page_no.rawValue] = pageNum
         
-        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+        let route = "\(host).\(realm.rawValue)\(wowsEncyclopedia)\(WowsRoute.ships.rawValue)"
         var ships: [ShipInfo] = []
         
         getDataFromWows(route, parameters: params) { (dictionary, error) in
@@ -168,14 +176,15 @@ final class ApiServers: NSObject {
     }
     
     // https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=a604db0355085bac597c209b459fd0fb&fields=ship_id%2C+type%2C+tier%2C+nation&limit=100&page_no=4
-    func getShipInfoBasicList(realm: ServerRealm = .na, limit: Int = 100, pageNum: Int, completion: @escaping(() -> Void)) {
+    func getShipInfoBasicList(limit: Int = 100, pageNum: Int = 1, completion: @escaping(() -> Void)) {
         var params: [String:Any] = [:]
         params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
         params[ServerKey.limit.rawValue] = limit
         params[ServerKey.page_no.rawValue] = pageNum
         params[ServerKey.fields.rawValue] = "ship_id%2C+type%2C+tier%2C+nation"
         
-        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/ships/"
+        let realm = UserDefaults.getServerRelam()
+        let route = "\(host).\(realm.rawValue)\(wowsEncyclopedia)\(WowsRoute.ships.rawValue)"
         getDataFromWows(route, parameters: params) { (dictionary, error) in
             if let d = dictionary {
                 for pair in d {
@@ -194,18 +203,22 @@ final class ApiServers: NSObject {
     }
     
     // https://api.worldofwarships.com/wows/encyclopedia/consumables/?application_id=a604db0355085bac597c209b459fd0fb&consumable_id=4275228592%2C+4281520048
-    func getConsumable(realm: ServerRealm = .na, ids: [Int], completion: @escaping(([Consumable]?) -> Void)) {
-        if ids.count == 0 { return }
+    func getConsumable(ids: [Int]?, limit: Int = 100, pageNum: Int = 1, completion: @escaping(([Consumable]?) -> Void)) {
         var params: [String:Any] = [:]
+        params[ServerKey.limit.rawValue] = limit
+        params[ServerKey.page_no.rawValue] = pageNum
         params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
         
-        var idsStr = "\(ids[0])"
-        for i in 1..<ids.count {
-            idsStr = "\(idsStr)%2C+\(ids[i])"
+        if let ids = ids, ids.count > 0 {
+            var idsStr = "\(ids[0])"
+            for i in 1..<ids.count {
+                idsStr = "\(idsStr)%2C+\(ids[i])"
+            }
+            params[ServerKey.consumableId.rawValue] = idsStr
         }
-        params[ServerKey.consumableId.rawValue] = idsStr
         
-        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/consumables/"
+        let realm = UserDefaults.getServerRelam()
+        let route = "\(host).\(realm.rawValue)\(wowsEncyclopedia)\(WowsRoute.consumables.rawValue)"
         
         getDataFromWows(route, parameters: params) { (dictionary, error) in
             var consumables: [Consumable] = []
@@ -227,13 +240,16 @@ final class ApiServers: NSObject {
             completion(consumables)
         }
     }
-    
     // https://api.worldofwarships.com/wows/encyclopedia/crewskills/?application_id=a604db0355085bac597c209b459fd0fb
-    func getCommanderSkills(realm: ServerRealm = .na, completion: @escaping([CommanderSkill]) -> Void) {
+    func getCommanderSkills(type: String? = nil, completion: @escaping([CommanderSkill]) -> Void) {
         var params: [String:Any] = [:]
         params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
+        if let type = type {
+            params[ServerKey.type.rawValue] = type
+        }
         
-        let route = "\(host).\(realm.rawValue)/wows/encyclopedia/crewskills/"
+        let realm = UserDefaults.getServerRelam()
+        let route = "\(host).\(realm.rawValue)\(wowsEncyclopedia)\(WowsRoute.commanderSkills.rawValue)"
         
         getDataFromWows(route, parameters: params) { (dictionary, error) in
             var skills: [CommanderSkill] = []

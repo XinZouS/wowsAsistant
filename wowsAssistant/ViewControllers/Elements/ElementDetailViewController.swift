@@ -8,24 +8,48 @@
 
 import UIKit
 
+protocol ElementDetailViewDataSourceDelegate: class {
+    func loadDataSource()
+}
 
-class ElementDetailViewController: UIViewController {
+class ElementDetailViewController: BasicViewController {
     
-    var elements: [ElementViewModel] = []
+    internal var elements: [ElementViewModel] = []
+    internal var isAllowNextPage = true
+    internal let itemLimitOfEachPage = 36
     
-    let cellId = "elementCellId"
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    fileprivate let cellId = "elementCellId"
+    fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
+    
+    // MARK: - View cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     private func setupCollectionView() {
         collectionView.register(ElementDetailCollectionCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    internal func elementDataSourceDidUpdate(_ newDataSource: [ElementViewModel]) {
+        self.elements.append(contentsOf: newDataSource)
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
 }

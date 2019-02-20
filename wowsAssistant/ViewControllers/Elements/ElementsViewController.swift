@@ -8,11 +8,20 @@
 
 import UIKit
 
+enum ElementKind {
+    case commanderSkills
+    case consumables
+    case collections
+    case maps
+}
+
 struct ElementsTableContent {
+    let kind: ElementKind
     let title: String
     let image: UIImage
     
-    init(_ title: String, _ image: UIImage) {
+    init(_ kind: ElementKind, _ title: String, _ image: UIImage) {
+        self.kind = kind
         self.title = title
         self.image = image
     }
@@ -24,10 +33,10 @@ class ElementsViewController: BasicViewController {
     let tableView = UITableView()
     
     let contents: [ElementsTableContent] = [
-        ElementsTableContent(L("Commander Skills"), #imageLiteral(resourceName: "commanders")),
-        ElementsTableContent(L("Consumables"), #imageLiteral(resourceName: "consumablesTitleImg")),
-        ElementsTableContent(L("Collections"), #imageLiteral(resourceName: "collections")),
-        ElementsTableContent(L("Maps"), #imageLiteral(resourceName: "map_titleImg")),
+        ElementsTableContent(ElementKind.commanderSkills, L("Commander Skills"), #imageLiteral(resourceName: "commanders")),
+        ElementsTableContent(ElementKind.consumables, L("Consumables"), #imageLiteral(resourceName: "consumablesTitleImg")),
+        ElementsTableContent(ElementKind.collections, L("Collections"), #imageLiteral(resourceName: "collections")),
+        ElementsTableContent(ElementKind.maps, L("Maps"), #imageLiteral(resourceName: "map_titleImg")),
     ]
     
     // MARK: - View cycle
@@ -75,11 +84,24 @@ extension ElementsViewController: UITableViewDataSource {
 
 extension ElementsViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row >= contents.count { return }
+        let kind = contents[indexPath.row].kind
+        switch kind {
+        case .commanderSkills, .consumables:
+            let vc = ElementDetailViewController(kind: kind)
+            AppDelegate.shared().mainNavigationController?.pushViewController(vc, animated: true)
+            
+        case .collections:
+            print(" open collections")
+            
+        case .maps:
+            print(" open maps")
+        }
+    }
+    
 }
