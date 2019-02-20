@@ -8,18 +8,13 @@
 
 import UIKit
 
-protocol ElementDetailViewDataSourceDelegate: class {
-    func loadDataSource()
-}
-
 class ElementDetailViewController: BasicViewController {
     
-    internal var elements: [ElementViewModel] = []
     internal var isAllowNextPage = true
     internal let itemLimitOfEachPage = 36
     
-    fileprivate let cellId = "elementCellId"
-    fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    internal let cellId = "elementCellId"
+    internal let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     
     // MARK: - View cycle
@@ -41,16 +36,8 @@ class ElementDetailViewController: BasicViewController {
     
     private func setupCollectionView() {
         collectionView.register(ElementDetailCollectionCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.dataSource = self
-        collectionView.delegate = self
     }
     
-    internal func elementDataSourceDidUpdate(_ newDataSource: [ElementViewModel]) {
-        self.elements.append(contentsOf: newDataSource)
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
-    }
     
 }
 
