@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConsumableCollectionCell: ElementBaseCollectionCell {
+class ConsumableCollectionCell: ItemBaseCollectionCell {
     
     var consumable: Consumable?
     

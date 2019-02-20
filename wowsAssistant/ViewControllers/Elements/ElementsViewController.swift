@@ -92,8 +92,12 @@ extension ElementsViewController: UITableViewDelegate {
         if indexPath.row >= contents.count { return }
         let kind = contents[indexPath.row].kind
         switch kind {
-        case .commanderSkills, .consumables:
-            let vc = ElementDetailViewController(kind: kind)
+        case .commanderSkills:
+            let vc = CommanderSkillsViewController()
+            AppDelegate.shared().mainNavigationController?.pushViewController(vc, animated: true)
+            
+        case .consumables:
+            let vc = ConsumablesViewController()
             AppDelegate.shared().mainNavigationController?.pushViewController(vc, animated: true)
             
         case .collections:

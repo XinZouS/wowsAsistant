@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommanderSkillCollectionCell: ElementBaseCollectionCell {
+class CommanderSkillCollectionCell: ItemBaseCollectionCell {
     
     var skill: CommanderSkill?
     
