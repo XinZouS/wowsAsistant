@@ -1,5 +1,5 @@
 //
-//  ElementDetailViewController.swift
+//  ConsumablesDetailViewController.swift
 //  wowsAssistant
 //
 //  Created by Xin Zou on 2/17/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ElementDetailViewController: BasicViewController {
+class ConsumablesDetailViewController: BasicViewController {
     
     internal var isAllowNextPage = true
     internal let itemLimitOfEachPage = 36
