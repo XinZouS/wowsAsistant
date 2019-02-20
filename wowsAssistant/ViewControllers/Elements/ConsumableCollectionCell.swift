@@ -10,7 +10,7 @@ import UIKit
 
 class ConsumableCollectionCell: ElementBaseCollectionCell {
     
-    var content: ElementContent?
+    var consumable: Consumable?
     
     private let margin: CGFloat = 20
     private let iconSize: CGFloat = 50

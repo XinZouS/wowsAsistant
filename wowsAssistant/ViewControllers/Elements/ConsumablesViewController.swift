@@ -1,5 +1,5 @@
 //
-//  ConsumablesDetailViewController.swift
+//  ConsumablesViewController.swift
 //  wowsAssistant
 //
 //  Created by Xin Zou on 2/17/19.
@@ -8,14 +8,15 @@
 
 import UIKit
 
-class ConsumablesDetailViewController: BasicViewController {
+class ConsumablesViewController: BasicViewController {
     
-    internal var isAllowNextPage = true
-    internal let itemLimitOfEachPage = 36
+    fileprivate var isAllowNextPage = true
+    fileprivate let itemLimitOfEachPage = 36
     
-    internal let cellId = "elementCellId"
-    internal let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    fileprivate let cellId = "consumableCellId"
+    fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
+    fileprivate var consumables: [Consumable] = []
     
     // MARK: - View cycle
     
@@ -35,27 +36,27 @@ class ConsumablesDetailViewController: BasicViewController {
     }
     
     private func setupCollectionView() {
-        collectionView.register(ElementDetailCollectionCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(ConsumableCollectionCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     
 }
 
-extension ElementDetailViewController: UICollectionViewDataSource {
+extension ConsumablesViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return elements.count
+        return consumables.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section < elements.count {
-            return elements[section].contents.count
+            return consumables[section].contents.count
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ElementDetailCollectionCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ConsumableCollectionCell {
             if indexPath.section < elements.count, indexPath.item < elements[indexPath.section].contents.count {
                 let content: ElementContent = elements[indexPath.section].contents[indexPath.item]
                 cell.content = content
@@ -70,12 +71,12 @@ extension ElementDetailViewController: UICollectionViewDataSource {
     
 }
 
-extension ElementDetailViewController: UICollectionViewDelegate {
+extension ConsumablesViewController: UICollectionViewDelegate {
     
     
 }
 
-extension ElementDetailViewController: UICollectionViewDelegateFlowLayout {
+extension ConsumablesViewController: UICollectionViewDelegateFlowLayout {
     
     
     
