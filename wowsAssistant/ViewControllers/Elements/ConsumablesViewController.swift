@@ -16,7 +16,7 @@ class ConsumablesViewController: BasicViewController {
     fileprivate let cellId = "consumableCellId"
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    fileprivate var consumables: [Consumable] = []
+    fileprivate var consumableViewModels: [ConsumableViewModel] = []
     
     // MARK: - View cycle
     
@@ -45,21 +45,20 @@ class ConsumablesViewController: BasicViewController {
 extension ConsumablesViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return consumables.count
+        return consumableViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section < elements.count {
-            return consumables[section].contents.count
+        if section < consumableViewModels.count {
+            return consumableViewModels[section].consumables.count
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ConsumableCollectionCell {
-            if indexPath.section < elements.count, indexPath.item < elements[indexPath.section].contents.count {
-                let content: ElementContent = elements[indexPath.section].contents[indexPath.item]
-                cell.content = content
+            if indexPath.section < consumableViewModels.count, indexPath.item < consumableViewModels[indexPath.section].consumables.count {
+                cell.consumable = consumableViewModels[indexPath.section].consumables[indexPath.item]
             }
             return cell
         }
