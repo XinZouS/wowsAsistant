@@ -21,6 +21,14 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
         super.init(frame: frame)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        consumable = nil
+        priceLabel.text = nil
+        iconImageView.image = nil
+        textView.attributedText = nil
+    }
+    
     private func updateConsumableInfo() {
         guard let cons = consumable else { return }
         
@@ -32,7 +40,7 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
         let description = NSMutableAttributedString(string: cons.name, attributes: titleAtts)
         
         for (i,profile) in cons.profiles.enumerated() {
-            let textColor = i % 2 == 1 ? UIColor.white : UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+            let textColor = i % 2 == 0 ? UIColor.white : UIColor.lightGray
             let profileAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
                                NSAttributedString.Key.foregroundColor: textColor]
             let profileStr = NSAttributedString(string: "\n\(profile.description)", attributes: profileAtts)
