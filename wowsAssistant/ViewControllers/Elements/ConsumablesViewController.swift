@@ -39,7 +39,8 @@ class ConsumablesViewController: ItemBaseViewController {
         ApiServers.shared.getConsumable(ids: nil, type: commanderSkillTypes[currTypeIndex]) { [weak self] (consumables) in
             if consumables.count == 0 { return }
             let title = consumables[0].type
-            let vm = ConsumableViewModel(sectionTitle: title, consumables: consumables)
+            let consumablesSorted = consumables.sorted(by: <)
+            let vm = ConsumableViewModel(sectionTitle: title, consumables: consumablesSorted)
             self?.consumableViewModels.append(vm)
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
