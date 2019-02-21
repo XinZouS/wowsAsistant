@@ -51,7 +51,7 @@ class ConsumableCell: ItemBaseCell {
             let textColor = i % 2 == 1 ? UIColor.white : UIColor.lightGray
             let profileAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
                                NSAttributedString.Key.foregroundColor: textColor]
-            let profileStr = NSAttributedString(string: "\n\(profile.description)", attributes: profileAtts)
+            let profileStr = NSAttributedString(string: "\n - \(profile.description)", attributes: profileAtts)
             description.append(profileStr)
         }
         

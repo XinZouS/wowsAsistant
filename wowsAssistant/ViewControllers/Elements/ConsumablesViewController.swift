@@ -10,21 +10,20 @@ import UIKit
 
 class ConsumablesViewController: ItemBaseViewController {
     
+    /// Upgrades, Flags, Camouflages, Ship camouflages, Permanent
+    fileprivate let commanderSkillTypes: [String] = ["Modernization", "Flags", "Camouflage", "Skin", "Permoflage"]
     fileprivate var isAllowNextPage = true
-    fileprivate let itemLimitOfEachPage = 36
+    fileprivate var currTypeIndex = 0
     
     fileprivate let cellId = "consumableCellId"
     
-    /// Upgrades, Flags, Camouflages, Ship camouflages, Permanent
-    let commanderSkillTypes: [String] = ["Modernization", "Flags", "Camouflage", "Skin", "Permoflage"]
-    var currTypeIndex = 0
     
     /// sections grouped by: commanderSkillTypes
     fileprivate var consumableViewModels: [ConsumableViewModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+        loadNextPage()
     }
     
     override func setupTableView() {
@@ -34,16 +33,22 @@ class ConsumablesViewController: ItemBaseViewController {
         tableView.delegate = self
     }
     
-    private func loadData() {
-        if currTypeIndex >= commanderSkillTypes.count { return }
-        ApiServers.shared.getConsumable(ids: nil, type: commanderSkillTypes[currTypeIndex]) { [weak self] (consumables) in
+    private func loadNextPage() {
+        if currTypeIndex >= commanderSkillTypes.count || !isAllowNextPage { return }
+        isAllowNextPage = false
+        ApiServers.shared.getConsumable(ids: nil, type: commanderSkillTypes[currTypeIndex]) { [unowned self] (consumables) in
+            
             if consumables.count == 0 { return }
+            
             let title = consumables[0].type
             let consumablesSorted = consumables.sorted(by: <)
+            // new section:
             let vm = ConsumableViewModel(sectionTitle: title, consumables: consumablesSorted)
-            self?.consumableViewModels.append(vm)
+            self.consumableViewModels.append(vm)
             DispatchQueue.main.async {
-                self?.tableView.reloadData()
+                self.tableView.reloadData()
+                self.currTypeIndex += 1
+                self.isAllowNextPage = true
             }
         }
     }
@@ -77,5 +82,12 @@ extension ConsumablesViewController: UITableViewDataSource {
 
 extension ConsumablesViewController: UITableViewDelegate {
     
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == currTypeIndex - 1,
+            currTypeIndex < consumableViewModels.count,
+            indexPath.row == consumableViewModels[indexPath.section].consumables.count - 1 {
+            
+            loadNextPage()
+        }
+    }
 }
