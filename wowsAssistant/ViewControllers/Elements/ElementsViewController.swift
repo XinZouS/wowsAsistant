@@ -91,14 +91,17 @@ extension ElementsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row >= contents.count { return }
+        
         let kind = contents[indexPath.row].kind
         switch kind {
         case .commanderSkills:
             let vc = CommanderSkillsViewController()
+            vc.title = contents[indexPath.row].title
             AppDelegate.shared().mainNavigationController?.pushViewController(vc, animated: true)
             
         case .consumables:
             let vc = ConsumablesViewController()
+            vc.title = contents[indexPath.row].title
             AppDelegate.shared().mainNavigationController?.pushViewController(vc, animated: true)
             
         case .collections:
