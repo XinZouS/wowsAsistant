@@ -60,7 +60,9 @@ class ConsumableCell: ItemBaseCell {
         if cons.priceGold > 0 {
             priceImageView.image = #imageLiteral(resourceName: "coins_doubloon")
             priceLabel.text = "\(cons.priceGold.getFormattedString())"
-        } else {
+        }
+        // priority display is priceCredit, so no 'else'
+        if cons.priceCredit > 0 {
             priceImageView.image = #imageLiteral(resourceName: "coins_silver")
             priceLabel.text = "\(cons.priceCredit.getFormattedString())"
         }

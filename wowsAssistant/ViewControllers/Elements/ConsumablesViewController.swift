@@ -84,10 +84,30 @@ extension ConsumablesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == currTypeIndex - 1,
-            currTypeIndex < consumableViewModels.count,
             indexPath.row == consumableViewModels[indexPath.section].consumables.count - 1 {
             
             loadNextPage()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section >= consumableViewModels.count { return nil }
+        
+        let imgView = UIImageView()
+        imgView.contentMode = .scaleToFill
+        
+        let fontSize: CGFloat = 16
+        let lb = UILabel()
+        lb.textColor = .white
+        lb.font = UIFont.boldSystemFont(ofSize: fontSize)
+        lb.text = consumableViewModels[section].sectionTitle
+        
+        let v = UIView()
+        v.addSubview(imgView)
+        imgView.fillSuperviewByConstraint()
+        v.addSubview(lb)
+        lb.anchorCenterIn(v, width: 0, height: fontSize)
+        
+        return v
     }
 }
