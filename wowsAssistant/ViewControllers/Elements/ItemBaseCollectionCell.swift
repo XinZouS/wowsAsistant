@@ -34,7 +34,7 @@ class ItemBaseCollectionCell: UICollectionViewCell {
         addSubview(priceImageView)
         priceImageView.addConstraint(leftAnchor, iconImageView.bottomAnchor, nil, nil, left: space, top: space, right: 0, bottom: 0, width: priceImgSize, height: priceImgSize)
         
-        priceLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        priceLabel.font = UIFont.boldSystemFont(ofSize: 12)
         priceLabel.textColor = .white
         addSubview(priceLabel)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +42,6 @@ class ItemBaseCollectionCell: UICollectionViewCell {
         priceLabel.centerYAnchor.constraint(equalTo: priceImageView.centerYAnchor).isActive = true
         
         textView.backgroundColor = .clear
-        textView.isUserInteractionEnabled = false
         addSubview(textView)
         textView.addConstraint(iconImageView.rightAnchor, topAnchor, rightAnchor, bottomAnchor, left: space, top: space, right: space, bottom: space)
     }

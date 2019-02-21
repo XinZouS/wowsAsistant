@@ -45,6 +45,11 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
         
         textView.attributedText = description
         
+        let initSize = CGSize(width: textView.bounds.width, height: textView.bounds.width) // height is init with its width
+        let estimateSize = description.boundingRect(with: initSize, options: .usesFontLeading, context: nil)
+        let isTextFull = estimateSize.height > textView.bounds.height
+        textView.isUserInteractionEnabled = isTextFull
+        
         if cons.priceGold > 0 {
             priceImageView.image = #imageLiteral(resourceName: "coins_doubloon")
             priceLabel.text = "\(cons.priceGold.getFormattedString())"
