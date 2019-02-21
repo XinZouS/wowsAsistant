@@ -38,11 +38,13 @@ class CommanderSkillCell: ItemBaseCell {
         }
         let description = NSMutableAttributedString(string: skill.name, attributes: titleAttributes)
         
-        let detailAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+        let typeAtts = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14),
                           NSAttributedString.Key.foregroundColor: UIColor.white]
-        let type = NSMutableAttributedString(string: "\n\(skill.typeName)", attributes: detailAtts)
+        let type = NSMutableAttributedString(string: "\nT\(skill.tier): \(skill.typeName)", attributes: typeAtts)
         description.append(type)
         
+        let detailAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+                          NSAttributedString.Key.foregroundColor: UIColor.white]
         let detail = NSMutableAttributedString(string: "\n\(skill.getPerksDescription())", attributes: detailAtts)
         description.append(detail)
         
