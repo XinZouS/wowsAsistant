@@ -93,7 +93,7 @@ extension ConsumablesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section >= consumableViewModels.count { return nil }
         
-        let lbHeigh: CGFloat = 36
+        let lbHeigh: CGFloat = 30
         let lb = UILabel()
         lb.textColor = .white
         lb.textAlignment = .center
@@ -105,13 +105,8 @@ extension ConsumablesViewController: UITableViewDelegate {
         
         let v = UIView()
         v.addSubview(lb)
-//        lb.translatesAutoresizingMaskIntoConstraints = false
-//        lb.centerXAnchor.constraint(equalTo: v.centerXAnchor).isActive = true
-//        lb.centerYAnchor.constraint(equalTo: v.centerYAnchor).isActive = true
-//        lb.heightAnchor.constraint(equalToConstant: lbHeigh).isActive = true
-        let w = lb.intrinsicContentSize.width
-//        lb.widthAnchor.constraint(equalToConstant: w).isActive = true
-        lb.anchorCenterIn(v, width: w * 2, height: lbHeigh)
+        let w = lb.intrinsicContentSize.width + lbHeigh
+        lb.anchorCenterIn(v, width: w, height: lbHeigh)
 
         return v
     }
