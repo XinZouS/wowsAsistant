@@ -31,9 +31,10 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
                     NSAttributedString.Key.foregroundColor: UIColor.WowsTheme.textCyan]
         let description = NSMutableAttributedString(string: cons.name, attributes: titleAtts)
         
-        let profileAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
-                           NSAttributedString.Key.foregroundColor: UIColor.white]
-        for profile in cons.profiles {
+        for (i,profile) in cons.profiles.enumerated() {
+            let textColor = i % 2 == 1 ? UIColor.white : UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+            let profileAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+                               NSAttributedString.Key.foregroundColor: textColor]
             let profileStr = NSAttributedString(string: "\n\(profile.description)", attributes: profileAtts)
             description.append(profileStr)
         }
@@ -45,7 +46,7 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
         
         textView.attributedText = description
         
-        let initSize = CGSize(width: textView.bounds.width, height: textView.bounds.width) // height is init with its width
+        let initSize = CGSize(width: textView.bounds.width, height: 1000) // height is init with enough value to cover max probability
         let estimateSize = description.boundingRect(with: initSize, options: .usesFontLeading, context: nil)
         let isTextFull = estimateSize.height > textView.bounds.height
         textView.isUserInteractionEnabled = isTextFull

@@ -43,7 +43,7 @@ class ItemBaseCollectionCell: UICollectionViewCell {
         
         textView.backgroundColor = .clear
         addSubview(textView)
-        textView.addConstraint(iconImageView.rightAnchor, topAnchor, rightAnchor, bottomAnchor, left: space, top: space, right: space, bottom: space)
+        textView.addConstraint(iconImageView.rightAnchor, topAnchor, rightAnchor, bottomAnchor, left: space, top: space, right: space, bottom: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {
