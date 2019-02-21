@@ -21,16 +21,20 @@ struct CommanderSkill: Unboxable {
         name = (try? unboxer.unbox(key: ShipInfoKeyInDB.name.rawValue)) ?? ""
         typeId = (try? unboxer.unbox(key: ShipInfoKeyInDB.typeId.rawValue)) ?? 0
         typeName = (try? unboxer.unbox(key: ShipInfoKeyInDB.typeName.rawValue)) ?? ""
-        let dictionary: [String:Any] = (try? unboxer.unbox(key: ShipInfoKeyInDB.perks.rawValue)) ?? [:]
+        let dictionarys: [[String:Any]] = (try? unboxer.unbox(key: ShipInfoKeyInDB.perks.rawValue)) ?? []
         tier = (try? unboxer.unbox(key: ShipInfoKeyInDB.tier.rawValue)) ?? 0
         icon = (try? unboxer.unbox(key: ShipInfoKeyInDB.icon.rawValue)) ?? ""
         
         var getDescriptions: [String] = []
-        for pair in dictionary {
-            if pair.key == ShipInfoKeyInDB.description.rawValue, let s = pair.value as? String {
+        for pair in dictionarys {
+            if let s = pair[ShipInfoKeyInDB.description.rawValue] as? String {
                 getDescriptions.append(s)
             }
         }
         perks = getDescriptions
+    }
+    
+    func getPerksDescription() -> String {
+        return perks.reduce("") { "\($0)\($1)\n" }
     }
 }

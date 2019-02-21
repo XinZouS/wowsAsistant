@@ -19,6 +19,11 @@ class CommanderSkillsViewController: ItemBaseViewController {
     fileprivate var skills: [CommanderSkill] = []
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadDataSource()
+    }
+    
     override func setupTableView() {
         super.setupTableView()
         tableView.register(CommanderSkillCell.self, forCellReuseIdentifier: cellId)
@@ -26,16 +31,14 @@ class CommanderSkillsViewController: ItemBaseViewController {
         tableView.delegate = self
     }
     
-    
-    
     private func loadDataSource() {
         ApiServers.shared.getCommanderSkills { [weak self] (commanderSkills) in
             self?.skills.append(contentsOf: commanderSkills)
-            self?.updateCollectionView()
+            self?.updateTableView()
         }
     }
     
-    private func updateCollectionView() {
+    private func updateTableView() {
         skills.sort { (a, b) -> Bool in
             return a.tier < b.tier
         }

@@ -19,6 +19,10 @@ class ItemBaseCell: UITableViewCell {
     internal let marginX: CGFloat = 20
     internal let iconSize: CGFloat = 60
     
+    internal let titleAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
+                     NSAttributedString.Key.foregroundColor: UIColor.WowsTheme.textCyan]
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear

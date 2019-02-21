@@ -35,9 +35,8 @@ class ConsumableCell: ItemBaseCell {
         if let url = URL(string: cons.image) {
             iconImageView.af_setImage(withURL: url)
         }
-        let titleAtts = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
-                    NSAttributedString.Key.foregroundColor: UIColor.WowsTheme.textCyan]
-        let description = NSMutableAttributedString(string: cons.name, attributes: titleAtts)
+        
+        let description = NSMutableAttributedString(string: cons.name, attributes: titleAttributes)
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = 5

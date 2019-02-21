@@ -93,7 +93,7 @@ extension ConsumablesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section >= consumableViewModels.count { return nil }
         
-        let lbHeigh: CGFloat = 30
+        let lbHeigh: CGFloat = 33
         let lb = UILabel()
         lb.textColor = .white
         lb.textAlignment = .center
