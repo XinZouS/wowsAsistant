@@ -19,10 +19,10 @@
 		66DEDD1B2218789800278049 /* ElementsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD1A2218789800278049 /* ElementsTableCell.swift */; };
 		66DEDD1D221A4F2C00278049 /* CommanderSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD1C221A4F2B00278049 /* CommanderSkill.swift */; };
 		66DEDD1F221A669B00278049 /* ConsumablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD1E221A669B00278049 /* ConsumablesViewController.swift */; };
-		66DEDD21221A66AB00278049 /* ConsumableCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD20221A66AB00278049 /* ConsumableCollectionCell.swift */; };
+		66DEDD21221A66AB00278049 /* ConsumableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD20221A66AB00278049 /* ConsumableCell.swift */; };
 		66DEDD25221CCA8900278049 /* CommanderSkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD24221CCA8900278049 /* CommanderSkillsViewController.swift */; };
-		66DEDD27221D9F9E00278049 /* ItemBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD26221D9F9E00278049 /* ItemBaseCollectionCell.swift */; };
-		66DEDD29221DA0B200278049 /* CommanderSkillCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */; };
+		66DEDD27221D9F9E00278049 /* ItemBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD26221D9F9E00278049 /* ItemBaseCell.swift */; };
+		66DEDD29221DA0B200278049 /* CommanderSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD28221DA0B200278049 /* CommanderSkillCell.swift */; };
 		66DEDD2B221DA25F00278049 /* ConsumableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */; };
 		66DEDD2D221DBAA200278049 /* ItemBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */; };
 		66DEDD2F221EFFB000278049 /* Numerical++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD2E221EFFB000278049 /* Numerical++.swift */; };
@@ -85,10 +85,10 @@
 		66DEDD1A2218789800278049 /* ElementsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsTableCell.swift; sourceTree = "<group>"; };
 		66DEDD1C221A4F2B00278049 /* CommanderSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkill.swift; sourceTree = "<group>"; };
 		66DEDD1E221A669B00278049 /* ConsumablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumablesViewController.swift; sourceTree = "<group>"; };
-		66DEDD20221A66AB00278049 /* ConsumableCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableCollectionCell.swift; sourceTree = "<group>"; };
+		66DEDD20221A66AB00278049 /* ConsumableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableCell.swift; sourceTree = "<group>"; };
 		66DEDD24221CCA8900278049 /* CommanderSkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkillsViewController.swift; sourceTree = "<group>"; };
-		66DEDD26221D9F9E00278049 /* ItemBaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBaseCollectionCell.swift; sourceTree = "<group>"; };
-		66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkillCollectionCell.swift; sourceTree = "<group>"; };
+		66DEDD26221D9F9E00278049 /* ItemBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBaseCell.swift; sourceTree = "<group>"; };
+		66DEDD28221DA0B200278049 /* CommanderSkillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkillCell.swift; sourceTree = "<group>"; };
 		66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableViewModel.swift; sourceTree = "<group>"; };
 		66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBaseViewController.swift; sourceTree = "<group>"; };
 		66DEDD2E221EFFB000278049 /* Numerical++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numerical++.swift"; sourceTree = "<group>"; };
@@ -186,11 +186,11 @@
 				66DEDD18221877B600278049 /* ElementsViewController.swift */,
 				66DEDD1A2218789800278049 /* ElementsTableCell.swift */,
 				66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */,
-				66DEDD26221D9F9E00278049 /* ItemBaseCollectionCell.swift */,
+				66DEDD26221D9F9E00278049 /* ItemBaseCell.swift */,
 				66DEDD24221CCA8900278049 /* CommanderSkillsViewController.swift */,
-				66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */,
+				66DEDD28221DA0B200278049 /* CommanderSkillCell.swift */,
 				66DEDD1E221A669B00278049 /* ConsumablesViewController.swift */,
-				66DEDD20221A66AB00278049 /* ConsumableCollectionCell.swift */,
+				66DEDD20221A66AB00278049 /* ConsumableCell.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -508,10 +508,10 @@
 				66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */,
 				66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */,
 				66DEDD1F221A669B00278049 /* ConsumablesViewController.swift in Sources */,
-				66DEDD27221D9F9E00278049 /* ItemBaseCollectionCell.swift in Sources */,
+				66DEDD27221D9F9E00278049 /* ItemBaseCell.swift in Sources */,
 				66F0E39C21EBFE5C003D1023 /* Ship.swift in Sources */,
 				66ED359821FA273200D493D9 /* UIButton++.swift in Sources */,
-				66DEDD29221DA0B200278049 /* CommanderSkillCollectionCell.swift in Sources */,
+				66DEDD29221DA0B200278049 /* CommanderSkillCell.swift in Sources */,
 				66F0E38121EAA50A003D1023 /* Passwords.swift in Sources */,
 				66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */,
 				66ED35A521FEBED700D493D9 /* ShipInfoBasicManager.swift in Sources */,
@@ -528,7 +528,7 @@
 				66DEDD19221877B600278049 /* ElementsViewController.swift in Sources */,
 				66ED359D21FE66E900D493D9 /* wowsAssistant.xcdatamodeld in Sources */,
 				66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */,
-				66DEDD21221A66AB00278049 /* ConsumableCollectionCell.swift in Sources */,
+				66DEDD21221A66AB00278049 /* ConsumableCell.swift in Sources */,
 				66DEDD2F221EFFB000278049 /* Numerical++.swift in Sources */,
 				66F0E38421EBDFDA003D1023 /* ApiServers.swift in Sources */,
 				66F0E39721EBF510003D1023 /* Date++.swift in Sources */,

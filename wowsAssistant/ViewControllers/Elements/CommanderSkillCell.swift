@@ -1,5 +1,5 @@
 //
-//  CommanderSkillCollectionCell.swift
+//  CommanderSkillCell.swift
 //  wowsAssistant
 //
 //  Created by Xin Zou on 2/20/19.
@@ -8,16 +8,14 @@
 
 import UIKit
 
-class CommanderSkillCollectionCell: ItemBaseCollectionCell {
+class CommanderSkillCell: ItemBaseCell {
     
     var skill: CommanderSkill?
     
-    private let margin: CGFloat = 20
-    private let iconSize: CGFloat = 50
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupPriceUI()
     }
     

@@ -1,5 +1,5 @@
 //
-//  ItemBaseCollectionCell.swift
+//  ItemBaseCell.swift
 //  wowsAssistant
 //
 //  Created by Xin Zou on 2/20/19.
@@ -8,26 +8,29 @@
 
 import UIKit
 
-class ItemBaseCollectionCell: UICollectionViewCell {
+class ItemBaseCell: UITableViewCell {
     
     internal let iconImageView = UIImageView()
     internal let priceImageView = UIImageView()
     internal let priceLabel = UILabel()
-    internal let textView = UITextView()
+    internal let descriptionLabel = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    /// margin size on X axis
+    internal let marginX: CGFloat = 20
+    internal let iconSize: CGFloat = 60
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .clear
         setupUI()
     }
     
     private func setupUI() {
         let space: CGFloat = 10
-        let margin: CGFloat = 20
-        let iconSize: CGFloat = 60
         
         iconImageView.contentMode = .scaleAspectFit
         addSubview(iconImageView)
-        iconImageView.addConstraint(leftAnchor, topAnchor, nil, nil, left: margin, top: margin, right: 0, bottom: 0, width: iconSize, height: iconSize)
+        iconImageView.addConstraint(leftAnchor, topAnchor, nil, nil, left: marginX, top: marginX, right: 0, bottom: 0, width: iconSize, height: iconSize)
         
         let priceImgSize: CGFloat = 14
         priceImageView.contentMode = .scaleAspectFit
@@ -40,10 +43,12 @@ class ItemBaseCollectionCell: UICollectionViewCell {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.leftAnchor.constraint(equalTo: priceImageView.rightAnchor, constant: 5).isActive = true
         priceLabel.centerYAnchor.constraint(equalTo: priceImageView.centerYAnchor).isActive = true
+//        priceLabel.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: marginX).isActive = true
         
-        textView.backgroundColor = .clear
-        addSubview(textView)
-        textView.addConstraint(iconImageView.rightAnchor, topAnchor, rightAnchor, bottomAnchor, left: space, top: space, right: space, bottom: 0)
+        descriptionLabel.backgroundColor = .clear
+        descriptionLabel.numberOfLines = 0
+        addSubview(descriptionLabel)
+        descriptionLabel.addConstraint(iconImageView.rightAnchor, topAnchor, rightAnchor, bottomAnchor, left: space, top: space, right: space, bottom: marginX)
     }
     
     required init?(coder aDecoder: NSCoder) {

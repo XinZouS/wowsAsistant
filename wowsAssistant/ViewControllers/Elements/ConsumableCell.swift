@@ -1,5 +1,5 @@
 //
-//  ConsumableCollectionCell.swift
+//  ConsumableCell.swift
 //  wowsAssistant
 //
 //  Created by Xin Zou on 2/17/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConsumableCollectionCell: ItemBaseCollectionCell {
+class ConsumableCell: ItemBaseCell {
     
     var consumable: Consumable? {
         didSet {
@@ -17,8 +17,8 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
     }
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     override func prepareForReuse() {
@@ -26,7 +26,7 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
         consumable = nil
         priceLabel.text = nil
         iconImageView.image = nil
-        textView.attributedText = nil
+        descriptionLabel.attributedText = nil
     }
     
     private func updateConsumableInfo() {
@@ -52,12 +52,7 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
         let detail = NSMutableAttributedString(string: "\n\(cons.description)", attributes: detailAtts)
         description.append(detail)
         
-        textView.attributedText = description
-        
-        let initSize = CGSize(width: textView.bounds.width, height: 1000) // height is init with enough value to cover max probability
-        let estimateSize = description.boundingRect(with: initSize, options: .usesFontLeading, context: nil)
-        let isTextFull = estimateSize.height > textView.bounds.height
-        textView.isUserInteractionEnabled = isTextFull
+        descriptionLabel.attributedText = description // after set text, cell label will auto update height;
         
         if cons.priceGold > 0 {
             priceImageView.image = #imageLiteral(resourceName: "coins_doubloon")

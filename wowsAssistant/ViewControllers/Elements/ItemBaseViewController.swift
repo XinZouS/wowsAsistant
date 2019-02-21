@@ -10,13 +10,13 @@ import UIKit
 
 class ItemBaseViewController: BasicViewController {
     
-    internal let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    internal let tableView = UITableView(frame: .zero)
     
     // MARK: - View cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
+        setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,11 +29,12 @@ class ItemBaseViewController: BasicViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    internal func setupCollectionView() {
-        collectionView.backgroundColor = .clear
+    internal func setupTableView() {
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
         let vs = self.view.safeAreaLayoutGuide
-        view.addSubview(collectionView)
-        collectionView.addConstraint(vs.leftAnchor, vs.topAnchor, vs.rightAnchor, vs.bottomAnchor, left: 0, top: 0, right: 0, bottom: 0)
+        view.addSubview(tableView)
+        tableView.addConstraint(vs.leftAnchor, vs.topAnchor, vs.rightAnchor, vs.bottomAnchor, left: 0, top: 0, right: 0, bottom: 0)
     }
     
 }

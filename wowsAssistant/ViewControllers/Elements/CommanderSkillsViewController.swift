@@ -19,11 +19,11 @@ class CommanderSkillsViewController: ItemBaseViewController {
     fileprivate var skills: [CommanderSkill] = []
     
     
-    override func setupCollectionView() {
-        super.setupCollectionView()
-        collectionView.register(CommanderSkillCollectionCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.dataSource = self
-        collectionView.delegate = self
+    override func setupTableView() {
+        super.setupTableView()
+        tableView.register(CommanderSkillCell.self, forCellReuseIdentifier: cellId)
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     
@@ -40,44 +40,37 @@ class CommanderSkillsViewController: ItemBaseViewController {
             return a.tier < b.tier
         }
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            self.tableView.reloadData()
         }
     }
 
 }
 
-extension CommanderSkillsViewController: UICollectionViewDataSource {
+
+extension CommanderSkillsViewController: UITableViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return skills.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CommanderSkillCollectionCell {
-            if indexPath.item < skills.count {
-                cell.skill = skills[indexPath.item]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CommanderSkillCell {
+            cell.selectionStyle = .none
+            if indexPath.row < skills.count {
+                cell.skill = skills[indexPath.row]
             }
             return cell
         }
-        return UICollectionViewCell(frame: .zero)
+        return UITableViewCell(frame: .zero)
     }
     
-    
-    
-    
 }
 
-extension CommanderSkillsViewController: UICollectionViewDelegate {
-    
-    
-}
-
-extension CommanderSkillsViewController: UICollectionViewDelegateFlowLayout {
-    
+extension CommanderSkillsViewController: UITableViewDelegate {
     
     
 }

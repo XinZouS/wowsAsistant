@@ -27,11 +27,11 @@ class ConsumablesViewController: ItemBaseViewController {
         loadData()
     }
     
-    override func setupCollectionView() {
-        super.setupCollectionView()
-        collectionView.register(ConsumableCollectionCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.dataSource = self
-        collectionView.delegate = self
+    override func setupTableView() {
+        super.setupTableView()
+        tableView.register(ConsumableCell.self, forCellReuseIdentifier: cellId)
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     private func loadData() {
@@ -43,51 +43,39 @@ class ConsumablesViewController: ItemBaseViewController {
             let vm = ConsumableViewModel(sectionTitle: title, consumables: consumablesSorted)
             self?.consumableViewModels.append(vm)
             DispatchQueue.main.async {
-                self?.collectionView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
     
 }
 
-extension ConsumablesViewController: UICollectionViewDataSource {
+
+extension ConsumablesViewController: UITableViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return consumableViewModels.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section < consumableViewModels.count {
             return consumableViewModels[section].consumables.count
         }
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ConsumableCollectionCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? ConsumableCell {
             if indexPath.section < consumableViewModels.count, indexPath.item < consumableViewModels[indexPath.section].consumables.count {
                 cell.consumable = consumableViewModels[indexPath.section].consumables[indexPath.item]
             }
             return cell
         }
-        return UICollectionViewCell(frame: .zero)
+        return UITableViewCell(frame: .zero)
     }
-    
-    
-    
-    
 }
 
-extension ConsumablesViewController: UICollectionViewDelegate {
+extension ConsumablesViewController: UITableViewDelegate {
     
-    
-}
-
-extension ConsumablesViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w = self.view.bounds.width
-        return CGSize(width: w, height: 126)
-    }
     
 }
