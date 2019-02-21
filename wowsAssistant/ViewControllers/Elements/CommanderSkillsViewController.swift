@@ -59,7 +59,6 @@ extension CommanderSkillsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CommanderSkillCell {
-            cell.selectionStyle = .none
             if indexPath.row < skills.count {
                 cell.skill = skills[indexPath.row]
             }

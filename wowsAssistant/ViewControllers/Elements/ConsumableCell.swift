@@ -39,18 +39,18 @@ class ConsumableCell: ItemBaseCell {
                     NSAttributedString.Key.foregroundColor: UIColor.WowsTheme.textCyan]
         let description = NSMutableAttributedString(string: cons.name, attributes: titleAtts)
         
+        let detailAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+                          NSAttributedString.Key.foregroundColor: UIColor.white]
+        let detail = NSMutableAttributedString(string: "\n\(cons.description)", attributes: detailAtts)
+        description.append(detail)
+        
         for (i,profile) in cons.profiles.enumerated() {
-            let textColor = i % 2 == 0 ? UIColor.white : UIColor.lightGray
+            let textColor = i % 2 == 1 ? UIColor.white : UIColor.lightGray
             let profileAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
                                NSAttributedString.Key.foregroundColor: textColor]
             let profileStr = NSAttributedString(string: "\n\(profile.description)", attributes: profileAtts)
             description.append(profileStr)
         }
-        
-        let detailAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
-                    NSAttributedString.Key.foregroundColor: UIColor.white]
-        let detail = NSMutableAttributedString(string: "\n\(cons.description)", attributes: detailAtts)
-        description.append(detail)
         
         descriptionLabel.attributedText = description // after set text, cell label will auto update height;
         

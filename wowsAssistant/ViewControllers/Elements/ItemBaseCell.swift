@@ -22,6 +22,7 @@ class ItemBaseCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
+        selectionStyle = .none
         setupUI()
     }
     
@@ -35,20 +36,20 @@ class ItemBaseCell: UITableViewCell {
         let priceImgSize: CGFloat = 14
         priceImageView.contentMode = .scaleAspectFit
         addSubview(priceImageView)
-        priceImageView.addConstraint(leftAnchor, iconImageView.bottomAnchor, nil, nil, left: space, top: space, right: 0, bottom: 0, width: priceImgSize, height: priceImgSize)
+        priceImageView.addConstraint(leftAnchor, iconImageView.bottomAnchor, nil, nil, left: space, top: 0, right: 0, bottom: 0, width: priceImgSize, height: priceImgSize)
         
         priceLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        priceLabel.adjustsFontSizeToFitWidth = true
         priceLabel.textColor = .white
         addSubview(priceLabel)
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.leftAnchor.constraint(equalTo: priceImageView.rightAnchor, constant: 5).isActive = true
+        priceLabel.addConstraint(priceImageView.rightAnchor, nil, iconImageView.rightAnchor, nil, left: 5, top: 0, right: -6, bottom: 0, width: 0, height: priceImgSize)
         priceLabel.centerYAnchor.constraint(equalTo: priceImageView.centerYAnchor).isActive = true
 //        priceLabel.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: marginX).isActive = true
         
         descriptionLabel.backgroundColor = .clear
         descriptionLabel.numberOfLines = 0
         addSubview(descriptionLabel)
-        descriptionLabel.addConstraint(iconImageView.rightAnchor, topAnchor, rightAnchor, bottomAnchor, left: space, top: space, right: space, bottom: marginX)
+        descriptionLabel.addConstraint(iconImageView.rightAnchor, iconImageView.topAnchor, rightAnchor, bottomAnchor, left: space, top: 0, right: space, bottom: marginX)
     }
     
     required init?(coder aDecoder: NSCoder) {
