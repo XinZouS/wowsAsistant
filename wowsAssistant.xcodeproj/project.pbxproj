@@ -25,6 +25,7 @@
 		66DEDD29221DA0B200278049 /* CommanderSkillCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */; };
 		66DEDD2B221DA25F00278049 /* ConsumableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */; };
 		66DEDD2D221DBAA200278049 /* ItemBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */; };
+		66DEDD2F221EFFB000278049 /* Numerical++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDD2E221EFFB000278049 /* Numerical++.swift */; };
 		66ED358921F770A600D493D9 /* DBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358821F770A600D493D9 /* DBKeys.swift */; };
 		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
@@ -90,6 +91,7 @@
 		66DEDD28221DA0B200278049 /* CommanderSkillCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderSkillCollectionCell.swift; sourceTree = "<group>"; };
 		66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableViewModel.swift; sourceTree = "<group>"; };
 		66DEDD2C221DBAA200278049 /* ItemBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBaseViewController.swift; sourceTree = "<group>"; };
+		66DEDD2E221EFFB000278049 /* Numerical++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numerical++.swift"; sourceTree = "<group>"; };
 		66ED358821F770A600D493D9 /* DBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBKeys.swift; sourceTree = "<group>"; };
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				66ED359721FA273200D493D9 /* UIButton++.swift */,
 				66ED35A6220219E500D493D9 /* UIAlertController++.swift */,
 				66DEDCF82213669000278049 /* UIImageView++.swift */,
+				66DEDD2E221EFFB000278049 /* Numerical++.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				66ED359D21FE66E900D493D9 /* wowsAssistant.xcdatamodeld in Sources */,
 				66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */,
 				66DEDD21221A66AB00278049 /* ConsumableCollectionCell.swift in Sources */,
+				66DEDD2F221EFFB000278049 /* Numerical++.swift in Sources */,
 				66F0E38421EBDFDA003D1023 /* ApiServers.swift in Sources */,
 				66F0E39721EBF510003D1023 /* Date++.swift in Sources */,
 				66ED35A021FE710500D493D9 /* ShipInfoBasic+CoreDataClass.swift in Sources */,

@@ -286,11 +286,11 @@ class ShipDetailViewController: BasicViewController {
         if let gold = shipInfo?.price_gold, gold > 0 {
             creditImageView.image = #imageLiteral(resourceName: "coins_doubloon")
             creditLabel.textColor = UIColor.WowsTheme.creditGold
-            creditLabel.text = getFormattedString(gold)
+            creditLabel.text = gold.getFormattedString()
         } else if let credit = shipInfo?.price_credit {
             creditImageView.image = #imageLiteral(resourceName: "coins_silver")
             creditLabel.textColor = .white
-            creditLabel.text = getFormattedString(credit)
+            creditLabel.text = credit.getFormattedString()
         }
         
         s.setShipTypeImageTo(shipTypeImageView)

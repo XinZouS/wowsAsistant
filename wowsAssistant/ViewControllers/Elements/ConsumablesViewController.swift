@@ -87,6 +87,8 @@ extension ConsumablesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let w = self.view.bounds.width
+        
+        
         return CGSize(width: w, height: 120)
     }
     

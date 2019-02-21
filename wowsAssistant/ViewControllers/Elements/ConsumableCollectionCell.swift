@@ -47,10 +47,10 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
         
         if cons.priceGold > 0 {
             priceImageView.image = #imageLiteral(resourceName: "coins_doubloon")
-            priceLabel.text = "\(getFormattedString(cons.priceGold))"
+            priceLabel.text = "\(cons.priceGold.getFormattedString())"
         } else {
             priceImageView.image = #imageLiteral(resourceName: "coins_silver")
-            priceLabel.text = "\(getFormattedString(cons.priceCredit))"
+            priceLabel.text = "\(cons.priceCredit.getFormattedString())"
         }
     }
     
