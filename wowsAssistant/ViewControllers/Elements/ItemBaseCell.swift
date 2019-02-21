@@ -49,7 +49,7 @@ class ItemBaseCell: UITableViewCell {
         descriptionLabel.backgroundColor = .clear
         descriptionLabel.numberOfLines = 0
         addSubview(descriptionLabel)
-        descriptionLabel.addConstraint(iconImageView.rightAnchor, iconImageView.topAnchor, rightAnchor, bottomAnchor, left: space, top: 0, right: space, bottom: marginX)
+        descriptionLabel.addConstraint(iconImageView.rightAnchor, iconImageView.topAnchor, rightAnchor, bottomAnchor, left: space, top: -space, right: space, bottom: marginX)
     }
     
     required init?(coder aDecoder: NSCoder) {

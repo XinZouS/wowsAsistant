@@ -39,8 +39,11 @@ class ConsumableCell: ItemBaseCell {
                     NSAttributedString.Key.foregroundColor: UIColor.WowsTheme.textCyan]
         let description = NSMutableAttributedString(string: cons.name, attributes: titleAtts)
         
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.paragraphSpacing = 5
         let detailAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
-                          NSAttributedString.Key.foregroundColor: UIColor.white]
+                          NSAttributedString.Key.foregroundColor: UIColor.white,
+                          NSAttributedString.Key.paragraphStyle: paragraphStyle]
         let detail = NSMutableAttributedString(string: "\n\(cons.description)", attributes: detailAtts)
         description.append(detail)
         
