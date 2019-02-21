@@ -239,21 +239,19 @@ class ShipDetailViewController: BasicViewController {
         guard let consumableIds = shipInfo?.upgrades, consumableIds.count > 0 else { return }
         
         ApiServers.shared.getConsumable(ids: consumableIds) { [weak self] (consumables) in
-            if var cons = consumables {
-                cons.sort(by: < )
-                // grouping by price for collectionView sections
-                let groupDictionary = Dictionary(grouping: cons, by: { (con) -> Int in
-                    return con.priceCredit
-                })
-                let keys: [Int] = Array(groupDictionary.keys).sorted()
-                for k in keys {
-                    if let dict = groupDictionary[k] {
-                        self?.moduleDataSource.append(dict)
-                    }
+            let cons = consumables.sorted(by: <)
+            // grouping by price for collectionView sections
+            let groupDictionary = Dictionary(grouping: cons, by: { (con) -> Int in
+                return con.priceCredit
+            })
+            let keys: [Int] = Array(groupDictionary.keys).sorted()
+            for k in keys {
+                if let dict = groupDictionary[k] {
+                    self?.moduleDataSource.append(dict)
                 }
-                DispatchQueue.main.async {
-                    self?.updateModuleCollectionView(sections: keys.count)
-                }
+            }
+            DispatchQueue.main.async {
+                self?.updateModuleCollectionView(sections: keys.count)
             }
         }
     }

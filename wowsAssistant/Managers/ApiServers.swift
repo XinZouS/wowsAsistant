@@ -203,11 +203,14 @@ final class ApiServers: NSObject {
     }
     
     // https://api.worldofwarships.com/wows/encyclopedia/consumables/?application_id=a604db0355085bac597c209b459fd0fb&consumable_id=4275228592%2C+4281520048
-    func getConsumable(ids: [Int]?, limit: Int = 100, pageNum: Int = 1, completion: @escaping(([Consumable]?) -> Void)) {
+    func getConsumable(ids: [Int]?, type: String? = nil, limit: Int = 100, pageNum: Int = 1, completion: @escaping(([Consumable]) -> Void)) {
         var params: [String:Any] = [:]
         params[ServerKey.limit.rawValue] = limit
         params[ServerKey.page_no.rawValue] = pageNum
         params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
+        if let type = type {
+            params[ServerKey.type.rawValue] = type
+        }
         
         if let ids = ids, ids.count > 0 {
             var idsStr = "\(ids[0])"
@@ -241,12 +244,9 @@ final class ApiServers: NSObject {
         }
     }
     // https://api.worldofwarships.com/wows/encyclopedia/crewskills/?application_id=a604db0355085bac597c209b459fd0fb
-    func getCommanderSkills(type: String? = nil, completion: @escaping([CommanderSkill]) -> Void) {
+    func getCommanderSkills(completion: @escaping([CommanderSkill]) -> Void) {
         var params: [String:Any] = [:]
         params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
-        if let type = type {
-            params[ServerKey.type.rawValue] = type
-        }
         
         let realm = UserDefaults.getServerRelam()
         let route = "\(host).\(realm.rawValue)\(wowsEncyclopedia)\(WowsRoute.commanderSkills.rawValue)"

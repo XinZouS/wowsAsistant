@@ -22,11 +22,29 @@ class ConsumablesViewController: ItemBaseViewController {
     /// sections grouped by: commanderSkillTypes
     fileprivate var consumableViewModels: [ConsumableViewModel] = []
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadData()
+    }
+    
     override func setupCollectionView() {
         super.setupCollectionView()
         collectionView.register(ConsumableCollectionCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    private func loadData() {
+        if currTypeIndex >= commanderSkillTypes.count { return }
+        ApiServers.shared.getConsumable(ids: nil, type: commanderSkillTypes[currTypeIndex]) { [weak self] (consumables) in
+            if consumables.count == 0 { return }
+            let title = consumables[0].type
+            let vm = ConsumableViewModel(sectionTitle: title, consumables: consumables)
+            self?.consumableViewModels.append(vm)
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
     }
     
 }
