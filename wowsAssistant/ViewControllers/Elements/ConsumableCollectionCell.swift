@@ -28,10 +28,10 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
             iconImageView.af_setImage(withURL: url)
         }
         let titleAtts = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
-                    NSAttributedString.Key.foregroundColor: UIColor.white]
+                    NSAttributedString.Key.foregroundColor: UIColor.WowsTheme.textCyan]
         let description = NSMutableAttributedString(string: cons.name, attributes: titleAtts)
         
-        let profileAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+        let profileAtts = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
                            NSAttributedString.Key.foregroundColor: UIColor.white]
         for profile in cons.profiles {
             let profileStr = NSAttributedString(string: "\n\(profile.description)", attributes: profileAtts)
@@ -47,10 +47,10 @@ class ConsumableCollectionCell: ItemBaseCollectionCell {
         
         if cons.priceGold > 0 {
             priceImageView.image = #imageLiteral(resourceName: "coins_doubloon")
-            priceLabel.text = "\(cons.priceGold)"
+            priceLabel.text = "\(getFormattedString(cons.priceGold))"
         } else {
             priceImageView.image = #imageLiteral(resourceName: "coins_silver")
-            priceLabel.text = "\(cons.priceCredit)"
+            priceLabel.text = "\(getFormattedString(cons.priceCredit))"
         }
     }
     
