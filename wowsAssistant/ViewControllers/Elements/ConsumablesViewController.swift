@@ -93,21 +93,30 @@ extension ConsumablesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section >= consumableViewModels.count { return nil }
         
-        let imgView = UIImageView()
-        imgView.contentMode = .scaleToFill
-        
-        let fontSize: CGFloat = 16
+        let lbHeigh: CGFloat = 36
         let lb = UILabel()
         lb.textColor = .white
-        lb.font = UIFont.boldSystemFont(ofSize: fontSize)
+        lb.textAlignment = .center
+        lb.font = UIFont.boldSystemFont(ofSize: 16)
         lb.text = consumableViewModels[section].sectionTitle
+        lb.backgroundColor = UIColor.WowsTheme.buttonGreenBot
+        lb.layer.cornerRadius = lbHeigh / 2
+        lb.layer.masksToBounds = true
         
         let v = UIView()
-        v.addSubview(imgView)
-        imgView.fillSuperviewByConstraint()
         v.addSubview(lb)
-        lb.anchorCenterIn(v, width: 0, height: fontSize)
-        
+//        lb.translatesAutoresizingMaskIntoConstraints = false
+//        lb.centerXAnchor.constraint(equalTo: v.centerXAnchor).isActive = true
+//        lb.centerYAnchor.constraint(equalTo: v.centerYAnchor).isActive = true
+//        lb.heightAnchor.constraint(equalToConstant: lbHeigh).isActive = true
+        let w = lb.intrinsicContentSize.width
+//        lb.widthAnchor.constraint(equalToConstant: w).isActive = true
+        lb.anchorCenterIn(v, width: w * 2, height: lbHeigh)
+
         return v
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
 }
