@@ -163,20 +163,26 @@ class ResultCell: UICollectionViewCell {
         addSubview(backgndBorderView)
         backgndBorderView.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 10, top: 0, right: borderMargin, bottom: borderMargin)
         
+        let smallMargin: CGFloat = 5
         titleLabel.textColor = .white
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.8
         addSubview(titleLabel)
-        titleLabel.anchor(backgndBorderView.leadingAnchor, topAnchor, trailingAnchor, nil, lead: 5, height: 26)
+        titleLabel.anchor(backgndBorderView.leadingAnchor, topAnchor, trailingAnchor, nil, lead: smallMargin, height: 26)
         
         flagImageView.alpha = 0.6
         flagImageView.contentMode = .scaleToFill
         addSubview(flagImageView)
         flagImageView.addConstraint(backgndBorderView.leftAnchor, titleLabel.bottomAnchor, backgndBorderView.rightAnchor, backgndBorderView.bottomAnchor)
         
+        shipImageView.contentMode = .scaleAspectFit
+        addSubview(shipImageView)
+        shipImageView.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 0, top: -borderMargin, right: 0, bottom: 0)
+        
+        let typeImgSize: CGFloat = 30
         shipTypeImageView.contentMode = .scaleAspectFit
         addSubview(shipTypeImageView)
-        shipTypeImageView.anchor(backgndBorderView.leadingAnchor, titleLabel.bottomAnchor, nil, nil, lead: 0, top: 0, width: 40, height: 30)
+        shipTypeImageView.addConstraint(backgndBorderView.leftAnchor, titleLabel.bottomAnchor, nil, nil, left: smallMargin, top: 0, right: 0, bottom: 0, width: typeImgSize, height: typeImgSize)
         
         shipTierLabel.textColor = .white
         shipTierLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -186,17 +192,13 @@ class ResultCell: UICollectionViewCell {
         
         markLabel.text = markDefault
         markLabel.textAlignment = .center
-        markLabel.font = UIFont.systemFont(ofSize: 22)
+        markLabel.font = UIFont.systemFont(ofSize: 20)
         addSubview(markLabel)
-        markLabel.addConstraint(nil, titleLabel.bottomAnchor, backgndBorderView.rightAnchor, nil, left: 0, top: 5, right: 10, bottom: 0, width: 0, height: 0)
+        markLabel.addConstraint(nil, titleLabel.bottomAnchor, backgndBorderView.rightAnchor, nil, left: 0, top: 0, right: smallMargin, bottom: 0, width: 0, height: 0)
         
         addSubview(markButton)
         markButton.anchorCenterIn(markLabel, width: 30, height: 30)
         markButton.addTarget(self, action: #selector(markButtonTapped), for: .touchUpInside)
-        
-        shipImageView.contentMode = .scaleAspectFit
-        addSubview(shipImageView)
-        shipImageView.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 0, top: -borderMargin, right: 0, bottom: 0)
     }
     
     @objc private func markButtonTapped() {
