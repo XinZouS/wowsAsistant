@@ -29,9 +29,9 @@ class FindShipViewController: BasicViewController {
     
     // MARK: - UI contents
     let rowTypeHeigh: CGFloat = 50
-    let rowFlagHeigh: CGFloat = 40
-    let rowFlagTrail: CGFloat = 90
-    let rowTierHeigh: CGFloat = 40
+    let rowFlagHeigh: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 40 : 46
+    let rowFlagTrail: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 90 : 120
+    let rowTierHeigh: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 40 : 50
     let resultInterItemSpace: CGFloat = 0
     let stackViewSideSpacing: CGFloat = 10
     let shipTypeSelectionImageSize: CGFloat = 45
@@ -276,6 +276,7 @@ class FindShipViewController: BasicViewController {
         myFavoriteShips.sort()
         DispatchQueue.main.async {
             self.resultCollectionView.reloadData()
+            self.resultCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
     }
     

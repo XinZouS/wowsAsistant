@@ -161,7 +161,7 @@ class ResultCell: UICollectionViewCell {
         backgndBorderView.layer.borderColor = UIColor.WowsTheme.lineDarkBlue.cgColor
         let borderMargin: CGFloat = 30
         addSubview(backgndBorderView)
-        backgndBorderView.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 10, top: 0, right: borderMargin, bottom: borderMargin)
+        backgndBorderView.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 10, top: 0, right: borderMargin, bottom: 24)
         
         let smallMargin: CGFloat = 5
         titleLabel.textColor = .white
