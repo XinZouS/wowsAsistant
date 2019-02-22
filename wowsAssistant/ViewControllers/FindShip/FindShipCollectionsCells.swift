@@ -103,7 +103,7 @@ class ResultHeaderView: UICollectionReusableView {
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         addSubview(titleLabel)
-        titleLabel.addConstraint(leftAnchor, nil, nil, bottomAnchor, left: 20, top: 0, right: 0, bottom: 5, width: 0, height: 0)
+        titleLabel.addConstraint(leftAnchor, nil, nil, bottomAnchor, left: 30, top: 0, right: 0, bottom: 5, width: 0, height: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {

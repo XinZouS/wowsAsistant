@@ -16,6 +16,7 @@ class MainTabbarController: UITabBarController {
         
         setupChildViewControllers()
         ShipInfoBasicManager.shared.loadShipInfoBasicIfNeed()
+        tabBar.tintColor = UIColor.WowsTheme.buttonRedTop
     }
     
     private func setupChildViewControllers() {
@@ -26,8 +27,8 @@ class MainTabbarController: UITabBarController {
         setup(viewController: homeVC, title: L("tabbar.icon.home.title"), icon: #imageLiteral(resourceName: "anchor_hollow_blk"))
         setup(viewController: findVC, title: L("tabbar.icon.find.title"), icon: #imageLiteral(resourceName: "telescope"))
         setup(viewController: elemVC, title: L("tabbar.icon.academy.title"), icon: #imageLiteral(resourceName: "book"))
-        setup(viewController: meVC, title: L("tabbar.icon.account.title"), icon: #imageLiteral(resourceName: "captain_hat"))
-        viewControllers = [homeVC, findVC, elemVC, meVC]
+//        setup(viewController: meVC, title: L("tabbar.icon.account.title"), icon: #imageLiteral(resourceName: "captain_hat"))
+        viewControllers = [homeVC, findVC, elemVC] //, meVC]
     }
     
     private func setup(viewController vc: UIViewController, title: String, icon: UIImage) {

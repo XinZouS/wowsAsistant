@@ -64,7 +64,7 @@ class ShipDetailHeaderView: UIView {
         let valueBarEndLine = UIView()
         valueBarEndLine.backgroundColor = UIColor.WowsTheme.lineCyan
         addSubview(valueBarEndLine)
-        valueBarEndLine.addConstraint(valueBar.rightAnchor, valueBar.topAnchor, nil, valueBar.bottomAnchor, left: 0, top: 0, right: 0, bottom: 0, width: 2, height: 0)
+        valueBarEndLine.addConstraint(valueBar.rightAnchor, valueBar.topAnchor, nil, valueBar.bottomAnchor, left: 0, top: 0, right: 0, bottom: 0, width: 1, height: 0)
         
         expandButtonImageView.image = #imageLiteral(resourceName: "arrow_white_right")
         expandButtonImageView.contentMode = .scaleAspectFit
