@@ -143,8 +143,7 @@ enum ShipType: String, CaseIterable {
     case BB = "Battleship"
     case CR = "Cruiser"
     case DD = "Destroyer"
-    case SB = "Submarine"
-        
+    
     // https://developers.wargaming.net/reference/all/wows/encyclopedia/info/?application_id=a604db0355085bac597c209b459fd0fb&r_realm=eu&run=1
     /// download the IconImage of shipType, IconType = [normal, premium, elite], default = .normal
     func iconImageUrl(_ iconType: IconType = .normal) -> String {
@@ -152,7 +151,7 @@ enum ShipType: String, CaseIterable {
         return "\(route)\(self.rawValue)/\(iconType.rawValue).png"
     }
     
-    /// return enumate Int of type: AC:0, BB:1, CR:2, DD:3, SB:4
+    /// return enumate Int of type: AC:0, BB:1, CR:2, DD:3
     func tagInt() -> Int {
         switch self {
         case .AC:
@@ -163,8 +162,6 @@ enum ShipType: String, CaseIterable {
             return 2
         case .DD:
             return 3
-        case .SB:
-            return 4
         }
     }
 }

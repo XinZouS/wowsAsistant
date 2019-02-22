@@ -100,8 +100,6 @@ class ShipInfo: Unboxable {
                 self.typeEnum = .CR
             case ShipType.DD.rawValue:
                 self.typeEnum = .DD
-            case ShipType.SB.rawValue:
-                self.typeEnum = .SB
             default:
                 self.typeEnum = .AC
             }

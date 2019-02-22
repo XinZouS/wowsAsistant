@@ -138,14 +138,14 @@ class ResultCell: UICollectionViewCell {
     
     weak var delegate: ResultCellDelegate?
     
-    let titleLabel = UILabel()
-    let backgndBorderView = UIView()
-    let backgndImageView = UIImageView()
-    let shipImageView = UIImageView()
-    let shipTypeImageView = UIImageView()
-    let shipTierLabel = UILabel()
-    let markLabel = UILabel()
-    let markButton = UIButton()
+    fileprivate let titleLabel = UILabel()
+    fileprivate let backgndBorderView = UIView()
+    fileprivate let flagImageView = UIImageView()
+    fileprivate let shipImageView = UIImageView()
+    fileprivate let shipTypeImageView = UIImageView()
+    fileprivate let shipTierLabel = UILabel()
+    fileprivate let markLabel = UILabel()
+    fileprivate let markButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -159,27 +159,24 @@ class ResultCell: UICollectionViewCell {
     private func setupUI() {
         backgndBorderView.layer.borderWidth = 1
         backgndBorderView.layer.borderColor = UIColor.WowsTheme.lineDarkBlue.cgColor
+        let borderMargin: CGFloat = 30
         addSubview(backgndBorderView)
-        backgndBorderView.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 0, top: 0, right: 20, bottom: 0)
+        backgndBorderView.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 10, top: 0, right: borderMargin, bottom: borderMargin)
         
         titleLabel.textColor = .white
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.8
         addSubview(titleLabel)
-        titleLabel.anchor(leadingAnchor, topAnchor, trailingAnchor, nil, lead: 5, height: 26)
+        titleLabel.anchor(backgndBorderView.leadingAnchor, topAnchor, trailingAnchor, nil, lead: 5, height: 26)
         
-        backgndImageView.alpha = 0.6
-        backgndImageView.contentMode = .scaleToFill
-        addSubview(backgndImageView)
-        backgndImageView.addConstraint(leftAnchor, titleLabel.bottomAnchor, backgndBorderView.rightAnchor, bottomAnchor)
-        
-        shipImageView.contentMode = .scaleAspectFit
-        addSubview(shipImageView)
-        shipImageView.anchor(leadingAnchor, titleLabel.topAnchor, trailingAnchor, bottomAnchor, lead: 0, top: 5, trail: 0, bottom: -15)
+        flagImageView.alpha = 0.6
+        flagImageView.contentMode = .scaleToFill
+        addSubview(flagImageView)
+        flagImageView.addConstraint(backgndBorderView.leftAnchor, titleLabel.bottomAnchor, backgndBorderView.rightAnchor, backgndBorderView.bottomAnchor)
         
         shipTypeImageView.contentMode = .scaleAspectFit
         addSubview(shipTypeImageView)
-        shipTypeImageView.anchor(leadingAnchor, titleLabel.bottomAnchor, nil, nil, lead: 0, top: 0, width: 40, height: 30)
+        shipTypeImageView.anchor(backgndBorderView.leadingAnchor, titleLabel.bottomAnchor, nil, nil, lead: 0, top: 0, width: 40, height: 30)
         
         shipTierLabel.textColor = .white
         shipTierLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -196,6 +193,10 @@ class ResultCell: UICollectionViewCell {
         addSubview(markButton)
         markButton.anchorCenterIn(markLabel, width: 30, height: 30)
         markButton.addTarget(self, action: #selector(markButtonTapped), for: .touchUpInside)
+        
+        shipImageView.contentMode = .scaleAspectFit
+        addSubview(shipImageView)
+        shipImageView.addConstraint(leftAnchor, topAnchor, rightAnchor, bottomAnchor, left: 0, top: -borderMargin, right: 0, bottom: 0)
     }
     
     @objc private func markButtonTapped() {
@@ -210,7 +211,7 @@ class ResultCell: UICollectionViewCell {
         guard let info = shipInfo else { return }
         
         titleLabel.text = info.name
-        backgndImageView.image = ShipNation(rawValue: info.nation ?? "usa")?.flag(isBackgroud: true)
+        flagImageView.image = ShipNation(rawValue: info.nation ?? "usa")?.flag(isBackgroud: true)
         
         if let smallImg = info.imagesStruct?.small, let url = URL(string: smallImg) {
             shipImageView.af_setImage(withURL: url)

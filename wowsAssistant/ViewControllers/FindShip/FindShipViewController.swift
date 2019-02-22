@@ -16,7 +16,6 @@ class FindShipViewController: BasicViewController {
     var shipNation: ShipNation?
     var shipTier: Int?
     
-    /// TODO: , .SB]
     let shipTypes: [ShipType] = [.AC, .BB, .CR, .DD]
     var shipNations = ShipNation.allCases
     var shipTiers = [10,9,8,7,6,5,4,3,2,1]
@@ -33,7 +32,7 @@ class FindShipViewController: BasicViewController {
     let rowFlagHeigh: CGFloat = 40
     let rowFlagTrail: CGFloat = 90
     let rowTierHeigh: CGFloat = 40
-    let resultInterItemSpace: CGFloat = 10
+    let resultInterItemSpace: CGFloat = 0
     let stackViewSideSpacing: CGFloat = 10
     let shipTypeSelectionImageSize: CGFloat = 45
     
@@ -106,8 +105,6 @@ class FindShipViewController: BasicViewController {
             imgView.contentMode = .scaleAspectFit
             containerView.addSubview(imgView)
             imgView.anchorCenterIn(containerView, width: imgSize, height: imgSize)
-//            imgView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-//            imgView.widthAnchor.constraint(equalToConstant: 40).isActive = true
             if let url = URL(string: urlStr) {
                 imgView.af_setImage(withURL: url)
             }
@@ -140,10 +137,8 @@ class FindShipViewController: BasicViewController {
             newType = .BB
         case 2:
             newType = .CR
-        case 3:
-            newType = .DD
         default:
-            newType = .SB
+            newType = .DD
         }
         
         if let oldType = self.shipType, newType == oldType {
@@ -209,7 +204,6 @@ class FindShipViewController: BasicViewController {
         view.addSubview(resultCollectionView)
         resultCollectionView.backgroundColor = .clear
         resultCollectionView.anchor(vs.leadingAnchor, tierCollectionView.bottomAnchor, vs.trailingAnchor, vs.bottomAnchor)
-        resultCollectionView.contentInset = UIEdgeInsets(top: 0, left: resultInterItemSpace, bottom: 0, right: resultInterItemSpace)
     }
     
     private func setupFindButton() {
@@ -478,8 +472,10 @@ extension FindShipViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: rowTierHeigh * 1.16, height: rowTierHeigh)
         }
         if collectionView == resultCollectionView {
-            let w = view.frame.width / 2 - (1.6 * resultInterItemSpace) // 3: left, center, right spacing
-            return CGSize(width: w, height: w * 0.78)
+            let numOfItemInRow: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 2 : 3
+            let w = view.frame.width / numOfItemInRow - resultInterItemSpace
+            let imageAspectRatio: CGFloat = 0.73
+            return CGSize(width: w, height: w * imageAspectRatio)
         }
         return .zero
     }
