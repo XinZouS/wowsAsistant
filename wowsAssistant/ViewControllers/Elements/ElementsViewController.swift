@@ -86,7 +86,7 @@ extension ElementsViewController: UITableViewDataSource {
 extension ElementsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return UIDevice.current.userInterfaceIdiom == .phone ? 140 : 230
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
