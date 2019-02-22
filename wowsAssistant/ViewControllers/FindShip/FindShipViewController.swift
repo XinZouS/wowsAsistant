@@ -16,6 +16,8 @@ class FindShipViewController: BasicViewController {
     var shipNation: ShipNation?
     var shipTier: Int?
     
+    /// TODO: , .SB]
+    let shipTypes: [ShipType] = [.AC, .BB, .CR, .DD]
     var shipNations = ShipNation.allCases
     var shipTiers = [10,9,8,7,6,5,4,3,2,1]
     
@@ -32,7 +34,8 @@ class FindShipViewController: BasicViewController {
     let rowFlagTrail: CGFloat = 90
     let rowTierHeigh: CGFloat = 40
     let resultInterItemSpace: CGFloat = 10
-    let stackViewRightSpacing: CGFloat = 10
+    let stackViewSideSpacing: CGFloat = 10
+    let shipTypeSelectionImageSize: CGFloat = 45
     
     let serverRelamLabel = UILabel()
     var stackView: UIStackView?
@@ -95,38 +98,40 @@ class FindShipViewController: BasicViewController {
     }
     
     private func setupShipTypeIconStackView() {
-        let types: [ShipType] = [.AC, .BB, .CR, .DD, .SB]
-        let icons: [UIImageView] = types.map { (sType) -> UIImageView in
+        let icons: [UIView] = shipTypes.map { (sType) -> UIView in
+            let containerView = UIView()
             let urlStr =  sType.iconImageUrl()
-            let v = UIImageView()
-            v.contentMode = .scaleAspectFit
-            v.widthAnchor.constraint(equalToConstant: 40).isActive = true
+            let imgSize: CGFloat = 30
+            let imgView = UIImageView()
+            imgView.contentMode = .scaleAspectFit
+            containerView.addSubview(imgView)
+            imgView.anchorCenterIn(containerView, width: imgSize, height: imgSize)
+//            imgView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+//            imgView.widthAnchor.constraint(equalToConstant: 40).isActive = true
             if let url = URL(string: urlStr) {
-                v.af_setImage(withURL: url)
+                imgView.af_setImage(withURL: url)
             }
-            return v
+            return containerView
         }
         stackView = UIStackView(arrangedSubviews: icons)
         stackView!.isUserInteractionEnabled = true
-        stackView!.distribution = .equalSpacing
+        stackView!.distribution = .fillEqually
         stackView!.axis = .horizontal
         view.addSubview(stackView!)
         let vs = view.safeAreaLayoutGuide
-        stackView!.addConstraint(serverRelamLabel.rightAnchor, vs.topAnchor, vs.rightAnchor, nil, left: stackViewRightSpacing, right: stackViewRightSpacing, height: rowTypeHeigh)
+        stackView!.addConstraint(serverRelamLabel.rightAnchor, vs.topAnchor, vs.rightAnchor, nil, left: stackViewSideSpacing, right: stackViewSideSpacing, height: rowTypeHeigh)
         
-        let imgH: CGFloat = 45
         shipTypeSelectionImageView.image = #imageLiteral(resourceName: "selectionCircle_cyan_s")
         shipTypeSelectionImageView.contentMode = .scaleAspectFit
         shipTypeSelectionImageView.isHidden = true
         view.insertSubview(shipTypeSelectionImageView, belowSubview: stackView!)
-        shipTypeSelectionImageView.addConstraint(width: imgH, height: imgH)
+        shipTypeSelectionImageView.addConstraint(width: shipTypeSelectionImageSize, height: shipTypeSelectionImageSize)
         shipTypeSelectionImageView.centerYAnchor.constraint(equalTo: stackView!.centerYAnchor, constant: -2).isActive = true
         shipTypeSelectionImageViewLeadingConstraint = shipTypeSelectionImageView.leftAnchor.constraint(equalTo: stackView!.leftAnchor)
         shipTypeSelectionImageViewLeadingConstraint?.isActive = true
     }
     
     private func didSelectShipType(_ item: Int, _ cellWidth: CGFloat) {
-        let delta = CGFloat(item) * cellWidth
         var newType = ShipType.AC
         switch item {
         case 0:
@@ -147,6 +152,7 @@ class FindShipViewController: BasicViewController {
         } else {
             shipType = newType
             shipTypeSelectionAnimate()
+            let delta = CGFloat(item) * cellWidth + (cellWidth / 2) - (shipTypeSelectionImageSize / 2)
             shipTypeSelectionImageViewLeadingConstraint?.constant = delta
             UIView.animate(withDuration: 0.5, animations: { [weak self] in
                 self?.view.layoutIfNeeded()
@@ -296,14 +302,15 @@ class FindShipViewController: BasicViewController {
 
 extension FindShipViewController {
     
+    /// set selection animation on top contents
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         guard let touch = touches.first else { return }
         
         let loc = touch.location(in: stackView)
         if let sv = stackView, loc.x > 0, loc.y < rowTypeHeigh { // in ShipType stackView
-            let cellWidth = (sv.frame.width + stackViewRightSpacing * 2) / CGFloat(ShipType.allCases.count)
-            let item = Int(loc.x) / Int(cellWidth) // 5 ship types, constant
+            let cellWidth = sv.frame.width / CGFloat(shipTypes.count)
+            let item = Int(loc.x) / Int(cellWidth)
             didSelectShipType(item, cellWidth)
             pageNumber = 1
         }
