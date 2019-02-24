@@ -123,9 +123,28 @@ class ShipDetailViewController: BasicViewController {
         creditLabel.addConstraint(nil, nil, creditImageView.leftAnchor, nil, left: 0, top: 0, right: lineSpace, bottom: 0)
         creditLabel.centerYAnchor.constraint(equalTo: creditImageView.centerYAnchor).isActive = true
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(shipImageViewTapped))
+        shipImageView.isUserInteractionEnabled = true
+        shipImageView.addGestureRecognizer(tapGesture)
         shipImageView.contentMode = .scaleAspectFill
         view.addSubview(shipImageView)
         shipImageView.addConstraint(flagBackgroundImageView.leftAnchor, flagBackgroundImageView.topAnchor, flagBackgroundImageView.rightAnchor, flagBackgroundImageView.bottomAnchor)
+    }
+    
+    @objc private func shipImageViewTapped() {
+        guard let shipImg = shipImageView.image else { return }
+        // show PhotoBrowser for tapping shipImage
+        let shipImgs = [shipImg]
+        let dataSource = LocalDataSource(numberOfItems: {
+            return shipImgs.count
+        }, localImage: { index -> UIImage? in
+            return shipImgs[index]
+        })
+        let trans = PhotoBrowserZoomTransitioning { [unowned self] (browser, index, view) -> CGRect? in
+            return PhotoBrowserZoomTransitioning.resRect(oriRes: self.shipImageView, to: view)
+        }
+        let pb = PhotoBrowser(dataSource: dataSource, delegate: PhotoBrowserBaseDelegate(), transDelegate: trans)
+        pb.show(currentTopVC: self, pageIndex: 0)
     }
     
     private func setupContourImageView() {
