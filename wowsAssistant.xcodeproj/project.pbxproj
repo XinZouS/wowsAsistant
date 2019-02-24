@@ -23,6 +23,7 @@
 		662868CF22233EF300CE49D0 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868C022233EF300CE49D0 /* LocalDataSource.swift */; };
 		662868D022233EF300CE49D0 /* PhotoBrowserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868C122233EF300CE49D0 /* PhotoBrowserDelegate.swift */; };
 		662868D122233EF300CE49D0 /* PhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868C222233EF300CE49D0 /* PhotoBrowser.swift */; };
+		662868D322234A8600CE49D0 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868D222234A8600CE49D0 /* Map.swift */; };
 		66578B1421F1407A0096660C /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1321F1407A0096660C /* Airplane.swift */; };
 		66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1721F22CCC0096660C /* ShipInfo.swift */; };
 		66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */; };
@@ -100,6 +101,7 @@
 		662868C022233EF300CE49D0 /* LocalDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		662868C122233EF300CE49D0 /* PhotoBrowserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserDelegate.swift; sourceTree = "<group>"; };
 		662868C222233EF300CE49D0 /* PhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowser.swift; sourceTree = "<group>"; };
+		662868D222234A8600CE49D0 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		66578B1321F1407A0096660C /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
 		66578B1721F22CCC0096660C /* ShipInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfo.swift; sourceTree = "<group>"; };
 		66DEDCE2220F75AB00278049 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				66DEDCE8221205EB00278049 /* Consumable.swift */,
 				66DEDD2A221DA25F00278049 /* ConsumableViewModel.swift */,
 				66DEDD1C221A4F2B00278049 /* CommanderSkill.swift */,
+				662868D222234A8600CE49D0 /* Map.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */,
 				66DEDD21221A66AB00278049 /* ConsumableCell.swift in Sources */,
 				662868C622233EF300CE49D0 /* PhotoBrowserBaseCell.swift in Sources */,
+				662868D322234A8600CE49D0 /* Map.swift in Sources */,
 				66DEDD2F221EFFB000278049 /* Numerical++.swift in Sources */,
 				66F0E38421EBDFDA003D1023 /* ApiServers.swift in Sources */,
 				66F0E39721EBF510003D1023 /* Date++.swift in Sources */,

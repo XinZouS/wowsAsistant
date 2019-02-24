@@ -198,4 +198,7 @@ enum ShipInfoKeyInDB: String {
     case typeName = "type_name"
     case perks = "perks"
     case icon = "icon"
+    
+    // Maps
+    case battleArenaId = "battle_arena_id"
 }
