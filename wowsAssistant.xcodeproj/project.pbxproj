@@ -8,6 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		1E23681CE1F42E67F60E4FDF /* Pods_wowsAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27979D9BE8086C0D3CC96AB /* Pods_wowsAssistant.framework */; };
+		662868C322233EF300CE49D0 /* PhotoBrowserFadeDismissingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868B222233EF300CE49D0 /* PhotoBrowserFadeDismissingAnimator.swift */; };
+		662868C422233EF300CE49D0 /* PhotoBrowserFadePresentingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868B322233EF300CE49D0 /* PhotoBrowserFadePresentingAnimator.swift */; };
+		662868C522233EF300CE49D0 /* PhotoBrowserZoomAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868B422233EF300CE49D0 /* PhotoBrowserZoomAnimator.swift */; };
+		662868C622233EF300CE49D0 /* PhotoBrowserBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868B522233EF300CE49D0 /* PhotoBrowserBaseCell.swift */; };
+		662868C722233EF300CE49D0 /* PhotoBrowserFadeTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868B722233EF300CE49D0 /* PhotoBrowserFadeTransitioning.swift */; };
+		662868C822233EF300CE49D0 /* PhotoBroswerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868B822233EF300CE49D0 /* PhotoBroswerPresentationController.swift */; };
+		662868C922233EF300CE49D0 /* PhotoBrowserTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868B922233EF300CE49D0 /* PhotoBrowserTransitioning.swift */; };
+		662868CA22233EF300CE49D0 /* PhotoBrowserZoomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868BA22233EF300CE49D0 /* PhotoBrowserZoomTransition.swift */; };
+		662868CB22233EF300CE49D0 /* PhotoBrowserBaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868BB22233EF300CE49D0 /* PhotoBrowserBaseDelegate.swift */; };
+		662868CC22233EF300CE49D0 /* PhotoBrowserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868BD22233EF300CE49D0 /* PhotoBrowserDataSource.swift */; };
+		662868CD22233EF300CE49D0 /* PhotoBrowserTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868BE22233EF300CE49D0 /* PhotoBrowserTransitioningDelegate.swift */; };
+		662868CE22233EF300CE49D0 /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868BF22233EF300CE49D0 /* Namespace.swift */; };
+		662868CF22233EF300CE49D0 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868C022233EF300CE49D0 /* LocalDataSource.swift */; };
+		662868D022233EF300CE49D0 /* PhotoBrowserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868C122233EF300CE49D0 /* PhotoBrowserDelegate.swift */; };
+		662868D122233EF300CE49D0 /* PhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868C222233EF300CE49D0 /* PhotoBrowser.swift */; };
 		66578B1421F1407A0096660C /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1321F1407A0096660C /* Airplane.swift */; };
 		66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1721F22CCC0096660C /* ShipInfo.swift */; };
 		66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */; };
@@ -70,6 +85,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		662868B222233EF300CE49D0 /* PhotoBrowserFadeDismissingAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserFadeDismissingAnimator.swift; sourceTree = "<group>"; };
+		662868B322233EF300CE49D0 /* PhotoBrowserFadePresentingAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserFadePresentingAnimator.swift; sourceTree = "<group>"; };
+		662868B422233EF300CE49D0 /* PhotoBrowserZoomAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserZoomAnimator.swift; sourceTree = "<group>"; };
+		662868B522233EF300CE49D0 /* PhotoBrowserBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserBaseCell.swift; sourceTree = "<group>"; };
+		662868B722233EF300CE49D0 /* PhotoBrowserFadeTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserFadeTransitioning.swift; sourceTree = "<group>"; };
+		662868B822233EF300CE49D0 /* PhotoBroswerPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBroswerPresentationController.swift; sourceTree = "<group>"; };
+		662868B922233EF300CE49D0 /* PhotoBrowserTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserTransitioning.swift; sourceTree = "<group>"; };
+		662868BA22233EF300CE49D0 /* PhotoBrowserZoomTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserZoomTransition.swift; sourceTree = "<group>"; };
+		662868BB22233EF300CE49D0 /* PhotoBrowserBaseDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserBaseDelegate.swift; sourceTree = "<group>"; };
+		662868BD22233EF300CE49D0 /* PhotoBrowserDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserDataSource.swift; sourceTree = "<group>"; };
+		662868BE22233EF300CE49D0 /* PhotoBrowserTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserTransitioningDelegate.swift; sourceTree = "<group>"; };
+		662868BF22233EF300CE49D0 /* Namespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Namespace.swift; sourceTree = "<group>"; };
+		662868C022233EF300CE49D0 /* LocalDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		662868C122233EF300CE49D0 /* PhotoBrowserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserDelegate.swift; sourceTree = "<group>"; };
+		662868C222233EF300CE49D0 /* PhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowser.swift; sourceTree = "<group>"; };
 		66578B1321F1407A0096660C /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
 		66578B1721F22CCC0096660C /* ShipInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfo.swift; sourceTree = "<group>"; };
 		66DEDCE2220F75AB00278049 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -150,6 +180,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		662868A422233DE600CE49D0 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				662868C222233EF300CE49D0 /* PhotoBrowser.swift */,
+				662868B522233EF300CE49D0 /* PhotoBrowserBaseCell.swift */,
+				662868BB22233EF300CE49D0 /* PhotoBrowserBaseDelegate.swift */,
+				662868BC22233EF300CE49D0 /* Protocols */,
+				662868B622233EF300CE49D0 /* Transitions */,
+				662868B122233EF300CE49D0 /* Animator */,
+			);
+			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
+		662868B122233EF300CE49D0 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				662868B222233EF300CE49D0 /* PhotoBrowserFadeDismissingAnimator.swift */,
+				662868B322233EF300CE49D0 /* PhotoBrowserFadePresentingAnimator.swift */,
+				662868B422233EF300CE49D0 /* PhotoBrowserZoomAnimator.swift */,
+			);
+			path = Animator;
+			sourceTree = "<group>";
+		};
+		662868B622233EF300CE49D0 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				662868B722233EF300CE49D0 /* PhotoBrowserFadeTransitioning.swift */,
+				662868B822233EF300CE49D0 /* PhotoBroswerPresentationController.swift */,
+				662868B922233EF300CE49D0 /* PhotoBrowserTransitioning.swift */,
+				662868BA22233EF300CE49D0 /* PhotoBrowserZoomTransition.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
+		662868BC22233EF300CE49D0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				662868BD22233EF300CE49D0 /* PhotoBrowserDataSource.swift */,
+				662868BE22233EF300CE49D0 /* PhotoBrowserTransitioningDelegate.swift */,
+				662868BF22233EF300CE49D0 /* Namespace.swift */,
+				662868C022233EF300CE49D0 /* LocalDataSource.swift */,
+				662868C122233EF300CE49D0 /* PhotoBrowserDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		66DEDCEF22132AB800278049 /* wowsAssistantTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +363,7 @@
 				66ED358B21F7B9D500D493D9 /* FindShip */,
 				66ED358C21F7B9F600D493D9 /* Elements */,
 				66F0E39121EBEA90003D1023 /* PlayerInfo */,
+				662868A422233DE600CE49D0 /* PhotoBrowser */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -500,45 +577,60 @@
 				66ED35A321FE71DE00D493D9 /* PersistenceManager.swift in Sources */,
 				66ED359621FA151900D493D9 /* UserDefaults++.swift in Sources */,
 				66DEDCE9221205EB00278049 /* Consumable.swift in Sources */,
+				662868C322233EF300CE49D0 /* PhotoBrowserFadeDismissingAnimator.swift in Sources */,
+				662868D022233EF300CE49D0 /* PhotoBrowserDelegate.swift in Sources */,
 				66ED35AF2203EB4500D493D9 /* ShipDetailTableCell.swift in Sources */,
 				66ED35A922038FD700D493D9 /* ShipDetailViewController.swift in Sources */,
 				66F0E38721EBE131003D1023 /* GlobalVariable.swift in Sources */,
 				66DEDD25221CCA8900278049 /* CommanderSkillsViewController.swift in Sources */,
+				662868C422233EF300CE49D0 /* PhotoBrowserFadePresentingAnimator.swift in Sources */,
 				66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */,
 				66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */,
 				66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */,
 				66DEDD1F221A669B00278049 /* ConsumablesViewController.swift in Sources */,
 				66DEDD27221D9F9E00278049 /* ItemBaseCell.swift in Sources */,
+				662868CC22233EF300CE49D0 /* PhotoBrowserDataSource.swift in Sources */,
 				66F0E39C21EBFE5C003D1023 /* Ship.swift in Sources */,
 				66ED359821FA273200D493D9 /* UIButton++.swift in Sources */,
+				662868CF22233EF300CE49D0 /* LocalDataSource.swift in Sources */,
 				66DEDD29221DA0B200278049 /* CommanderSkillCell.swift in Sources */,
 				66F0E38121EAA50A003D1023 /* Passwords.swift in Sources */,
 				66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */,
 				66ED35A521FEBED700D493D9 /* ShipInfoBasicManager.swift in Sources */,
+				662868C922233EF300CE49D0 /* PhotoBrowserTransitioning.swift in Sources */,
 				66DEDCE72211FE2A00278049 /* ShipViewModel.swift in Sources */,
 				66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */,
 				66F0E37E21EAA41B003D1023 /* UIView++.swift in Sources */,
 				66F0E39321EBEAC4003D1023 /* LanguageSelectorViewController.swift in Sources */,
 				66F0E39921EBF5EC003D1023 /* String++.swift in Sources */,
+				662868CD22233EF300CE49D0 /* PhotoBrowserTransitioningDelegate.swift in Sources */,
 				66578B1421F1407A0096660C /* Airplane.swift in Sources */,
 				66DEDD2B221DA25F00278049 /* ConsumableViewModel.swift in Sources */,
+				662868CB22233EF300CE49D0 /* PhotoBrowserBaseDelegate.swift in Sources */,
 				66ED358921F770A600D493D9 /* DBKeys.swift in Sources */,
+				662868D122233EF300CE49D0 /* PhotoBrowser.swift in Sources */,
 				66ED35A7220219E500D493D9 /* UIAlertController++.swift in Sources */,
 				66F0E39521EBEC00003D1023 /* ServiceManager.swift in Sources */,
 				66DEDD19221877B600278049 /* ElementsViewController.swift in Sources */,
 				66ED359D21FE66E900D493D9 /* wowsAssistant.xcdatamodeld in Sources */,
 				66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */,
 				66DEDD21221A66AB00278049 /* ConsumableCell.swift in Sources */,
+				662868C622233EF300CE49D0 /* PhotoBrowserBaseCell.swift in Sources */,
 				66DEDD2F221EFFB000278049 /* Numerical++.swift in Sources */,
 				66F0E38421EBDFDA003D1023 /* ApiServers.swift in Sources */,
 				66F0E39721EBF510003D1023 /* Date++.swift in Sources */,
+				662868C822233EF300CE49D0 /* PhotoBroswerPresentationController.swift in Sources */,
 				66ED35A021FE710500D493D9 /* ShipInfoBasic+CoreDataClass.swift in Sources */,
+				662868C522233EF300CE49D0 /* PhotoBrowserZoomAnimator.swift in Sources */,
+				662868CE22233EF300CE49D0 /* Namespace.swift in Sources */,
 				66F0E36B21EAA2C1003D1023 /* MainTabbarController.swift in Sources */,
+				662868CA22233EF300CE49D0 /* PhotoBrowserZoomTransition.swift in Sources */,
 				66DEDD1D221A4F2C00278049 /* CommanderSkill.swift in Sources */,
 				66DEDD1B2218789800278049 /* ElementsTableCell.swift in Sources */,
 				66ED35A121FE710500D493D9 /* ShipInfoBasic+CoreDataProperties.swift in Sources */,
 				66F0E36921EAA2C1003D1023 /* AppDelegate.swift in Sources */,
 				66DEDCF92213669000278049 /* UIImageView++.swift in Sources */,
+				662868C722233EF300CE49D0 /* PhotoBrowserFadeTransitioning.swift in Sources */,
 				66DEDD2D221DBAA200278049 /* ItemBaseViewController.swift in Sources */,
 				66ED35AB2203AB3700D493D9 /* ModuleCollectionCell.swift in Sources */,
 			);
