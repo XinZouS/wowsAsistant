@@ -35,7 +35,7 @@ class ElementsViewController: BasicViewController {
     let contents: [ElementsTableContent] = [
         ElementsTableContent(ElementKind.commanderSkills, L("Commander Skills"), #imageLiteral(resourceName: "commanders")),
         ElementsTableContent(ElementKind.consumables, L("Consumables"), #imageLiteral(resourceName: "consumablesTitleImg")),
-        ElementsTableContent(ElementKind.collections, L("Collections"), #imageLiteral(resourceName: "collections")),
+//        ElementsTableContent(ElementKind.collections, L("Collections"), #imageLiteral(resourceName: "collections")),
         ElementsTableContent(ElementKind.maps, L("Maps"), #imageLiteral(resourceName: "map_titleImg")),
     ]
     
