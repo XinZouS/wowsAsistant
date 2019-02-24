@@ -60,6 +60,7 @@ final class ApiServers: NSObject {
         case ships = "/ships/"
         case consumables = "/consumables/"
         case commanderSkills = "/crewskills/"
+        case maps = "/battlearenas/"
     }
     
     
@@ -268,6 +269,35 @@ final class ApiServers: NSObject {
                 }
             }
             completion(skills)
+        }
+    }
+    
+    
+    // https://api.worldofwarships.com/wows/encyclopedia/battlearenas/?application_id=a604db0355085bac597c209b459fd0fb
+    /// Get all maps of Wows and return a list: [Map]
+    func getMaps(completion: @escaping([Map]) -> Void) {
+        var params: [String:Any] = [:]
+        params[ServerKey.applicationId.rawValue] = AppConfigs.appId.rawValue
+        
+        let realm = UserDefaults.getServerRelam()
+        let route = "\(host).\(realm.rawValue)\(wowsEncyclopedia)\(WowsRoute.maps.rawValue)"
+        
+        getDataFromWows(route, parameters: params) { (dictionary, error) in
+            var maps: [Map] = []
+            guard let dict = dictionary else {
+                completion(maps)
+                return
+            }
+            for pair in dict {
+                if let mapDict = pair.value as? [String:Any] {
+                    do {
+                        let getMap: Map = try unbox(dictionary: mapDict)
+                        maps.append(getMap)
+                    } catch let error as NSError {
+                        DLog("[ERROR] unboxing Maps from list failed: \(error)")
+                    }
+                }
+            }
         }
     }
     
