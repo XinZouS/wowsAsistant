@@ -16,7 +16,7 @@ open class PhotoBrowserBaseCell: UICollectionViewCell {
     open var imageContainer = UIScrollView()
     
     /// 图片允许的最大放大倍率
-    open var imageMaximumZoomScale: CGFloat = 2.0
+    open var imageMaximumZoomScale: CGFloat = 3.0
     
     /// 单击时回调
     open var clickCallback: ((UITapGestureRecognizer) -> Void)?
