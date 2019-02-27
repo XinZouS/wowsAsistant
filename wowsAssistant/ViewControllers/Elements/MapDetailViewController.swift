@@ -44,7 +44,7 @@ extension MapDetailViewController {
         setupControlViews()
         
         backButton = createBackButton()
-        _ = createNavigationBarBackItem(button: backButton)
+        createNavigationBarBackItem(button: backButton)
         
         // animations
         showBackButtonDuration(duration: 0.3)
@@ -97,14 +97,12 @@ extension MapDetailViewController {
         return button
     }
     
-    fileprivate func createNavigationBarBackItem(button: UIButton?) -> UIBarButtonItem? {
+    fileprivate func createNavigationBarBackItem(button: UIButton?) {
         guard let button = button else {
-            return nil
+            return
         }
-        
         let buttonItem = UIBarButtonItem(customView: button)
         navigationItem.leftBarButtonItem = buttonItem
-        return buttonItem
     }
     
     fileprivate func setupBlurView() {
