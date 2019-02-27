@@ -92,7 +92,7 @@ extension MapDetailViewController {
     
     fileprivate func createBackButton() -> UIButton {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 22, height: 44))
-        button.setImage(#imageLiteral(resourceName: "back"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "universal_back"), for: .normal)
         button.addTarget(self, action: #selector(backButtonHandler), for: .touchUpInside)
         return button
     }
