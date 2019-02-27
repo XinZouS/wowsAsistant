@@ -20,7 +20,7 @@ fileprivate struct C {
 
 /// MARK: - UITableViewCell with parallax background
 
-open class ParallaxCell: UITableViewCell {
+open class PTTableCell: UITableViewCell {
     
     /// Custom separator view
     open var separatorView: UIView?
@@ -87,7 +87,7 @@ open class ParallaxCell: UITableViewCell {
 }
 
 // MARK: life cicle
-extension ParallaxCell {
+extension PTTableCell {
     
     func commonInit() {
         
@@ -151,7 +151,7 @@ extension ParallaxCell {
 }
 
 // MARK: Methods
-public extension ParallaxCell {
+public extension PTTableCell {
     
     /**
      Sets the contents of the background image and title label
@@ -165,7 +165,7 @@ public extension ParallaxCell {
 }
 
 // MARK: internal
-extension ParallaxCell {
+extension PTTableCell {
     
     func parallaxOffset(_ tableView: UITableView) {
         
@@ -250,7 +250,7 @@ extension ParallaxCell {
 }
 
 // MARK: animation
-extension ParallaxCell {
+extension PTTableCell {
     
     fileprivate func moveToCenter(_ duration: Double, offset: CGFloat) {
         bgImageY?.constant = 0
@@ -304,7 +304,7 @@ extension ParallaxCell {
 }
 
 // MARK: create
-extension ParallaxCell {
+extension PTTableCell {
     
     fileprivate func createBckgroundImage() -> UIImageView {
         
@@ -346,7 +346,7 @@ extension ParallaxCell {
 }
 
 // MARK: cofigure
-extension ParallaxCell {
+extension PTTableCell {
     
     fileprivate func createForegroundView(_ color: UIColor) -> UIView {
         guard let bgImage = self.bgImage else {

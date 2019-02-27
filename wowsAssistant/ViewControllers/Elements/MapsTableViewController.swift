@@ -10,12 +10,14 @@ import UIKit
 
 class MapsTableViewController: PTTableViewController {
     
-    var items: [UIImage] = []
+    var maps: [Map] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureNavigationBar()
-        self.tableView.register(ParallaxCell.self, forCellReuseIdentifier: ParallaxCell.cellIdentifier)
+        self.tableView.register(MapsTableCell.self, forCellReuseIdentifier: MapsTableCell.cellIdentifier)
+        fetchMapsData()
     }
     
     fileprivate func configureNavigationBar() {
@@ -30,26 +32,40 @@ class MapsTableViewController: PTTableViewController {
         ]
     }
     
+    private func fetchMapsData() {
+        print("fetchMapsData()")
+        ApiServers.shared.getMaps { [weak self] (getMaps) in
+            print("fetchMapsData(): check self...")
+            guard let `self` = self else { return }
+            self.maps.append(contentsOf: getMaps)
+            print("success get maps = \(getMaps.count)")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
 }
 
 extension MapsTableViewController {
     
     public override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return items.count
+        return maps.count
     }
     
     public override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? ParallaxCell else { return }
+        guard let cell = cell as? MapsTableCell else { return }
         
-        let title = "title name \(indexPath.row)"
-        if indexPath.row < items.count {
-            cell.setImage(items[indexPath.row], title: title)
+        if indexPath.row < maps.count {
+            cell.mapModel = maps[indexPath.row]
         }
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: ParallaxCell.cellIdentifier, for: indexPath) as? ParallaxCell {
-            //        let cell: ParallaxCell = tableView.getReusableCellWithIdentifier(indexPath: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: MapsTableCell.cellIdentifier, for: indexPath) as? MapsTableCell {
+            if indexPath.row < maps.count {
+                cell.mapModel = maps[indexPath.row]
+            }
             return cell
         }
         return UITableViewCell(frame: .zero)

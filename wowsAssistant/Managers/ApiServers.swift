@@ -298,6 +298,7 @@ final class ApiServers: NSObject {
                     }
                 }
             }
+            completion(maps)
         }
     }
     

@@ -26,7 +26,7 @@ fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 /// Base UITableViewController for preview transition
 open class PTTableViewController: UITableViewController {
     
-    internal var currentCell: ParallaxCell?
+    internal var currentCell: PTTableCell?
     
     fileprivate var duration: Double = 1.0 // original: 0.8
     fileprivate var currentTextLabel: MovingLabel?
@@ -48,7 +48,7 @@ public extension PTTableViewController {
         
         if let currentIndex = tableView.indexPath(for: currentCell) {
             let nextIndex = IndexPath(row: (currentIndex as NSIndexPath).row + 1, section: (currentIndex as NSIndexPath).section)
-            if case let nextCell as ParallaxCell = tableView.cellForRow(at: nextIndex) {
+            if case let nextCell as PTTableCell = tableView.cellForRow(at: nextIndex) {
                 nextCell.showTopSeparator()
                 nextCell.superview?.bringSubviewToFront(nextCell)
             }
@@ -99,7 +99,7 @@ extension PTTableViewController {
 // MARK: create
 extension PTTableViewController {
     
-    fileprivate func createTitleLable(_ cell: ParallaxCell) -> MovingLabel {
+    fileprivate func createTitleLable(_ cell: PTTableCell) -> MovingLabel {
         
         let yPosition = cell.frame.origin.y + cell.frame.size.height / 2.0 - 22 - tableView.contentOffset.y
         let label = MovingLabel(frame: CGRect(x: 0, y: yPosition, width: UIScreen.main.bounds.size.width, height: 44))
@@ -134,7 +134,7 @@ extension PTTableViewController {
 extension PTTableViewController {
     
     public final override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        guard let currentCell = tableView.cellForRow(at: indexPath) as? ParallaxCell else {
+        guard let currentCell = tableView.cellForRow(at: indexPath) as? PTTableCell else {
             return indexPath
         }
         self.currentCell = currentCell
@@ -149,7 +149,7 @@ extension PTTableViewController {
         
         _ = tableView.visibleCells
             .filter { $0 != currentCell }
-            .forEach { if case let cell as ParallaxCell = $0 { cell.parallaxOffset(tableView) } }
+            .forEach { if case let cell as PTTableCell = $0 { cell.parallaxOffset(tableView) } }
     }
     
     fileprivate func moveCellsBackIfNeed(_ duration: Double, completion: @escaping () -> Void) {
@@ -158,11 +158,11 @@ extension PTTableViewController {
                 return
         }
         
-        for case let cell as ParallaxCell in tableView.visibleCells where cell != currentCell {
+        for case let cell as PTTableCell in tableView.visibleCells where cell != currentCell {
             if cell.isMovedHidden == false { continue }
             
             if let index = tableView.indexPath(for: cell) {
-                let direction = (index as NSIndexPath).row < (currentIndex as NSIndexPath).row ? ParallaxCell.Direction.up : ParallaxCell.Direction.down
+                let direction = (index as NSIndexPath).row < (currentIndex as NSIndexPath).row ? PTTableCell.Direction.up : PTTableCell.Direction.down
                 cell.animationMoveCell(direction, duration: duration, tableView: tableView, selectedIndexPaht: currentIndex, close: true)
                 cell.isMovedHidden = false
             }
@@ -186,13 +186,13 @@ extension PTTableViewController {
     }
     
     //  animtaions
-    fileprivate func moveCells(_ tableView: UITableView, currentCell: ParallaxCell, duration: Double) {
+    fileprivate func moveCells(_ tableView: UITableView, currentCell: PTTableCell, duration: Double) {
         guard let currentIndex = tableView.indexPath(for: currentCell) else { return }
         
-        for case let cell as ParallaxCell in tableView.visibleCells where cell != currentCell {
+        for case let cell as PTTableCell in tableView.visibleCells where cell != currentCell {
             cell.isMovedHidden = true
             let row = (tableView.indexPath(for: cell) as NSIndexPath?)?.row
-            let direction = row < (currentIndex as NSIndexPath).row ? ParallaxCell.Direction.down : ParallaxCell.Direction.up
+            let direction = row < (currentIndex as NSIndexPath).row ? PTTableCell.Direction.down : PTTableCell.Direction.up
             cell.animationMoveCell(direction, duration: duration, tableView: tableView, selectedIndexPaht: currentIndex, close: false)
         }
     }

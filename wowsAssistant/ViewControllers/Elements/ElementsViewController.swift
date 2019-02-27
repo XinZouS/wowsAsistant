@@ -108,7 +108,8 @@ extension ElementsViewController: UITableViewDelegate {
             print(" open collections")
             
         case .maps:
-            print(" open maps")
+            let vc = MapsTableViewController()
+            AppDelegate.shared().mainNavigationController?.pushViewController(vc, animated: true)
         }
     }
     

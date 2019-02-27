@@ -32,6 +32,7 @@
 		6628690122262CB100CE49D0 /* PTDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868FB22262CB100CE49D0 /* PTDetailViewController.swift */; };
 		6628690222262CB100CE49D0 /* PTTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662868FC22262CB100CE49D0 /* PTTableViewController.swift */; };
 		6628690422262DDE00CE49D0 /* MapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6628690322262DDE00CE49D0 /* MapDetailViewController.swift */; };
+		662869062226325900CE49D0 /* MapsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662869052226325900CE49D0 /* MapsTableCell.swift */; };
 		66578B1421F1407A0096660C /* Airplane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1321F1407A0096660C /* Airplane.swift */; };
 		66578B1821F22CCC0096660C /* ShipInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66578B1721F22CCC0096660C /* ShipInfo.swift */; };
 		66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DEDCE42210E4C100278049 /* ShipDetailHeaderView.swift */; };
@@ -118,6 +119,7 @@
 		662868FB22262CB100CE49D0 /* PTDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTDetailViewController.swift; sourceTree = "<group>"; };
 		662868FC22262CB100CE49D0 /* PTTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTTableViewController.swift; sourceTree = "<group>"; };
 		6628690322262DDE00CE49D0 /* MapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailViewController.swift; sourceTree = "<group>"; };
+		662869052226325900CE49D0 /* MapsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsTableCell.swift; sourceTree = "<group>"; };
 		66578B1321F1407A0096660C /* Airplane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airplane.swift; sourceTree = "<group>"; };
 		66578B1721F22CCC0096660C /* ShipInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipInfo.swift; sourceTree = "<group>"; };
 		66DEDCE2220F75AB00278049 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				66DEDD1E221A669B00278049 /* ConsumablesViewController.swift */,
 				66DEDD20221A66AB00278049 /* ConsumableCell.swift */,
 				662868D422234F5D00CE49D0 /* MapsTableViewController.swift */,
+				662869052226325900CE49D0 /* MapsTableCell.swift */,
 				6628690322262DDE00CE49D0 /* MapDetailViewController.swift */,
 			);
 			path = Elements;
@@ -625,6 +628,7 @@
 				66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */,
 				66DEDD1F221A669B00278049 /* ConsumablesViewController.swift in Sources */,
 				66DEDD27221D9F9E00278049 /* ItemBaseCell.swift in Sources */,
+				662869062226325900CE49D0 /* MapsTableCell.swift in Sources */,
 				662868CC22233EF300CE49D0 /* PhotoBrowserDataSource.swift in Sources */,
 				66F0E39C21EBFE5C003D1023 /* Ship.swift in Sources */,
 				66ED359821FA273200D493D9 /* UIButton++.swift in Sources */,
