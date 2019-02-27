@@ -24,12 +24,10 @@ class MapsTableViewController: PTTableViewController {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().isTranslucent = true
         
-        if let font = UIFont(name: "Avenir-medium", size: 18) {
-            UINavigationBar.appearance().titleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor.white,
-                NSAttributedString.Key.font: font,
-            ]
-        }
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
+        ]
     }
     
 }
