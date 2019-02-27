@@ -14,10 +14,16 @@ class MapsTableViewController: PTTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.WowsTheme.gradientBlueLight
         
         configureNavigationBar()
         self.tableView.register(MapsTableCell.self, forCellReuseIdentifier: MapsTableCell.cellIdentifier)
         fetchMapsData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     fileprivate func configureNavigationBar() {
@@ -30,7 +36,6 @@ class MapsTableViewController: PTTableViewController {
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
         ]
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     private func fetchMapsData() {
