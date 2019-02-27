@@ -48,6 +48,10 @@ class ElementsViewController: BasicViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        AppDelegate.shared().mainNavigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     private func setupTableView() {
         tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView()

@@ -30,15 +30,13 @@ class MapsTableViewController: PTTableViewController {
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),
         ]
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     private func fetchMapsData() {
-        print("fetchMapsData()")
         ApiServers.shared.getMaps { [weak self] (getMaps) in
-            print("fetchMapsData(): check self...")
             guard let `self` = self else { return }
             self.maps.append(contentsOf: getMaps)
-            print("success get maps = \(getMaps.count)")
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

@@ -249,12 +249,12 @@
 		662868EA22262BEC00CE49D0 /* TableTransitionController */ = {
 			isa = PBXGroup;
 			children = (
-				662868F722262CB000CE49D0 /* MovingView.swift */,
+				662868FC22262CB100CE49D0 /* PTTableViewController.swift */,
+				662868FA22262CB000CE49D0 /* PTTableCell.swift */,
 				662868FB22262CB100CE49D0 /* PTDetailViewController.swift */,
+				662868F722262CB000CE49D0 /* MovingView.swift */,
 				662868F822262CB000CE49D0 /* PTHelpers.swift */,
 				662868F922262CB000CE49D0 /* PTLayerAnimationHelper.swift */,
-				662868FA22262CB000CE49D0 /* PTTableCell.swift */,
-				662868FC22262CB100CE49D0 /* PTTableViewController.swift */,
 			);
 			path = TableTransitionController;
 			sourceTree = "<group>";

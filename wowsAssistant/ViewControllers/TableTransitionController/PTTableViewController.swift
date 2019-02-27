@@ -43,7 +43,9 @@ public extension PTTableViewController {
         
         guard let currentCell = currentCell,
             let navigationController = self.navigationController else {
+                #if DEBUG
                 fatalError("current cell is empty or add navigationController")
+                #endif
         }
         
         if let currentIndex = tableView.indexPath(for: currentCell) {
