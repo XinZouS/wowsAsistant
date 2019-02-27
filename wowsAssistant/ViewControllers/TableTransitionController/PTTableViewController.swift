@@ -67,6 +67,11 @@ public extension PTTableViewController {
         if let text = currentCell.parallaxTitle?.text {
             viewController.titleText = text
         }
+        if let mapCell = currentCell as? MapsTableCell,
+            let mapDescription = mapCell.mapModel?.description,
+            let mapVC = viewController as? MapDetailViewController {
+            mapVC.mapDescription = mapDescription
+        }
         delay(duration) {
             navigationController.pushViewController(viewController, animated: false)
         }

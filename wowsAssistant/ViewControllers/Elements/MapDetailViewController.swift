@@ -15,13 +15,17 @@ class MapDetailViewController: PTDetailViewController {
     // bottom control icons
     fileprivate var controlsViewContainer = UIView()
     fileprivate var controlView = UIView()
-    fileprivate var plusImageView = UIImageView()
     fileprivate var controlTextLabel = UILabel()
     fileprivate var controlTextLableLending: NSLayoutConstraint?
-    fileprivate var shareImageView = UIImageView()
-    fileprivate var hertIconView = UIImageView()
     
     var backButton: UIButton?
+    var mapDescription: String? {
+        didSet {
+            if let str = mapDescription {
+                controlTextLabel.text = str
+            }
+        }
+    }
     
     var bottomSafeArea: CGFloat {
         var result: CGFloat = 0
@@ -49,39 +53,29 @@ extension MapDetailViewController {
         // animations
         showBackButtonDuration(duration: 0.3)
         showControlViewDuration(duration: 0.3)
-        
-        setupBlurView()
     }
     
     private func setupControlViews() {
         let vs = view.safeAreaLayoutGuide
         view.addSubview(controlsViewContainer)
-        controlsViewContainer.addConstraint(vs.leftAnchor, nil, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: 66)
+        controlsViewContainer.addConstraint(vs.leftAnchor, nil, vs.rightAnchor, nil, left: 0, top: 0, right: 0, bottom: 0, width: 0, height: 100)
         controlBottomConstrant = controlsViewContainer.bottomAnchor.constraint(equalTo: vs.bottomAnchor)
         controlBottomConstrant?.isActive = true
         
         // ???
         controlsViewContainer.addSubview(controlView)
         controlView.fillSuperviewByConstraint()
+        controlView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         
-        let iconSize: CGFloat = 30
-        controlView.addSubview(plusImageView)
-        plusImageView.addConstraint(controlView.leftAnchor, nil, nil, nil, left: 20, top: 0, right: 0, bottom: 0, width: iconSize, height: iconSize)
-        plusImageView.centerYAnchor.constraint(equalTo: controlView.centerYAnchor).isActive = true
-        
+        let labelMargin: CGFloat = 30
         controlView.addSubview(controlTextLabel)
         controlTextLabel.translatesAutoresizingMaskIntoConstraints = false
         controlTextLabel.centerYAnchor.constraint(equalTo: controlView.centerYAnchor).isActive = true
-        controlTextLableLending = controlTextLabel.leadingAnchor.constraint(equalTo: plusImageView.trailingAnchor)
+        controlTextLableLending = controlTextLabel.leadingAnchor.constraint(equalTo: controlView.leadingAnchor, constant: labelMargin)
         controlTextLableLending?.isActive = true
-        
-        controlView.addSubview(hertIconView)
-        hertIconView.addConstraint(nil, nil, controlView.rightAnchor, nil, left: 0, top: 0, right: 20, bottom: 0, width: iconSize, height: iconSize)
-        hertIconView.centerYAnchor.constraint(equalTo: controlView.centerYAnchor).isActive = true
-        
-        controlView.addSubview(shareImageView)
-        shareImageView.addConstraint(nil, nil, hertIconView.leftAnchor, nil, left: 0, top: 0, right: 20, bottom: 0, width: iconSize, height: iconSize)
-        shareImageView.centerYAnchor.constraint(equalTo: controlView.centerYAnchor).isActive = true
+        controlTextLabel.trailingAnchor.constraint(equalTo: controlView.trailingAnchor, constant: -labelMargin).isActive = true
+        controlTextLabel.textColor = .white
+        controlTextLabel.numberOfLines = 4
     }
     
 }
@@ -105,15 +99,6 @@ extension MapDetailViewController {
         navigationItem.leftBarButtonItem = buttonItem
     }
     
-    fileprivate func setupBlurView() {
-        let height = controlView.bounds.height + bottomSafeArea
-        let blurViewFrame = CGRect(x: 0, y: view.frame.size.height - height, width: view.frame.width, height: height)
-        let blurView = UIVisualEffectView(frame: blurViewFrame)
-        blurView.effect = UIBlurEffect(style: .dark)
-        controlsViewContainer.insertSubview(blurView, at: 0)
-        blurView.fillSuperviewByConstraint()
-    }
-    
 }
 
 // MARK: animations
@@ -128,7 +113,6 @@ extension MapDetailViewController {
     
     fileprivate func showControlViewDuration(duration: Double) {
         moveUpControllerDuration(duration: duration)
-        showControlButtonsDuration(duration: duration)
         showControlLabelDuration(duration: duration)
     }
     
@@ -141,15 +125,6 @@ extension MapDetailViewController {
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
-    }
-    
-    fileprivate func showControlButtonsDuration(duration: Double) {
-        [plusImageView, shareImageView, hertIconView].forEach {
-            $0.rotateDuration(duration: duration, from: CGFloat.pi / 4, to: 0, delay: duration)
-            $0.scaleDuration(duration: duration, from: 0.5, to: 1, delay: duration)
-            $0.alpha = 0
-            $0.opacityDuration(duration: duration, from: 0, to: 1, delay: duration, remove: false)
-        }
     }
     
     fileprivate func showControlLabelDuration(duration: Double) {
