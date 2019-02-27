@@ -14,7 +14,7 @@ class MapsTableViewController: PTTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.WowsTheme.gradientBlueLight
+        view.backgroundColor = UIColor.WowsTheme.gradientBlueDark
         
         configureNavigationBar()
         self.tableView.register(MapsTableCell.self, forCellReuseIdentifier: MapsTableCell.cellIdentifier)

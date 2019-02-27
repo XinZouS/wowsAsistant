@@ -15,7 +15,7 @@ open class PTDetailViewController: UIViewController {
     var titleText: String?
     
     /// 图片允许的最大放大倍率
-    open var imageMaximumZoomScale: CGFloat = 6.0
+    open var imageMaximumZoomScale: CGFloat = 2.0
     
     /// 记录pan手势开始时imageView的位置
     private var beganFrame = CGRect.zero
