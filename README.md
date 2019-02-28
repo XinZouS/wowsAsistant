@@ -1,4 +1,4 @@
-# ShipAssistant
+# ⚓️ ShipAssistant
 The assistant information app for World of Warships
 
 - Fast find ship information from World of Warships.
