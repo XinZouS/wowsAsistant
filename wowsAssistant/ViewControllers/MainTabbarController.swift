@@ -16,7 +16,7 @@ class MainTabbarController: UITabBarController {
         
         setupChildViewControllers()
         ShipInfoBasicManager.shared.loadShipInfoBasicIfNeed()
-        tabBar.tintColor = UIColor.WowsTheme.buttonRedBot
+        tabBar.tintColor = UIColor.WowsTheme.buttonRedTop
     }
     
     private func setupChildViewControllers() {

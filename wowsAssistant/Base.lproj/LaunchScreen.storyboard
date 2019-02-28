@@ -19,18 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0HW-vo-GqJ">
-                                <rect key="frame" x="30" y="66" width="315" height="130"/>
+                                <rect key="frame" x="30" y="50" width="315" height="130"/>
                                 <color key="backgroundColor" red="0.20975487892992487" green="0.43242206125981203" blue="0.67120709196891193" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="4SR-f2-Mbu"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BlA-yK-IoS">
-                                <rect key="frame" x="30" y="236" width="315" height="130"/>
+                                <rect key="frame" x="30" y="220" width="315" height="130"/>
                                 <color key="backgroundColor" red="0.48005812151266114" green="0.4913657075515096" blue="0.67120709199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oep-i6-nmY">
-                                <rect key="frame" x="30" y="406" width="315" height="130"/>
+                                <rect key="frame" x="30" y="390" width="315" height="130"/>
                                 <color key="backgroundColor" red="0.38951178942812714" green="0.47899620159107914" blue="0.73229031735751293" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WW3-2T-YQS">
@@ -56,7 +56,7 @@
                             <constraint firstItem="WW3-2T-YQS" firstAttribute="top" secondItem="3OZ-AT-ZEe" secondAttribute="bottom" id="AS1-92-tif"/>
                             <constraint firstItem="0HW-vo-GqJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="C9b-NH-U9i"/>
                             <constraint firstItem="BlA-yK-IoS" firstAttribute="top" secondItem="0HW-vo-GqJ" secondAttribute="bottom" constant="40" id="CUe-Ge-a2x"/>
-                            <constraint firstItem="0HW-vo-GqJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="46" id="GUV-rz-Ja6"/>
+                            <constraint firstItem="0HW-vo-GqJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="GUV-rz-Ja6"/>
                             <constraint firstItem="oep-i6-nmY" firstAttribute="leading" secondItem="0HW-vo-GqJ" secondAttribute="leading" id="Wl6-1p-Loy"/>
                             <constraint firstItem="WW3-2T-YQS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YcP-bH-4Wr"/>
                             <constraint firstItem="WW3-2T-YQS" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZMW-rf-mob"/>
