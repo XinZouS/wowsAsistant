@@ -19,11 +19,16 @@ Enjoy your sailing!
 * WARGAMING API TERMS OF USE: https://developers.wargaming.net/documentation/rules/agreement/
 * This application is developed in the framework of Wargaming Developers Partner Program, using World of Warship public API. All graphs and data belong to Wargaming. World of Warships, WoWS, WoT and WoWs are registered trademarks of Wargaming.Net: Copyright © Wargaming.net ®, All rights reserved.
 
-
+* 
 * key words: wows, world of warships, warships, ship, ship assistant, 窝窝, 战舰, 战舰世界, 开船助手, 窝窝助手
 * support url: http://wiki.wargaming.net/en/World_of_Warships
 
+## Compatibility
+- iOS 9.0+
+- Swift 3.0
+- Xcode 8.0
 
+#
 # 窝窝助手
 《战舰世界》的信息助理应用程序
 
@@ -41,11 +46,12 @@ Enjoy your sailing!
 -  支持iPad
 - 如果您有任何建议或意见，请给我发电子邮件（sanking.saphira@foxmail.com），先谢过 ^ ^
 - 游戏《战舰世界》官方网站：https://worldofwarships.com/
-
+* 
 * Wargaming API 使用条款：https://developers.wargaming.net/documentation/rules/agreement/
 * 此应用程序是在Wargaming开发者合作伙伴计划的框架内开发的，使用战舰世界公共API。所有图表和数据都属于Wargaming。 World of Warships，WoWS，WoT和WoWs是Wargaming.Net的注册商标：版权所有©Wargaming.net®，保留所有权利。
 
 
+#
 # 窩窩助手
 《戰艦世界》的信息助理應用程序
 
@@ -63,9 +69,16 @@ Enjoy your sailing!
 - 支持iPad
 - 如果您有任何建議或意見，請給我發電子郵件（sanking.saphira@foxmail.com），先謝過 ^ ^
 - 遊戲《戰艦世界》官方網站：https://worldofwarships.com/
-
+* 
 * Wargaming API 使用條款：https://developers.wargaming.net/documentation/rules/agreement/
 * 此應用程序是在Wargaming開發者合作夥伴計劃的框架內開發的，使用戰艦世界公共API。所有圖表和數據都屬於Wargaming。 World of Warships，WoWS，WoT和WoWs是Wargaming.Net的註冊商標：版權所有©Wargaming.net®，保留所有權利。
 
 
 * 窩窩, 戰艦, 戰艦世界, 開船助手, 窩窩助手, key words: wows, world of warships, warships, ship, ship assistant
+
+# Tech. Memo
+- Creator - Native iOS tool app ShipAssistant. (Coredata, MVVM, Unit testing)
+- 
+- Customized UI design
+- Customized Animation UX
+- TDD: Unit testing
