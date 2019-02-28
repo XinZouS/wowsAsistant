@@ -24,9 +24,9 @@ Enjoy your sailing!
 * support url: http://wiki.wargaming.net/en/World_of_Warships
 
 ## Compatibility
-- iOS 9.0+
-- Swift 3.0
-- Xcode 8.0
+- iOS 11.0+
+- Swift 4.0
+- Xcode 10.1
 
 #
 # 窝窝助手
