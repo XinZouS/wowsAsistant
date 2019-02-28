@@ -39,7 +39,7 @@ Enjoy your sailing!
 - 游戏官网每日新闻，不要错过任何惊喜
 - 所有船长技能、模组、消耗品、旗帜和地图的详细说明
 -  支持iPad
-- 如果您有任何建议或意见，请给我发电子邮件（sanking.saphira@foxmail.com），先谢过啦 ^ ^
+- 如果您有任何建议或意见，请给我发电子邮件（sanking.saphira@foxmail.com），先谢过 ^ ^
 - 游戏《战舰世界》官方网站：https://worldofwarships.com/
 
 * Wargaming API 使用条款：https://developers.wargaming.net/documentation/rules/agreement/
@@ -61,7 +61,7 @@ Enjoy your sailing!
 - 遊戲官網每日新聞，不要錯過任何驚喜
 - 所有船長技能、模組、消耗品、旗幟和地圖的詳細說明
 - 支持iPad
-- 如果您有任何建議或意見，請給我發電子郵件（sanking.saphira@foxmail.com），先謝過啦 ^ ^
+- 如果您有任何建議或意見，請給我發電子郵件（sanking.saphira@foxmail.com），先謝過 ^ ^
 - 遊戲《戰艦世界》官方網站：https://worldofwarships.com/
 
 * Wargaming API 使用條款：https://developers.wargaming.net/documentation/rules/agreement/
