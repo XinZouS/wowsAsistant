@@ -24,9 +24,9 @@ Enjoy your sailing!
 * support url: http://wiki.wargaming.net/en/World_of_Warships
 
 ## Acknowledgments
+Thanks all these repos, I couldn't do this without learning from you.
 - [preview-transition](https://github.com/Ramotion/preview-transition)
 - [JXPhotoBrowser](https://github.com/JiongXing/PhotoBrowser)
-Thanks all repos above, I couldn't do this without learning from you.
 
 ## Compatibility
 - iOS 11.0+
