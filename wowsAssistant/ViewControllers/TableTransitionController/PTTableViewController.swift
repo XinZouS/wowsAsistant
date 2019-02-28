@@ -45,6 +45,8 @@ public extension PTTableViewController {
             let navigationController = self.navigationController else {
                 #if DEBUG
                 fatalError("current cell is empty or add navigationController")
+                #else
+                return
                 #endif
         }
         
