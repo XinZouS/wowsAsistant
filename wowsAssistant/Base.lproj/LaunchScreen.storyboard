@@ -18,21 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0HW-vo-GqJ">
-                                <rect key="frame" x="30" y="50" width="315" height="130"/>
-                                <color key="backgroundColor" red="0.20975487892992487" green="0.43242206125981203" blue="0.67120709196891193" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="4SR-f2-Mbu"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BlA-yK-IoS">
-                                <rect key="frame" x="30" y="220" width="315" height="130"/>
-                                <color key="backgroundColor" red="0.48005812151266114" green="0.4913657075515096" blue="0.67120709199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oep-i6-nmY">
-                                <rect key="frame" x="30" y="390" width="315" height="130"/>
-                                <color key="backgroundColor" red="0.38951178942812714" green="0.47899620159107914" blue="0.73229031735751293" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WW3-2T-YQS">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <color key="backgroundColor" red="0.74489961139896366" green="0.74489961139896366" blue="0.74489961139896366" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,33 +25,12 @@
                                     <constraint firstAttribute="height" constant="60" id="WGG-ew-kaX"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3OZ-AT-ZEe">
-                                <rect key="frame" x="0.0" y="567" width="375" height="40"/>
-                                <color key="backgroundColor" red="0.21405300645838191" green="0.54904590724728353" blue="0.61662079015544036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="iPZ-Uq-965"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.15585440433467956" green="0.29151287892378869" blue="0.43697376943005184" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3OZ-AT-ZEe" secondAttribute="trailing" id="1fJ-nm-eT3"/>
                             <constraint firstItem="WW3-2T-YQS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3N7-CW-Lm5"/>
-                            <constraint firstItem="BlA-yK-IoS" firstAttribute="height" secondItem="0HW-vo-GqJ" secondAttribute="height" id="8Aq-e0-Pj4"/>
-                            <constraint firstItem="WW3-2T-YQS" firstAttribute="top" secondItem="3OZ-AT-ZEe" secondAttribute="bottom" id="AS1-92-tif"/>
-                            <constraint firstItem="0HW-vo-GqJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="C9b-NH-U9i"/>
-                            <constraint firstItem="BlA-yK-IoS" firstAttribute="top" secondItem="0HW-vo-GqJ" secondAttribute="bottom" constant="40" id="CUe-Ge-a2x"/>
-                            <constraint firstItem="0HW-vo-GqJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="GUV-rz-Ja6"/>
-                            <constraint firstItem="oep-i6-nmY" firstAttribute="leading" secondItem="0HW-vo-GqJ" secondAttribute="leading" id="Wl6-1p-Loy"/>
                             <constraint firstItem="WW3-2T-YQS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YcP-bH-4Wr"/>
                             <constraint firstItem="WW3-2T-YQS" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZMW-rf-mob"/>
-                            <constraint firstItem="BlA-yK-IoS" firstAttribute="trailing" secondItem="0HW-vo-GqJ" secondAttribute="trailing" id="tak-Ta-UDt"/>
-                            <constraint firstItem="BlA-yK-IoS" firstAttribute="leading" secondItem="0HW-vo-GqJ" secondAttribute="leading" id="u3D-2c-cSD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0HW-vo-GqJ" secondAttribute="trailing" constant="30" id="ucb-Vt-eS3"/>
-                            <constraint firstItem="oep-i6-nmY" firstAttribute="trailing" secondItem="0HW-vo-GqJ" secondAttribute="trailing" id="ujf-5H-fvv"/>
-                            <constraint firstItem="oep-i6-nmY" firstAttribute="top" secondItem="BlA-yK-IoS" secondAttribute="bottom" constant="40" id="xum-el-i8W"/>
-                            <constraint firstItem="oep-i6-nmY" firstAttribute="height" secondItem="0HW-vo-GqJ" secondAttribute="height" id="y0O-2X-4cm"/>
-                            <constraint firstItem="3OZ-AT-ZEe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zqV-Tk-E1Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
