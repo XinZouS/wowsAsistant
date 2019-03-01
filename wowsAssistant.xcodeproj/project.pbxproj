@@ -55,7 +55,7 @@
 		66ED358E21F7BA4400D493D9 /* FindShipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */; };
 		66ED359021F92BFE00D493D9 /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED358F21F92BFE00D493D9 /* UIColor++.swift */; };
 		66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359121F9606A00D493D9 /* BasicViewController.swift */; };
-		66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359321F976B200D493D9 /* HomeViewController.swift */; };
+		66ED359421F976B200D493D9 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359321F976B200D493D9 /* NewsViewController.swift */; };
 		66ED359621FA151900D493D9 /* UserDefaults++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359521FA151900D493D9 /* UserDefaults++.swift */; };
 		66ED359821FA273200D493D9 /* UIButton++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359721FA273200D493D9 /* UIButton++.swift */; };
 		66ED359A21FA316D00D493D9 /* FindShipCollectionsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED359921FA316D00D493D9 /* FindShipCollectionsCells.swift */; };
@@ -146,7 +146,7 @@
 		66ED358D21F7BA4400D493D9 /* FindShipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipViewController.swift; sourceTree = "<group>"; };
 		66ED358F21F92BFE00D493D9 /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
 		66ED359121F9606A00D493D9 /* BasicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicViewController.swift; sourceTree = "<group>"; };
-		66ED359321F976B200D493D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		66ED359321F976B200D493D9 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		66ED359521FA151900D493D9 /* UserDefaults++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults++.swift"; sourceTree = "<group>"; };
 		66ED359721FA273200D493D9 /* UIButton++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton++.swift"; sourceTree = "<group>"; };
 		66ED359921FA316D00D493D9 /* FindShipCollectionsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShipCollectionsCells.swift; sourceTree = "<group>"; };
@@ -200,6 +200,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		661E71EB222984AC00562415 /* UtilityViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				662868EA22262BEC00CE49D0 /* TableTransitionController */,
+				662868A422233DE600CE49D0 /* PhotoBrowser */,
+			);
+			path = UtilityViewControllers;
+			sourceTree = "<group>";
+		};
 		662868A422233DE600CE49D0 /* PhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,12 +277,12 @@
 			path = wowsAssistantTests;
 			sourceTree = "<group>";
 		};
-		66ED358A21F7B9C200D493D9 /* Home */ = {
+		66ED358A21F7B9C200D493D9 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				66ED359321F976B200D493D9 /* HomeViewController.swift */,
+				66ED359321F976B200D493D9 /* NewsViewController.swift */,
 			);
-			path = Home;
+			path = News;
 			sourceTree = "<group>";
 		};
 		66ED358B21F7B9D500D493D9 /* FindShip */ = {
@@ -335,6 +344,7 @@
 				66F0E38521EBE114003D1023 /* Configs */,
 				66F0E39A21EBFE24003D1023 /* Models */,
 				66F0E39021EBEA70003D1023 /* ViewControllers */,
+				661E71EB222984AC00562415 /* UtilityViewControllers */,
 				66F0E38221EBDF0D003D1023 /* Managers */,
 				66F0E38821EBE409003D1023 /* Supports */,
 				66F0E37F21EAA42E003D1023 /* Helpers */,
@@ -395,12 +405,10 @@
 			children = (
 				66F0E36A21EAA2C1003D1023 /* MainTabbarController.swift */,
 				66ED359121F9606A00D493D9 /* BasicViewController.swift */,
-				66ED358A21F7B9C200D493D9 /* Home */,
 				66ED358B21F7B9D500D493D9 /* FindShip */,
 				66ED358C21F7B9F600D493D9 /* Elements */,
+				66ED358A21F7B9C200D493D9 /* News */,
 				66F0E39121EBEA90003D1023 /* PlayerInfo */,
-				662868A422233DE600CE49D0 /* PhotoBrowser */,
-				662868EA22262BEC00CE49D0 /* TableTransitionController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -625,7 +633,7 @@
 				662868C422233EF300CE49D0 /* PhotoBrowserFadePresentingAnimator.swift in Sources */,
 				66DEDCE52210E4C100278049 /* ShipDetailHeaderView.swift in Sources */,
 				66ED359221F9606A00D493D9 /* BasicViewController.swift in Sources */,
-				66ED359421F976B200D493D9 /* HomeViewController.swift in Sources */,
+				66ED359421F976B200D493D9 /* NewsViewController.swift in Sources */,
 				66DEDD1F221A669B00278049 /* ConsumablesViewController.swift in Sources */,
 				66DEDD27221D9F9E00278049 /* ItemBaseCell.swift in Sources */,
 				662869062226325900CE49D0 /* MapsTableCell.swift in Sources */,

@@ -22,7 +22,7 @@ class MainTabbarController: UITabBarController {
     private func setupChildViewControllers() {
         let findVC = FindShipViewController()
         let elemVC = ElementsViewController()
-        let newsVC = HomeViewController()
+        let newsVC = NewsViewController()
         let meVC = UIViewController()
         setup(viewController: findVC, title: L("tabbar.icon.find.title"), icon: #imageLiteral(resourceName: "telescope"))
         setup(viewController: elemVC, title: L("tabbar.icon.academy.title"), icon: #imageLiteral(resourceName: "book"))

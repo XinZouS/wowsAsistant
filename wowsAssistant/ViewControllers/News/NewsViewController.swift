@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  NewsViewController.swift
 //  wowsAssistant
 //
 //  Created by Xin Zou on 1/23/19.
@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class HomeViewController: BasicViewController, WKNavigationDelegate {
+class NewsViewController: BasicViewController, WKNavigationDelegate {
     
     // https://worldofwarships.asia/zh-tw/news/
     // https://worldofwarships.com/en/news/
